@@ -15,7 +15,7 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
-        public List<Employee> GetAll()
+        public IEnumerable<Employee> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -31,11 +31,6 @@ namespace DAL.Repositories.File
         }
 
         public void Update(Guid Id, Employee Object)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Employee> IGenericRepository<Employee>.GetAll()
         {
             throw new NotImplementedException();
         }

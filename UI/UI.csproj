@@ -368,6 +368,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{AB4CA04A-E52B-4978-8817-6B85BB30AB3F}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{5cbcc7bd-9320-4f5d-9b8b-081c8c5da821}</Project>
       <Name>Domain</Name>

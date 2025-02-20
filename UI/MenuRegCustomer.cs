@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.Contracts;
+using DAL.Factory;
 using Domain;
 
 
@@ -16,7 +19,7 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-
+        IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
         public MenuRegCustomer(Panel panelContenedor)
         {
             InitializeComponent();
@@ -51,7 +54,7 @@ namespace UI
             {
                 Customer newCustomer = new Customer
                 {
-                    NroDocument = int.Parse(txtState.Text),
+                    NroDocument = int.Parse(txtNroDocument.Text),
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
                     State = int.Parse(txtState.Text),
@@ -61,8 +64,7 @@ namespace UI
                     Address = txtAddress.Text
                 };
 
-                // Insertar en la base de datos
-                customerRepo.Insert(newCustomer);
+                repositoryCustomer.Insert(newCustomer);
 
                 MessageBox.Show("Cliente guardado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

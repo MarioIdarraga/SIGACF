@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.Contracts;
+using DAL.Factory;
+using Domain;
 
 namespace UI
 {
     public partial class MenuCustomers : Form
     {
+
+        IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
+
         private Panel _panelContenedor;
 
         public MenuCustomers(Panel panelContenedor)
@@ -40,6 +46,11 @@ namespace UI
         private void btnModCustomer_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuModCustomer(_panelContenedor));
+        }
+
+        private void btnFindCustomer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

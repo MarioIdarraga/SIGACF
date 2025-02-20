@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using DAL.Tools;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace DAL.Repositories.SqlServer
 {
@@ -15,7 +16,7 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email) VALUES (@LoginName, @Password, @FirstName, @LastName, @Podition, @email)";
+            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @email)";
         }
 
         private string UpdateStatement
@@ -51,20 +52,24 @@ namespace DAL.Repositories.SqlServer
 
         public User GetOne(Guid UserId)
         {
-            User user = default;
+            User user = null;
 
-            using (var dr = SqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text, null, null))
-
+            using (var dr = SqlHelper.ExecuteReader(SelectOneStatement, CommandType.Text, new SqlParameter("@UserId", UserId), null))
             {
                 if (dr.Read())
                 {
-                    object[] values = new object[dr.FieldCount];
-                    dr.GetValues(values);
+                    user = new User
+                    {
+                        
+                        UserId = dr.GetGuid(dr.GetOrdinal("IdUser")), 
+                        //LoginName = dr.GetString(dr.GetOrdinal("Name")), 
+                                                                    
+                    };
                 }
-
             }
-        }
 
+            return user;
+        }
 
         public void Insert(User Object)
         {

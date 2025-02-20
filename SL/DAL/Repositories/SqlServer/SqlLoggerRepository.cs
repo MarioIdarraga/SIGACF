@@ -14,7 +14,7 @@ using System.Data.SqlClient;
 
 namespace SL.DAL.Repositories.SqlServer
 {
-    internal class SqlLoggerRepository : Ilogger
+    internal class SqlLoggerRepository : ILogger
     {
 
         List<Log> customer = new List<Log>();
@@ -46,7 +46,7 @@ namespace SL.DAL.Repositories.SqlServer
             catch (Exception ex)
             {
 
-                ex.Handle(this);
+                //ex.Handle(this);
             }
         }
 

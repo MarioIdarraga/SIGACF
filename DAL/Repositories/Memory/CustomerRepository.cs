@@ -1,41 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Contracts;
 using Domain;
-using DAL.Tools;
 
 namespace DAL.Repositories.Memory
 {
     internal class CustomerRepository : IGenericRepository<Customer>
     {
+        private readonly List<Customer> _customers = new List<Customer>
+        {
+            new Customer()
+            {
+                IdCustomer = Guid.NewGuid(),
+                NroDocument = 19113731,
+                FirstName = "Mario",
+                LastName = "Idarraga",
+                Mail = "Mario@gmail.com",
+                Address = "Balcarce 800",
+                Telephone = "+5491164377169",
+                Comment = "Le gusta jugar los lunes",
+                State = 1
+            }
+        };
+
         public void Delete(Guid Id)
         {
-            throw new NotImplementedException();
+            var customer = _customers.FirstOrDefault(c => c.IdCustomer == Id);
+            if (customer != null)
+            {
+                _customers.Remove(customer);
+            }
         }
 
         public IEnumerable<Customer> GetAll()
         {
-            List<Customer> customers = new List<Customer>();
-            customers.Add(new Customer() { IdCustomer = Guid.NewGuid(), NroDocument = 19113731, FirstName = "Mario", LastName = "Idarraga", Mail = "Mario@gmail.com", Address = "Balcarce 800", Telephone = "+5491164377169", Comment = "Le gusta jugar los lunes", State = 1 });
-                return customers;
+            return _customers;
         }
 
         public Customer GetOne(Guid Id)
         {
-            throw new NotImplementedException();
+            return _customers.FirstOrDefault(c => c.IdCustomer == Id);
         }
 
         public void Insert(Customer Object)
         {
-            throw new NotImplementedException();
+            _customers.Add(Object);
         }
 
         public void Update(Guid Id, Customer Object)
         {
-            throw new NotImplementedException();
+            var customer = _customers.FirstOrDefault(c => c.IdCustomer == Id);
+            if (customer != null)
+            {
+                customer.NroDocument = Object.NroDocument;
+                customer.FirstName = Object.FirstName;
+                customer.LastName = Object.LastName;
+                customer.State = Object.State;
+                customer.Comment = Object.Comment;
+                customer.Telephone = Object.Telephone;
+                customer.Mail = Object.Mail;
+                customer.Address = Object.Address;
+            }
         }
     }
 }
