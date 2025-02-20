@@ -54,26 +54,6 @@ namespace UI
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void bntReportes_Click(object sender, EventArgs e)
-        {
-            subMenuReportes.Visible = true;
-        }
-
-        private void btnRepVentas_Click(object sender, EventArgs e)
-        {
-            subMenuReportes.Visible = false;
-        }
-
-        private void btnRepPromociones_Click(object sender, EventArgs e)
-        {
-            subMenuReportes.Visible = false;
-        }
-
-        private void btnRepCancelaciones_Click(object sender, EventArgs e)
-        {
-            subMenuReportes.Visible = false;
-        }
-
         private void OpenFormChild(object formchild)
         {
             if (this.panelContenedor.Controls.Count > 0)
@@ -89,7 +69,32 @@ namespace UI
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuCustomers());
+            OpenFormChild(new MenuCustomers(this.panelContenedor));
+        }
+
+        private void btnAlquiler_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuSales(this.panelContenedor));
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuPay(this.panelContenedor));
+        }
+
+        private void btnCan_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuCan(this.panelContenedor));
+        }
+
+        private void bntReportes_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuRep(this.panelContenedor));
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuAdmin(this.panelContenedor));
         }
     }
 }

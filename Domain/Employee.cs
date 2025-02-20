@@ -8,17 +8,21 @@ namespace Domain
 {
     public class Employee
     {
+
+        public Guid Id { get; set; }
+        
         public int Document { get; set; }
 
-        public string name { get; set; }
+        public string FirstName { get; set; }
 
+        public string LastName { get; set; }
 
-        public string surname { get; set; }
+        public string Mail { get; set; }
 
-        public int docket { get; set; }
+        public string Address { get; set; }
 
-        public string address { get; set; }
+        public int Telephone { get; set; }
 
-        public int telephone { get; set; }
+        public int State { get; set; }
     }
 }

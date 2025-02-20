@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Contracts;
-using DAL.Tools;
+﻿using DAL.Contracts;
+using DAL;
 using Domain;
+using System.Data.SqlClient;
+using DAL.Tools;
+using System;
+using System.Collections.Generic;
 
 namespace DAL.Repositories.SqlServer
 {
@@ -67,19 +65,26 @@ namespace DAL.Repositories.SqlServer
             }
         }
 
+
         public void Insert(User Object)
         {
+            
             SqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text,
-                new SqlParameter[] {    new SqlParameter("@LoginName", object.LoginName),
-                                        new SqlParameter("@Password", object.Password),
-                                        new SqlParameter("@FirstName", object.FirstName),
-                                        new SqlParameter("@LastName", object.LastName),
-                                        new SqlParameter("@Position", object.Position),
-                                        new SqlParameter("@Email", object.Email)});
+                new SqlParameter[] {    new SqlParameter("@LoginName", Object.LoginName),
+                                        new SqlParameter("@Password", Object.Password),
+                                        new SqlParameter("@FirstName", Object.FirstName),
+                                        new SqlParameter("@LastName", Object.LastName),
+                                        new SqlParameter("@Position", Object.Position),
+                                        new SqlParameter("@Email", Object.Email)});
         
     }
 
        public void Update(Guid UserId, User Object)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<User> IGenericRepository<User>.GetAll()
         {
             throw new NotImplementedException();
         }

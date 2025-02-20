@@ -8,6 +8,9 @@ using SL.DAL.Contracts;
 using SL.DAL.Tools;
 using SL.Domain;
 using SL.Service.Extension;
+using System.Data.SqlClient;
+
+
 
 namespace SL.DAL.Repositories.SqlServer
 {

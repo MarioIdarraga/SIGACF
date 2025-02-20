@@ -28,9 +28,9 @@ namespace DAL.Factory
             backend = ConfigurationManager.AppSettings["backend"];
         }
 
-        public IGenericRepository<User> GetUsersRepository()
+        public IGenericRepository<User> GetUserRepository()
         {
- 
+
             if (backend == "SqlServer")
             {
                 return new Repositories.SqlServer.UserRepository();
@@ -42,6 +42,56 @@ namespace DAL.Factory
             else
             {
                 return new Repositories.Memory.UserRepository();
+            }
+        }
+
+        public IGenericRepository<Customer> GetCustomerRepository()
+        {
+
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.CustomerRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.CustomerRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.CustomerRepository();
+            }
+        }
+
+        public IGenericRepository<Employee> GetEmployeeRepository()
+        {
+ 
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.EmployeeRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.EmployeeRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.EmployeeRepository();
+            }
+        }
+        public IGenericRepository<Booking> GetBookingRepository()
+        {
+
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.BookingRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.BookingRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.BookingRepository();
             }
         }
     }

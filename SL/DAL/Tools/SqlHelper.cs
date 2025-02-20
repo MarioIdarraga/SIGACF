@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+
 
 namespace SL.DAL.Tools
 {
@@ -15,7 +16,7 @@ namespace SL.DAL.Tools
 
         static SqlHelper()
         {
-            conString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            conString = ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString;
         }
         public static Int32 ExecuteNonQuery(String commandText,
             CommandType commandType, params SqlParameter[] parameters)

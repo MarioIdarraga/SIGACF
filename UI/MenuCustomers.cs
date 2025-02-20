@@ -12,9 +12,34 @@ namespace UI
 {
     public partial class MenuCustomers : Form
     {
-        public MenuCustomers()
+        private Panel _panelContenedor;
+
+        public MenuCustomers(Panel panelContenedor)
         {
             InitializeComponent();
+            _panelContenedor = panelContenedor;
+        }
+
+        private void OpenFormChild(object formchild)
+        {
+            if (_panelContenedor.Controls.Count > 0)
+                _panelContenedor.Controls.RemoveAt(0);
+            Form fh = formchild as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            _panelContenedor.Controls.Add(fh);
+            _panelContenedor.Tag = fh;
+            fh.Show();
+        }
+
+        private void btnRegCustomer_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuRegCustomer(_panelContenedor));
+        }
+
+        private void btnModCustomer_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuModCustomer(_panelContenedor));
         }
     }
 }

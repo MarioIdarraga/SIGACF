@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    internal interface IGenericRepository<T>
+    public interface IGenericRepository<T> //interfaz generica
     {
         void Insert(T Object);
 

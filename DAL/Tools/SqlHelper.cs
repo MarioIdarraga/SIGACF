@@ -15,7 +15,7 @@ namespace DAL.Tools
 
         static SqlHelper()
         {
-            conString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            conString = ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString;
         }
         public static Int32 ExecuteNonQuery(String commandText,
             CommandType commandType, params SqlParameter[] parameters)
@@ -77,4 +77,3 @@ namespace DAL.Tools
         }
     }
 }
-
