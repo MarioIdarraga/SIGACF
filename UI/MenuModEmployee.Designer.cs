@@ -45,22 +45,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRegEmployee = new System.Windows.Forms.Button();
-            this.btnFindEmployee = new System.Windows.Forms.Button();
+            this.btnRegUser = new System.Windows.Forms.Button();
+            this.btnFindUser = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(608, 397);
+            this.textBox8.Location = new System.Drawing.Point(626, 397);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(190, 22);
             this.textBox8.TabIndex = 59;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(608, 264);
+            this.textBox7.Location = new System.Drawing.Point(627, 264);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(335, 22);
             this.textBox7.TabIndex = 58;
@@ -205,29 +207,29 @@
             this.label2.TabIndex = 43;
             this.label2.Text = "Nro de Legajo";
             // 
-            // btnRegEmployee
+            // btnRegUser
             // 
-            this.btnRegEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRegEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegEmployee.Location = new System.Drawing.Point(414, 56);
-            this.btnRegEmployee.Name = "btnRegEmployee";
-            this.btnRegEmployee.Size = new System.Drawing.Size(184, 87);
-            this.btnRegEmployee.TabIndex = 42;
-            this.btnRegEmployee.Text = "Registrar Empleado";
-            this.btnRegEmployee.UseVisualStyleBackColor = false;
-            this.btnRegEmployee.Click += new System.EventHandler(this.btnRegEmployee_Click);
+            this.btnRegUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegUser.Location = new System.Drawing.Point(414, 56);
+            this.btnRegUser.Name = "btnRegUser";
+            this.btnRegUser.Size = new System.Drawing.Size(184, 87);
+            this.btnRegUser.TabIndex = 42;
+            this.btnRegUser.Text = "Registrar Usuario";
+            this.btnRegUser.UseVisualStyleBackColor = false;
+            this.btnRegUser.Click += new System.EventHandler(this.btnRegEmployee_Click);
             // 
-            // btnFindEmployee
+            // btnFindUser
             // 
-            this.btnFindEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnFindEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindEmployee.Location = new System.Drawing.Point(230, 56);
-            this.btnFindEmployee.Name = "btnFindEmployee";
-            this.btnFindEmployee.Size = new System.Drawing.Size(178, 87);
-            this.btnFindEmployee.TabIndex = 41;
-            this.btnFindEmployee.Text = "Busqueda de Empleados";
-            this.btnFindEmployee.UseVisualStyleBackColor = false;
-            this.btnFindEmployee.Click += new System.EventHandler(this.btnFindEmployee_Click);
+            this.btnFindUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnFindUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindUser.Location = new System.Drawing.Point(230, 56);
+            this.btnFindUser.Name = "btnFindUser";
+            this.btnFindUser.Size = new System.Drawing.Size(178, 87);
+            this.btnFindUser.TabIndex = 41;
+            this.btnFindUser.Text = "Busqueda de Empleados";
+            this.btnFindUser.UseVisualStyleBackColor = false;
+            this.btnFindUser.Click += new System.EventHandler(this.btnFindEmployee_Click);
             // 
             // label1
             // 
@@ -236,9 +238,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(421, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(284, 32);
+            this.label1.Size = new System.Drawing.Size(315, 40);
             this.label1.TabIndex = 40;
-            this.label1.Text = "Modificar Empleado";
+            this.label1.Text = "Modificar Usuario";
             // 
             // btnMenuAdmin
             // 
@@ -254,12 +256,32 @@
             this.btnMenuAdmin.UseVisualStyleBackColor = false;
             this.btnMenuAdmin.Click += new System.EventHandler(this.btnMenuAdmin_Click);
             // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(629, 322);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(190, 22);
+            this.textBox9.TabIndex = 62;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label10.Location = new System.Drawing.Point(498, 326);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(156, 23);
+            this.label10.TabIndex = 61;
+            this.label10.Text = "Cargo/Posición";
+            // 
             // MenuModEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(987, 667);
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
@@ -278,8 +300,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnRegEmployee);
-            this.Controls.Add(this.btnFindEmployee);
+            this.Controls.Add(this.btnRegUser);
+            this.Controls.Add(this.btnFindUser);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuModEmployee";
@@ -308,9 +330,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnRegEmployee;
-        private System.Windows.Forms.Button btnFindEmployee;
+        private System.Windows.Forms.Button btnRegUser;
+        private System.Windows.Forms.Button btnFindUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMenuAdmin;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label10;
     }
 }

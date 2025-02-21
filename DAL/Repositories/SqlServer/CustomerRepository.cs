@@ -17,6 +17,7 @@ namespace DAL.Repositories.SqlServer
         private string SelectAllStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customer]";
         #endregion
 
+        #region Methods
         public void Delete(Guid Id)
         {
             SqlHelper.ExecuteNonQuery(DeleteStatement, System.Data.CommandType.Text,
@@ -103,5 +104,6 @@ namespace DAL.Repositories.SqlServer
             }
             return customers;
         }
+        #endregion Metodos
     }
 }

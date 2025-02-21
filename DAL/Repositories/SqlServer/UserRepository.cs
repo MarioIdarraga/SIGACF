@@ -16,12 +16,12 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @email)";
+            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email, Addres, Telephone) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @Email, @Address, @Telephone)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Users] SET (LoginName, Password, FirstName, LastName, Position, Email) WHERE UserId = @UserId";
+            get => "UPDATE [dbo].[Users] SET (LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone) WHERE UserId = @UserId";
         }
 
         private string DeleteStatement
@@ -31,21 +31,18 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email FROM [dbo].[Users] WHERE UserId = @UserId";
+            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone FROM [dbo].[Users] WHERE UserId = @UserId";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email FROM [dbo].[Users]";
+            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone FROM [dbo].[Users]";
         }
         #endregion
 
-        public void Delete(Guid UserId)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<User> GetAll()
+        #region Constructors
+        public void Delete(Guid UserId)
         {
             throw new NotImplementedException();
         }
@@ -80,7 +77,9 @@ namespace DAL.Repositories.SqlServer
                                         new SqlParameter("@FirstName", Object.FirstName),
                                         new SqlParameter("@LastName", Object.LastName),
                                         new SqlParameter("@Position", Object.Position),
-                                        new SqlParameter("@Email", Object.Email)});
+                                        new SqlParameter("@Email", Object.Email),
+                                        new SqlParameter("@Email", Object.Address),
+                                        new SqlParameter("@Email", Object.Telephone)});
         
     }
 
@@ -94,4 +93,5 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
     }
+    #endregion
 }

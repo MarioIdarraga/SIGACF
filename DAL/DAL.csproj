@@ -81,15 +81,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\File\BookingRepository.cs" />
     <Compile Include="Repositories\File\CustomerRepository.cs" />
-    <Compile Include="Repositories\File\EmployeeRepository.cs" />
     <Compile Include="Repositories\File\UserRepository.cs" />
     <Compile Include="Repositories\Memory\BookingRepository.cs" />
     <Compile Include="Repositories\Memory\CustomerRepository.cs" />
-    <Compile Include="Repositories\Memory\EmployeeRepository.cs" />
     <Compile Include="Repositories\Memory\UserRepository.cs" />
     <Compile Include="Repositories\SqlServer\BookingRepository.cs" />
     <Compile Include="Repositories\SqlServer\CustomerRepository.cs" />
-    <Compile Include="Repositories\SqlServer\EmployeeRepository.cs" />
     <Compile Include="Repositories\SqlServer\UserRepository.cs" />
     <Compile Include="Tools\SqlHelper.cs" />
   </ItemGroup>

@@ -46,7 +46,6 @@
     <Compile Include="Cancha.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="Employee.cs" />
     <Compile Include="EstadoCancha.cs" />
     <Compile Include="EstadoCliente.cs" />
     <Compile Include="EstadoPago.cs" />
