@@ -64,7 +64,7 @@
             // 
             this.textBox7.Location = new System.Drawing.Point(627, 264);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(335, 22);
+            this.textBox7.Size = new System.Drawing.Size(192, 22);
             this.textBox7.TabIndex = 58;
             // 
             // textBox6
@@ -192,9 +192,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(44, 330);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 18);
+            this.label3.Size = new System.Drawing.Size(104, 23);
             this.label3.TabIndex = 44;
-            this.label3.Text = "Nro de Documento";
+            this.label3.Text = "Password";
             // 
             // label2
             // 
@@ -203,9 +203,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Location = new System.Drawing.Point(44, 268);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 18);
+            this.label2.Size = new System.Drawing.Size(84, 23);
             this.label2.TabIndex = 43;
-            this.label2.Text = "Nro de Usuario";
+            this.label2.Text = "Usuario";
             // 
             // btnMenuRegUser
             // 

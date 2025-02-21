@@ -8,20 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL.Contracts;
+using DAL.Factory;
 using Domain;
 
 namespace UI
 {
-    public partial class MenuRegEmployee : Form
+    public partial class MenuRegUser : Form
     {
         private Panel _panelContenedor;
-        private readonly IGenericRepository<User> userRepository;
 
-        public MenuRegEmployee(Panel panelContenedor)
+        IGenericRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+
+        public MenuRegUser(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            userRepository = new UserRepository(); // Inicialización del repositorio
         }
 
         private void OpenFormChild(object formchild)
@@ -56,21 +57,22 @@ namespace UI
         {
             try
             {
-                // Crear un nuevo objeto User con los datos ingresados en la UI
+             
                 User newUser = new User
                 {
                     UserId = Guid.NewGuid(),
                     LoginName = txtLoginName.Text.Trim(),
-                    Password = txtPassword.Text.Trim(), // Se recomienda encriptar la contraseña
+                    Password = txtPassword.Text.Trim(),
                     FirstName = txtFirstName.Text.Trim(),
                     LastName = txtLastName.Text.Trim(),
                     Position = txtPosition.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
-                    Telephone = txtTelephone.Text.Trim()
+                    Telephone = txtTelephone.Text.Trim(),
+                    IsEmployee = chkIsEmployee.Checked
                 };
 
-                // Validaciones básicas
+                // Validaciones 
                 if (string.IsNullOrWhiteSpace(newUser.LoginName) ||
                     string.IsNullOrWhiteSpace(newUser.Password) ||
                     string.IsNullOrWhiteSpace(newUser.FirstName) ||
@@ -81,12 +83,11 @@ namespace UI
                     return;
                 }
 
-                // Insertar usuario en la base de datos
-                userRepository.Insert(newUser);
+                repositoryUser.Insert(newUser);
 
                 MessageBox.Show("Usuario registrado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpiar los campos después del registro
+                // Limpiamos los campos del formulario
                 txtLoginName.Clear();
                 txtPassword.Clear();
                 txtFirstName.Clear();

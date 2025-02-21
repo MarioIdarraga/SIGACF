@@ -16,12 +16,12 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email, Addres, Telephone) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @Email, @Address, @Telephone)";
+            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email, Addres, Telephone) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @Email, @Address, @Telephone, @IsEmployee)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Users] SET (LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone) WHERE UserId = @UserId";
+            get => "UPDATE [dbo].[Users] SET (LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone, IsEmployee) WHERE UserId = @UserId";
         }
 
         private string DeleteStatement
@@ -31,12 +31,12 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone FROM [dbo].[Users] WHERE UserId = @UserId";
+            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone, IsEmployee FROM [dbo].[Users] WHERE UserId = @UserId";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone FROM [dbo].[Users]";
+            get => "SELECT UserId, LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone, IsEmployee FROM [dbo].[Users]";
         }
         #endregion
 
@@ -78,8 +78,9 @@ namespace DAL.Repositories.SqlServer
                                         new SqlParameter("@LastName", Object.LastName),
                                         new SqlParameter("@Position", Object.Position),
                                         new SqlParameter("@Email", Object.Email),
-                                        new SqlParameter("@Email", Object.Address),
-                                        new SqlParameter("@Email", Object.Telephone)});
+                                        new SqlParameter("@Address", Object.Address),
+                                        new SqlParameter("@Telephone", Object.Telephone),
+                                        new SqlParameter("@Telephone", Object.IsEmployee)});
         
     }
 
