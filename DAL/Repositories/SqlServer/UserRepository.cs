@@ -16,7 +16,7 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email, Addres, Telephone) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @Email, @Address, @Telephone, @IsEmployee)";
+            get => "INSERT INTO [dbo].[Users] (LoginName, Password, FirstName, LastName, Position, Email, Address, Telephone, IsEmployee) VALUES (@LoginName, @Password, @FirstName, @LastName, @Position, @Email, @Address, @Telephone, @IsEmployee)";
         }
 
         private string UpdateStatement
@@ -80,9 +80,10 @@ namespace DAL.Repositories.SqlServer
                                         new SqlParameter("@Email", Object.Email),
                                         new SqlParameter("@Address", Object.Address),
                                         new SqlParameter("@Telephone", Object.Telephone),
-                                        new SqlParameter("@Telephone", Object.IsEmployee)});
-        
-    }
+                                        new SqlParameter("@IsEmployee", Object.IsEmployee ? 1 : 0)
+                });
+
+        }
 
        public void Update(Guid UserId, User Object)
         {

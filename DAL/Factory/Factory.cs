@@ -62,20 +62,20 @@ namespace DAL.Factory
             }
         }
 
-        public IGenericRepository<Employee> GetEmployeeRepository()
+        public IGenericRepository<User> GetEmployeeRepository()
         {
  
             if (backend == "SqlServer")
             {
-                return new Repositories.SqlServer.EmployeeRepository();
+                return new Repositories.SqlServer.UserRepository();
             }
             if (backend == "File")
             {
-                return new Repositories.File.EmployeeRepository();
+                return new Repositories.File.UserRepository();
             }
             else
             {
-                return new Repositories.Memory.EmployeeRepository();
+                return new Repositories.Memory.UserRepository();
             }
         }
         public IGenericRepository<Booking> GetBookingRepository()

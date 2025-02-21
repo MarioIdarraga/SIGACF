@@ -39,7 +39,7 @@ namespace UI
 
         private void btnRegEmployee_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuRegEmployee(_panelContenedor));
+            OpenFormChild(new MenuRegUser(_panelContenedor));
         }
 
         private void btnModEmployee_Click(object sender, EventArgs e)
