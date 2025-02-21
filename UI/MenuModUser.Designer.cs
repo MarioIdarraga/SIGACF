@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class MenuModEmployee
+    partial class MenuModUser
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnApRegCustomer = new System.Windows.Forms.Button();
+            this.btnApRegUser = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,8 +45,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRegUser = new System.Windows.Forms.Button();
-            this.btnFindUser = new System.Windows.Forms.Button();
+            this.btnMenuRegUser = new System.Windows.Forms.Button();
+            this.btnMenuFindUser = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -109,15 +109,15 @@
             this.textBox1.Size = new System.Drawing.Size(190, 22);
             this.textBox1.TabIndex = 52;
             // 
-            // btnApRegCustomer
+            // btnApRegUser
             // 
-            this.btnApRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApRegCustomer.Location = new System.Drawing.Point(503, 506);
-            this.btnApRegCustomer.Name = "btnApRegCustomer";
-            this.btnApRegCustomer.Size = new System.Drawing.Size(166, 43);
-            this.btnApRegCustomer.TabIndex = 51;
-            this.btnApRegCustomer.Text = "Modificar Empleado";
-            this.btnApRegCustomer.UseVisualStyleBackColor = true;
+            this.btnApRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApRegUser.Location = new System.Drawing.Point(503, 506);
+            this.btnApRegUser.Name = "btnApRegUser";
+            this.btnApRegUser.Size = new System.Drawing.Size(166, 43);
+            this.btnApRegUser.TabIndex = 51;
+            this.btnApRegUser.Text = "Modificar Usuario";
+            this.btnApRegUser.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -203,33 +203,33 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Location = new System.Drawing.Point(44, 268);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 18);
+            this.label2.Size = new System.Drawing.Size(123, 18);
             this.label2.TabIndex = 43;
-            this.label2.Text = "Nro de Legajo";
+            this.label2.Text = "Nro de Usuario";
             // 
-            // btnRegUser
+            // btnMenuRegUser
             // 
-            this.btnRegUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegUser.Location = new System.Drawing.Point(414, 56);
-            this.btnRegUser.Name = "btnRegUser";
-            this.btnRegUser.Size = new System.Drawing.Size(184, 87);
-            this.btnRegUser.TabIndex = 42;
-            this.btnRegUser.Text = "Registrar Usuario";
-            this.btnRegUser.UseVisualStyleBackColor = false;
-            this.btnRegUser.Click += new System.EventHandler(this.btnRegEmployee_Click);
+            this.btnMenuRegUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnMenuRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuRegUser.Location = new System.Drawing.Point(414, 56);
+            this.btnMenuRegUser.Name = "btnMenuRegUser";
+            this.btnMenuRegUser.Size = new System.Drawing.Size(184, 87);
+            this.btnMenuRegUser.TabIndex = 42;
+            this.btnMenuRegUser.Text = "Registrar Usuario";
+            this.btnMenuRegUser.UseVisualStyleBackColor = false;
+            this.btnMenuRegUser.Click += new System.EventHandler(this.btnRegEmployee_Click);
             // 
-            // btnFindUser
+            // btnMenuFindUser
             // 
-            this.btnFindUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnFindUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindUser.Location = new System.Drawing.Point(230, 56);
-            this.btnFindUser.Name = "btnFindUser";
-            this.btnFindUser.Size = new System.Drawing.Size(178, 87);
-            this.btnFindUser.TabIndex = 41;
-            this.btnFindUser.Text = "Busqueda de Empleados";
-            this.btnFindUser.UseVisualStyleBackColor = false;
-            this.btnFindUser.Click += new System.EventHandler(this.btnFindEmployee_Click);
+            this.btnMenuFindUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnMenuFindUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuFindUser.Location = new System.Drawing.Point(230, 56);
+            this.btnMenuFindUser.Name = "btnMenuFindUser";
+            this.btnMenuFindUser.Size = new System.Drawing.Size(178, 87);
+            this.btnMenuFindUser.TabIndex = 41;
+            this.btnMenuFindUser.Text = "Busqueda de Usuarios";
+            this.btnMenuFindUser.UseVisualStyleBackColor = false;
+            this.btnMenuFindUser.Click += new System.EventHandler(this.btnFindEmployee_Click);
             // 
             // label1
             // 
@@ -238,7 +238,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(421, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(315, 40);
+            this.label1.Size = new System.Drawing.Size(252, 32);
             this.label1.TabIndex = 40;
             this.label1.Text = "Modificar Usuario";
             // 
@@ -270,16 +270,16 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Location = new System.Drawing.Point(498, 326);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(156, 23);
+            this.label10.Size = new System.Drawing.Size(125, 18);
             this.label10.TabIndex = 61;
             this.label10.Text = "Cargo/Posición";
             // 
-            // MenuModEmployee
+            // MenuModUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(987, 667);
+            this.ClientSize = new System.Drawing.Size(1039, 676);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
@@ -291,7 +291,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnApRegCustomer);
+            this.Controls.Add(this.btnApRegUser);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -300,12 +300,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnRegUser);
-            this.Controls.Add(this.btnFindUser);
+            this.Controls.Add(this.btnMenuRegUser);
+            this.Controls.Add(this.btnMenuFindUser);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MenuModEmployee";
-            this.Text = "MenuModEmployee";
+            this.Name = "MenuModUser";
+            this.Text = "MenuModUser";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -321,7 +321,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnApRegCustomer;
+        private System.Windows.Forms.Button btnApRegUser;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -330,8 +330,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnRegUser;
-        private System.Windows.Forms.Button btnFindUser;
+        private System.Windows.Forms.Button btnMenuRegUser;
+        private System.Windows.Forms.Button btnMenuFindUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.TextBox textBox9;

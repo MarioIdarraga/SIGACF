@@ -192,17 +192,17 @@
     <Compile Include="MenuCustomers.Designer.cs">
       <DependentUpon>MenuCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuFindEmployee.cs">
+    <Compile Include="MenuFindUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuFindEmployee.Designer.cs">
-      <DependentUpon>MenuFindEmployee.cs</DependentUpon>
+    <Compile Include="MenuFindUser.Designer.cs">
+      <DependentUpon>MenuFindUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuRegEmployee.cs">
+    <Compile Include="MenuRegUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuRegEmployee.Designer.cs">
-      <DependentUpon>MenuRegEmployee.cs</DependentUpon>
+    <Compile Include="MenuRegUser.Designer.cs">
+      <DependentUpon>MenuRegUser.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuMajor.cs">
       <SubType>Form</SubType>
@@ -222,11 +222,11 @@
     <Compile Include="MenuModCustomer.Designer.cs">
       <DependentUpon>MenuModCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuModEmployee.cs">
+    <Compile Include="MenuModUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuModEmployee.Designer.cs">
-      <DependentUpon>MenuModEmployee.cs</DependentUpon>
+    <Compile Include="MenuModUser.Designer.cs">
+      <DependentUpon>MenuModUser.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuPay.cs">
       <SubType>Form</SubType>
@@ -299,11 +299,11 @@
     <EmbeddedResource Include="MenuCustomers.resx">
       <DependentUpon>MenuCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuFindEmployee.resx">
-      <DependentUpon>MenuFindEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="MenuFindUser.resx">
+      <DependentUpon>MenuFindUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuRegEmployee.resx">
-      <DependentUpon>MenuRegEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="MenuRegUser.resx">
+      <DependentUpon>MenuRegUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuMajor.resx">
       <DependentUpon>MenuMajor.cs</DependentUpon>
@@ -314,8 +314,8 @@
     <EmbeddedResource Include="MenuModCustomer.resx">
       <DependentUpon>MenuModCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuModEmployee.resx">
-      <DependentUpon>MenuModEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="MenuModUser.resx">
+      <DependentUpon>MenuModUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPay.resx">
       <DependentUpon>MenuPay.cs</DependentUpon>

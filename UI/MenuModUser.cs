@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class MenuRegEmployee : Form
+    public partial class MenuModUser : Form
     {
         private Panel _panelContenedor;
 
-        public MenuRegEmployee(Panel panelContenedor)
+        public MenuModUser(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
@@ -32,19 +32,19 @@ namespace UI
             fh.Show();
         }
 
-        private void btnFindEmployee_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuFindEmployee(_panelContenedor));
-        }
-
-        private void btnModEmployee_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuModEmployee(_panelContenedor));
-        }
-
         private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuAdmin(_panelContenedor));
+        }
+
+        private void btnFindEmployee_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuFindUser(_panelContenedor));
+        }
+
+        private void btnRegEmployee_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuRegEmployee(_panelContenedor));
         }
     }
 }

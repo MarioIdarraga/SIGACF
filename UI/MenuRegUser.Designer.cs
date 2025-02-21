@@ -35,8 +35,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnApRegCustomer = new System.Windows.Forms.Button();
+            this.txtLoginName = new System.Windows.Forms.TextBox();
+            this.btnApRegUser = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,18 +49,20 @@
             this.btnFindEmployee = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(610, 397);
+            this.textBox8.Location = new System.Drawing.Point(629, 397);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(190, 22);
             this.textBox8.TabIndex = 39;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(610, 264);
+            this.textBox7.Location = new System.Drawing.Point(628, 264);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(335, 22);
             this.textBox7.TabIndex = 38;
@@ -100,22 +102,23 @@
             this.textBox2.Size = new System.Drawing.Size(190, 22);
             this.textBox2.TabIndex = 33;
             // 
-            // textBox1
+            // txtLoginName
             // 
-            this.textBox1.Location = new System.Drawing.Point(212, 264);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 22);
-            this.textBox1.TabIndex = 32;
+            this.txtLoginName.Location = new System.Drawing.Point(212, 264);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(190, 22);
+            this.txtLoginName.TabIndex = 32;
             // 
-            // btnApRegCustomer
+            // btnApRegUser
             // 
-            this.btnApRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApRegCustomer.Location = new System.Drawing.Point(505, 506);
-            this.btnApRegCustomer.Name = "btnApRegCustomer";
-            this.btnApRegCustomer.Size = new System.Drawing.Size(166, 43);
-            this.btnApRegCustomer.TabIndex = 31;
-            this.btnApRegCustomer.Text = "Registrar";
-            this.btnApRegCustomer.UseVisualStyleBackColor = true;
+            this.btnApRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApRegUser.Location = new System.Drawing.Point(505, 506);
+            this.btnApRegUser.Name = "btnApRegUser";
+            this.btnApRegUser.Size = new System.Drawing.Size(166, 43);
+            this.btnApRegUser.TabIndex = 31;
+            this.btnApRegUser.Text = "Registrar";
+            this.btnApRegUser.UseVisualStyleBackColor = true;
+            this.btnApRegUser.Click += new System.EventHandler(this.btnApRegUser_Click);
             // 
             // label9
             // 
@@ -215,7 +218,7 @@
             this.btnModEmployee.TabIndex = 22;
             this.btnModEmployee.Text = "Modificar Cliente";
             this.btnModEmployee.UseVisualStyleBackColor = false;
-            this.btnModEmployee.Click += new System.EventHandler(this.btnModEmployee_Click);
+            this.btnModEmployee.Click += new System.EventHandler(this.btnModUser_Click);
             // 
             // btnFindEmployee
             // 
@@ -254,12 +257,32 @@
             this.btnMenuAdmin.UseVisualStyleBackColor = false;
             this.btnMenuAdmin.Click += new System.EventHandler(this.btnMenuAdmin_Click);
             // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(630, 325);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(190, 22);
+            this.textBox9.TabIndex = 64;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label10.Location = new System.Drawing.Point(499, 329);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 18);
+            this.label10.TabIndex = 63;
+            this.label10.Text = "Cargo/Posición";
+            // 
             // MenuRegEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1057, 689);
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
@@ -268,8 +291,8 @@
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnApRegCustomer);
+            this.Controls.Add(this.txtLoginName);
+            this.Controls.Add(this.btnApRegUser);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -298,8 +321,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnApRegCustomer;
+        private System.Windows.Forms.TextBox txtLoginName;
+        private System.Windows.Forms.Button btnApRegUser;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -312,5 +335,7 @@
         private System.Windows.Forms.Button btnFindEmployee;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMenuAdmin;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label10;
     }
 }

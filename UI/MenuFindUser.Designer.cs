@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class MenuFindEmployee
+    partial class MenuFindUser
     {
         /// <summary>
         /// Required designer variable.
