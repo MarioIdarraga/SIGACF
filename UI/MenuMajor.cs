@@ -69,7 +69,7 @@ namespace UI
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuCustomers(this.panelContenedor));
+            OpenFormChild(new MenuFindCustomers(this.panelContenedor));
         }
 
         private void btnAlquiler_Click(object sender, EventArgs e)

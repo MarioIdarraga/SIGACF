@@ -13,14 +13,14 @@ using Domain;
 
 namespace UI
 {
-    public partial class MenuCustomers : Form
+    public partial class MenuFindCustomers : Form
     {
 
         IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
 
         private Panel _panelContenedor;
 
-        public MenuCustomers(Panel panelContenedor)
+        public MenuFindCustomers(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
@@ -48,9 +48,9 @@ namespace UI
             OpenFormChild(new MenuModCustomer(_panelContenedor));
         }
 
-        private void btnFindCustomer_Click(object sender, EventArgs e)
+        private void btnRegBooking_Click(object sender, EventArgs e)
         {
-
+            OpenFormChild(new MenuRegBooking(_panelContenedor));
         }
     }
 }

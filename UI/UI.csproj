@@ -186,11 +186,11 @@
     <Compile Include="MenuCanBooking.Designer.cs">
       <DependentUpon>MenuCanBooking.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuCustomers.cs">
+    <Compile Include="MenuFindCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuCustomers.Designer.cs">
-      <DependentUpon>MenuCustomers.cs</DependentUpon>
+    <Compile Include="MenuFindCustomers.Designer.cs">
+      <DependentUpon>MenuFindCustomers.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuFindUser.cs">
       <SubType>Form</SubType>
@@ -296,8 +296,8 @@
     <EmbeddedResource Include="MenuCanBooking.resx">
       <DependentUpon>MenuCanBooking.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuCustomers.resx">
-      <DependentUpon>MenuCustomers.cs</DependentUpon>
+    <EmbeddedResource Include="MenuFindCustomers.resx">
+      <DependentUpon>MenuFindCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuFindUser.resx">
       <DependentUpon>MenuFindUser.cs</DependentUpon>

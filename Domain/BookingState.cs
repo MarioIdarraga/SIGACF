@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Class1
+    public class BookingState
     {
+        public int IdStateBooking { get; set; }
+
+        public string Description { get; set; }
     }
 }

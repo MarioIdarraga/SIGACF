@@ -40,7 +40,7 @@ namespace UI
 
         private void btnFindCustomer_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuCustomers(_panelContenedor));
+            OpenFormChild(new MenuFindCustomers(_panelContenedor));
         }
 
         private void btnModCustomer_Click(object sender, EventArgs e)

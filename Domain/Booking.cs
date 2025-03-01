@@ -11,7 +11,9 @@ namespace Domain
 
         public Guid Id { get; set; }
 
-        public DateTime RegistrationDate { get; set; }
+        public Guid IdCustomer { get; set; }
+
+        public DateTime RegistrationDate { get; set; }  ///No se ve en la carga de la reserva
 
         public DateTime RegistrationBooking { get; set; }
 
@@ -21,7 +23,7 @@ namespace Domain
 
         public int Promotion { get; set; }
 
-        public int State { get; set; }
+        public int State { get; set; } ///No se ve en la carga de la reserva
 
     }
 }

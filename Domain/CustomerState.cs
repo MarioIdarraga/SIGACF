@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class EstadoCancha
+    public class CustomerState
     {
-
-        public int id_EstadoCancha { get; set; }
-
-        public string descripcion { get; set; }
-
+        public int IdCustomerState { get; set; }
+        public string Description { get; set; }
     }
+
 }

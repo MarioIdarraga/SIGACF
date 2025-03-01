@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class MenuCustomers
+    partial class MenuFindCustomers
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,6 @@
             this.btnRegCustomer = new System.Windows.Forms.Button();
             this.btnModCustomer = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnFindCustomer = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -43,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnRegBooking = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,17 +93,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1110, 379);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // btnFindCustomer
-            // 
-            this.btnFindCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCustomer.Location = new System.Drawing.Point(951, 302);
-            this.btnFindCustomer.Name = "btnFindCustomer";
-            this.btnFindCustomer.Size = new System.Drawing.Size(167, 44);
-            this.btnFindCustomer.TabIndex = 4;
-            this.btnFindCustomer.Text = "Buscar Cliente";
-            this.btnFindCustomer.UseVisualStyleBackColor = true;
-            this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
             // 
             // label2
             // 
@@ -195,12 +184,27 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Mail";
             // 
-            // MenuCustomers
+            // btnRegBooking
+            // 
+            this.btnRegBooking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnRegBooking.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegBooking.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegBooking.Location = new System.Drawing.Point(434, 26);
+            this.btnRegBooking.Name = "btnRegBooking";
+            this.btnRegBooking.Size = new System.Drawing.Size(175, 85);
+            this.btnRegBooking.TabIndex = 17;
+            this.btnRegBooking.Text = "Registrar Reserva";
+            this.btnRegBooking.UseVisualStyleBackColor = false;
+            this.btnRegBooking.Click += new System.EventHandler(this.btnRegBooking_Click);
+            // 
+            // MenuFindCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1244, 834);
+            this.Controls.Add(this.btnRegBooking);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -211,13 +215,12 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnFindCustomer);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnModCustomer);
             this.Controls.Add(this.btnRegCustomer);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MenuCustomers";
+            this.Name = "MenuFindCustomers";
             this.Text = "MenuCustomers";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -231,7 +234,6 @@
         private System.Windows.Forms.Button btnRegCustomer;
         private System.Windows.Forms.Button btnModCustomer;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnFindCustomer;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
@@ -242,5 +244,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnRegBooking;
     }
 }

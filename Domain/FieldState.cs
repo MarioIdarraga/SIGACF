@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class EstadoCliente
+    public class FieldState
     {
-
-        public int id_EstadoCliente { get; set; }
-
-        public string descripcion { get; set; }
+        public int IdFieldState { get; set; }
+        public string Description { get; set; }
     }
+
 }

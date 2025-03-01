@@ -94,5 +94,22 @@ namespace DAL.Factory
                 return new Repositories.Memory.BookingRepository();
             }
         }
+
+        public IGenericRepository<State> GetBookingRepository()
+        {
+
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.BookingRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.BookingRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.BookingRepository();
+            }
+        }
     }
 }

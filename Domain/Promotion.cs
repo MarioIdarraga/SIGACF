@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Promocion
+    public class Promotion
     {
 
-        public int id_Promocion { get; set; }
+        public Guid idPromocion { get; set; }
 
         public string nombre { get; set; }
 
@@ -18,7 +18,6 @@ namespace Domain
         public DateTime vigencia_Hasta { get; set; }
 
         public string descripcion { get; set; }
-
 
     }
 }
