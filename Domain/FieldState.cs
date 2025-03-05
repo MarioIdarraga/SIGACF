@@ -9,7 +9,7 @@ namespace Domain
     public class FieldState
     {
         public int IdFieldState { get; set; }
-        public string Description { get; set; }
+        public string FieldStateDescription { get; set; }
     }
 
 }

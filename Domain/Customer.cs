@@ -25,5 +25,6 @@ namespace Domain
         public string Mail { get; set; }
 
         public string Address { get; set; }
+
     }
 }

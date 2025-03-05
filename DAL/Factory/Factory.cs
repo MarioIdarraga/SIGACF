@@ -95,20 +95,71 @@ namespace DAL.Factory
             }
         }
 
-        public IGenericRepository<State> GetBookingRepository()
+        public IGenericRepository<BookingState> GetBookingStateRepository()
         {
 
             if (backend == "SqlServer")
             {
-                return new Repositories.SqlServer.BookingRepository();
+                return new Repositories.SqlServer.BookingStateRepository();
             }
             if (backend == "File")
             {
-                return new Repositories.File.BookingRepository();
+                return new Repositories.File.BookingStateRepository();
             }
             else
             {
-                return new Repositories.Memory.BookingRepository();
+                return new Repositories.Memory.BookingStateRepository();
+            }
+        }
+
+        public IGenericRepository<Promotion> GetPromotionRepository()
+        {
+
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.PromotionRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.PromotionRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.PromotionRepository();
+            }
+        }
+
+        public IGenericRepository<Field> GetFieldRepository()
+        {
+
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.FieldRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.FieldRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.FieldRepository();
+            }
+        }
+
+        public IGenericRepository<FieldState> GetFieldStateRepository()
+        {
+
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.FieldStateRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.FieldStateRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.FieldStateRepository();
             }
         }
     }

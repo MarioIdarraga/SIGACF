@@ -38,6 +38,11 @@ namespace DAL.Repositories.Memory
             return _customers;
         }
 
+        public IEnumerable<Customer> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+
         public Customer GetOne(Guid Id)
         {
             return _customers.FirstOrDefault(c => c.IdCustomer == Id);

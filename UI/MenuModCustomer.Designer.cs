@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnApModCustomer = new System.Windows.Forms.Button();
+            this.txtState = new System.Windows.Forms.TextBox();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtNroDocument = new System.Windows.Forms.TextBox();
+            this.btnModCustomer = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,71 +50,72 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox8
+            // txtState
             // 
-            this.textBox8.Location = new System.Drawing.Point(626, 369);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(186, 22);
-            this.textBox8.TabIndex = 36;
+            this.txtState.Location = new System.Drawing.Point(626, 369);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(186, 22);
+            this.txtState.TabIndex = 36;
             // 
-            // textBox7
+            // txtComment
             // 
-            this.textBox7.Location = new System.Drawing.Point(626, 236);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(331, 22);
-            this.textBox7.TabIndex = 35;
+            this.txtComment.Location = new System.Drawing.Point(626, 236);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(331, 22);
+            this.txtComment.TabIndex = 35;
             // 
-            // textBox6
+            // txtAddress
             // 
-            this.textBox6.Location = new System.Drawing.Point(228, 561);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(186, 22);
-            this.textBox6.TabIndex = 34;
+            this.txtAddress.Location = new System.Drawing.Point(228, 561);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(186, 22);
+            this.txtAddress.TabIndex = 34;
             // 
-            // textBox5
+            // txtMail
             // 
-            this.textBox5.Location = new System.Drawing.Point(228, 499);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(186, 22);
-            this.textBox5.TabIndex = 33;
+            this.txtMail.Location = new System.Drawing.Point(228, 499);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(186, 22);
+            this.txtMail.TabIndex = 33;
             // 
-            // textBox4
+            // txtTelephone
             // 
-            this.textBox4.Location = new System.Drawing.Point(228, 435);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(186, 22);
-            this.textBox4.TabIndex = 32;
+            this.txtTelephone.Location = new System.Drawing.Point(228, 435);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.Size = new System.Drawing.Size(186, 22);
+            this.txtTelephone.TabIndex = 32;
             // 
-            // textBox3
+            // txtLastName
             // 
-            this.textBox3.Location = new System.Drawing.Point(228, 369);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 22);
-            this.textBox3.TabIndex = 31;
+            this.txtLastName.Location = new System.Drawing.Point(228, 369);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(186, 22);
+            this.txtLastName.TabIndex = 31;
             // 
-            // textBox2
+            // txtFirstName
             // 
-            this.textBox2.Location = new System.Drawing.Point(228, 298);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(186, 22);
-            this.textBox2.TabIndex = 30;
+            this.txtFirstName.Location = new System.Drawing.Point(228, 298);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(186, 22);
+            this.txtFirstName.TabIndex = 30;
             // 
-            // textBox1
+            // txtNroDocument
             // 
-            this.textBox1.Location = new System.Drawing.Point(228, 236);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 22);
-            this.textBox1.TabIndex = 29;
+            this.txtNroDocument.Location = new System.Drawing.Point(228, 236);
+            this.txtNroDocument.Name = "txtNroDocument";
+            this.txtNroDocument.Size = new System.Drawing.Size(186, 22);
+            this.txtNroDocument.TabIndex = 29;
             // 
-            // btnApModCustomer
+            // btnModCustomer
             // 
-            this.btnApModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApModCustomer.Location = new System.Drawing.Point(521, 478);
-            this.btnApModCustomer.Name = "btnApModCustomer";
-            this.btnApModCustomer.Size = new System.Drawing.Size(162, 42);
-            this.btnApModCustomer.TabIndex = 28;
-            this.btnApModCustomer.Text = "Modificar Cliente";
-            this.btnApModCustomer.UseVisualStyleBackColor = true;
+            this.btnModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModCustomer.Location = new System.Drawing.Point(521, 478);
+            this.btnModCustomer.Name = "btnModCustomer";
+            this.btnModCustomer.Size = new System.Drawing.Size(162, 42);
+            this.btnModCustomer.TabIndex = 28;
+            this.btnModCustomer.Text = "Modificar Cliente";
+            this.btnModCustomer.UseVisualStyleBackColor = true;
+            this.btnModCustomer.Click += new System.EventHandler(this.btnModCustomer_Click);
             // 
             // label9
             // 
@@ -250,15 +251,15 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRegCustomer);
             this.Controls.Add(this.btnFindCustomer);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnApModCustomer);
+            this.Controls.Add(this.txtState);
+            this.Controls.Add(this.txtComment);
+            this.Controls.Add(this.txtAddress);
+            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.txtTelephone);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.txtNroDocument);
+            this.Controls.Add(this.btnModCustomer);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -276,15 +277,15 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnApModCustomer;
+        private System.Windows.Forms.TextBox txtState;
+        private System.Windows.Forms.TextBox txtComment;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox txtNroDocument;
+        private System.Windows.Forms.Button btnModCustomer;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;

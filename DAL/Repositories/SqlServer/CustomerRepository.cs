@@ -9,12 +9,13 @@ namespace DAL.Repositories.SqlServer
 {
     public class CustomerRepository : IGenericRepository<Customer>
     {
+
         #region Statements
-        private string InsertStatement => "INSERT INTO [dbo].[Customer] (NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address) VALUES (@NroDocument, @FirstName, @LastName, @State, @Comment, @Telephone, @Mail, @Address)";
-        private string UpdateStatement => "UPDATE [dbo].[Customer] SET NroDocument = @NroDocument, FirstName = @FirstName, LastName = @LastName, State = @State, Comment = @Comment, Telephone = @Telephone, Mail = @Mail, Address = @Address WHERE IdCustomer = @IdCustomer";
-        private string DeleteStatement => "DELETE FROM [dbo].[Customer] WHERE IdCustomer = @IdCustomer";
-        private string SelectOneStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customer] WHERE IdCustomer = @IdCustomer";
-        private string SelectAllStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customer]";
+        private string InsertStatement => "INSERT INTO [dbo].[Customers] (NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address) VALUES (@NroDocument, @FirstName, @LastName, @State, @Comment, @Telephone, @Mail, @Address)";
+        private string UpdateStatement => "UPDATE [dbo].[Customers] SET NroDocument = @NroDocument, FirstName = @FirstName, LastName = @LastName, State = @State, Comment = @Comment, Telephone = @Telephone, Mail = @Mail, Address = @Address WHERE IdCustomer = @IdCustomer";
+        private string DeleteStatement => "DELETE FROM [dbo].[Customers] WHERE IdCustomer = @IdCustomer";
+        private string SelectOneStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customers] WHERE IdCustomer = @IdCustomer";
+        private string SelectAllStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customers]";
         #endregion
 
         #region Methods
@@ -81,10 +82,43 @@ namespace DAL.Repositories.SqlServer
                 });
         }
 
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<Customer> GetAll(int? nroDocument = null, string firstName = null, string lastName = null, string telephone = null, string mail = null)
         {
             var customers = new List<Customer>();
-            using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, System.Data.CommandType.Text))
+            string query = SelectAllStatement + " WHERE 1=1"; // Se usa WHERE 1=1 para facilitar concatenación de condiciones
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            if (nroDocument.HasValue)
+            {
+                query += " AND NroDocument = @NroDocument";
+                parameters.Add(new SqlParameter("@NroDocument", nroDocument.Value));
+            }
+
+            if (!string.IsNullOrEmpty(firstName))
+            {
+                query += " AND FirstName LIKE @FirstName";
+                parameters.Add(new SqlParameter("@FirstName", "%" + firstName + "%"));
+            }
+
+            if (!string.IsNullOrEmpty(lastName))
+            {
+                query += " AND LastName LIKE @LastName";
+                parameters.Add(new SqlParameter("@LastName", "%" + lastName + "%"));
+            }
+
+            if (!string.IsNullOrEmpty(telephone))
+            {
+                query += " AND Telephone LIKE @Telephone";
+                parameters.Add(new SqlParameter("@Telephone", "%" + telephone + "%"));
+            }
+
+            if (!string.IsNullOrEmpty(mail))
+            {
+                query += " AND Mail LIKE @Mail";
+                parameters.Add(new SqlParameter("@Mail", "%" + mail + "%"));
+            }
+
+            using (var reader = SqlHelper.ExecuteReader(query, System.Data.CommandType.Text, parameters.ToArray()))
             {
                 while (reader.Read())
                 {
@@ -104,6 +138,12 @@ namespace DAL.Repositories.SqlServer
             }
             return customers;
         }
+
+        public IEnumerable<Customer> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion Metodos
     }
 }

@@ -6,36 +6,36 @@ using System.Threading.Tasks;
 using DAL.Contracts;
 using Domain;
 
-namespace DAL.Repositories.File
+namespace DAL.Repositories.Memory
 {
-    internal class UserRepository : IGenericRepository<User>
+    class BookingStateRepository : IGenericRepository<BookingState>
     {
         public void Delete(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<BookingState> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<BookingState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
             throw new NotImplementedException();
         }
 
-        public User GetOne(Guid Id)
+        public BookingState GetOne(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(User Object)
+        public void Insert(BookingState Object)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Guid Id, User Object)
+        public void Update(Guid Id, BookingState Object)
         {
             throw new NotImplementedException();
         }

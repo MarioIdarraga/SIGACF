@@ -15,6 +15,11 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Booking> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+
         public Booking GetOne(Guid Id)
         {
             throw new NotImplementedException();

@@ -8,34 +8,34 @@ using Domain;
 
 namespace DAL.Repositories.File
 {
-    internal class UserRepository : IGenericRepository<User>
+    class FieldRepository : IGenericRepository<Field>
     {
         public void Delete(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Field> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<Field> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
             throw new NotImplementedException();
         }
 
-        public User GetOne(Guid Id)
+        public Field GetOne(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(User Object)
+        public void Insert(Field Object)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Guid Id, User Object)
+        public void Update(Guid Id, Field Object)
         {
             throw new NotImplementedException();
         }

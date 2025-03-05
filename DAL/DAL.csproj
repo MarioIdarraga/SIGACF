@@ -80,13 +80,25 @@
     <Compile Include="Factory\Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\File\BookingRepository.cs" />
+    <Compile Include="Repositories\File\BookingStateRepository.cs" />
     <Compile Include="Repositories\File\CustomerRepository.cs" />
+    <Compile Include="Repositories\File\FieldRepository.cs" />
+    <Compile Include="Repositories\File\FieldStateRepository.cs" />
+    <Compile Include="Repositories\File\PromotionRepository.cs" />
     <Compile Include="Repositories\File\UserRepository.cs" />
     <Compile Include="Repositories\Memory\BookingRepository.cs" />
+    <Compile Include="Repositories\Memory\BookingStateRepository.cs" />
     <Compile Include="Repositories\Memory\CustomerRepository.cs" />
+    <Compile Include="Repositories\Memory\FieldRepository.cs" />
+    <Compile Include="Repositories\Memory\FieldStateRepository.cs" />
+    <Compile Include="Repositories\Memory\PromotionRepository.cs" />
     <Compile Include="Repositories\Memory\UserRepository.cs" />
     <Compile Include="Repositories\SqlServer\BookingRepository.cs" />
+    <Compile Include="Repositories\SqlServer\BookingStateRepository.cs" />
     <Compile Include="Repositories\SqlServer\CustomerRepository.cs" />
+    <Compile Include="Repositories\SqlServer\FieldRepository.cs" />
+    <Compile Include="Repositories\SqlServer\FieldStateRepository.cs" />
+    <Compile Include="Repositories\SqlServer\PromotionRepository.cs" />
     <Compile Include="Repositories\SqlServer\UserRepository.cs" />
     <Compile Include="Tools\SqlHelper.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain;
 
 namespace DAL.Contracts
 {
@@ -17,6 +18,9 @@ namespace DAL.Contracts
         IEnumerable<T> GetAll();
 
         T GetOne(Guid Id);
+
+        IEnumerable<T> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail);
+
     }
 }
 

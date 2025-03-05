@@ -9,15 +9,15 @@ namespace Domain
     public class Promotion
     {
 
-        public Guid idPromocion { get; set; }
+        public Guid IdPromotion { get; set; }
 
-        public string nombre { get; set; }
+        public string Name { get; set; }
 
-        public DateTime vigencia_Desde { get; set; }
+        public DateTime ValidFrom { get; set; }
 
-        public DateTime vigencia_Hasta { get; set; }
+        public DateTime ValidTo { get; set; }
 
-        public string descripcion { get; set; }
+        public string PromotionDescripcion { get; set; }
 
     }
 }

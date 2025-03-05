@@ -38,7 +38,7 @@
             this.btnRegPay = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbField = new System.Windows.Forms.ComboBox();
             this.btnFindCustomer = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbPromotion = new System.Windows.Forms.ComboBox();
@@ -157,13 +157,13 @@
             this.label2.TabIndex = 80;
             this.label2.Text = "Cancha";
             // 
-            // comboBox3
+            // cmbField
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(221, 526);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(186, 24);
-            this.comboBox3.TabIndex = 97;
+            this.cmbField.FormattingEnabled = true;
+            this.cmbField.Location = new System.Drawing.Point(221, 526);
+            this.cmbField.Name = "cmbField";
+            this.cmbField.Size = new System.Drawing.Size(186, 24);
+            this.cmbField.TabIndex = 97;
             // 
             // btnFindCustomer
             // 
@@ -229,7 +229,7 @@
             this.Controls.Add(this.cmbPromotion);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnFindCustomer);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cmbField);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRegPay);
             this.Controls.Add(this.btnFindBooking);
@@ -260,7 +260,7 @@
         private System.Windows.Forms.Button btnRegPay;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbField;
         private System.Windows.Forms.Button btnFindCustomer;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbPromotion;

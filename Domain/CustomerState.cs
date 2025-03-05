@@ -11,5 +11,4 @@ namespace Domain
         public int IdCustomerState { get; set; }
         public string Description { get; set; }
     }
-
 }

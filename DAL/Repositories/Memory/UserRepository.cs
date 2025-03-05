@@ -24,6 +24,11 @@ namespace DAL.Repositories.Memory
             return users;
         }
 
+        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetOne(Guid Id)
         {
             throw new NotImplementedException();

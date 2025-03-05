@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using DAL.Contracts;
 using Domain;
 
-namespace DAL.Repositories.SqlServer
+namespace DAL.Repositories.Memory
 {
-    internal class BookingRepository : IGenericRepository<Booking>
+    class FieldRepository : IGenericRepository<Field>
     {
-
 
         #region Statements
         private string InsertStatement
@@ -44,27 +43,27 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Booking> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<Field> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Booking GetOne(Guid Id)
+        public IEnumerable<Field> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Booking Object)
+        public Field GetOne(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Guid Id, Booking Object)
+        public void Insert(Field Object)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<Booking> IGenericRepository<Booking>.GetAll()
+        public void Update(Guid Id, Field Object)
         {
             throw new NotImplementedException();
         }

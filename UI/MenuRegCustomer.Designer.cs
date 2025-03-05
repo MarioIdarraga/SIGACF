@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btnFindCustomer = new System.Windows.Forms.Button();
-            this.btnModCustomer = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -77,18 +76,6 @@
             this.btnFindCustomer.Text = "Busqueda de Clientes";
             this.btnFindCustomer.UseVisualStyleBackColor = false;
             this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
-            // 
-            // btnModCustomer
-            // 
-            this.btnModCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModCustomer.Location = new System.Drawing.Point(251, 28);
-            this.btnModCustomer.Name = "btnModCustomer";
-            this.btnModCustomer.Size = new System.Drawing.Size(184, 87);
-            this.btnModCustomer.TabIndex = 2;
-            this.btnModCustomer.Text = "Modificar Cliente";
-            this.btnModCustomer.UseVisualStyleBackColor = false;
-            this.btnModCustomer.Click += new System.EventHandler(this.btnModCustomer_Click);
             // 
             // label2
             // 
@@ -344,7 +331,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnModCustomer);
             this.Controls.Add(this.btnFindCustomer);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -359,7 +345,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFindCustomer;
-        private System.Windows.Forms.Button btnModCustomer;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

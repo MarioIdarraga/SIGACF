@@ -14,34 +14,58 @@ namespace UI
         private Panel _panelContenedor;
 
         IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
-        IGenericRepository<State> repositoryState = Factory.Current.GetStateRepository();
+        IGenericRepository<BookingState> repositoryBookingState = Factory.Current.GetBookingStateRepository();
         IGenericRepository<Promotion> repositoryPromotion = Factory.Current.GetPromotionRepository();
+        IGenericRepository<Field> repositoryField = Factory.Current.GetFieldRepository();
 
         public MenuRegBooking(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
             CargarCombos();
+            dtpRegistrationBooking.Value = DateTime.Today;
         }
 
         private void CargarCombos()
         {
             try
             {
-                // Cargar ComboBox de Estado desde la base de datos
-                List<State> estados = repositoryState.GetAll().ToList();
-
                 // Cargar ComboBox de Promociones desde la base de datos
                 List<Promotion> promociones = repositoryPromotion.GetAll().ToList();
-                cmbPromotion.DataSource = promociones;
-                cmbPromotion.DisplayMember = "Descripcion";  // Ajustar según la propiedad correcta en la entidad Promotion
-                cmbPromotion.ValueMember = "Id";
+                if (promociones.Any()) // Si hay datos en la lista
+                {
+                    cmbPromotion.DataSource = promociones;
+                    cmbPromotion.DisplayMember = "Name"; // Ajustar con el nombre exacto de la propiedad
+                    cmbPromotion.ValueMember = "IdPromotion";
+                    cmbPromotion.SelectedIndex = -1; // No seleccionar ninguno por defecto
+                }
+                else
+                {
+                    cmbPromotion.DataSource = null;
+                    cmbPromotion.Items.Add("No hay promociones disponibles");
+                }
+
+                // Cargar ComboBox de Canchas desde la base de datos
+                List<Field> canchas = repositoryField.GetAll().ToList();
+                if (canchas.Any())
+                {
+                    cmbField.DataSource = canchas;
+                    cmbField.DisplayMember = "Name"; // Ajustar con el nombre exacto de la propiedad
+                    cmbField.ValueMember = "IdField";
+                    cmbField.SelectedIndex = -1;
+                }
+                else
+                {
+                    cmbField.DataSource = null;
+                    cmbField.Items.Add("No hay canchas disponibles");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void OpenFormChild(object formchild)
         {
@@ -77,7 +101,8 @@ namespace UI
                 Booking newBooking = new Booking
                 {
                     IdCustomer = Guid.Parse(txtIdCustomer.Text),
-                    RegistrationBooking = DateTime.Today,
+                    RegistrationDate = DateTime.Today,
+                    RegistrationBooking = dtpRegistrationBooking.Value,
                     StartTime = dtpStartTime.Value,
                     EndTime = dtpEndTime.Value,
                     Promotion = (int)cmbPromotion.SelectedValue,  // Se usa SelectedValue ya que los IDs vienen de la BD

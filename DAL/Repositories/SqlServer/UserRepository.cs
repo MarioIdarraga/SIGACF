@@ -47,6 +47,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetOne(Guid UserId)
         {
             User user = null;
