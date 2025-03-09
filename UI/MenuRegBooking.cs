@@ -18,12 +18,25 @@ namespace UI
         IGenericRepository<Promotion> repositoryPromotion = Factory.Current.GetPromotionRepository();
         IGenericRepository<Field> repositoryField = Factory.Current.GetFieldRepository();
 
-        public MenuRegBooking(Panel panelContenedor)
+        private Guid _idCustomer; // Variable para almacenar el Id del cliente
+
+        public MenuRegBooking(Panel panelContenedor, Guid idCustomer)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+            _idCustomer = idCustomer; // Guardar el Id del cliente
+
             CargarCombos();
             dtpRegistrationBooking.Value = DateTime.Today;
+
+            // Cargar el ID del cliente en un control, por ejemplo un TextBox o Label
+            txtIdCustomer.Text = _idCustomer.ToString(); // Si tienes un TextBox
+
+        }
+
+        public MenuRegBooking(Panel panelContenedor)
+        {
+            _panelContenedor = panelContenedor;
         }
 
         private void CargarCombos()
@@ -101,10 +114,12 @@ namespace UI
                 Booking newBooking = new Booking
                 {
                     IdCustomer = Guid.Parse(txtIdCustomer.Text),
+                    NroDocument = txtNroDocument.Text,
                     RegistrationDate = DateTime.Today,
                     RegistrationBooking = dtpRegistrationBooking.Value,
                     StartTime = dtpStartTime.Value,
                     EndTime = dtpEndTime.Value,
+                    Field = (int)cmbField.SelectedValue,
                     Promotion = (int)cmbPromotion.SelectedValue,  // Se usa SelectedValue ya que los IDs vienen de la BD
                     State = 0
                 };

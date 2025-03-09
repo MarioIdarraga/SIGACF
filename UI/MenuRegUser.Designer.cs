@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtState = new System.Windows.Forms.TextBox();
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtLoginName = new System.Windows.Forms.TextBox();
             this.btnApRegUser = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,46 +51,49 @@
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.chkIsEmployee = new System.Windows.Forms.CheckBox();
+            this.txtLoginName = new System.Windows.Forms.TextBox();
+            this.txtNroDocument = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox8
+            // txtState
             // 
-            this.textBox8.Location = new System.Drawing.Point(629, 397);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(190, 22);
-            this.textBox8.TabIndex = 39;
+            this.txtState.Location = new System.Drawing.Point(627, 472);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(190, 22);
+            this.txtState.TabIndex = 39;
             // 
             // txtTelephone
             // 
-            this.txtTelephone.Location = new System.Drawing.Point(628, 264);
+            this.txtTelephone.Location = new System.Drawing.Point(625, 391);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(192, 22);
             this.txtTelephone.TabIndex = 38;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(212, 589);
+            this.txtAddress.Location = new System.Drawing.Point(625, 316);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(190, 22);
             this.txtAddress.TabIndex = 37;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(212, 527);
+            this.txtEmail.Location = new System.Drawing.Point(627, 264);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(190, 22);
             this.txtEmail.TabIndex = 36;
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(212, 463);
+            this.txtLastName.Location = new System.Drawing.Point(212, 524);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(190, 22);
             this.txtLastName.TabIndex = 35;
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(212, 397);
+            this.txtFirstName.Location = new System.Drawing.Point(212, 458);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(190, 22);
             this.txtFirstName.TabIndex = 34;
@@ -103,17 +105,10 @@
             this.txtPassword.Size = new System.Drawing.Size(190, 22);
             this.txtPassword.TabIndex = 33;
             // 
-            // txtLoginName
-            // 
-            this.txtLoginName.Location = new System.Drawing.Point(212, 264);
-            this.txtLoginName.Name = "txtLoginName";
-            this.txtLoginName.Size = new System.Drawing.Size(190, 22);
-            this.txtLoginName.TabIndex = 32;
-            // 
             // btnApRegUser
             // 
             this.btnApRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApRegUser.Location = new System.Drawing.Point(505, 506);
+            this.btnApRegUser.Location = new System.Drawing.Point(649, 574);
             this.btnApRegUser.Name = "btnApRegUser";
             this.btnApRegUser.Size = new System.Drawing.Size(166, 43);
             this.btnApRegUser.TabIndex = 31;
@@ -126,7 +121,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.Location = new System.Drawing.Point(502, 401);
+            this.label9.Location = new System.Drawing.Point(500, 476);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 18);
             this.label9.TabIndex = 30;
@@ -137,7 +132,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label8.Location = new System.Drawing.Point(499, 268);
+            this.label8.Location = new System.Drawing.Point(496, 395);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 18);
             this.label8.TabIndex = 29;
@@ -148,7 +143,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label7.Location = new System.Drawing.Point(48, 593);
+            this.label7.Location = new System.Drawing.Point(498, 320);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 18);
             this.label7.TabIndex = 28;
@@ -159,7 +154,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label6.Location = new System.Drawing.Point(46, 531);
+            this.label6.Location = new System.Drawing.Point(498, 265);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 18);
             this.label6.TabIndex = 27;
@@ -170,7 +165,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(46, 467);
+            this.label5.Location = new System.Drawing.Point(46, 528);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 18);
             this.label5.TabIndex = 26;
@@ -181,7 +176,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(46, 401);
+            this.label4.Location = new System.Drawing.Point(46, 462);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 18);
             this.label4.TabIndex = 25;
@@ -194,7 +189,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(46, 330);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 23);
+            this.label3.Size = new System.Drawing.Size(83, 18);
             this.label3.TabIndex = 24;
             this.label3.Text = "Password";
             // 
@@ -205,7 +200,7 @@
             this.Lo.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.Lo.Location = new System.Drawing.Point(46, 268);
             this.Lo.Name = "Lo";
-            this.Lo.Size = new System.Drawing.Size(123, 23);
+            this.Lo.Size = new System.Drawing.Size(98, 18);
             this.Lo.TabIndex = 23;
             this.Lo.Text = "Login Name";
             // 
@@ -240,7 +235,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(423, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(314, 40);
+            this.label1.Size = new System.Drawing.Size(251, 32);
             this.label1.TabIndex = 20;
             this.label1.Text = "Registrar Usuario";
             // 
@@ -260,7 +255,7 @@
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(630, 327);
+            this.txtPosition.Location = new System.Drawing.Point(212, 582);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(190, 22);
             this.txtPosition.TabIndex = 64;
@@ -270,7 +265,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label10.Location = new System.Drawing.Point(499, 329);
+            this.label10.Location = new System.Drawing.Point(46, 586);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 18);
             this.label10.TabIndex = 63;
@@ -281,31 +276,58 @@
             this.chkIsEmployee.AutoSize = true;
             this.chkIsEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIsEmployee.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chkIsEmployee.Location = new System.Drawing.Point(506, 452);
+            this.chkIsEmployee.Location = new System.Drawing.Point(504, 527);
             this.chkIsEmployee.Name = "chkIsEmployee";
             this.chkIsEmployee.Size = new System.Drawing.Size(151, 24);
             this.chkIsEmployee.TabIndex = 66;
             this.chkIsEmployee.Text = "Es Empleado?";
             this.chkIsEmployee.UseVisualStyleBackColor = true;
             // 
-            // MenuRegEmployee
+            // txtLoginName
+            // 
+            this.txtLoginName.Location = new System.Drawing.Point(212, 264);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(190, 22);
+            this.txtLoginName.TabIndex = 67;
+            // 
+            // txtNroDocument
+            // 
+            this.txtNroDocument.Location = new System.Drawing.Point(212, 391);
+            this.txtNroDocument.Name = "txtNroDocument";
+            this.txtNroDocument.Size = new System.Drawing.Size(190, 22);
+            this.txtNroDocument.TabIndex = 71;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(46, 395);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(151, 18);
+            this.label11.TabIndex = 70;
+            this.label11.Text = "Nro de Documento";
+            // 
+            // MenuRegUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1057, 689);
+            this.Controls.Add(this.txtNroDocument);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtLoginName);
             this.Controls.Add(this.chkIsEmployee);
             this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txtState);
             this.Controls.Add(this.txtTelephone);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtLoginName);
             this.Controls.Add(this.btnApRegUser);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -319,7 +341,7 @@
             this.Controls.Add(this.btnFindEmployee);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MenuRegEmployee";
+            this.Name = "MenuRegUser";
             this.Text = "MenuLoadEmployee";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -328,14 +350,13 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtState;
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtLoginName;
         private System.Windows.Forms.Button btnApRegUser;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -352,5 +373,8 @@
         private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox chkIsEmployee;
+        private System.Windows.Forms.TextBox txtLoginName;
+        private System.Windows.Forms.TextBox txtNroDocument;
+        private System.Windows.Forms.Label label11;
     }
 }

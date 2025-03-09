@@ -18,9 +18,9 @@ namespace DAL.Repositories.Memory
         public IEnumerable<User> GetAll()
         {
             List<User> users = new List<User>();
-            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "Mario", LastName = "Idarraga", LoginName = "Batmor", Password = "123456", Email = "Mario.Idarraga@itau.com.ar", Position = "Administrator" });
-            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "Felipe", LastName = "Idarraga", LoginName = "Felipe", Password = "123456", Email = "Felipe.Idarraga@itau.com.ar", Position = "Administrator" });
-            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "ANngelica", LastName = "Barrientos", LoginName = "Angelica", Password = "123456", Email = "Angelica.Barrientos@itau.com.ar", Position = "Administrator" });
+            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "Mario", LastName = "Idarraga", LoginName = "Batmor", Password = "123456", Mail = "Mario.Idarraga@itau.com.ar", Position = "Administrator" });
+            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "Felipe", LastName = "Idarraga", LoginName = "Felipe", Password = "123456", Mail = "Felipe.Idarraga@itau.com.ar", Position = "Administrator" });
+            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "ANngelica", LastName = "Barrientos", LoginName = "Angelica", Password = "123456", Mail = "Angelica.Barrientos@itau.com.ar", Position = "Administrator" });
             return users;
         }
 

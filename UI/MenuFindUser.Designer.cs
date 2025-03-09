@@ -32,19 +32,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnRegEmployee = new System.Windows.Forms.Button();
+            this.btnFindUser = new System.Windows.Forms.Button();
+            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.btnRegUser = new System.Windows.Forms.Button();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnModEmployee = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnModUser = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -91,40 +92,40 @@
             this.label3.TabIndex = 41;
             this.label3.Text = "Nombre";
             // 
-            // textBox5
+            // txtMail
             // 
-            this.textBox5.Location = new System.Drawing.Point(519, 300);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(188, 22);
-            this.textBox5.TabIndex = 40;
+            this.txtMail.Location = new System.Drawing.Point(519, 300);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(188, 22);
+            this.txtMail.TabIndex = 40;
             // 
-            // textBox4
+            // txtLastName
             // 
-            this.textBox4.Location = new System.Drawing.Point(913, 213);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(167, 22);
-            this.textBox4.TabIndex = 39;
+            this.txtLastName.Location = new System.Drawing.Point(913, 213);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(167, 22);
+            this.txtLastName.TabIndex = 39;
             // 
-            // textBox3
+            // txtTelephone
             // 
-            this.textBox3.Location = new System.Drawing.Point(215, 296);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(170, 22);
-            this.textBox3.TabIndex = 38;
+            this.txtTelephone.Location = new System.Drawing.Point(215, 296);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.Size = new System.Drawing.Size(170, 22);
+            this.txtTelephone.TabIndex = 38;
             // 
-            // textBox2
+            // txtFirstName
             // 
-            this.textBox2.Location = new System.Drawing.Point(519, 217);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(188, 22);
-            this.textBox2.TabIndex = 37;
+            this.txtFirstName.Location = new System.Drawing.Point(519, 217);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(188, 22);
+            this.txtFirstName.TabIndex = 37;
             // 
-            // textBox1
+            // txtNroDocument
             // 
-            this.textBox1.Location = new System.Drawing.Point(215, 217);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 22);
-            this.textBox1.TabIndex = 36;
+            this.txtNroDocument.Location = new System.Drawing.Point(215, 217);
+            this.txtNroDocument.Name = "txtNroDocument";
+            this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
+            this.txtNroDocument.TabIndex = 36;
             // 
             // label2
             // 
@@ -137,38 +138,39 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "Nro de Documento";
             // 
-            // button3
+            // btnFindUser
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(915, 285);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(167, 44);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "Buscar Empleado";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnFindUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindUser.Location = new System.Drawing.Point(915, 277);
+            this.btnFindUser.Name = "btnFindUser";
+            this.btnFindUser.Size = new System.Drawing.Size(167, 44);
+            this.btnFindUser.TabIndex = 34;
+            this.btnFindUser.Text = "Buscar Usuario";
+            this.btnFindUser.UseVisualStyleBackColor = true;
+            this.btnFindUser.Click += new System.EventHandler(this.btnFindUser_Click);
             // 
-            // dataGridView1
+            // dataGridViewUsers
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(35, 352);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1110, 379);
-            this.dataGridView1.TabIndex = 33;
+            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsers.Location = new System.Drawing.Point(35, 352);
+            this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.RowHeadersWidth = 51;
+            this.dataGridViewUsers.RowTemplate.Height = 24;
+            this.dataGridViewUsers.Size = new System.Drawing.Size(1110, 379);
+            this.dataGridViewUsers.TabIndex = 33;
             // 
-            // btnRegEmployee
+            // btnRegUser
             // 
-            this.btnRegEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRegEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegEmployee.Location = new System.Drawing.Point(216, 41);
-            this.btnRegEmployee.Name = "btnRegEmployee";
-            this.btnRegEmployee.Size = new System.Drawing.Size(176, 85);
-            this.btnRegEmployee.TabIndex = 32;
-            this.btnRegEmployee.Text = "Registrar Empleado";
-            this.btnRegEmployee.UseVisualStyleBackColor = false;
-            this.btnRegEmployee.Click += new System.EventHandler(this.btnRegEmployee_Click);
+            this.btnRegUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnRegUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegUser.Location = new System.Drawing.Point(216, 41);
+            this.btnRegUser.Name = "btnRegUser";
+            this.btnRegUser.Size = new System.Drawing.Size(176, 85);
+            this.btnRegUser.TabIndex = 32;
+            this.btnRegUser.Text = "Registrar Usuario";
+            this.btnRegUser.UseVisualStyleBackColor = false;
+            this.btnRegUser.Click += new System.EventHandler(this.btnRegUser_Click);
             // 
             // btnMenuAdmin
             // 
@@ -191,49 +193,62 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(403, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(353, 32);
+            this.label1.Size = new System.Drawing.Size(321, 32);
             this.label1.TabIndex = 30;
-            this.label1.Text = "Busqueda de Empleados";
+            this.label1.Text = "Busqueda de Usuarios";
             // 
-            // btnModEmployee
+            // btnModUser
             // 
-            this.btnModEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnModEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModEmployee.Location = new System.Drawing.Point(398, 41);
-            this.btnModEmployee.Name = "btnModEmployee";
-            this.btnModEmployee.Size = new System.Drawing.Size(176, 85);
-            this.btnModEmployee.TabIndex = 45;
-            this.btnModEmployee.Text = "Modificar Empleado";
-            this.btnModEmployee.UseVisualStyleBackColor = false;
-            this.btnModEmployee.Click += new System.EventHandler(this.btnModEmployee_Click);
+            this.btnModUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnModUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModUser.Location = new System.Drawing.Point(398, 41);
+            this.btnModUser.Name = "btnModUser";
+            this.btnModUser.Size = new System.Drawing.Size(176, 85);
+            this.btnModUser.TabIndex = 45;
+            this.btnModUser.Text = "Modificar Usuario";
+            this.btnModUser.UseVisualStyleBackColor = false;
+            this.btnModUser.Click += new System.EventHandler(this.btnModUser_Click);
             // 
-            // MenuFindEmployee
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Gray;
+            this.lblStatus.Location = new System.Drawing.Point(907, 329);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(209, 20);
+            this.lblStatus.TabIndex = 86;
+            this.lblStatus.Text = "Listo para buscar usuarios";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // MenuFindUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1177, 741);
-            this.Controls.Add(this.btnModEmployee);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.btnModUser);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtTelephone);
+            this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnRegEmployee);
+            this.Controls.Add(this.btnFindUser);
+            this.Controls.Add(this.dataGridViewUsers);
+            this.Controls.Add(this.btnRegUser);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MenuFindEmployee";
+            this.Name = "MenuFindUser";
             this.Text = "MenuFindEmployees";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,17 +260,18 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnRegEmployee;
+        private System.Windows.Forms.Button btnFindUser;
+        private System.Windows.Forms.DataGridView dataGridViewUsers;
+        private System.Windows.Forms.Button btnRegUser;
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnModEmployee;
+        private System.Windows.Forms.Button btnModUser;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -78,7 +78,7 @@
             this.btnAdminEmployees.Name = "btnAdminEmployees";
             this.btnAdminEmployees.Size = new System.Drawing.Size(174, 86);
             this.btnAdminEmployees.TabIndex = 80;
-            this.btnAdminEmployees.Text = "Empleados";
+            this.btnAdminEmployees.Text = "Usuarios";
             this.btnAdminEmployees.UseVisualStyleBackColor = false;
             this.btnAdminEmployees.Click += new System.EventHandler(this.btnAdminEmployees_Click);
             // 

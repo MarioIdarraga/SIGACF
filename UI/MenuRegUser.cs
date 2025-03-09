@@ -63,21 +63,25 @@ namespace UI
                     UserId = Guid.NewGuid(),
                     LoginName = txtLoginName.Text.Trim(),
                     Password = txtPassword.Text.Trim(),
+                    NroDocument = int.Parse(txtNroDocument.Text.Trim()),
                     FirstName = txtFirstName.Text.Trim(),
                     LastName = txtLastName.Text.Trim(),
                     Position = txtPosition.Text.Trim(),
-                    Email = txtEmail.Text.Trim(),
+                    Mail = txtEmail.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
                     Telephone = txtTelephone.Text.Trim(),
-                    IsEmployee = chkIsEmployee.Checked
+                    IsEmployee = chkIsEmployee.Checked,
+                    State = int.Parse(txtState.Text.Trim())
+
                 };
 
                 // Validaciones 
                 if (string.IsNullOrWhiteSpace(newUser.LoginName) ||
                     string.IsNullOrWhiteSpace(newUser.Password) ||
+                    string.IsNullOrWhiteSpace(newUser.NroDocument.ToString()) ||
                     string.IsNullOrWhiteSpace(newUser.FirstName) ||
                     string.IsNullOrWhiteSpace(newUser.LastName) ||
-                    string.IsNullOrWhiteSpace(newUser.Email))
+                    string.IsNullOrWhiteSpace(newUser.Mail))
                 {
                     MessageBox.Show("Por favor, complete los campos obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -90,12 +94,14 @@ namespace UI
                 // Limpiamos los campos del formulario
                 txtLoginName.Clear();
                 txtPassword.Clear();
+                txtNroDocument.Clear();
                 txtFirstName.Clear();
                 txtLastName.Clear();
                 txtPosition.Clear();
                 txtEmail.Clear();
                 txtAddress.Clear();
                 txtTelephone.Clear();
+                txtState.Clear();
             }
             catch (Exception ex)
             {

@@ -98,8 +98,44 @@ namespace UI
 
         private void btnRegBooking_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuRegBooking(_panelContenedor));
+            try
+            {
+                // Validar si hay filas en el DataGridView
+                if (dataGridViewCustomers.Rows.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente de la lista para registrar una reserva.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar si hay una fila seleccionada
+                if (dataGridViewCustomers.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Seleccione un cliente para registrar una reserva.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener datos de la fila seleccionada
+                DataGridViewRow selectedRow = dataGridViewCustomers.SelectedRows[0];
+
+                // Validar que la celda de IdCustomer no sea nula
+                if (selectedRow.Cells["IdCustomer"].Value == null)
+                {
+                    MessageBox.Show("El cliente seleccionado tiene datos inválidos. Intente seleccionar otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Extraer el IdCustomer
+                Guid idCustomer = (Guid)selectedRow.Cells["IdCustomer"].Value;
+
+                // Abrir el formulario de registro de reserva pasando solo el IdCliente
+                OpenFormChild(new MenuRegBooking(_panelContenedor, idCustomer));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al intentar registrar la reserva: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void btnFindCustomer_Click(object sender, EventArgs e)
         {
