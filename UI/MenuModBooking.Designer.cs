@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -50,24 +48,6 @@
             this.btnRegPay = new System.Windows.Forms.Button();
             this.btnCanBooking = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(340, 673);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(186, 22);
-            this.textBox6.TabIndex = 54;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label7.Location = new System.Drawing.Point(176, 677);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 18);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "Dirección";
             // 
             // label1
             // 
@@ -260,7 +240,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(800, 533);
+            this.ClientSize = new System.Drawing.Size(1142, 705);
             this.Controls.Add(this.btnCanBooking);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRegPay);
@@ -280,8 +260,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.label7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuModBooking";
             this.Text = "MenuModBooking";
@@ -291,8 +269,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox1;

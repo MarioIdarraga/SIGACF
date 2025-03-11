@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="BLL\ExceptionBLL.cs" />
     <Compile Include="BLL\LoggerBLL.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL\Contracts\IGenericBusinessService.cs" />
     <Compile Include="DAL\Contracts\ILogger.cs" />
     <Compile Include="DAL\Repositories\File\FileLoggerRepository.cs" />

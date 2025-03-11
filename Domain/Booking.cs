@@ -9,7 +9,7 @@ namespace Domain
     public class Booking
     {
 
-        public Guid Id { get; set; }
+        public Guid IdBooking { get; set; }
 
         public Guid IdCustomer { get; set; }
 
@@ -23,9 +23,9 @@ namespace Domain
 
         public DateTime EndTime { get; set; }
 
-        public int Field { get; set; }
+        public Guid Field { get; set; }
 
-        public int Promotion { get; set; }
+        public Guid Promotion { get; set; }
 
         public int State { get; set; } ///No se ve en la carga de la reserva
 

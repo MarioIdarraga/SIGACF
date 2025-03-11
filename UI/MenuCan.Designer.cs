@@ -32,13 +32,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.NroDocument = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnFindCan = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnCanBooking = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -90,40 +90,40 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "Nombre";
             // 
-            // textBox5
+            // txtMail
             // 
-            this.textBox5.Location = new System.Drawing.Point(516, 296);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(188, 22);
-            this.textBox5.TabIndex = 25;
+            this.txtMail.Location = new System.Drawing.Point(516, 296);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(188, 22);
+            this.txtMail.TabIndex = 25;
             // 
-            // textBox4
+            // txtLastName
             // 
-            this.textBox4.Location = new System.Drawing.Point(910, 209);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(167, 22);
-            this.textBox4.TabIndex = 24;
+            this.txtLastName.Location = new System.Drawing.Point(910, 209);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(167, 22);
+            this.txtLastName.TabIndex = 24;
             // 
-            // textBox3
+            // txtTelephone
             // 
-            this.textBox3.Location = new System.Drawing.Point(212, 292);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(170, 22);
-            this.textBox3.TabIndex = 23;
+            this.txtTelephone.Location = new System.Drawing.Point(212, 292);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.Size = new System.Drawing.Size(170, 22);
+            this.txtTelephone.TabIndex = 23;
             // 
-            // textBox2
+            // txtFirstName
             // 
-            this.textBox2.Location = new System.Drawing.Point(516, 213);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(188, 22);
-            this.textBox2.TabIndex = 22;
+            this.txtFirstName.Location = new System.Drawing.Point(516, 213);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(188, 22);
+            this.txtFirstName.TabIndex = 22;
             // 
-            // textBox1
+            // NroDocument
             // 
-            this.textBox1.Location = new System.Drawing.Point(212, 213);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 22);
-            this.textBox1.TabIndex = 21;
+            this.NroDocument.Location = new System.Drawing.Point(212, 213);
+            this.NroDocument.Name = "NroDocument";
+            this.NroDocument.Size = new System.Drawing.Size(170, 22);
+            this.NroDocument.TabIndex = 21;
             // 
             // label2
             // 
@@ -136,15 +136,16 @@
             this.label2.TabIndex = 20;
             this.label2.Text = "Nro de Documento";
             // 
-            // button3
+            // btnFindCan
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(912, 281);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(167, 44);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Buscar Cancelaciones";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnFindCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindCan.Location = new System.Drawing.Point(912, 281);
+            this.btnFindCan.Name = "btnFindCan";
+            this.btnFindCan.Size = new System.Drawing.Size(167, 44);
+            this.btnFindCan.TabIndex = 19;
+            this.btnFindCan.Text = "Buscar Cancelaciones";
+            this.btnFindCan.UseVisualStyleBackColor = true;
+            this.btnFindCan.Click += new System.EventHandler(this.btnFindCan_Click);
             // 
             // dataGridView1
             // 
@@ -177,7 +178,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(400, 136);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(503, 40);
+            this.label1.Size = new System.Drawing.Size(402, 32);
             this.label1.TabIndex = 15;
             this.label1.Text = "Busqueda de Cancelaciones";
             // 
@@ -204,13 +205,13 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtTelephone);
+            this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.NroDocument);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnFindCan);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnCanBooking);
             this.Controls.Add(this.label1);
@@ -229,13 +230,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox NroDocument;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnFindCan;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnCanBooking;
         private System.Windows.Forms.Label label1;

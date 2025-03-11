@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -48,34 +44,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label6.Location = new System.Drawing.Point(417, 315);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 18);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "Promoción";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(68, 320);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 18);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Tipo de Cancha";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(786, 235);
+            this.label4.Location = new System.Drawing.Point(78, 318);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 18);
             this.label4.TabIndex = 27;
@@ -86,29 +60,15 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(412, 236);
+            this.label3.Location = new System.Drawing.Point(504, 243);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 18);
             this.label3.TabIndex = 26;
             this.label3.Text = "Fecha de Reserva";
             // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(582, 317);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(161, 22);
-            this.textBox5.TabIndex = 25;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(241, 314);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(170, 22);
-            this.textBox3.TabIndex = 23;
-            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(241, 234);
+            this.textBox1.Location = new System.Drawing.Point(249, 239);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(170, 22);
             this.textBox1.TabIndex = 21;
@@ -118,7 +78,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(68, 240);
+            this.label2.Location = new System.Drawing.Point(76, 245);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 18);
             this.label2.TabIndex = 20;
@@ -184,14 +144,14 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(582, 230);
+            this.dateTimePicker2.Location = new System.Drawing.Point(674, 237);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(188, 22);
             this.dateTimePicker2.TabIndex = 31;
             // 
             // dateTimePicker3
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(949, 229);
+            this.dateTimePicker3.Location = new System.Drawing.Point(241, 312);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker3.TabIndex = 32;
@@ -232,12 +192,8 @@
             this.Controls.Add(this.btnRegPay);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
@@ -255,13 +211,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;

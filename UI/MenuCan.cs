@@ -41,5 +41,10 @@ namespace UI
         {
             OpenFormChild(new MenuSales(_panelContenedor));
         }
+
+        private void btnFindCan_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

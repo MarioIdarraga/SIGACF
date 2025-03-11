@@ -126,9 +126,10 @@ namespace UI
 
                 // Extraer el IdCustomer
                 Guid idCustomer = (Guid)selectedRow.Cells["IdCustomer"].Value;
+                string nroDocument = selectedRow.Cells["NroDocument"].Value.ToString();
 
-                // Abrir el formulario de registro de reserva pasando solo el IdCliente
-                OpenFormChild(new MenuRegBooking(_panelContenedor, idCustomer));
+                OpenFormChild(new MenuRegBooking(_panelContenedor, idCustomer, nroDocument));
+
             }
             catch (Exception ex)
             {

@@ -14,24 +14,23 @@ namespace UI
         private Panel _panelContenedor;
 
         IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
-        IGenericRepository<BookingState> repositoryBookingState = Factory.Current.GetBookingStateRepository();
         IGenericRepository<Promotion> repositoryPromotion = Factory.Current.GetPromotionRepository();
         IGenericRepository<Field> repositoryField = Factory.Current.GetFieldRepository();
 
         private Guid _idCustomer; // Variable para almacenar el Id del cliente
 
-        public MenuRegBooking(Panel panelContenedor, Guid idCustomer)
+        public MenuRegBooking(Panel panelContenedor, Guid idCustomer, string nroDocument)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
             _idCustomer = idCustomer; // Guardar el Id del cliente
+            txtNroDocument.Text = nroDocument;
 
             CargarCombos();
             dtpRegistrationBooking.Value = DateTime.Today;
 
             // Cargar el ID del cliente en un control, por ejemplo un TextBox o Label
             txtIdCustomer.Text = _idCustomer.ToString(); // Si tienes un TextBox
-
         }
 
         public MenuRegBooking(Panel panelContenedor)
@@ -119,8 +118,8 @@ namespace UI
                     RegistrationBooking = dtpRegistrationBooking.Value,
                     StartTime = dtpStartTime.Value,
                     EndTime = dtpEndTime.Value,
-                    Field = (int)cmbField.SelectedValue,
-                    Promotion = (int)cmbPromotion.SelectedValue,  // Se usa SelectedValue ya que los IDs vienen de la BD
+                    Field = (Guid)cmbField.SelectedValue,
+                    Promotion = (Guid)cmbPromotion.SelectedValue, 
                     State = 0
                 };
 
@@ -137,10 +136,12 @@ namespace UI
 
         private void LimpiarCampos()
         {
-            txtIdCustomer.Text = "";
+            txtIdCustomer.Clear();
+            txtNroDocument.Clear();
             dtpRegistrationBooking.Value = DateTime.Now;
             dtpStartTime.Value = DateTime.Now;
             dtpEndTime.Value = DateTime.Now;
+            cmbField.Items.Clear();
             cmbPromotion.SelectedIndex = -1;
         }
     }
