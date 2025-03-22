@@ -33,12 +33,17 @@ namespace DAL.Repositories.Memory
             }
         }
 
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<Customer> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
-            return _customers;
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Customer> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<Customer> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customer> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
         }

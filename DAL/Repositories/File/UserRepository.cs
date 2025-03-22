@@ -15,12 +15,17 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<User> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<User> GetAll()
         {
             throw new NotImplementedException();
         }

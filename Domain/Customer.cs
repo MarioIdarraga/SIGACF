@@ -9,7 +9,8 @@ namespace Domain
     public class Customer
     {
         
-        public Guid IdCustomer { get; set; }    
+        public Guid IdCustomer { get; set; } 
+        
         public int NroDocument { get; set; }
 
         public string FirstName { get; set; }

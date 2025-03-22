@@ -25,6 +25,11 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Field> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
         public Field GetOne(Guid Id)
         {
             throw new NotImplementedException();

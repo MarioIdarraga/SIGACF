@@ -143,6 +143,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<BookingState> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
     }

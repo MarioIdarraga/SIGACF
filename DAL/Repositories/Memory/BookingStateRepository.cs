@@ -15,12 +15,17 @@ namespace DAL.Repositories.Memory
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BookingState> GetAll()
+        public IEnumerable<BookingState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BookingState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<BookingState> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<BookingState> GetAll()
         {
             throw new NotImplementedException();
         }

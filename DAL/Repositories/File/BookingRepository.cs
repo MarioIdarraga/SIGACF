@@ -20,6 +20,16 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Booking> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Booking> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
         public Booking GetOne(Guid Id)
         {
             throw new NotImplementedException();
@@ -31,11 +41,6 @@ namespace DAL.Repositories.File
         }
 
         public void Update(Guid Id, Booking Object)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Booking> IGenericRepository<Booking>.GetAll()
         {
             throw new NotImplementedException();
         }

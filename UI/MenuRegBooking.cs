@@ -116,8 +116,8 @@ namespace UI
                     NroDocument = txtNroDocument.Text,
                     RegistrationDate = DateTime.Today,
                     RegistrationBooking = dtpRegistrationBooking.Value,
-                    StartTime = dtpStartTime.Value,
-                    EndTime = dtpEndTime.Value,
+                    StartTime = dtpStartTime.Value.TimeOfDay,
+                    EndTime = dtpEndTime.Value.TimeOfDay,
                     Field = (Guid)cmbField.SelectedValue,
                     Promotion = (Guid)cmbPromotion.SelectedValue, 
                     State = 0

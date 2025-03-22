@@ -43,12 +43,17 @@ namespace DAL.Repositories.Memory
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Field> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Field> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Field> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<Field> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
         }

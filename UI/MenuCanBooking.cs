@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,10 +14,24 @@ namespace UI
     public partial class MenuCanBooking : Form
     {
         private Panel _panelContenedor;
-        public MenuCanBooking(Panel panelContenedor)
+        public MenuCanBooking(Panel panelContenedor, Guid idBooking, Guid idCustomer, int nroDocument,
+                       DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime, string field,
+                       string promotion, int state)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+
+            // Asignar valores a los controles del formulario
+
+            txtIdBooking.Text = idBooking.ToString();
+            txtIdCustomer.Text = idCustomer.ToString();
+            txtNroDocument.Text = nroDocument.ToString();
+            txtRegistrationBooking.Text = registrationBooking.ToString();
+            txtStartTime.Text = startTime.ToString();
+            txtEndTime.Text = endTime.ToString();
+            txtField.Text = field;
+            txtPromotion.Text = promotion;
+            txtState.Text = state.ToString();
         }
 
         private void OpenFormChild(object formchild)
@@ -33,7 +48,7 @@ namespace UI
 
         private void btnModBooking_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuModBooking(_panelContenedor));
+            //OpenFormChild(new MenuModBooking(_panelContenedor));
         }
 
         private void btnFindBooking_Click(object sender, EventArgs e)

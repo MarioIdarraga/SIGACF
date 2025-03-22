@@ -30,18 +30,19 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnFindBooking = new System.Windows.Forms.Button();
+            this.dataGridViewBookings = new System.Windows.Forms.DataGridView();
             this.btnModBooking = new System.Windows.Forms.Button();
             this.btnRegBooking = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dtpRegistrationBooking = new System.Windows.Forms.DateTimePicker();
+            this.dtpRegistrationDate = new System.Windows.Forms.DateTimePicker();
             this.btnRegPay = new System.Windows.Forms.Button();
             this.btnCanBooking = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.lblStatus = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -66,12 +67,12 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "Fecha de Reserva";
             // 
-            // textBox1
+            // txtNroDocument
             // 
-            this.textBox1.Location = new System.Drawing.Point(249, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 22);
-            this.textBox1.TabIndex = 21;
+            this.txtNroDocument.Location = new System.Drawing.Point(249, 239);
+            this.txtNroDocument.Name = "txtNroDocument";
+            this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
+            this.txtNroDocument.TabIndex = 21;
             // 
             // label2
             // 
@@ -84,25 +85,26 @@
             this.label2.TabIndex = 20;
             this.label2.Text = "Nro de Documento";
             // 
-            // button3
+            // btnFindBooking
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(951, 302);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(167, 44);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Buscar Reserva";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnFindBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindBooking.Location = new System.Drawing.Point(685, 292);
+            this.btnFindBooking.Name = "btnFindBooking";
+            this.btnFindBooking.Size = new System.Drawing.Size(167, 44);
+            this.btnFindBooking.TabIndex = 19;
+            this.btnFindBooking.Text = "Buscar Reserva";
+            this.btnFindBooking.UseVisualStyleBackColor = true;
+            this.btnFindBooking.Click += new System.EventHandler(this.btnFindBooking_Click);
             // 
-            // dataGridView1
+            // dataGridViewBookings
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(71, 369);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1110, 379);
-            this.dataGridView1.TabIndex = 18;
+            this.dataGridViewBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBookings.Location = new System.Drawing.Point(71, 369);
+            this.dataGridViewBookings.Name = "dataGridViewBookings";
+            this.dataGridViewBookings.RowHeadersWidth = 51;
+            this.dataGridViewBookings.RowTemplate.Height = 24;
+            this.dataGridViewBookings.Size = new System.Drawing.Size(1110, 379);
+            this.dataGridViewBookings.TabIndex = 18;
             // 
             // btnModBooking
             // 
@@ -142,19 +144,21 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Busqueda de Reservas";
             // 
-            // dateTimePicker2
+            // dtpRegistrationBooking
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(674, 237);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(188, 22);
-            this.dateTimePicker2.TabIndex = 31;
+            this.dtpRegistrationBooking.Location = new System.Drawing.Point(674, 237);
+            this.dtpRegistrationBooking.Name = "dtpRegistrationBooking";
+            this.dtpRegistrationBooking.ShowCheckBox = true;
+            this.dtpRegistrationBooking.Size = new System.Drawing.Size(188, 22);
+            this.dtpRegistrationBooking.TabIndex = 31;
             // 
-            // dateTimePicker3
+            // dtpRegistrationDate
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(241, 312);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker3.TabIndex = 32;
+            this.dtpRegistrationDate.Location = new System.Drawing.Point(241, 312);
+            this.dtpRegistrationDate.Name = "dtpRegistrationDate";
+            this.dtpRegistrationDate.ShowCheckBox = true;
+            this.dtpRegistrationDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpRegistrationDate.TabIndex = 32;
             // 
             // btnRegPay
             // 
@@ -182,29 +186,42 @@
             this.btnCanBooking.UseVisualStyleBackColor = false;
             this.btnCanBooking.Click += new System.EventHandler(this.btnCanBooking_Click);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Gray;
+            this.lblStatus.Location = new System.Drawing.Point(652, 346);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(210, 20);
+            this.lblStatus.TabIndex = 86;
+            this.lblStatus.Text = "Listo para buscar reservas";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // MenuSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1242, 834);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnCanBooking);
             this.Controls.Add(this.btnRegPay);
-            this.Controls.Add(this.dateTimePicker3);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dtpRegistrationDate);
+            this.Controls.Add(this.dtpRegistrationBooking);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnFindBooking);
+            this.Controls.Add(this.dataGridViewBookings);
             this.Controls.Add(this.btnModBooking);
             this.Controls.Add(this.btnRegBooking);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuSales";
             this.Text = "MenuRent";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,16 +230,17 @@
         #endregion
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnFindBooking;
+        private System.Windows.Forms.DataGridView dataGridViewBookings;
         private System.Windows.Forms.Button btnModBooking;
         private System.Windows.Forms.Button btnRegBooking;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dtpRegistrationBooking;
+        private System.Windows.Forms.DateTimePicker dtpRegistrationDate;
         private System.Windows.Forms.Button btnRegPay;
         private System.Windows.Forms.Button btnCanBooking;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -113,6 +113,11 @@ namespace DAL.Repositories.SqlServer
             return users;
         }
 
+        public IEnumerable<User> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetOne(Guid UserId)
         {
             User user = null;

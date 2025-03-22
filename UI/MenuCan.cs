@@ -34,7 +34,7 @@ namespace UI
 
         private void btnCanBooking_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuCanBooking(_panelContenedor));
+            //OpenFormChild(new MenuCanBooking(_panelContenedor));
         }
 
         private void btnFindBooking_Click(object sender, EventArgs e)

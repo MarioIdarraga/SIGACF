@@ -17,6 +17,8 @@ namespace DAL.Contracts
 
         IEnumerable<T> GetAll();
 
+        IEnumerable<T> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate);
+
         T GetOne(Guid Id);
 
         IEnumerable<T> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail);

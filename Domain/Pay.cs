@@ -8,15 +8,19 @@ namespace Domain
 {
     public class Pay
     {
-        public int id_Pay { get; set; }
+        public Guid IdPay { get; set; }
 
-        public DateTime date { get; set; }
+        public Guid IdBooking { get; set; }
 
-        public int method_Pay { get; set; }
+        public int NroDocument { get; set; }
 
-        public float amount { get; set; }
+        public DateTime Date { get; set; }
 
-        public int state_Pay { get; set; }
+        public int MethodPay { get; set; }
+
+        public float Amount { get; set; }
+
+        public int State { get; set; }
 
 
     }

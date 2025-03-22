@@ -15,16 +15,17 @@ namespace DAL.Repositories.Memory
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
-            List<User> users = new List<User>();
-            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "Mario", LastName = "Idarraga", LoginName = "Batmor", Password = "123456", Mail = "Mario.Idarraga@itau.com.ar", Position = "Administrator" });
-            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "Felipe", LastName = "Idarraga", LoginName = "Felipe", Password = "123456", Mail = "Felipe.Idarraga@itau.com.ar", Position = "Administrator" });
-            users.Add(new User() { UserId = Guid.NewGuid(), FirstName = "ANngelica", LastName = "Barrientos", LoginName = "Angelica", Password = "123456", Mail = "Angelica.Barrientos@itau.com.ar", Position = "Administrator" });
-            return users;
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<User> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<User> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
         }
