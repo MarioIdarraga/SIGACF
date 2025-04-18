@@ -35,7 +35,11 @@ namespace UI
 
         public MenuRegBooking(Panel panelContenedor)
         {
+            InitializeComponent();
             _panelContenedor = panelContenedor;
+
+            CargarCombos();
+            dtpRegistrationBooking.Value = DateTime.Today;
         }
 
         private void CargarCombos()

@@ -20,6 +20,7 @@ namespace UI
         private Panel _panelContenedor;
 
         IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
+        IGenericRepository<CustomerState> repositoryCustomerState = Factory.Current.GetCustomerStateRepository();
         public MenuRegCustomer(Panel panelContenedor)
         {
             InitializeComponent();

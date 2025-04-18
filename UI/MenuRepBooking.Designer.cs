@@ -30,13 +30,14 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnGenRepBookings = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRepCan = new System.Windows.Forms.Button();
             this.btnRepSales = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.btnPrintBookings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,15 +63,16 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "Fecha Desde";
             // 
-            // button3
+            // btnGenRepBookings
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(459, 285);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(164, 44);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "Generar Reporte";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnGenRepBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenRepBookings.Location = new System.Drawing.Point(311, 286);
+            this.btnGenRepBookings.Name = "btnGenRepBookings";
+            this.btnGenRepBookings.Size = new System.Drawing.Size(164, 44);
+            this.btnGenRepBookings.TabIndex = 34;
+            this.btnGenRepBookings.Text = "Generar Reporte";
+            this.btnGenRepBookings.UseVisualStyleBackColor = true;
+            this.btnGenRepBookings.Click += new System.EventHandler(this.btnGenRepBooking_Click);
             // 
             // dataGridView1
             // 
@@ -116,7 +118,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(403, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(374, 40);
+            this.label1.Size = new System.Drawing.Size(299, 32);
             this.label1.TabIndex = 30;
             this.label1.Text = "Reporte de Reservas";
             // 
@@ -134,17 +136,28 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker2.TabIndex = 43;
             // 
+            // btnPrintBookings
+            // 
+            this.btnPrintBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintBookings.Location = new System.Drawing.Point(599, 286);
+            this.btnPrintBookings.Name = "btnPrintBookings";
+            this.btnPrintBookings.Size = new System.Drawing.Size(164, 44);
+            this.btnPrintBookings.TabIndex = 44;
+            this.btnPrintBookings.Text = "Imprimir Reporte";
+            this.btnPrintBookings.UseVisualStyleBackColor = true;
+            // 
             // MenuRepBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1177, 741);
+            this.Controls.Add(this.btnPrintBookings);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnGenRepBookings);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRepCan);
             this.Controls.Add(this.btnRepSales);
@@ -161,12 +174,13 @@
         #endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnGenRepBookings;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnRepCan;
         private System.Windows.Forms.Button btnRepSales;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button btnPrintBookings;
     }
 }

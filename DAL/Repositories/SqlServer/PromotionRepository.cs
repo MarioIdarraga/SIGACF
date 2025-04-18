@@ -19,11 +19,11 @@ namespace DAL.Repositories.SqlServer
         {
             get => "INSERT INTO [dbo].[Promotions] (Name, ValidFrom, ValidTo, PromotionDescription) VALUES (@Name, @ValidFrom, @ValidTo, @PromotionDescription)";
         }
-
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Promotions] SET (Name, ValidFrom, ValidTo, PromotionDescription) WHERE IdPromotion = @IdPromotion";
+            get => "UPDATE [dbo].[Bookings] SET IdCustomer = @IdCustomer, NroDocument = @NroDocument, RegistrationDate = @RegistrationDate, RegistrationBooking = @RegistrationBooking, StartTime = @StartTime, EndTime = @EndTime, Field = @Field, Promotion = @Promotion, State = @State WHERE IdBooking = @IdBooking";
         }
+
 
         private string DeleteStatement
         {

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateUntilSales = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateSinceSales = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnGenRepSales = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRepCan = new System.Windows.Forms.Button();
             this.btnRepBooking = new System.Windows.Forms.Button();
@@ -40,19 +40,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker2
+            // dtpDateUntilSales
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(528, 220);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker2.TabIndex = 52;
+            this.dtpDateUntilSales.Location = new System.Drawing.Point(528, 220);
+            this.dtpDateUntilSales.Name = "dtpDateUntilSales";
+            this.dtpDateUntilSales.Size = new System.Drawing.Size(200, 22);
+            this.dtpDateUntilSales.TabIndex = 52;
             // 
-            // dateTimePicker1
+            // dtpDateSinceSales
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(147, 220);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 51;
+            this.dtpDateSinceSales.Location = new System.Drawing.Point(147, 220);
+            this.dtpDateSinceSales.Name = "dtpDateSinceSales";
+            this.dtpDateSinceSales.Size = new System.Drawing.Size(200, 22);
+            this.dtpDateSinceSales.TabIndex = 51;
             // 
             // label3
             // 
@@ -76,15 +76,16 @@
             this.label2.TabIndex = 49;
             this.label2.Text = "Fecha Desde";
             // 
-            // button3
+            // btnGenRepSales
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(461, 285);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(164, 44);
-            this.button3.TabIndex = 48;
-            this.button3.Text = "Generar Reporte";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnGenRepSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenRepSales.Location = new System.Drawing.Point(461, 285);
+            this.btnGenRepSales.Name = "btnGenRepSales";
+            this.btnGenRepSales.Size = new System.Drawing.Size(164, 44);
+            this.btnGenRepSales.TabIndex = 48;
+            this.btnGenRepSales.Text = "Generar Reporte";
+            this.btnGenRepSales.UseVisualStyleBackColor = true;
+            this.btnGenRepSales.Click += new System.EventHandler(this.btnGenRepSales_Click);
             // 
             // dataGridView1
             // 
@@ -130,7 +131,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(405, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 40);
+            this.label1.Size = new System.Drawing.Size(267, 32);
             this.label1.TabIndex = 44;
             this.label1.Text = "Reporte de Ventas";
             // 
@@ -140,11 +141,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1180, 741);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpDateUntilSales);
+            this.Controls.Add(this.dtpDateSinceSales);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnGenRepSales);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRepCan);
             this.Controls.Add(this.btnRepBooking);
@@ -160,11 +161,11 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpDateUntilSales;
+        private System.Windows.Forms.DateTimePicker dtpDateSinceSales;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnGenRepSales;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnRepCan;
         private System.Windows.Forms.Button btnRepBooking;

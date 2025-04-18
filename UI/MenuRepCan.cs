@@ -41,5 +41,10 @@ namespace UI
         {
             OpenFormChild(new MenuRepBooking(_panelContenedor));
         }
+
+        private void btnGenRepCan_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

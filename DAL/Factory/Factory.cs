@@ -162,5 +162,21 @@ namespace DAL.Factory
                 return new Repositories.Memory.FieldStateRepository();
             }
         }
+
+        public IGenericRepository<CustomerState> GetCustomerStateRepository()
+        {
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.CustomerStateRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.CustomerStateRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.CustomerStateRepository();
+            }
+        }
     }
 }

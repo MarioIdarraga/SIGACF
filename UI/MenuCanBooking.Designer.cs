@@ -78,6 +78,7 @@
             // 
             // txtState
             // 
+            this.txtState.Enabled = false;
             this.txtState.Location = new System.Drawing.Point(653, 373);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(186, 22);
@@ -85,6 +86,7 @@
             // 
             // txtRegistrationBooking
             // 
+            this.txtRegistrationBooking.Enabled = false;
             this.txtRegistrationBooking.Location = new System.Drawing.Point(206, 446);
             this.txtRegistrationBooking.Name = "txtRegistrationBooking";
             this.txtRegistrationBooking.Size = new System.Drawing.Size(186, 22);
@@ -92,6 +94,7 @@
             // 
             // txtIdCustomer
             // 
+            this.txtIdCustomer.Enabled = false;
             this.txtIdCustomer.Location = new System.Drawing.Point(206, 302);
             this.txtIdCustomer.Name = "txtIdCustomer";
             this.txtIdCustomer.Size = new System.Drawing.Size(186, 22);
@@ -99,6 +102,7 @@
             // 
             // txtIdBooking
             // 
+            this.txtIdBooking.Enabled = false;
             this.txtIdBooking.Location = new System.Drawing.Point(206, 240);
             this.txtIdBooking.Name = "txtIdBooking";
             this.txtIdBooking.Size = new System.Drawing.Size(186, 22);
@@ -113,6 +117,7 @@
             this.btnCanBooking.TabIndex = 106;
             this.btnCanBooking.Text = "Cancelar Reserva";
             this.btnCanBooking.UseVisualStyleBackColor = true;
+            this.btnCanBooking.Click += new System.EventHandler(this.btnCanBooking_Click);
             // 
             // label9
             // 
@@ -206,6 +211,7 @@
             // 
             // txtNroDocument
             // 
+            this.txtNroDocument.Enabled = false;
             this.txtNroDocument.Location = new System.Drawing.Point(206, 373);
             this.txtNroDocument.Name = "txtNroDocument";
             this.txtNroDocument.Size = new System.Drawing.Size(186, 22);
@@ -236,6 +242,7 @@
             // 
             // txtStartTime
             // 
+            this.txtStartTime.Enabled = false;
             this.txtStartTime.Location = new System.Drawing.Point(206, 516);
             this.txtStartTime.Name = "txtStartTime";
             this.txtStartTime.Size = new System.Drawing.Size(186, 22);
@@ -243,6 +250,7 @@
             // 
             // txtEndTime
             // 
+            this.txtEndTime.Enabled = false;
             this.txtEndTime.Location = new System.Drawing.Point(206, 580);
             this.txtEndTime.Name = "txtEndTime";
             this.txtEndTime.Size = new System.Drawing.Size(186, 22);
@@ -250,6 +258,7 @@
             // 
             // txtField
             // 
+            this.txtField.Enabled = false;
             this.txtField.Location = new System.Drawing.Point(653, 238);
             this.txtField.Name = "txtField";
             this.txtField.Size = new System.Drawing.Size(186, 22);
@@ -257,6 +266,7 @@
             // 
             // txtPromotion
             // 
+            this.txtPromotion.Enabled = false;
             this.txtPromotion.Location = new System.Drawing.Point(653, 306);
             this.txtPromotion.Name = "txtPromotion";
             this.txtPromotion.Size = new System.Drawing.Size(186, 22);

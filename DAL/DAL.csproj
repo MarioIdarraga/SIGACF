@@ -82,6 +82,7 @@
     <Compile Include="Repositories\File\BookingRepository.cs" />
     <Compile Include="Repositories\File\BookingStateRepository.cs" />
     <Compile Include="Repositories\File\CustomerRepository.cs" />
+    <Compile Include="Repositories\File\CustomerStateRepository.cs" />
     <Compile Include="Repositories\File\FieldRepository.cs" />
     <Compile Include="Repositories\File\FieldStateRepository.cs" />
     <Compile Include="Repositories\File\PromotionRepository.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Repositories\Memory\BookingRepository.cs" />
     <Compile Include="Repositories\Memory\BookingStateRepository.cs" />
     <Compile Include="Repositories\Memory\CustomerRepository.cs" />
+    <Compile Include="Repositories\Memory\CustomerStateRepository.cs" />
     <Compile Include="Repositories\Memory\FieldRepository.cs" />
     <Compile Include="Repositories\Memory\FieldStateRepository.cs" />
     <Compile Include="Repositories\Memory\PromotionRepository.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Repositories\SqlServer\BookingRepository.cs" />
     <Compile Include="Repositories\SqlServer\BookingStateRepository.cs" />
     <Compile Include="Repositories\SqlServer\CustomerRepository.cs" />
+    <Compile Include="Repositories\SqlServer\CustomerStateRepository.cs" />
     <Compile Include="Repositories\SqlServer\FieldRepository.cs" />
     <Compile Include="Repositories\SqlServer\FieldStateRepository.cs" />
     <Compile Include="Repositories\SqlServer\PromotionRepository.cs" />
