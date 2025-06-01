@@ -93,7 +93,7 @@ namespace UI
 
                 // Limpiamos los campos del formulario
                 txtLoginName.Clear();
-                txtPassword.Clear();
+                txtPassword.Clear();        
                 txtNroDocument.Clear();
                 txtFirstName.Clear();
                 txtLastName.Clear();
