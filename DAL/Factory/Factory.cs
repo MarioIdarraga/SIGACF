@@ -28,7 +28,7 @@ namespace DAL.Factory
             backend = ConfigurationManager.AppSettings["backend"];
         }
 
-        public IGenericRepository<User> GetUserRepository()
+        public IUserRepository<User> GetUserRepository()
         {
 
             if (backend == "SqlServer")
@@ -62,7 +62,7 @@ namespace DAL.Factory
             }
         }
 
-        public IGenericRepository<User> GetEmployeeRepository()
+        public IUserRepository<User> GetEmployeeRepository()
         {
  
             if (backend == "SqlServer")

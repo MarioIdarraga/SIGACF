@@ -8,38 +8,36 @@ using Domain;
 
 namespace DAL.Repositories.Memory
 {
-    internal class UserRepository : IGenericRepository<User>
+    internal class UserRepository : IUserRepository<User>
     {
         public void Delete(Guid Id)
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<User> GetAll()
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<User> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
         }
-
+        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+        public User GetByLoginName(string loginName)
+        {
+            throw new NotImplementedException();
+        }
         public User GetOne(Guid Id)
         {
             throw new NotImplementedException();
         }
-
         public void Insert(User Object)
         {
             throw new NotImplementedException();
         }
-
         public void Update(Guid Id, User Object)
         {
             throw new NotImplementedException();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SL.DAL.Composite;
 
 namespace SL.DAL.Composite
 {
@@ -20,26 +21,30 @@ namespace SL.DAL.Composite
             permisos = new List<Component>();
         }
 
-        public List<Patente> GetPatentes()
-        {
+        //public List<Patente> GetPatentes()
+        //{
 
-        }
+        //}
 
-        public static void RecorrerComposite(List<Patente> patentes, List<Component> components)
+        public static void RecorrerComposite(List<Patente> patentes, List<Component> components, string tab)
         {
             foreach (var item in components)
             {
-                if (item is Patente)
+                if (item.GetChild() == 0)
                 {
-                    patentes.Add((Patente) item);
+                    Patente patente = item as Patente;
+                    if (!patentes.Exists(o => o.Name == patente.Name))
+                        patentes.Add(patente);
                 }
-                else if (item is Familia)
+                else
                 {
-                    RecorrerComposite(patentes, ((Familia) item).childrens);
+                    Familia familia = item as Familia;  
+                    RecorrerComposite(patentes, familia.GetChildrens(), tab);
                 }
-     }  
+            }
+        }
+    }
 }
-            
         
     
 

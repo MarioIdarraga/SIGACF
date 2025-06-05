@@ -17,7 +17,7 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-        IGenericRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+        IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
         
 
         public MenuModUser(Panel panelContenedor, Guid userId, string loginName, string password, int nroDocument,
@@ -115,7 +115,7 @@ namespace UI
                 };
 
                 // Llamar al método Update en el repositorio
-                IGenericRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+                IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
                 repositoryUser.Update(updatedUser.UserId, updatedUser);
 
                 MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

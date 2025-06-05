@@ -63,6 +63,7 @@
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
     <Compile Include="LoggerService.cs" />
+    <Compile Include="LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Extension\ExceptionExtension.cs" />
     <Compile Include="Service\Extension\StringExtension.cs" />
@@ -72,6 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{5DCC3B17-C956-4C80-B693-70B50392CF53}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{5CBCC7BD-9320-4F5D-9B8B-081C8C5DA821}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

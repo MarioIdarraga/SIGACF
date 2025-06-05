@@ -37,6 +37,7 @@
             this.btnRepCan = new System.Windows.Forms.Button();
             this.btnRepBooking = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,12 +136,25 @@
             this.label1.TabIndex = 44;
             this.label1.Text = "Reporte de Ventas";
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Gray;
+            this.lblStatus.Location = new System.Drawing.Point(444, 332);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(194, 20);
+            this.lblStatus.TabIndex = 87;
+            this.lblStatus.Text = "Listo para buscar ventas";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // MenuRepSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1180, 741);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.dtpDateUntilSales);
             this.Controls.Add(this.dtpDateSinceSales);
             this.Controls.Add(this.label3);
@@ -153,6 +167,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuRepSales";
             this.Text = "MenuRepSales";
+            this.Load += new System.EventHandler(this.MenuRepSales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,5 +185,6 @@
         private System.Windows.Forms.Button btnRepCan;
         private System.Windows.Forms.Button btnRepBooking;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

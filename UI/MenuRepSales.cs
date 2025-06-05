@@ -44,41 +44,33 @@ namespace UI
 
         private void btnGenRepSales_Click(object sender, EventArgs e)
         {
-            int? nroDocumento = null;
-            if (!string.IsNullOrWhiteSpace(txtNroDocument.Text))
-            {
-                if (int.TryParse(txtNroDocument.Text, out int result))
-                {
-                    nroDocumento = result;
-                }
-                else
-                {
-                    MessageBox.Show("Ingrese un número de documento válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
-
-            DateTime? registrationBooking = dtpDateSinceSales.Checked ? dtpDateSinceSales.Value : (DateTime?)null;
-            DateTime? registrationDate = dtpRegistrationDate.Checked ? dtpRegistrationDate.Value : (DateTime?)null;
+            
+            DateTime? registrationSincePay = dtpDateSinceSales.Checked ? dtpDateSinceSales.Value : (DateTime?)null;
+            DateTime? registrationUntilPay = dtpDateUntilSales.Checked ? dtpDateUntilSales.Value : (DateTime?)null;
 
             try
             {
                 // Llamada a la DAL
-                var booking = repositoryBooking.GetAll(nroDocumento, registrationBooking, registrationDate);
+                var pay = repositoryPay.GetAll(registrationSincePay, registrationUntilPay);
 
 
                 // Mostrar resultados en un DataGridView
-                dataGridViewBookings.DataSource = booking.ToList();
+                dataGridView1.DataSource = pay.ToList();
 
                 // Mensaje en la UI
-                lblStatus.Text = booking.Any()
-                    ? $"Se encontraron {booking.Count()} clientes."
-                    : "No se encontraron clientes con esos criterios.";
+                lblStatus.Text = pay.Any()
+                    ? $"Se encontraron {pay.Count()} ventas."
+                    : "No se encontraron ventas con esos criterios.";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al buscar clientes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void MenuRepSales_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

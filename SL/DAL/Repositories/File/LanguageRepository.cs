@@ -70,6 +70,4 @@ namespace SL.DAL.Repositories.File
 
         }
     }
-
-}
 }

@@ -17,7 +17,7 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-        IGenericRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+        IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
 
         public MenuRegUser(Panel panelContenedor)
         {

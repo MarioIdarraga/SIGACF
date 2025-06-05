@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SL.DAL.Composite;
 
 namespace SL.DAL.Composite
 {
     public class Familia : Component
     {
-        private List<Patrones.Component> childrens = new List<Patrones.Component>();
+
+        private List<Component> childrens = new List<Component>();
 
         public string Name { get; set; }
 
         public Familia(string Nombre, Component component)
         {
-            if (Component != null)
+            if (component != null)
             {
                 childrens.Add(component);
                 Name = Nombre;
@@ -23,6 +25,11 @@ namespace SL.DAL.Composite
             {
                 throw new Exception("No se puede crear una familia sin un componente");
             }
+        }
+
+        public List<Component> GetChildrens()
+        {
+            return childrens;
         }
 
         public override int GetChild()

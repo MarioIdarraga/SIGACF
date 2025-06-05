@@ -9,7 +9,7 @@ using System.Data;
 
 namespace DAL.Repositories.SqlServer
 {
-    internal class UserRepository : IGenericRepository<User>
+    internal class UserRepository : IUserRepository<User>
     {
         List<User> user = new List<User>();
 
@@ -176,9 +176,45 @@ namespace DAL.Repositories.SqlServer
                                     });
         }
 
-        IEnumerable<User> IGenericRepository<User>.GetAll()
+        IEnumerable<User> GetAll()
         {
             throw new NotImplementedException();
+        }
+        public User GetByLoginName(string loginName)
+        {
+            const string query = "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State, IsEmployee " +
+                                 "FROM [dbo].[Users] WHERE LoginName = @LoginName";
+
+            var parameters = new SqlParameter[] { new SqlParameter("@LoginName", loginName) };
+
+            using (var reader = SqlHelper.ExecuteReader(query, CommandType.Text, parameters))
+            {
+                if (reader.Read())
+                {
+                    return new User
+                    {
+                        UserId = reader.GetGuid(0),
+                        LoginName = reader.GetString(1),
+                        Password = reader.GetString(2),
+                        NroDocument = reader.GetInt32(3),
+                        FirstName = reader.IsDBNull(4) ? string.Empty : reader.GetString(4),
+                        LastName = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
+                        Position = reader.IsDBNull(6) ? string.Empty : reader.GetString(6),
+                        Mail = reader.IsDBNull(7) ? string.Empty : reader.GetString(7),
+                        Address = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),
+                        Telephone = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),
+                        State = reader.GetInt32(10),
+                        IsEmployee = !reader.IsDBNull(11) && reader.GetBoolean(11)
+                    };
+                }
+            }
+
+            return null;
+        }
+
+        IEnumerable<User> IUserRepository<User>.GetAll()
+        {
+            return GetAll();
         }
     }
     #endregion

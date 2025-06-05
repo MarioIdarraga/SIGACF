@@ -8,14 +8,14 @@ using Domain;
 
 namespace DAL.Repositories.File
 {
-    internal class UserRepository : IGenericRepository<User>
+    internal class UserRepository : IUserRepository<User>
     {
         public void Delete(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        public IEnumerable<User> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,12 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetByLoginName(string loginName)
         {
             throw new NotImplementedException();
         }

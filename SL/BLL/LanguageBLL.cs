@@ -39,7 +39,6 @@ namespace SL.BLL
             catch (Exception ex)
             {
                 throw new Exception("Error en la traducción", ex);
-                jkdhjkfhsdjfhsdjfjksdfjs
             }
         }
     }

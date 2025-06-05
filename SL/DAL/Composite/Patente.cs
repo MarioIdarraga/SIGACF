@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SL.DAL.Composite;
 
 namespace SL.DAL.Composite
 {
@@ -23,12 +24,12 @@ namespace SL.DAL.Composite
             return 0;
         }
 
-        public abstract void Add(Component component)
+        public override void Add(Component component)
         {
             throw new Exception("No se puede agregar un componente");
         }
 
-        public abstract void Remove(Component component)
+        public override void Remove(Component component)
         {
             throw new Exception("No se puede eliminar un componente");
         }

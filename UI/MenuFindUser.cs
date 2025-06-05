@@ -16,7 +16,7 @@ namespace UI
     public partial class MenuFindUser : Form
     {
 
-        IGenericRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+        IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
 
         private Panel _panelContenedor;
 
