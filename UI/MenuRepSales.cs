@@ -7,17 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
+using DAL.Contracts;
+using DAL.Factory;
+using SL.Services;
 
 namespace UI
 {
     public partial class MenuRepSales : Form
     {
         private Panel _panelContenedor;
+        private UIPayService _uiPayService;
 
         public MenuRepSales(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+
+            IPayRepository repo = Factory.Current.GetPayRepository();
+            var payService = new PayService(repo);
+            _uiPayService = new UIPayService(payService); // inicialización correcta
         }
 
         private void OpenFormChild(object formchild)
@@ -44,27 +53,21 @@ namespace UI
 
         private void btnGenRepSales_Click(object sender, EventArgs e)
         {
-            
-            DateTime? registrationSincePay = dtpDateSinceSales.Checked ? dtpDateSinceSales.Value : (DateTime?)null;
-            DateTime? registrationUntilPay = dtpDateUntilSales.Checked ? dtpDateUntilSales.Value : (DateTime?)null;
+            DateTime? since = dtpDateSinceSales.Checked ? dtpDateSinceSales.Value : (DateTime?)null;
+            DateTime? until = dtpDateUntilSales.Checked ? dtpDateUntilSales.Value : (DateTime?)null;
 
             try
             {
-                // Llamada a la DAL
-                var pay = repositoryPay.GetAll(registrationSincePay, registrationUntilPay);
+                var results = _uiPayService.GetFilteredPayments(since, until);
+                dataGridView1.DataSource = results.ToList();
 
-
-                // Mostrar resultados en un DataGridView
-                dataGridView1.DataSource = pay.ToList();
-
-                // Mensaje en la UI
-                lblStatus.Text = pay.Any()
-                    ? $"Se encontraron {pay.Count()} ventas."
-                    : "No se encontraron ventas con esos criterios.";
+                lblStatus.Text = results.Any()
+                    ? $"Se encontraron {results.Count()} pagos."
+                    : "No se encontraron pagos con esos criterios.";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al buscar clientes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al generar el reporte: " + ex.Message);
             }
         }
 

@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Domain;
+using SL;
 
 namespace UI
 {
@@ -25,7 +27,7 @@ namespace UI
 
         private void txtUser_Enter(object sender, EventArgs e)
         {
-            if (txtUser.Text == "Usuario") 
+            if (txtUser.Text == "Usuario")
             {
                 txtUser.Text = "";
                 txtUser.ForeColor = Color.DarkGreen;
@@ -34,7 +36,7 @@ namespace UI
 
         private void txtUser_Leave(object sender, EventArgs e)
         {
-            if (txtUser.Text == "") 
+            if (txtUser.Text == "")
             {
                 txtUser.Text = "Usuario";
                 txtUser.ForeColor = Color.SeaGreen;
@@ -64,9 +66,24 @@ namespace UI
 
         private void btnToAccess_Click(object sender, EventArgs e)
         {
-            barraTitulo frm = new barraTitulo();
+            string login = txtUser.Text.Trim();
+            string password = txtPass.Text.Trim();
 
-            frm.Show();
+            LoginService service = new LoginService();
+            User usuario;
+            string message;
+
+            if (service.TryLogin(login, password, out usuario, out message))
+            {
+                MessageBox.Show($"Bienvenido {usuario.FirstName} {usuario.LastName}", "Acceso concedido");
+                var frm = new barraTitulo();
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show(message, "Error de autenticación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnCerrarLogin_Click(object sender, EventArgs e)

@@ -10,8 +10,6 @@ namespace SL.BLL
     internal class ExceptionBLL
     {
 
-
-
         private static void DALPolicy(Exception ex)
         {
 

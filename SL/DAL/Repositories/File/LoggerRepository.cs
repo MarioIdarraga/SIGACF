@@ -12,11 +12,11 @@ using SL.Service.Extension;
 
 namespace SL.DAL.Repositories.File
 {
-    internal class FileLoggerRepository : ILogger
+    internal class LoggerRepository : ILogger
     {
-        private readonly static FileLoggerRepository _instance = new FileLoggerRepository();
+        private readonly static LoggerRepository _instance = new LoggerRepository();
 
-        public static FileLoggerRepository Current
+        public static LoggerRepository Current
         {
             get
             {
@@ -24,13 +24,13 @@ namespace SL.DAL.Repositories.File
             }
         }
 
-        private FileLoggerRepository()
+        private LoggerRepository()
         {
             //Implent here the initialization of your singleton
         }
 
         private string LogFileName = ConfigurationManager.AppSettings["LogFileName"];
-        private string LogFile = ConfigurationManager.AppSettings["LogFile"];
+        private readonly string LogFile = ConfigurationManager.AppSettings["LogFile"];
 
 
         public void Store(string message, EventLevel severity)

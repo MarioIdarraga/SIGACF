@@ -22,6 +22,5 @@ namespace Domain
 
         public int State { get; set; }
 
-
     }
 }

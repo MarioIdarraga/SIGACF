@@ -374,6 +374,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{5DCC3B17-C956-4C80-B693-70B50392CF53}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{AB4CA04A-E52B-4978-8817-6B85BB30AB3F}</Project>
       <Name>DAL</Name>
@@ -381,6 +385,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{5cbcc7bd-9320-4f5d-9b8b-081c8c5da821}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SL\SL.csproj">
+      <Project>{095963F6-44FA-4580-84A6-FEE2D03DE7F6}</Project>
+      <Name>SL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

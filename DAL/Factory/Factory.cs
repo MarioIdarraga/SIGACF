@@ -178,5 +178,21 @@ namespace DAL.Factory
                 return new Repositories.Memory.CustomerStateRepository();
             }
         }
+
+        public IPayRepository GetPayRepository()
+        {
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.PayRepository();
+            }
+            if (backend == "File")
+            {
+                return new Repositories.File.PayRepository();
+            }
+            else
+            {
+                return new Repositories.Memory.PayRepository();
+            }
+        }
     }
 }

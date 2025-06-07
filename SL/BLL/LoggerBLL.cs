@@ -16,18 +16,18 @@ namespace SL.BLL
         /// <param name="severity"></param>
         public static void Store(string message, EventLevel severity)
         {
-            DAL.Repositories.File.FileLoggerRepository.Current.Store(message, severity);
+            DAL.Repositories.File.LoggerRepository.Current.Store(message, severity);
 
             switch (severity)
             {
                 case EventLevel.Critical:
-                    DAL.Repositories.File.FileLoggerRepository.Current.StoreCritical(message, severity);
+                    DAL.Repositories.File.LoggerRepository.Current.StoreCritical(message, severity);
                     break;
                 case EventLevel.Warning:
-                    DAL.Repositories.File.FileLoggerRepository.Current.StoreWarning(message, severity);
+                    DAL.Repositories.File.LoggerRepository.Current.StoreWarning(message, severity);
                     break;
                 case EventLevel.Error:
-                    DAL.Repositories.File.FileLoggerRepository.Current.Store(message, severity);
+                    DAL.Repositories.File.LoggerRepository.Current.Store(message, severity);
                     break;
             }
         }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using DAL.Contracts;
+
 
 namespace BLL.Service
 {
@@ -16,10 +18,9 @@ namespace BLL.Service
             _repo = repo;
         }
 
-        public IEnumerable<Pay> GetPayments(DateTime? registrationDate)
+        public IEnumerable<Pay> GetPayments(DateTime? registrationSince, DateTime? registrationUntil)
         {
-            // Aquí podrías poner validaciones, formateos, etc.
-            return _repo.GetAll(registrationDate);
+            return _repo.GetAll(registrationSince, registrationUntil);
         }
     }
 }
