@@ -188,6 +188,7 @@
             this.btnRegBooking.TabIndex = 112;
             this.btnRegBooking.Text = "Modificar Reserva";
             this.btnRegBooking.UseVisualStyleBackColor = true;
+            this.btnRegBooking.Click += new System.EventHandler(this.btnRegBooking_Click);
             // 
             // label2
             // 

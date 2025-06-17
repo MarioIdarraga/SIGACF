@@ -13,6 +13,7 @@ using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
+using UI.Helpers;
 
 
 namespace UI
@@ -27,6 +28,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+            this.Translate(); // Assuming you have a Translate method for localization
             var repo = Factory.Current.GetCustomerRepository();
             var bllService = new CustomerService(repo);
             _customerSLService = new CustomerSLService(bllService);
@@ -76,7 +78,7 @@ namespace UI
                     Address = txtAddress.Text
                 };
 
-                _customerSLService.RegisterCustomer(newCustomer);
+                _customerSLService.Insert(newCustomer);
 
                 MessageBox.Show("Cliente guardado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

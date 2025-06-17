@@ -64,7 +64,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(81, 97);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(166, 187);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -78,7 +78,7 @@
             this.txtUser.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUser.ForeColor = System.Drawing.Color.SeaGreen;
             this.txtUser.Location = new System.Drawing.Point(548, 207);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(477, 34);
             this.txtUser.TabIndex = 1;
@@ -94,7 +94,7 @@
             this.txtPass.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPass.ForeColor = System.Drawing.Color.SeaGreen;
             this.txtPass.Location = new System.Drawing.Point(548, 310);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(477, 34);
             this.txtPass.TabIndex = 2;
@@ -111,7 +111,7 @@
             this.btnToAccess.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToAccess.ForeColor = System.Drawing.Color.SeaGreen;
             this.btnToAccess.Location = new System.Drawing.Point(548, 382);
-            this.btnToAccess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnToAccess.Margin = new System.Windows.Forms.Padding(4);
             this.btnToAccess.Name = "btnToAccess";
             this.btnToAccess.Size = new System.Drawing.Size(476, 49);
             this.btnToAccess.TabIndex = 3;
@@ -151,7 +151,7 @@
             this.btnCerrarLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrarLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarLogin.Image")));
             this.btnCerrarLogin.Location = new System.Drawing.Point(1217, 15);
-            this.btnCerrarLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrarLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrarLogin.Name = "btnCerrarLogin";
             this.btnCerrarLogin.Size = new System.Drawing.Size(33, 31);
             this.btnCerrarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -164,7 +164,7 @@
             this.btnMaximizarLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximizarLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximizarLogin.Image")));
             this.btnMaximizarLogin.Location = new System.Drawing.Point(1176, 15);
-            this.btnMaximizarLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMaximizarLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnMaximizarLogin.Name = "btnMaximizarLogin";
             this.btnMaximizarLogin.Size = new System.Drawing.Size(33, 31);
             this.btnMaximizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -177,7 +177,7 @@
             this.btnMinimizarLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimizarLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizarLogin.Image")));
             this.btnMinimizarLogin.Location = new System.Drawing.Point(1135, 15);
-            this.btnMinimizarLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMinimizarLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnMinimizarLogin.Name = "btnMinimizarLogin";
             this.btnMinimizarLogin.Size = new System.Drawing.Size(33, 31);
             this.btnMinimizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -190,7 +190,7 @@
             this.btnRestaurarLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurarLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnRestaurarLogin.Image")));
             this.btnRestaurarLogin.Location = new System.Drawing.Point(1176, 15);
-            this.btnRestaurarLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRestaurarLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnRestaurarLogin.Name = "btnRestaurarLogin";
             this.btnRestaurarLogin.Size = new System.Drawing.Size(33, 31);
             this.btnRestaurarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -145,6 +145,7 @@
             this.button3.TabIndex = 19;
             this.button3.Text = "Buscar Cliente";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView1
             // 
@@ -188,7 +189,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(403, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(359, 40);
+            this.label1.Size = new System.Drawing.Size(287, 32);
             this.label1.TabIndex = 15;
             this.label1.Text = "Busqueda de Pagos";
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helpers;
 
 namespace UI
 {
@@ -17,6 +18,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+            this.Translate(); // Assuming you have a Translate method for localization
         }
 
         private void OpenFormChild(object formchild)
@@ -34,6 +36,11 @@ namespace UI
         private void btnFindBooking_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuSales(_panelContenedor));
+        }
+
+        private void btnApModCustomer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
+using UI.Helpers;
 
 namespace UI
 {
@@ -16,11 +19,27 @@ namespace UI
         public barraTitulo()
         {
             InitializeComponent();
+
+            // Cargar opciones de idioma en el ComboBox
+            cmbLanguage.Items.Add("Español");
+            cmbLanguage.Items.Add("English");
+            cmbLanguage.SelectedIndex = 0; // Idioma por defecto
+
+            this.Translate(); // Aplica traducción inicial
         }
 
+        private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbLanguage.SelectedItem.ToString() == "Español")
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
+            else
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
+            this.Translate(); // Método de extensión para traducir textos
+        }
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
         }
 
         private void btnMaximizar_Click(object sender, EventArgs e)

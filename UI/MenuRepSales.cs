@@ -11,6 +11,7 @@ using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using SL.Services;
+using UI.Helpers;
 
 namespace UI
 {
@@ -23,6 +24,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+            this.Translate(); // Assuming you have a Translate method for localization
 
             IPayRepository repo = Factory.Current.GetPayRepository();
             var payService = new PayService(repo);

@@ -47,6 +47,7 @@
     <Compile Include="ManagerReport.cs" />
     <Compile Include="ManagerSales.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BookingService.cs" />
     <Compile Include="Service\CustomerService.cs" />
     <Compile Include="Service\PayService.cs" />
     <Compile Include="Service\UserService.cs" />

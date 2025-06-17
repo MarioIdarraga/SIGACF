@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Domain;
 using SL;
+using SL.BLL;
+using UI.Helpers;
 
 namespace UI
 {
@@ -18,6 +22,7 @@ namespace UI
         public Login()
         {
             InitializeComponent();
+            this.Translate();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -66,6 +71,9 @@ namespace UI
 
         private void btnToAccess_Click(object sender, EventArgs e)
         {
+
+            this.Translate();
+
             string login = txtUser.Text.Trim();
             string password = txtPass.Text.Trim();
 
@@ -76,8 +84,10 @@ namespace UI
             if (service.TryLogin(login, password, out usuario, out message))
             {
                 MessageBox.Show($"Bienvenido {usuario.FirstName} {usuario.LastName}", "Acceso concedido");
+
                 var frm = new barraTitulo();
                 frm.Show();
+
                 this.Hide();
             }
             else

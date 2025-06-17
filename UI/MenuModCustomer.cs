@@ -11,6 +11,7 @@ using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
+using UI.Helpers;
 
 namespace UI
 {
@@ -27,6 +28,8 @@ namespace UI
             InitializeComponent();
             _panelContenedor = panelContenedor;
             _idCustomer = idCustomer;
+
+            this.Translate(); // Assuming you have a Translate method for localization
 
             var customerRepo = Factory.Current.GetCustomerRepository();
             var customerService = new BLL.Service.CustomerService(customerRepo);
@@ -99,7 +102,7 @@ namespace UI
                     Address = txtAddress.Text
                 };
 
-                _customerSLService.UpdateCustomer(updatedCustomer.IdCustomer, updatedCustomer);
+                _customerSLService.Update(updatedCustomer.IdCustomer, updatedCustomer);
 
                 MessageBox.Show("Cliente modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

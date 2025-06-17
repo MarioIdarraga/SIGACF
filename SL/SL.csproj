@@ -73,6 +73,7 @@
     <Compile Include="DAL\Tools\SqlHelper.cs" />
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
+    <Compile Include="Service\BookingSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
     <Compile Include="Service\LoggerService.cs" />
     <Compile Include="Service\LoginService.cs" />
@@ -88,6 +89,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{5DCC3B17-C956-4C80-B693-70B50392CF53}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{AB4CA04A-E52B-4978-8817-6B85BB30AB3F}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{5CBCC7BD-9320-4F5D-9B8B-081C8C5DA821}</Project>

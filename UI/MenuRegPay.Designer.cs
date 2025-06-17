@@ -111,6 +111,7 @@
             this.btnApModCustomer.TabIndex = 106;
             this.btnApModCustomer.Text = "Registrar Reserva";
             this.btnApModCustomer.UseVisualStyleBackColor = true;
+            this.btnApModCustomer.Click += new System.EventHandler(this.btnApModCustomer_Click);
             // 
             // label9
             // 
@@ -130,7 +131,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label5.Location = new System.Drawing.Point(61, 457);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 23);
+            this.label5.Size = new System.Drawing.Size(132, 18);
             this.label5.TabIndex = 102;
             this.label5.Text = "Metodo de Pago";
             // 
@@ -141,7 +142,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label4.Location = new System.Drawing.Point(61, 391);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 23);
+            this.label4.Size = new System.Drawing.Size(65, 18);
             this.label4.TabIndex = 101;
             this.label4.Text = "Importe";
             // 
@@ -152,7 +153,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(61, 320);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(158, 23);
+            this.label3.Size = new System.Drawing.Size(126, 18);
             this.label3.TabIndex = 100;
             this.label3.Text = "Nro de Reserva";
             // 
@@ -163,7 +164,7 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Location = new System.Drawing.Point(61, 258);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(135, 23);
+            this.label10.Size = new System.Drawing.Size(108, 18);
             this.label10.TabIndex = 99;
             this.label10.Text = "Nro. de Pago";
             // 

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using UI.Helpers;
 
 namespace UI
 {
@@ -26,6 +27,8 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+
+            this.Translate(); // Assuming you have a Translate method for localization
 
             // Llenar los campos del formulario con los datos del usuario
             txtUserId.Text = userId.ToString();

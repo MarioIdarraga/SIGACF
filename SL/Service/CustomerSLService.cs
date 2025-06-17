@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics.Tracing;
 using BLL.Service;
 using Domain;
@@ -18,7 +14,7 @@ namespace SL
             _customerService = customerService;
         }
 
-        public void RegisterCustomer(Customer customer)
+        public void Insert(Customer customer)
         {
             LoggerService.Log("Inicio de registro de cliente.");
 
@@ -34,7 +30,7 @@ namespace SL
             }
         }
 
-        public void UpdateCustomer(Guid idCustomer, Customer customer)
+        public void Update(Guid idCustomer, Customer customer)
         {
             LoggerService.Log("Inicio de modificación de cliente.");
 
@@ -49,6 +45,6 @@ namespace SL
                 throw;
             }
         }
-
     }
 }
+

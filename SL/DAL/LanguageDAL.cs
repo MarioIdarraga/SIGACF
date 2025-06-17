@@ -36,21 +36,30 @@ namespace SL.DAL
         {
             string filePath = $"{folderLanguage}/{filePathLanguage}{Thread.CurrentThread.CurrentUICulture.Name}";
 
-            using (StreamReader sr = new StreamReader(filePath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string[] dataFile = sr.ReadLine().Split('=');
+            
+            if (!Directory.Exists(folderLanguage))
+                Directory.CreateDirectory(folderLanguage);
 
-                    if (dataFile[0] == key) ;
-                    {
-                        return dataFile[1];
-                    }
+            if (!File.Exists(filePath))
+                File.Create(filePath).Close(); 
+
+            var lines = File.ReadAllLines(filePath).ToList();
+
+            foreach (var line in lines)
+            {
+                string[] dataFile = line.Split('=');
+                if (dataFile.Length == 2 && dataFile[0].Trim() == key)
+                {
+                    return dataFile[1].Trim();
                 }
             }
 
-            throw new NoSeEncontroLaPalabraException();
+            string newEntry = $"{key}={key}";
+            File.AppendAllLines(filePath, new[] { newEntry });
+
+            return key;
         }
+
 
         public List<string> GetAllLanguage()
         {

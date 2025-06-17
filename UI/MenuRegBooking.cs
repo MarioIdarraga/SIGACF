@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 using static System.Windows.Forms.AxHost;
 
 namespace UI
@@ -13,9 +15,10 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-        IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
         IGenericRepository<Promotion> repositoryPromotion = Factory.Current.GetPromotionRepository();
         IGenericRepository<Field> repositoryField = Factory.Current.GetFieldRepository();
+        private readonly BookingSLService _bookingSLService;
+
 
         private Guid _idCustomer; // Variable para almacenar el Id del cliente
 
@@ -25,6 +28,11 @@ namespace UI
             _panelContenedor = panelContenedor;
             _idCustomer = idCustomer; // Guardar el Id del cliente
             txtNroDocument.Text = nroDocument;
+
+
+            var repo = Factory.Current.GetBookingRepository();
+            var bllService = new BookingService(repo);
+            _bookingSLService = new BookingSLService(bllService);
 
             CargarCombos();
             dtpRegistrationBooking.Value = DateTime.Today;
@@ -127,7 +135,7 @@ namespace UI
                     State = 0
                 };
 
-                repositoryBooking.Insert(newBooking);
+                _bookingSLService.Insert(newBooking);
 
                 MessageBox.Show("Reserva guardada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
