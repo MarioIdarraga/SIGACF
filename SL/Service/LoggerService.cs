@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Tracing;
 using SL.BLL;
+using SL.Logging;
 
 namespace SL
 {

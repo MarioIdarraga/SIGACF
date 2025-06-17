@@ -8,9 +8,11 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 
 
 namespace UI
@@ -19,12 +21,15 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-        IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
-        IGenericRepository<CustomerState> repositoryCustomerState = Factory.Current.GetCustomerStateRepository();
+        private readonly CustomerSLService _customerSLService;
+
         public MenuRegCustomer(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+            var repo = Factory.Current.GetCustomerRepository();
+            var bllService = new CustomerService(repo);
+            _customerSLService = new CustomerSLService(bllService);
         }
 
         private void OpenFormChild(object formchild)
@@ -53,19 +58,25 @@ namespace UI
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtNroDocument.Text) || !int.TryParse(txtNroDocument.Text, out int nroDocument))
+                {
+                    MessageBox.Show("El número de documento debe ser un valor válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 Customer newCustomer = new Customer
                 {
-                    NroDocument = int.Parse(txtNroDocument.Text),
+                    NroDocument = nroDocument,
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
-                    State = int.Parse(txtState.Text),
+                    State = 0,
                     Comment = txtComment.Text,
                     Telephone = txtTelephone.Text,
                     Mail = txtMail.Text,
                     Address = txtAddress.Text
                 };
 
-                repositoryCustomer.Insert(newCustomer);
+                _customerSLService.RegisterCustomer(newCustomer);
 
                 MessageBox.Show("Cliente guardado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SL.Domain
 {
-    internal class Log
+    public class Log
     {
         public string Message { get; set; }
 

@@ -33,10 +33,20 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Configuration.ConfigurationManager.9.0.2\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms" />
+    <Reference Include="System.Security.Cryptography.Encoding" />
+    <Reference Include="System.Security.Cryptography.Primitives" />
+    <Reference Include="System.Security.Cryptography.X509Certificates" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +64,7 @@
     <Compile Include="DAL\Composite\Usuario.cs" />
     <Compile Include="DAL\Contracts\IGenericBusinessService.cs" />
     <Compile Include="DAL\Contracts\ILogger.cs" />
+    <Compile Include="DAL\Factory\SLFactory.cs" />
     <Compile Include="DAL\LanguageDAL.cs" />
     <Compile Include="DAL\Repositories\File\LoggerRepository.cs" />
     <Compile Include="DAL\Repositories\File\LanguageRepository.cs" />
@@ -62,6 +73,7 @@
     <Compile Include="DAL\Tools\SqlHelper.cs" />
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
+    <Compile Include="Service\CustomerSLService.cs" />
     <Compile Include="Service\LoggerService.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,10 +82,7 @@
     <Compile Include="Service\UIPayService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\Factory\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

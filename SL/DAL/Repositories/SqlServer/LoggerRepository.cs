@@ -9,15 +9,15 @@ using SL.Domain;
 
 namespace SL.DAL.Repositories.SqlServer
 {
-    internal class LoggerRepository : ILogger
+    public class LoggerRepository : ILogger
     {
         #region Statements
 
         private string InsertStatement =>
-            "INSERT INTO [dbo].[Log] ([Message], [Severity], [CreatedAt]) VALUES (@Message, @Severity, GETDATE())";
+            "INSERT INTO [dbo].[Logs] ([Message], [Severity], [CreatedAt]) VALUES (@Message, @Severity, GETDATE())";
 
         private string SelectAllStatement =>
-            "SELECT [IdLog], [Message], [Severity], [CreatedAt] FROM [dbo].[Log]";
+            "SELECT [IdLog], [Message], [Severity], [CreatedAt] FROM [dbo].[Logs]";
 
         #endregion
 

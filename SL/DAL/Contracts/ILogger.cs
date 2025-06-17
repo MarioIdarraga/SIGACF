@@ -8,9 +8,9 @@ using SL.Domain;
 
 namespace SL.DAL.Contracts
 {
-    internal interface ILogger
+    public interface ILogger
     {
-        void Store(String message, EventLevel severity);
+        void Store(string message, EventLevel severity);
         List<Log> GetAll();
     }
 }

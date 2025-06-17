@@ -2,45 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using BLL.Contracts;
+using DAL.Contracts;
 using Domain;
 
 namespace BLL.Service
 {
-    internal class CustomerService : IGenericBusinessService<Customer>
+    public class CustomerService
     {
-        public void Delete(Guid obj)
+        private readonly IGenericRepository<Customer> _customerRepo;
+
+        public CustomerService(IGenericRepository<Customer> customerRepo)
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            _customerRepo = customerRepo;
         }
 
-        public IEnumerable<Customer> GetAll()
+        public void RegisterCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            // Validaciones de negocio
+            ValidateCustomer(customer);
+
+            // Insertar si todo está correcto
+            _customerRepo.Insert(customer);
         }
 
-        public Customer GetOne(Guid id)
+        private void ValidateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer), "El cliente no puede ser nulo.");
+
+            if (string.IsNullOrWhiteSpace(customer.FirstName))
+                throw new ArgumentException("El nombre es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(customer.LastName))
+                throw new ArgumentException("El apellido es obligatorio.");
+
+            if (customer.NroDocument <= 0)
+                throw new ArgumentException("El número de documento debe ser válido y mayor que cero.");
+
+            if (string.IsNullOrWhiteSpace(customer.Mail) || !IsValidEmail(customer.Mail))
+                throw new ArgumentException("El email no es válido.");
+
+            if (customer.State < 0)
+                throw new ArgumentException("El estado del cliente debe ser un valor válido.");
+
         }
 
-        public void Insert(Customer obj)
+        private bool IsValidEmail(string email)
         {
-            throw new NotImplementedException();
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
 
-        public void Update(Customer obj)
+        private int CalculateAge(DateTime birthDate)
         {
-            throw new NotImplementedException();
+            var today = DateTime.Today;
+            var age = today.Year - birthDate.Year;
+            if (birthDate > today.AddYears(-age)) age--;
+            return age;
         }
     }
 }
