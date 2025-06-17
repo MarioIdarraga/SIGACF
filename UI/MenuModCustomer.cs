@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 
 namespace UI
 {
     public partial class MenuModCustomer : Form
     {
-        IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
+        private readonly CustomerSLService _customerSLService;
 
         private Panel _panelContenedor;
 
@@ -26,6 +27,10 @@ namespace UI
             InitializeComponent();
             _panelContenedor = panelContenedor;
             _idCustomer = idCustomer;
+
+            var customerRepo = Factory.Current.GetCustomerRepository();
+            var customerService = new BLL.Service.CustomerService(customerRepo);
+            _customerSLService = new CustomerSLService(customerService);
 
             // Llenar los campos con los datos recibidos
             txtNroDocument.Text = nroDocument.ToString();
@@ -94,8 +99,7 @@ namespace UI
                     Address = txtAddress.Text
                 };
 
-                // Llamar al método Update en el repositorio
-                repositoryCustomer.Update(updatedCustomer.IdCustomer, updatedCustomer);
+                _customerSLService.UpdateCustomer(updatedCustomer.IdCustomer, updatedCustomer);
 
                 MessageBox.Show("Cliente modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

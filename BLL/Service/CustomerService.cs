@@ -61,5 +61,24 @@ namespace BLL.Service
             if (birthDate > today.AddYears(-age)) age--;
             return age;
         }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer), "El cliente no puede ser nulo.");
+
+            if (customer.IdCustomer == Guid.Empty)
+                throw new ArgumentException("El ID del cliente es obligatorio para modificar.");
+
+            ValidateCustomer(customer);
+
+            // Asegurarte que el cliente exista (opcional si lo querés validar antes)
+            var existingCustomer = _customerRepo.GetOne(customer.IdCustomer);
+            if (existingCustomer == null)
+                throw new InvalidOperationException("No se encontró el cliente a modificar.");
+
+            _customerRepo.Update(customer.IdCustomer, customer);
+        }
+
     }
 }
