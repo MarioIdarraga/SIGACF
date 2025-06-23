@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -25,28 +27,47 @@ namespace UI.Helpers
                 }
 
                 if (c.HasChildren)
-                    c.Translate(); // recursivo para nested controls
+                    c.Translate(); // recursivo
             }
         }
 
         private static void AddMissingTranslation(string key, string defaultText)
         {
-            string folder = System.Configuration.ConfigurationManager.AppSettings["FolderLanguage"];
-            string file = System.Configuration.ConfigurationManager.AppSettings["FilePathLanguage"];
-            string path = Path.Combine(folder, file + Thread.CurrentThread.CurrentUICulture.Name);
+            string lang = Thread.CurrentThread.CurrentUICulture.Name;
+            string fileName = $"Language.{lang}"; // sin .txt
 
-            if (!File.Exists(path))
+            string runtimeFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings["FolderLanguage"]);
+            string runtimePath = Path.Combine(runtimeFolder, fileName);
+
+            if (!File.Exists(runtimePath))
             {
-                Directory.CreateDirectory(folder);
-                File.Create(path).Close();
+                Directory.CreateDirectory(Path.GetDirectoryName(runtimePath));
+                File.Create(runtimePath).Close();
             }
 
-            var allLines = File.ReadAllLines(path);
+            var allLines = File.ReadAllLines(runtimePath);
             if (!allLines.Any(line => line.StartsWith(key + "=")))
             {
-                File.AppendAllText(path, $"{key}={defaultText}\n");
+                File.AppendAllText(runtimePath, $"{key}={defaultText}\n");
             }
+
+#if DEBUG
+            // También en carpeta del proyecto (para revisión)
+            string projectFolder = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\I18n"));
+            string projectPath = Path.Combine(projectFolder, fileName);
+
+            if (!File.Exists(projectPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(projectPath));
+                File.Create(projectPath).Close();
+            }
+
+            var projectLines = File.ReadAllLines(projectPath);
+            if (!projectLines.Any(line => line.StartsWith(key + "=")))
+            {
+                File.AppendAllText(projectPath, $"{key}={defaultText}\n");
+            }
+#endif
         }
     }
 }
-

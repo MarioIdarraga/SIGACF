@@ -1,19 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using DAL.Contracts;
 using DAL.Factory;
-using DAL.Repositories.SqlServer;
 using Domain;
 
 namespace BLL.Service
 {
     public class UserService
     {
-        IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+        private readonly IUserRepository<User> _userRepo;
 
+        // Constructor por defecto que obtiene el repositorio desde el Factory
+        public UserService()
+        {
+            _userRepo = Factory.Current.GetUserRepository();
+        }
+
+        // Constructor alternativo (útil para inyección de dependencias o tests)
+        public UserService(IUserRepository<User> userRepo)
+        {
+            _userRepo = userRepo;
+        }
+
+        // LOGIN
         public bool Login(string loginName, string password, out User user, out string message)
         {
             user = null;
@@ -25,7 +34,7 @@ namespace BLL.Service
                 return false;
             }
 
-            user = repositoryUser.GetByLoginName(loginName);
+            user = _userRepo.GetByLoginName(loginName);
 
             if (user == null)
             {
@@ -33,7 +42,7 @@ namespace BLL.Service
                 return false;
             }
 
-            if (user.Password != password) 
+            if (user.Password != password)
             {
                 message = "Contraseña incorrecta.";
                 user = null;
@@ -49,5 +58,67 @@ namespace BLL.Service
 
             return true;
         }
+
+        // REGISTRO
+        public void RegisterUser(User user)
+        {
+            ValidateUser(user);
+
+            var existingUser = _userRepo.GetByLoginName(user.LoginName);
+            if (existingUser != null)
+                throw new InvalidOperationException("El nombre de usuario ya está en uso.");
+
+            _userRepo.Insert(user);
+        }
+
+        // ACTUALIZACIÓN
+        public void UpdateUser(User user)
+        {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user), "El usuario no puede ser nulo.");
+
+            if (user.UserId == Guid.Empty)
+                throw new ArgumentException("El ID del usuario es obligatorio para modificar.");
+
+            ValidateUser(user);
+
+            var existingUser = _userRepo.GetOne(user.UserId);
+            if (existingUser == null)
+                throw new InvalidOperationException("No se encontró el usuario a modificar.");
+
+            _userRepo.Update(user.UserId, user);
+        }
+
+        // VALIDACIONES
+        private void ValidateUser(User user)
+        {
+            if (string.IsNullOrWhiteSpace(user.LoginName))
+                throw new ArgumentException("El nombre de usuario es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(user.Password))
+                throw new ArgumentException("La contraseña es obligatoria.");
+
+            if (user.NroDocument <= 0)
+                throw new ArgumentException("El número de documento debe ser mayor que cero.");
+
+            if (string.IsNullOrWhiteSpace(user.FirstName))
+                throw new ArgumentException("El nombre es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(user.LastName))
+                throw new ArgumentException("El apellido es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(user.Mail) || !IsValidEmail(user.Mail))
+                throw new ArgumentException("El email no es válido.");
+
+            if (user.State < 0)
+                throw new ArgumentException("El estado debe ser un valor positivo.");
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
     }
 }
+
+

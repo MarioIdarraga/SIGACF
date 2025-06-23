@@ -162,6 +162,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\TranslatorHelper.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>

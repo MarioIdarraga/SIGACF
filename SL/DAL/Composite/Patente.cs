@@ -3,33 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SL.DAL.Composite;
 
-namespace SL.DAL.Composite
+namespace SL.Composite
 {
-    public class Patente : Component
+    public class Patente : PermissionComponent
     {
-
         public string Name { get; set; }
-
         public string formName { get; set; }
 
-
-        public Patente()
-        {
-        }
+        public Patente() { }
 
         public override int GetChild()
         {
             return 0;
         }
 
-        public override void Add(Component component)
+        public override void Add(PermissionComponent component)
         {
             throw new Exception("No se puede agregar un componente");
         }
 
-        public override void Remove(Component component)
+        public override void Remove(PermissionComponent component)
         {
             throw new Exception("No se puede eliminar un componente");
         }

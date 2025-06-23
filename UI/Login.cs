@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Domain;
 using SL;
 using SL.BLL;
+using SL.Service;
 using UI.Helpers;
 
 namespace UI
@@ -71,7 +72,6 @@ namespace UI
 
         private void btnToAccess_Click(object sender, EventArgs e)
         {
-
             this.Translate();
 
             string login = txtUser.Text.Trim();
@@ -83,6 +83,12 @@ namespace UI
 
             if (service.TryLogin(login, password, out usuario, out message))
             {
+
+                var permisoService = new PermissionSLService();
+                Session.User = usuario;
+
+                Session.User = usuario;
+
                 MessageBox.Show($"Bienvenido {usuario.FirstName} {usuario.LastName}", "Acceso concedido");
 
                 var frm = new barraTitulo();

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Contracts;
 using SL.DAL.Contracts;
-using SL.DAL.Repositories.SqlServer;
 using SL.DAL.Repositories.File;
-using System.Configuration;
+using SL.DAL.Repositories.SqlServer;
 
 namespace SL.Factory
 {
@@ -32,11 +33,25 @@ namespace SL.Factory
 
             if (_backendSL == "File")
             {
-                return new DAL.Repositories.File.LoggerRepository(); 
+                return new DAL.Repositories.File.LoggerRepository();
+            }
+
+            throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
+        }
+
+        public IPermissionRepository GetPermissionRepository()
+        {
+            if (_backendSL == "SqlServer")
+            {
+                return new SL.DAL.Repositories.SqlServer.PermissionRepository();
+            }
+
+            if (_backendSL == "File")
+            {
+                return new SL.DAL.Repositories.File.PermissionRepository();
             }
 
             throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
         }
     }
 }
-

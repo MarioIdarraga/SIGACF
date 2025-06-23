@@ -3,71 +3,80 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using SL.Domain.BusinessException;
 
 namespace SL.DAL.Repositories.File
 {
-    class LanguageRepository
+    public sealed class LanguageRepository
     {
-        public sealed class LanguajeRepository
+        #region Singleton
+        private static readonly LanguageRepository _instance = new LanguageRepository();
+        public static LanguageRepository Current => _instance;
 
+        public LanguageRepository()
         {
-            #region Singleton
-            private readonly static LanguajeRepository _instance = new LanguajeRepository();
+        }
+        #endregion
 
-            public static LanguajeRepository Current
+        private readonly string folderLanguage = ConfigurationManager.AppSettings["FolderLanguage"];
+        private readonly string filePathLanguage = ConfigurationManager.AppSettings["FilePathLanguage"];
+
+        public string Traductor(string key)
+        {
+            string lang = Thread.CurrentThread.CurrentUICulture.Name;
+            string fileName = $"{filePathLanguage}{lang}"; // sin .txt
+
+            // Carpeta de ejecución (bin\Debug o bin\Release)
+            string runtimeFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, folderLanguage);
+            string runtimePath = Path.Combine(runtimeFolder, fileName);
+
+            if (!System.IO.File.Exists(runtimePath))
             {
-                get
-                {
-                    return _instance;
-                }
+                Directory.CreateDirectory(Path.GetDirectoryName(runtimePath));
+                System.IO.File.WriteAllText(runtimePath, "WELCOME=Bienvenido\nACCESS_GRANTED=Acceso concedido\n");
             }
 
-            private LanguajeRepository()
+            foreach (var line in System.IO.File.ReadLines(runtimePath))
             {
-                //Implent here the initialization of your singleton
-            }
-
-            #endregion
-
-
-            private string folderLanguage = ConfigurationManager.AppSettings["FolderLanguage"];
-
-            private string filePathLanguage = ConfigurationManager.AppSettings["FilePathLanguage"];
-            public string Traductor(string key, string lang)
-            {
-                string filePath = $"{folderLanguage}/{filePathLanguage}{lang}";
-
-                using (StreamReader sr = new StreamReader(filePath))
+                var parts = line.Split('=');
+                if (parts.Length == 2 && parts[0] == key)
                 {
-                    while (!sr.EndOfStream)
+#if DEBUG
+                    // Solo en Debug: sincronizar con carpeta del proyecto
+                    string projectFolder = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\", folderLanguage));
+                    string projectPath = Path.Combine(projectFolder, fileName);
+
+                    if (!System.IO.File.Exists(projectPath))
                     {
-                        string[] dataFile = sr.ReadLine().Split('=');
-
-                        if (dataFile[0] == key) ;
-                        {
-                            return dataFile[1];
-                        }
+                        Directory.CreateDirectory(Path.GetDirectoryName(projectPath));
+                        System.IO.File.WriteAllText(projectPath, "WELCOME=Bienvenido\nACCESS_GRANTED=Acceso concedido\n");
                     }
 
+                    var projectLines = System.IO.File.ReadAllLines(projectPath);
+                    if (!projectLines.Any(l => l.StartsWith(key + "=")))
+                    {
+                        System.IO.File.AppendAllText(projectPath, $"{key}={parts[1]}\n");
+                    }
+#endif
+                    return parts[1];
                 }
-
-                throw new NoSeEncontroLaPalabraException();
             }
 
-            public List<string> GetAllLanguage()
-            {
-                List<string> languages = new List<string>();
-                string[] files = Directory.GetFiles(folderLanguage, "*.txt");
-                foreach (string file in files)
-                {
-                    languages.Add(Path.GetFileNameWithoutExtension(file));
-                }
-                return languages;
-            }
+            throw new NoSeEncontroLaPalabraException();
+        }
 
+        public List<string> GetAllLanguages()
+        {
+            string runtimeFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, folderLanguage);
+
+            if (!Directory.Exists(runtimeFolder))
+                return new List<string>();
+
+            return Directory
+                .GetFiles(runtimeFolder)
+                .Select(Path.GetFileNameWithoutExtension)
+                .ToList();
         }
     }
 }

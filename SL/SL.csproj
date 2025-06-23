@@ -58,23 +58,27 @@
     <Compile Include="BLL\ExceptionBLL.cs" />
     <Compile Include="BLL\LanguageBLL.cs" />
     <Compile Include="BLL\LoggerBLL.cs" />
-    <Compile Include="DAL\Composite\Component.cs" />
     <Compile Include="DAL\Composite\Familia.cs" />
     <Compile Include="DAL\Composite\Patente.cs" />
-    <Compile Include="DAL\Composite\Usuario.cs" />
+    <Compile Include="DAL\Composite\PermissionComponent.cs" />
     <Compile Include="DAL\Contracts\IGenericBusinessService.cs" />
     <Compile Include="DAL\Contracts\ILogger.cs" />
+    <Compile Include="DAL\Contracts\IPermissionRepository.cs" />
     <Compile Include="DAL\Factory\SLFactory.cs" />
-    <Compile Include="DAL\LanguageDAL.cs" />
     <Compile Include="DAL\Repositories\File\LoggerRepository.cs" />
     <Compile Include="DAL\Repositories\File\LanguageRepository.cs" />
+    <Compile Include="DAL\Repositories\File\PermissionRepository1.cs" />
     <Compile Include="DAL\Repositories\SqlServer\LanguageRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\LoggerRepository.cs" />
+    <Compile Include="DAL\Repositories\SqlServer\PermissionRepository1.cs" />
     <Compile Include="DAL\Tools\SqlHelper.cs" />
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
+    <Compile Include="Helpers\PermissionHelper.cs" />
     <Compile Include="Service\BookingSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
+    <Compile Include="Service\PermissionSLService.cs" />
+    <Compile Include="Service\UserSLService.cs" />
     <Compile Include="Service\LoggerService.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,5 +103,6 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

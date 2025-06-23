@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Domain;
+using SL;
+using SL.Service;
 using UI.Helpers;
 
 namespace UI
@@ -26,6 +29,11 @@ namespace UI
             cmbLanguage.SelectedIndex = 0; // Idioma por defecto
 
             this.Translate(); // Aplica traducción inicial
+
+
+            PermissionSLService permissionSL = new PermissionSLService();
+            User currentUser = Session.User;
+
         }
 
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)

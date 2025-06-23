@@ -58,6 +58,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(16, 200);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(121, 24);
+            this.cmbLanguage.TabIndex = 1;
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
+
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
