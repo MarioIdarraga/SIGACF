@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
+using SL.Service.Extension;
 using UI.Helpers;
 
 namespace UI
@@ -18,8 +20,8 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-        IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
-        
+        private readonly UserSLService _userSLService;
+
 
         public MenuModUser(Panel panelContenedor, Guid userId, string loginName, string password, int nroDocument,
                    string firstName, string lastName, string position, string mail, string address,
@@ -29,6 +31,10 @@ namespace UI
             _panelContenedor = panelContenedor;
 
             this.Translate(); // Assuming you have a Translate method for localization
+
+            var userRepo = Factory.Current.GetUserRepository();
+            var userService = new BLL.Service.UserService(userRepo);
+            _userSLService = new UserSLService(userService);
 
             // Llenar los campos del formulario con los datos del usuario
             txtUserId.Text = userId.ToString();
@@ -117,9 +123,8 @@ namespace UI
                     State = int.Parse(txtState.Text)
                 };
 
-                // Llamar al método Update en el repositorio
-                IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
-                repositoryUser.Update(updatedUser.UserId, updatedUser);
+                // Llamar al método Update de la SL
+                _userSLService.Update(updatedUser.UserId, updatedUser);
 
                 MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

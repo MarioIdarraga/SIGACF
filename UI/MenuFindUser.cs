@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
+using SL.Service.Extension;
 using UI.Helpers;
 
 namespace UI
@@ -17,7 +19,7 @@ namespace UI
     public partial class MenuFindUser : Form
     {
 
-        IUserRepository<User> repositoryUser = Factory.Current.GetUserRepository();
+        private readonly UserSLService _userSLService;
 
         private Panel _panelContenedor;
 
@@ -26,6 +28,10 @@ namespace UI
             InitializeComponent();
             _panelContenedor = panelContenedor;
             this.Translate(); // Assuming you have a Translate method for localization
+
+            var userRepo = Factory.Current.GetUserRepository();
+            var userService = new BLL.Service.UserService(userRepo);
+            _userSLService = new UserSLService(userService);
         }
 
         private void OpenFormChild(object formchild)
@@ -129,6 +135,7 @@ namespace UI
                 }
             }
 
+            //Validaciones del FrontEnd
             string firstName = string.IsNullOrWhiteSpace(txtFirstName.Text) ? null : txtFirstName.Text.Trim();
             string lastName = string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text.Trim();
             string telephone = string.IsNullOrWhiteSpace(txtTelephone.Text) ? null : txtTelephone.Text.Trim();
@@ -136,8 +143,8 @@ namespace UI
 
             try
             {
-                // Llamada a la DAL
-                var users = repositoryUser.GetAll(nroDocumento, firstName, lastName, telephone, mail);
+
+                var users = _userSLService.GetAll(nroDocumento, firstName, lastName, telephone, mail);
 
                 // Mostrar resultados en un DataGridView
                 dataGridViewUsers.DataSource = users.ToList();

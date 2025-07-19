@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using BLL.Service;
 using Domain;
+using SL.Helpers;
 
 namespace SL
 {
@@ -45,6 +47,39 @@ namespace SL
                 throw;
             }
         }
+
+        public List<Booking> GetAll(int? nroDocumento, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            LoggerService.Log("Inicio búsqueda de reservas.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+
+            try
+            {
+                var result = _bookingService.GetAll(nroDocumento, registrationBooking, registrationDate);
+
+                LoggerService.Log($"Fin búsqueda de reservas. Resultados: {result.Count}", EventLevel.Informational, Session.CurrentUser?.LoginName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al buscar reservas: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
+
+        public decimal CalcularImporteReserva(Guid idField, TimeSpan startTime, TimeSpan endTime, Guid idPromotion)
+        {
+            LoggerService.Log("Calculando importe de la reserva...");
+            try
+            {
+                return _bookingService.CalcularImporteReserva(idField, startTime, endTime, idPromotion);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al calcular importe: {ex.Message}", EventLevel.Error);
+                throw;
+            }
+        }
+
     }
 }
 

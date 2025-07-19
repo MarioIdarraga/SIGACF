@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 using UI.Helpers;
 
 namespace UI
@@ -17,15 +19,19 @@ namespace UI
     public partial class MenuFindCustomers : Form
     {
 
-        IGenericRepository<Customer> repositoryCustomer = Factory.Current.GetCustomerRepository();
-
         private Panel _panelContenedor;
+
+        private readonly CustomerSLService _customerSLService;
 
         public MenuFindCustomers(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate();
+
+            var repo = Factory.Current.GetCustomerRepository();
+            var bllService = new CustomerService(repo);
+            _customerSLService = new CustomerSLService(bllService);
         }
 
         private void OpenFormChild(object formchild)
@@ -139,10 +145,8 @@ namespace UI
             }
         }
 
-
         private void btnFindCustomer_Click(object sender, EventArgs e)
         {
-            
             int? nroDocumento = null;
             if (!string.IsNullOrWhiteSpace(txtNroDocument.Text))
             {
@@ -164,13 +168,11 @@ namespace UI
 
             try
             {
-                // Llamada a la DAL
-                var customers = repositoryCustomer.GetAll(nroDocumento, firstName, lastName, telephone, mail);
 
-                // Mostrar resultados en un DataGridView
+                var customers = _customerSLService.GetAll(nroDocumento, firstName, lastName, telephone, mail);
+
                 dataGridViewCustomers.DataSource = customers.ToList();
 
-                // Mensaje en la UI
                 lblStatus.Text = customers.Any()
                     ? $"Se encontraron {customers.Count()} clientes."
                     : "No se encontraron clientes con esos criterios.";
@@ -180,5 +182,7 @@ namespace UI
                 MessageBox.Show($"Error al buscar clientes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
+

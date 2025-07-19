@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,7 +18,7 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Promotions] (Name, ValidFrom, ValidTo, PromotionDescription) VALUES (@Name, @ValidFrom, @ValidTo, @PromotionDescription)";
+            get => "INSERT INTO [dbo].[Promotions] (Name, ValidFrom, ValidTo, PromotionDescription, DiscountPercentage) VALUES (@Name, @ValidFrom, @ValidTo, @PromotionDescription, @DiscountPercentage)";
         }
         private string UpdateStatement
         {
@@ -32,12 +33,12 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT IdPromotion, Name, ValidFrom, ValidTo, PromotionDescription FROM [dbo].[Promotions] WHERE IdPromotion = @IdPromotion";
+            get => "SELECT IdPromotion, Name, ValidFrom, ValidTo, PromotionDescription, DiscountPercentage FROM [dbo].[Promotions] WHERE IdPromotion = @IdPromotion";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT IdPromotion, Name, ValidFrom, ValidTo, PromotionDescription FROM [dbo].[Promotions]";
+            get => "SELECT IdPromotion, Name, ValidFrom, ValidTo, PromotionDescription, DiscountPercentage FROM [dbo].[Promotions]";
         }
         #endregion
 
@@ -50,25 +51,27 @@ namespace DAL.Repositories.SqlServer
 
         public IEnumerable<Promotion> GetAll()
         {
-            var list = new List<Promotion>();
-            using (var reader = SqlHelper.ExecuteReader(
-                SelectAllStatement,
-                CommandType.Text))
+            var promotions = new List<Promotion>();
+
+            using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, CommandType.Text))
             {
                 while (reader.Read())
                 {
-                    list.Add(new Promotion
+                    promotions.Add(new Promotion
                     {
                         IdPromotion = reader.GetGuid(0),
                         Name = reader.GetString(1),
                         ValidFrom = reader.GetDateTime(2),
                         ValidTo = reader.GetDateTime(3),
                         PromotionDescripcion = reader.GetString(4),
+                        DiscountPercentage = reader.IsDBNull(5) ? 0 : reader.GetInt32(5)
                     });
                 }
             }
-            return list;
+
+            return promotions;
         }
+
 
         public IEnumerable<Promotion> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
@@ -82,8 +85,30 @@ namespace DAL.Repositories.SqlServer
 
         public Promotion GetOne(Guid Id)
         {
-            throw new NotImplementedException();
+            using (var reader = SqlHelper.ExecuteReader(
+                SelectOneStatement,
+                CommandType.Text,
+                new SqlParameter[]
+                {
+            new SqlParameter("@IdPromotion", Id)
+                }))
+            {
+                if (reader.Read())
+                {
+                    return new Promotion
+                    {
+                        IdPromotion = reader.GetGuid(0),
+                        Name = reader.GetString(1),
+                        ValidFrom = reader.GetDateTime(2),
+                        ValidTo = reader.GetDateTime(3),
+                        PromotionDescripcion = reader.GetString(4),
+                        DiscountPercentage = reader.GetInt32(5)
+                    };
+                }
+            }
+            return null;
         }
+
 
         public void Insert(Promotion Object)
         {

@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 using UI.Helpers;
 
 namespace UI
@@ -17,7 +19,7 @@ namespace UI
     public partial class MenuSales : Form
     {
 
-        IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
+        private readonly BookingSLService _bookingSLService;
 
         private Panel _panelContenedor;
 
@@ -26,6 +28,10 @@ namespace UI
             InitializeComponent();
             _panelContenedor = panelContenedor;
             this.Translate(); // Assuming you have a Translate method for localization
+
+            var repo = Factory.Current.GetBookingRepository();
+            var bllService = new BookingService(repo);
+            _bookingSLService = new BookingSLService(bllService);
         }
 
         private void OpenFormChild(object formchild)
@@ -81,11 +87,12 @@ namespace UI
                 string field = selectedRow.Cells["Field"].Value.ToString();
                 string promotion = selectedRow.Cells["Promotion"].Value.ToString();
                 int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
+                decimal importeBooking = 0;
 
                 // Abrir el formulario de modificación pasando los datos
                 OpenFormChild(new MenuModBooking(_panelContenedor, idBooking, idCustomer, nroDocument,
                                                  registrationBooking, startTime,
-                                                 endTime, field, promotion, state));
+                                                 endTime, field, promotion, state, importeBooking));
             }
             catch (Exception ex)
             {
@@ -100,7 +107,39 @@ namespace UI
 
         private void btnRegPay_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuRegPay(_panelContenedor));
+            try
+            {
+                if (dataGridViewBookings.Rows.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar una reserva de la lista.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DataGridViewRow selectedRow = dataGridViewBookings.SelectedRows[0];
+
+                if (selectedRow.Cells["IdBooking"].Value == null ||
+                    selectedRow.Cells["State"].Value == null ||
+                    selectedRow.Cells["Promotion"].Value == null)
+                {
+                    MessageBox.Show("La reserva seleccionada tiene datos inválidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Guid idBooking = (Guid)selectedRow.Cells["IdBooking"].Value;
+                int nroReserva = selectedRow.Index + 1; 
+                string estado = selectedRow.Cells["State"].Value.ToString();
+                decimal importeBooking = Convert.ToDecimal(selectedRow.Cells["ImporteBooking"].Value);
+
+                //// Calcular importe según promoción (este dato debe venir cargado)
+                //string promo = selectedRow.Cells["Promotion"].Value.ToString();
+                //decimal importe = CalcularImporteDesdePromocion(promo); // tu lógica
+
+                OpenFormChild(new MenuRegPay(_panelContenedor, idBooking, nroReserva, importeBooking, estado));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al registrar el pago: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCanBooking_Click(object sender, EventArgs e)
@@ -127,6 +166,7 @@ namespace UI
                 selectedRow.Cells["Field"].Value == null ||
                 selectedRow.Cells["Promotion"].Value == null ||
                 selectedRow.Cells["State"].Value == null)
+
                 {
                     MessageBox.Show("La reserva seleccionada tiene datos inválidos. Intente seleccionar otra.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -143,11 +183,12 @@ namespace UI
                 string field = selectedRow.Cells["Field"].Value.ToString();
                 string promotion = selectedRow.Cells["Promotion"].Value.ToString();
                 int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
+                decimal importeBooking = 0; 
 
                 // Abrir el formulario de modificación pasando los datos
                 OpenFormChild(new MenuCanBooking(_panelContenedor, idBooking, idCustomer, nroDocument,
                                                  registrationBooking, startTime,
-                                                 endTime, field, promotion, state));
+                                                 endTime, field, promotion, state, importeBooking));
             }
             catch (Exception ex)
             {
@@ -176,22 +217,22 @@ namespace UI
 
             try
             {
-                // Llamada a la DAL
-                var booking = repositoryBooking.GetAll(nroDocumento, registrationBooking, registrationDate);
-
+                var bookings = _bookingSLService.GetAll(nroDocumento, registrationBooking, registrationDate);
 
                 // Mostrar resultados en un DataGridView
-                dataGridViewBookings.DataSource = booking.ToList();
+                dataGridViewBookings.DataSource = bookings.ToList();
 
-                // Mensaje en la UI
-                lblStatus.Text = booking.Any()
-                    ? $"Se encontraron {booking.Count()} clientes."
-                    : "No se encontraron clientes con esos criterios.";
+
+                lblStatus.Text = bookings.Any()
+                    ? $"Se encontraron {bookings.Count()} reservas."
+                    : "No se encontraron reservas con esos criterios.";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al buscar clientes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al buscar reservas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
+

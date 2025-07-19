@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtState = new System.Windows.Forms.TextBox();
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -36,7 +35,6 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnApRegUser = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -55,13 +53,6 @@
             this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // txtState
-            // 
-            this.txtState.Location = new System.Drawing.Point(627, 472);
-            this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(190, 22);
-            this.txtState.TabIndex = 39;
             // 
             // txtTelephone
             // 
@@ -116,17 +107,6 @@
             this.btnApRegUser.UseVisualStyleBackColor = true;
             this.btnApRegUser.Click += new System.EventHandler(this.btnApRegUser_Click);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.Location = new System.Drawing.Point(500, 476);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 18);
-            this.label9.TabIndex = 30;
-            this.label9.Text = "Estado";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -145,9 +125,9 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Location = new System.Drawing.Point(498, 320);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 18);
+            this.label7.Size = new System.Drawing.Size(99, 23);
             this.label7.TabIndex = 28;
-            this.label7.Text = "Dirección";
+            this.label7.Text = "Domicilio";
             // 
             // label6
             // 
@@ -321,7 +301,6 @@
             this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
-            this.Controls.Add(this.txtState);
             this.Controls.Add(this.txtTelephone);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtEmail);
@@ -329,7 +308,6 @@
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.btnApRegUser);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -349,8 +327,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtState;
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtEmail;
@@ -358,7 +334,6 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnApRegUser;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;

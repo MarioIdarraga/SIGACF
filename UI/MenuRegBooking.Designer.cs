@@ -47,6 +47,8 @@
             this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtImporteBooking = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -239,12 +241,32 @@
             this.label8.TabIndex = 105;
             this.label8.Text = "Nro de Documento";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label9.Location = new System.Drawing.Point(511, 376);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 23);
+            this.label9.TabIndex = 107;
+            this.label9.Text = "Importe";
+            // 
+            // txtImporteBooking
+            // 
+            this.txtImporteBooking.Location = new System.Drawing.Point(670, 375);
+            this.txtImporteBooking.Name = "txtImporteBooking";
+            this.txtImporteBooking.Size = new System.Drawing.Size(186, 22);
+            this.txtImporteBooking.TabIndex = 108;
+            // 
             // MenuRegBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1012, 666);
+            this.Controls.Add(this.txtImporteBooking);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dtpEndTime);
@@ -293,5 +315,7 @@
         private System.Windows.Forms.DateTimePicker dtpEndTime;
         private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtImporteBooking;
     }
 }

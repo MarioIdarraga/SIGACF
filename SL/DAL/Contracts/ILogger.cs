@@ -10,7 +10,7 @@ namespace SL.DAL.Contracts
 {
     public interface ILogger
     {
-        void Store(String message, EventLevel severity);
+        void Store(string message, EventLevel severity, string performedBy);
         List<Log> GetAll();
     }
 }

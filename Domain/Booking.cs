@@ -27,7 +27,9 @@ namespace Domain
 
         public Guid Promotion { get; set; }
 
-        public int State { get; set; } ///No se ve en la carga de la reserva
+        public int State { get; set; }
+        public decimal ImporteBooking { get; set; }
+        ///No se ve en la carga de la reserva
 
     }
 }

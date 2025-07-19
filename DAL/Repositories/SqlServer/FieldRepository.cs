@@ -17,27 +17,27 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Field] (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState ) VALUES (@Name, @Capacity, @FieldType, @HourlyCost, IdFieldState)";
+            get => "INSERT INTO [dbo].[Fields] (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState ) VALUES (@Name, @Capacity, @FieldType, @HourlyCost, IdFieldState)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Field] SET (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState ) WHERE @IdField = @IdField";
+            get => "UPDATE [dbo].[Fields] SET (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState ) WHERE @IdField = @IdField";
         }
 
         private string DeleteStatement
         {
-            get => "DELETE FROM [dbo].[Field] WHERE @IdField = @IdField";
+            get => "DELETE FROM [dbo].[Fields] WHERE @IdField = @IdField";
         }
 
         private string SelectOneStatement
         {
-            get => "SELECT IdField, IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState  FROM [dbo].[Field] WHERE @IdField = @IdField";
+            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState FROM [dbo].[Fields] WHERE IdField = @IdField";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState  FROM [dbo].[Field]";
+            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState  FROM [dbo].[Fields]";
         }
         #endregion
 

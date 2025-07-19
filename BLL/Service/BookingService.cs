@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DAL.Contracts;
+using DAL.Factory;
 using Domain;
 
 namespace BLL.Service
@@ -61,6 +64,36 @@ namespace BLL.Service
 
             if (booking.Field == Guid.Empty)
                 throw new ArgumentException("Debe seleccionarse una cancha.");
+        }
+
+        public List<Booking> GetAll(int? nroDocumento, DateTime? registrationBooking, DateTime? registrationDate)
+        {
+            return _bookingRepo.GetAll(nroDocumento, registrationBooking, registrationDate).ToList();
+        }
+
+        public decimal CalcularImporteReserva(Guid idField, TimeSpan startTime, TimeSpan endTime, Guid idPromotion)
+        {
+            var fieldRepo = Factory.Current.GetFieldRepository();
+            var promotionRepo = Factory.Current.GetPromotionRepository();
+
+            var field = fieldRepo.GetOne(idField);
+            var promotion = promotionRepo.GetOne(idPromotion);
+
+            if (field == null)
+                throw new ArgumentException("La cancha no existe.");
+
+            double horas = (endTime - startTime).TotalHours;
+            if (horas <= 0)
+                throw new ArgumentException("La duración debe ser positiva.");
+
+            decimal importe = (decimal)horas * (decimal)field.HourlyCost;
+
+            if (promotion != null && promotion.DiscountPercentage > 0)
+            {
+                importe -= importe * promotion.DiscountPercentage / 100;
+            }
+
+            return importe;
         }
     }
 }

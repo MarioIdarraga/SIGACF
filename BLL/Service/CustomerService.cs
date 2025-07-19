@@ -20,10 +20,8 @@ namespace BLL.Service
 
         public void RegisterCustomer(Customer customer)
         {
-            // Validaciones de negocio
             ValidateCustomer(customer);
 
-            // Insertar si todo está correcto
             _customerRepo.Insert(customer);
         }
 
@@ -72,7 +70,6 @@ namespace BLL.Service
 
             ValidateCustomer(customer);
 
-            // Asegurarte que el cliente exista (opcional si lo querés validar antes)
             var existingCustomer = _customerRepo.GetOne(customer.IdCustomer);
             if (existingCustomer == null)
                 throw new InvalidOperationException("No se encontró el cliente a modificar.");
@@ -80,5 +77,9 @@ namespace BLL.Service
             _customerRepo.Update(customer.IdCustomer, customer);
         }
 
+        public List<Customer> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail)
+        {
+            return _customerRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail).ToList();
+        }
     }
 }

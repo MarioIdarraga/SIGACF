@@ -39,6 +39,12 @@ namespace UI
 
             // Cargar el ID del cliente en un control, por ejemplo un TextBox o Label
             txtIdCustomer.Text = _idCustomer.ToString(); // Si tienes un TextBox
+
+            cmbField.SelectedIndexChanged += (s, e) => ActualizarImporte();
+            dtpStartTime.ValueChanged += (s, e) => ActualizarImporte();
+            dtpEndTime.ValueChanged += (s, e) => ActualizarImporte();
+            cmbPromotion.SelectedIndexChanged += (s, e) => ActualizarImporte();
+
         }
 
         public MenuRegBooking(Panel panelContenedor)
@@ -48,6 +54,12 @@ namespace UI
 
             CargarCombos();
             dtpRegistrationBooking.Value = DateTime.Today;
+
+            cmbField.SelectedIndexChanged += (s, e) => ActualizarImporte();
+            dtpStartTime.ValueChanged += (s, e) => ActualizarImporte();
+            dtpEndTime.ValueChanged += (s, e) => ActualizarImporte();
+            cmbPromotion.SelectedIndexChanged += (s, e) => ActualizarImporte();
+
         }
 
         private void CargarCombos()
@@ -59,9 +71,9 @@ namespace UI
                 if (promociones.Any()) // Si hay datos en la lista
                 {
                     cmbPromotion.DataSource = promociones;
-                    cmbPromotion.DisplayMember = "Name"; // Ajustar con el nombre exacto de la propiedad
+                    cmbPromotion.DisplayMember = "Name"; 
                     cmbPromotion.ValueMember = "IdPromotion";
-                    cmbPromotion.SelectedIndex = -1; // No seleccionar ninguno por defecto
+                    cmbPromotion.SelectedIndex = -1; 
                 }
                 else
                 {
@@ -74,15 +86,18 @@ namespace UI
                 if (canchas.Any())
                 {
                     cmbField.DataSource = canchas;
-                    cmbField.DisplayMember = "Name"; // Ajustar con el nombre exacto de la propiedad
+                    cmbField.DisplayMember = "Name";
                     cmbField.ValueMember = "IdField";
                     cmbField.SelectedIndex = -1;
                 }
                 else
                 {
                     cmbField.DataSource = null;
+                    cmbField.Items.Clear();
                     cmbField.Items.Add("No hay canchas disponibles");
+                    cmbField.SelectedIndex = 0;
                 }
+
             }
             catch (Exception ex)
             {
@@ -122,6 +137,9 @@ namespace UI
         {
             try
             {
+                var selectedField = cmbField.SelectedItem as Field;
+                var selectedPromotion = cmbPromotion.SelectedItem as Promotion;
+
                 Booking newBooking = new Booking
                 {
                     IdCustomer = Guid.Parse(txtIdCustomer.Text),
@@ -130,8 +148,9 @@ namespace UI
                     RegistrationBooking = dtpRegistrationBooking.Value,
                     StartTime = dtpStartTime.Value.TimeOfDay,
                     EndTime = dtpEndTime.Value.TimeOfDay,
-                    Field = (Guid)cmbField.SelectedValue,
-                    Promotion = (Guid)cmbPromotion.SelectedValue, 
+                    Field = selectedField?.IdField ?? Guid.Empty,
+                    Promotion = selectedPromotion?.IdPromotion ?? Guid.Empty,
+                    ImporteBooking = decimal.Parse(txtImporteBooking.Text),
                     State = 0
                 };
 
@@ -146,6 +165,7 @@ namespace UI
             }
         }
 
+
         private void LimpiarCampos()
         {
             txtIdCustomer.Clear();
@@ -153,8 +173,43 @@ namespace UI
             dtpRegistrationBooking.Value = DateTime.Now;
             dtpStartTime.Value = DateTime.Now;
             dtpEndTime.Value = DateTime.Now;
-            cmbField.Items.Clear();
+            cmbField.SelectedIndex = -1;
             cmbPromotion.SelectedIndex = -1;
+        }
+        private void ActualizarImporte()
+        {
+            try
+            {
+                if (cmbField.SelectedItem is Field selectedField)
+                {
+                    TimeSpan horaInicio = dtpStartTime.Value.TimeOfDay;
+                    TimeSpan horaFin = dtpEndTime.Value.TimeOfDay;
+
+                    Guid idPromotion = Guid.Empty;
+                    if (cmbPromotion.SelectedItem is Promotion selectedPromotion)
+                    {
+                        idPromotion = selectedPromotion.IdPromotion;
+                    }
+
+                    decimal importe = _bookingSLService.CalcularImporteReserva(selectedField.IdField, horaInicio, horaFin, idPromotion);
+                    txtImporteBooking.Text = importe.ToString("0.00");
+                }
+                else
+                {
+                    txtImporteBooking.Text = "0.00";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al calcular el importe: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void CmbField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarImporte();
         }
     }
 }

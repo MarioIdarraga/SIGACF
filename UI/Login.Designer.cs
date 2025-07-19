@@ -141,9 +141,9 @@
             this.label1.Location = new System.Drawing.Point(737, 123);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 35);
+            this.label1.Size = new System.Drawing.Size(134, 44);
             this.label1.TabIndex = 5;
-            this.label1.Text = "LOGIN";
+            this.label1.Text = "Acceso";
             // 
             // btnCerrarLogin
             // 

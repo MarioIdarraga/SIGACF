@@ -10,24 +10,21 @@ using SL.Domain;
 using SL.Service.Extension;
 using System.Data.SqlClient;
 
-
-
 namespace SL.DAL.Repositories.SqlServer
 {
     public class LoggerRepository : ILogger
     {
-
         List<Log> customer = new List<Log>();
 
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [Log].[] () VALUES ()";
+            get => "INSERT INTO [Logs] ([Message], [Severity], [PerformedBy]) VALUES (@Message, @Severity, @PerformedBy)";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT * FROM [Log]";
+            get => "SELECT * FROM [Logs]";
         }
 
         public List<Log> GetAll()
@@ -35,18 +32,21 @@ namespace SL.DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
-        public void Store(string message, EventLevel severity)
+        public void Store(string message, EventLevel severity, string performedBy)
         {
             try
             {
                 SqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text,
-                        new SqlParameter[]  {   new SqlParameter("@Message", message),
-                                                new SqlParameter("@Severity", severity) });
+                    new SqlParameter[]
+                    {
+                new SqlParameter("@Message", message),
+                new SqlParameter("@Severity", severity.ToString()),
+                new SqlParameter("@PerformedBy", performedBy)
+                    });
             }
             catch (Exception ex)
             {
-
-                //ex.Handle(this);
+                // Manejo interno
             }
         }
 

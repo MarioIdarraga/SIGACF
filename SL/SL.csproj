@@ -75,6 +75,7 @@
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
     <Compile Include="Helpers\PermissionHelper.cs" />
+    <Compile Include="Helpers\Session.cs" />
     <Compile Include="Service\BookingSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
     <Compile Include="Service\PermissionSLService.cs" />

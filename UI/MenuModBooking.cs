@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 using UI.Helpers;
 
 namespace UI
@@ -18,66 +20,76 @@ namespace UI
     {
         private Panel _panelContenedor;
 
-        IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
+        private readonly BookingSLService _bookingSLService;
         IGenericRepository<Promotion> repositoryPromotion = Factory.Current.GetPromotionRepository();
         IGenericRepository<Field> repositoryField = Factory.Current.GetFieldRepository();
 
 
         public MenuModBooking(Panel panelContenedor, Guid idBooking, Guid idCustomer, int nroDocument,
-                      DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime, string field,
-                      string promotion, int state)
+                      DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime,
+                      string field, string promotion, int state, decimal importeBooking)
         {
-            InitializeComponent();
-            _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            {
+                InitializeComponent();
+                _panelContenedor = panelContenedor;
+                this.Translate();
 
-            // Asignar valores a los controles del formulario
+                var repo = Factory.Current.GetBookingRepository();
+                var bllService = new BookingService(repo);
+                _bookingSLService = new BookingSLService(bllService);
 
-            txtIdBooking.Text = idBooking.ToString();
-            txtIdCustomer.Text = idCustomer.ToString();
-            txtNroDocument.Text = nroDocument.ToString();
-            dtpRegistrationBooking.Value = registrationBooking;
-            dtpStartTime.Value = DateTime.Today.Add(startTime); // Convert TimeSpan to DateTime
-            dtpEndTime.Value = DateTime.Today.Add(endTime); // Convert TimeSpan to DateTime
-            cmbField.Text = field;
-            cmbPromotion.Text = promotion;
-            txtState.Text = state.ToString();
+                // Asignar valores a los controles del formulario
 
-            CargarCombos(); // Cargar opciones en los combos
+                txtIdBooking.Text = idBooking.ToString();
+                txtIdCustomer.Text = idCustomer.ToString();
+                txtNroDocument.Text = nroDocument.ToString();
+                dtpRegistrationBooking.Value = registrationBooking;
+                dtpStartTime.Value = DateTime.Today.Add(startTime);
+                dtpEndTime.Value = DateTime.Today.Add(endTime);
+                cmbField.Text = field;
+                cmbPromotion.Text = promotion;
+                txtState.Text = state.ToString();
+
+                CargarCombos();
+            }
         }
 
         private void CargarCombos()
         {
             try
             {
-                // Cargar ComboBox de Promociones desde la base de datos
+                // Cargar promociones
                 List<Promotion> promociones = repositoryPromotion.GetAll().ToList();
-                if (promociones.Any()) // Si hay datos en la lista
+                if (promociones.Any())
                 {
                     cmbPromotion.DataSource = promociones;
-                    cmbPromotion.DisplayMember = "Name"; // Ajustar con el nombre exacto de la propiedad
+                    cmbPromotion.DisplayMember = "Name";
                     cmbPromotion.ValueMember = "IdPromotion";
-                    cmbPromotion.SelectedIndex = -1; // No seleccionar ninguno por defecto
+                    cmbPromotion.SelectedIndex = -1;
                 }
                 else
                 {
                     cmbPromotion.DataSource = null;
-                    cmbPromotion.Items.Add("No hay promociones disponibles");
+                    cmbPromotion.Items.Clear(); 
+                    MessageBox.Show("No hay promociones disponibles.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbPromotion.Enabled = false; 
                 }
 
-                // Cargar ComboBox de Canchas desde la base de datos
+                // Cargar canchas
                 List<Field> canchas = repositoryField.GetAll().ToList();
                 if (canchas.Any())
                 {
                     cmbField.DataSource = canchas;
-                    cmbField.DisplayMember = "Name"; // Ajustar con el nombre exacto de la propiedad
+                    cmbField.DisplayMember = "Name";
                     cmbField.ValueMember = "IdField";
                     cmbField.SelectedIndex = -1;
                 }
                 else
                 {
                     cmbField.DataSource = null;
-                    cmbField.Items.Add("No hay canchas disponibles");
+                    cmbField.Items.Clear();
+                    MessageBox.Show("No hay canchas disponibles.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbField.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -85,6 +97,7 @@ namespace UI
                 MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void OpenFormChild(object formchild)
         {
@@ -113,9 +126,35 @@ namespace UI
             //OpenFormChild(new MenuCanBooking(_panelContenedor));
         }
 
-        private void btnRegBooking_Click(object sender, EventArgs e)
+        private void btnModBooking_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Booking updatedBooking = new Booking
+                {
+                    IdBooking = Guid.Parse(txtIdBooking.Text), 
+                    IdCustomer = Guid.Parse(txtIdCustomer.Text),
+                    NroDocument = txtNroDocument.Text,
+                    RegistrationDate = DateTime.Today,
+                    RegistrationBooking = dtpRegistrationBooking.Value,
+                    StartTime = dtpStartTime.Value.TimeOfDay,
+                    EndTime = dtpEndTime.Value.TimeOfDay,
+                    Field = (Guid)cmbField.SelectedValue,
+                    Promotion = (Guid)cmbPromotion.SelectedValue,
+                };
 
+                _bookingSLService.Update(updatedBooking.IdBooking, updatedBooking);
+
+                MessageBox.Show("Reserva modificada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar la reserva: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
+
     }
 }

@@ -35,7 +35,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.btnApModCustomer = new System.Windows.Forms.Button();
+            this.btnRegPay = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -102,16 +102,16 @@
             this.textBox9.Size = new System.Drawing.Size(186, 22);
             this.textBox9.TabIndex = 107;
             // 
-            // btnApModCustomer
+            // btnRegPay
             // 
-            this.btnApModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApModCustomer.Location = new System.Drawing.Point(520, 496);
-            this.btnApModCustomer.Name = "btnApModCustomer";
-            this.btnApModCustomer.Size = new System.Drawing.Size(162, 42);
-            this.btnApModCustomer.TabIndex = 106;
-            this.btnApModCustomer.Text = "Registrar Reserva";
-            this.btnApModCustomer.UseVisualStyleBackColor = true;
-            this.btnApModCustomer.Click += new System.EventHandler(this.btnApModCustomer_Click);
+            this.btnRegPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegPay.Location = new System.Drawing.Point(520, 496);
+            this.btnRegPay.Name = "btnRegPay";
+            this.btnRegPay.Size = new System.Drawing.Size(162, 42);
+            this.btnRegPay.TabIndex = 106;
+            this.btnRegPay.Text = "Registrar Pago";
+            this.btnRegPay.UseVisualStyleBackColor = true;
+            this.btnRegPay.Click += new System.EventHandler(this.btnRegPay_Click);
             // 
             // label9
             // 
@@ -181,7 +181,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.btnApModCustomer);
+            this.Controls.Add(this.btnRegPay);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -203,7 +203,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button btnApModCustomer;
+        private System.Windows.Forms.Button btnRegPay;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

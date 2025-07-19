@@ -29,13 +29,12 @@ namespace UI
             _panelContenedor = panelContenedor;
             _idCustomer = idCustomer;
 
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate(); 
 
             var customerRepo = Factory.Current.GetCustomerRepository();
             var customerService = new BLL.Service.CustomerService(customerRepo);
             _customerSLService = new CustomerSLService(customerService);
 
-            // Llenar los campos con los datos recibidos
             txtNroDocument.Text = nroDocument.ToString();
             txtFirstName.Text = firstName;
             txtLastName.Text = lastName;

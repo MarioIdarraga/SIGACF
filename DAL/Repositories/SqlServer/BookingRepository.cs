@@ -16,11 +16,11 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Bookings] (IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State ) VALUES (@IdCustomer, @NroDocument, @RegistrationDate, @RegistrationBooking, @StartTime, @EndTime, @Field, @Promotion, @State)";
+            get => "INSERT INTO [dbo].[Bookings] (IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking ) VALUES (@IdCustomer, @NroDocument, @RegistrationDate, @RegistrationBooking, @StartTime, @EndTime, @Field, @Promotion, @State, @ImporteBooking)";
         }
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Bookings] SET IdCustomer = @IdCustomer, NroDocument = @NroDocument, RegistrationDate = @RegistrationDate, RegistrationBooking = @RegistrationBooking, StartTime = @StartTime, EndTime = @EndTime, Field = @Field, Promotion = @Promotion, State = @State WHERE IdBooking = @IdBooking";
+            get => "UPDATE [dbo].[Bookings] SET IdCustomer = @IdCustomer, NroDocument = @NroDocument, RegistrationDate = @RegistrationDate, RegistrationBooking = @RegistrationBooking, StartTime = @StartTime, EndTime = @EndTime, Field = @Field, Promotion = @Promotion, State = @State, ImporteBooking = @ImporteBooking WHERE IdBooking = @IdBooking";
         }
 
 
@@ -31,12 +31,12 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State  FROM [dbo].[Bookings] WHERE IdBooking = @IdBooking";
+            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking   FROM [dbo].[Bookings] WHERE IdBooking = @IdBooking";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State  FROM [dbo].[Bookings]";
+            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking FROM [dbo].[Bookings]";
         }
         #endregion
 
@@ -89,13 +89,14 @@ namespace DAL.Repositories.SqlServer
                         IdBooking = reader.GetGuid(0),
                         IdCustomer = reader.GetGuid(1),
                         NroDocument = reader.GetString(2),
-                        RegistrationDate = reader.GetDateTime(3),  // Corrección del orden
-                        RegistrationBooking = reader.GetDateTime(4), // Corrección del orden
-                        StartTime = reader.GetTimeSpan(5), // Corrección de GetDateTime() a GetTimeSpan()
-                        EndTime = reader.GetTimeSpan(6), // Corrección de GetDateTime() a GetTimeSpan()
+                        RegistrationDate = reader.GetDateTime(3),  
+                        RegistrationBooking = reader.GetDateTime(4), 
+                        StartTime = reader.GetTimeSpan(5), 
+                        EndTime = reader.GetTimeSpan(6), 
                         Field = reader.GetGuid(7),
                         Promotion = reader.GetGuid(8),
-                        State = reader.GetInt32(9)
+                        State = reader.GetInt32(9),
+                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10)
                     });
                 }
             }
@@ -109,8 +110,33 @@ namespace DAL.Repositories.SqlServer
 
         public Booking GetOne(Guid Id)
         {
-            throw new NotImplementedException();
+            Booking booking = null;
+
+            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
+                new SqlParameter[] { new SqlParameter("@IdBooking", Id) }))
+            {
+                if (reader.Read())
+                {
+                    booking = new Booking
+                    {
+                        IdBooking = reader.GetGuid(0),
+                        IdCustomer = reader.GetGuid(1),
+                        NroDocument = reader.GetString(2),
+                        RegistrationDate = reader.GetDateTime(3),
+                        RegistrationBooking = reader.GetDateTime(4),
+                        StartTime = reader.GetTimeSpan(5),
+                        EndTime = reader.GetTimeSpan(6),
+                        Field = reader.GetGuid(7),
+                        Promotion = reader.GetGuid(8),
+                        State = reader.GetInt32(9),
+                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10)
+                    };
+                }
+            }
+
+            return booking;
         }
+
 
         public void Insert(Booking Object)
         {
@@ -125,7 +151,8 @@ namespace DAL.Repositories.SqlServer
                 new SqlParameter("@EndTime", Object.EndTime),
                 new SqlParameter("@Field", Object.Field),
                 new SqlParameter("@Promotion", Object.Promotion),
-                new SqlParameter("@State", Object.State)
+                new SqlParameter("@State", Object.State),
+                new SqlParameter("@ImporteBooking", Object.ImporteBooking)
                 });
         }
 
@@ -143,7 +170,8 @@ namespace DAL.Repositories.SqlServer
                 new SqlParameter("@EndTime", Object.EndTime),
                 new SqlParameter("@Field", Object.Field),
                 new SqlParameter("@Promotion", Object.Promotion),
-                new SqlParameter("@State", Object.State)
+                new SqlParameter("@State", Object.State),
+                new SqlParameter("@ImporteBooking", Object.ImporteBooking)
                 });
         }
     }

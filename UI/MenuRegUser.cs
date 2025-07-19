@@ -27,8 +27,10 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
-            var repo = Factory.Current.GetUserRepository();
+            this.Translate();
+            var userRepo = Factory.Current.GetUserRepository();
+            var userService = new BLL.Service.UserService(userRepo);
+            _userSLService = new UserSLService(userService);
         }
 
         private void OpenFormChild(object formchild)
@@ -77,11 +79,11 @@ namespace UI
                     Address = txtAddress.Text.Trim(),
                     Telephone = txtTelephone.Text.Trim(),
                     IsEmployee = chkIsEmployee.Checked,
-                    State = int.Parse(txtState.Text.Trim())
+                    State = 0  //Estado Inicial o Nuevo, asi despues le hago el cambio de estado, cuando ingrese por primera vez.
 
                 };
 
-                // Validaciones 
+                // Validaciones del FrontEnd
                 if (string.IsNullOrWhiteSpace(newUser.LoginName) ||
                     string.IsNullOrWhiteSpace(newUser.Password) ||
                     string.IsNullOrWhiteSpace(newUser.NroDocument.ToString()) ||
@@ -95,7 +97,8 @@ namespace UI
 
                 _userSLService.Insert(newUser);
 
-                MessageBox.Show("Usuario registrado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario registrado con éxito, recuerde darle la contraseña al usuario nuevo, ya que debera cambiarla al momento " +
+                    "de su primer login en el aplicativo", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Limpiamos los campos del formulario
                 txtLoginName.Clear();
@@ -107,7 +110,6 @@ namespace UI
                 txtEmail.Clear();
                 txtAddress.Clear();
                 txtTelephone.Clear();
-                txtState.Clear();
             }
             catch (Exception ex)
             {

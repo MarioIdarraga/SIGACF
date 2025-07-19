@@ -122,15 +122,14 @@ namespace DAL.Repositories.SqlServer
         {
             User user = null;
 
-            using (var dr = SqlHelper.ExecuteReader(SelectOneStatement, CommandType.Text, new SqlParameter("@UserId", UserId), null))
+            using (var dr = SqlHelper.ExecuteReader(SelectOneStatement, CommandType.Text, new SqlParameter("@UserId", UserId)))
             {
                 if (dr.Read())
                 {
                     user = new User
                     {
                         
-                        UserId = dr.GetGuid(dr.GetOrdinal("IdUser")), 
-                        //LoginName = dr.GetString(dr.GetOrdinal("Name")), 
+                        UserId = dr.GetGuid(dr.GetOrdinal("UserId")),  
                                                                     
                     };
                 }

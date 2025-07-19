@@ -9,8 +9,8 @@ namespace SL.Domain
     public class Log
     {
         public string Message { get; set; }
-
         public Severity severity { get; set; }
+        public string PerformedBy { get; set; } 
 
         public enum Severity
         {

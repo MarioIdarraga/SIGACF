@@ -18,6 +18,6 @@ namespace Domain
 
         public float HourlyCost { get; set; }
 
-        public int IdFieldState { get; set; } // Foreign key reference to FieldsState
+        public int IdFieldState { get; set; } 
     }
 }

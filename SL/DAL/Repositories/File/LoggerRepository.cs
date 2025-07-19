@@ -71,5 +71,10 @@ namespace SL.DAL.Repositories.File
         {
             throw new NotImplementedException();
         }
+
+        public void Store(string message, EventLevel severity, string performedBy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

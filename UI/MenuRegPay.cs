@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Domain;
 using UI.Helpers;
 
 namespace UI
@@ -14,11 +16,20 @@ namespace UI
     public partial class MenuRegPay : Form
     {
         private Panel _panelContenedor;
+
+        public MenuRegPay(Panel panelContenedor, Guid idBooking, int nroReserva, decimal importeBooking, string estado)
+        {
+            InitializeComponent();
+            _panelContenedor = panelContenedor;
+
+            this.Translate(); 
+
+        }
+
         public MenuRegPay(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
         }
 
         private void OpenFormChild(object formchild)
@@ -38,9 +49,45 @@ namespace UI
             OpenFormChild(new MenuSales(_panelContenedor));
         }
 
-        private void btnApModCustomer_Click(object sender, EventArgs e)
+        private void btnRegPay_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    Guid idBooking = Guid.Parse(txtBookingId.Text.Trim());
+            //    decimal amount = decimal.Parse(txtAmount.Text.Trim());
+            //    int methodPay = cmbMethodPay.SelectedIndex; // Asegurate de que los valores estén bien cargados
+            //    int state = int.Parse(txtState.Text.Trim());
 
+            //    Pay newPay = new Pay
+            //    {
+            //        IdPay = Guid.NewGuid(),
+            //        IdBooking = idBooking,
+            //        NroDocument = 0, // Si lo querés usar, pasalo también
+            //        Date = DateTime.Now,
+            //        MethodPay = methodPay,
+            //        Amount = amount,
+            //        State = state
+            //    };
+
+            //    var payRepo = DAL.Factory.Factory.Current.GetPayRepository();
+            //    var payBLL = new BLL.Service.PayService(payRepo);
+            //    var paySL = new SL.Service.PaySLService(payBLL);
+
+            //    paySL.RegisterPay(newPay); // Guarda el pago
+
+            //    // Actualizar estado de la reserva a "Pagado"
+            //    var bookingRepo = DAL.Factory.Factory.Current.GetBookingRepository();
+            //    var bookingBLL = new BLL.Service.BookingService(bookingRepo);
+            //    var bookingSL = new SL.Service.BookingSLService(bookingBLL);
+
+            //    bookingSL.UpdateBookingState(idBooking, 2); // Por ejemplo: 2 = Pagado
+
+            //    MessageBox.Show("Pago registrado y reserva actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al registrar el pago: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

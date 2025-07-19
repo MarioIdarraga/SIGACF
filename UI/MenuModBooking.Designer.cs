@@ -41,7 +41,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cmbField = new System.Windows.Forms.ComboBox();
             this.txtIdCustomer = new System.Windows.Forms.TextBox();
-            this.btnRegBooking = new System.Windows.Forms.Button();
+            this.btnModBooking = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -179,16 +179,16 @@
             this.txtIdCustomer.Size = new System.Drawing.Size(186, 22);
             this.txtIdCustomer.TabIndex = 113;
             // 
-            // btnRegBooking
+            // btnModBooking
             // 
-            this.btnRegBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegBooking.Location = new System.Drawing.Point(530, 542);
-            this.btnRegBooking.Name = "btnRegBooking";
-            this.btnRegBooking.Size = new System.Drawing.Size(162, 42);
-            this.btnRegBooking.TabIndex = 112;
-            this.btnRegBooking.Text = "Modificar Reserva";
-            this.btnRegBooking.UseVisualStyleBackColor = true;
-            this.btnRegBooking.Click += new System.EventHandler(this.btnRegBooking_Click);
+            this.btnModBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModBooking.Location = new System.Drawing.Point(530, 542);
+            this.btnModBooking.Name = "btnModBooking";
+            this.btnModBooking.Size = new System.Drawing.Size(162, 42);
+            this.btnModBooking.TabIndex = 112;
+            this.btnModBooking.Text = "Modificar Reserva";
+            this.btnModBooking.UseVisualStyleBackColor = true;
+            this.btnModBooking.Click += new System.EventHandler(this.btnModBooking_Click);
             // 
             // label2
             // 
@@ -301,7 +301,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbField);
             this.Controls.Add(this.txtIdCustomer);
-            this.Controls.Add(this.btnRegBooking);
+            this.Controls.Add(this.btnModBooking);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -333,7 +333,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbField;
         private System.Windows.Forms.TextBox txtIdCustomer;
-        private System.Windows.Forms.Button btnRegBooking;
+        private System.Windows.Forms.Button btnModBooking;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

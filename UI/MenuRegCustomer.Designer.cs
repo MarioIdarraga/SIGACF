@@ -39,7 +39,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtState = new System.Windows.Forms.TextBox();
             this.txtComment = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -48,7 +47,6 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.btnRegCustomer = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -144,13 +142,6 @@
             this.label10.TabIndex = 57;
             this.label10.Text = "Registrar Cliente";
             // 
-            // txtState
-            // 
-            this.txtState.Location = new System.Drawing.Point(626, 364);
-            this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(186, 22);
-            this.txtState.TabIndex = 56;
-            // 
             // txtComment
             // 
             this.txtComment.Location = new System.Drawing.Point(626, 231);
@@ -210,17 +201,6 @@
             this.btnRegCustomer.Text = "Registrar Cliente";
             this.btnRegCustomer.UseVisualStyleBackColor = true;
             this.btnRegCustomer.Click += new System.EventHandler(this.btnRegCustomer_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label11.Location = new System.Drawing.Point(518, 368);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 18);
-            this.label11.TabIndex = 47;
-            this.label11.Text = "Estado";
             // 
             // label12
             // 
@@ -306,7 +286,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(992, 667);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtState);
             this.Controls.Add(this.txtComment);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtMail);
@@ -315,7 +294,6 @@
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.btnRegCustomer);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
@@ -354,7 +332,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtState;
         private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtMail;
@@ -363,7 +340,6 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Button btnRegCustomer;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;

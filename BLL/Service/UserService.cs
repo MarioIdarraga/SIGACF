@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using DAL.Contracts;
 using DAL.Factory;
@@ -38,7 +40,7 @@ namespace BLL.Service
 
             if (user == null)
             {
-                message = "Usuario no encontrado.";
+                message = "Usuario o contraseña incorrectos";
                 return false;
             }
 
@@ -80,13 +82,13 @@ namespace BLL.Service
             if (user.UserId == Guid.Empty)
                 throw new ArgumentException("El ID del usuario es obligatorio para modificar.");
 
-            ValidateUser(user);
+            ValidateUser(user); 
 
             var existingUser = _userRepo.GetOne(user.UserId);
             if (existingUser == null)
                 throw new InvalidOperationException("No se encontró el usuario a modificar.");
 
-            _userRepo.Update(user.UserId, user);
+            _userRepo.Update(user.UserId, user); // delegás el update a DAL
         }
 
         // VALIDACIONES
@@ -117,6 +119,11 @@ namespace BLL.Service
         private bool IsValidEmail(string email)
         {
             return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
+
+        public List<User> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail)
+        {
+            return _userRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail).ToList();
         }
     }
 }

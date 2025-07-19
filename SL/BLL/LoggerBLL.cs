@@ -11,22 +11,18 @@ namespace SL.Logging
 {
     internal class LoggerBLL
     {
-        public static void Store(string message, EventLevel severity)
+        public static void Store(string message, EventLevel severity, string performedBy)
         {
             var loggerRepository = SLFactory.Current.GetLoggerRepository();
 
-            loggerRepository.Store(message, severity);
+            loggerRepository.Store(message, severity, performedBy);
 
             switch (severity)
             {
                 case EventLevel.Critical:
-                    loggerRepository.Store(message, severity); // o StoreCritical
-                    break;
                 case EventLevel.Warning:
-                    loggerRepository.Store(message, severity);
-                    break;
                 case EventLevel.Error:
-                    loggerRepository.Store(message, severity);
+                    loggerRepository.Store(message, severity, performedBy);
                     break;
             }
         }

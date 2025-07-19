@@ -28,7 +28,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate(); 
             var repo = Factory.Current.GetCustomerRepository();
             var bllService = new CustomerService(repo);
             _customerSLService = new CustomerSLService(bllService);
@@ -94,7 +94,6 @@ namespace UI
             txtNroDocument.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
-            txtState.Text = "";
             txtComment.Text = "";
             txtTelephone.Text = "";
             txtMail.Text = "";

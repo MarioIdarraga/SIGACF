@@ -22,8 +22,8 @@ namespace UI
         IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
         private Panel _panelContenedor;
         public MenuCanBooking(Panel panelContenedor, Guid idBooking, Guid idCustomer, int nroDocument,
-                       DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime, string field,
-                       string promotion, int state)
+                      DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime,
+                      string field, string promotion, int state, decimal importeBooking)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
@@ -90,7 +90,6 @@ namespace UI
                 repositoryBooking.Update(canBooking.IdBooking, canBooking);
 
                 MessageBox.Show("Reserva cancelada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -100,19 +99,6 @@ namespace UI
             private void btnRegBooking_Click(object sender, EventArgs e)
         { 
 
-        }
-        
-        private void LimpiarCampos()
-        {
-            txtIdBooking.Clear();           
-            txtIdCustomer.Clear();
-            txtNroDocument.Clear();
-            txtRegistrationBooking.Clear();
-            txtStartTime.Clear();
-            txtEndTime.Clear();
-            txtField.Clear();
-            txtPromotion.Clear();
-            txtState.Clear();
         }
     }
 }
