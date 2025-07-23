@@ -119,12 +119,11 @@ namespace UI
                     Mail = txtMail.Text,
                     Address = txtAddress.Text,
                     Telephone = txtTelephone.Text,
-                    IsEmployee = chkIsEmployee.Checked,
                     State = int.Parse(txtState.Text)
                 };
 
                 // Llamar al método Update de la SL
-                _userSLService.Update(updatedUser.UserId, updatedUser);
+                _userSLService.Update(updatedUser);
 
                 MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

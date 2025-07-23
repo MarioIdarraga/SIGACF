@@ -49,6 +49,7 @@
     <Compile Include="CustomerState.cs" />
     <Compile Include="EstadoPago.cs" />
     <Compile Include="BookingState.cs" />
+    <Compile Include="IDVH.cs" />
     <Compile Include="Mail.cs" />
     <Compile Include="MetodoPago.cs" />
     <Compile Include="Pay.cs" />

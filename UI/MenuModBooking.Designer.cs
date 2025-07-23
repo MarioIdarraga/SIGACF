@@ -72,7 +72,7 @@
             this.btnFindBooking.Name = "btnFindBooking";
             this.btnFindBooking.Size = new System.Drawing.Size(174, 86);
             this.btnFindBooking.TabIndex = 72;
-            this.btnFindBooking.Text = "Busqueda de Reservas";
+            this.btnFindBooking.Text = "Búsqueda de Reservas";
             this.btnFindBooking.UseVisualStyleBackColor = false;
             this.btnFindBooking.Click += new System.EventHandler(this.btnFindBooking_Click);
             // 

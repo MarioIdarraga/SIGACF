@@ -92,7 +92,7 @@
             this.btnFindBooking.Name = "btnFindBooking";
             this.btnFindBooking.Size = new System.Drawing.Size(167, 44);
             this.btnFindBooking.TabIndex = 19;
-            this.btnFindBooking.Text = "Buscar Reserva";
+            this.btnFindBooking.Text = "Consultar Reserva";
             this.btnFindBooking.UseVisualStyleBackColor = true;
             this.btnFindBooking.Click += new System.EventHandler(this.btnFindBooking_Click);
             // 
@@ -142,7 +142,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(328, 32);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Busqueda de Reservas";
+            this.label1.Text = "Búsqueda de Reservas";
             // 
             // dtpRegistrationBooking
             // 
@@ -203,7 +203,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1242, 834);
+            this.ClientSize = new System.Drawing.Size(1201, 767);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnCanBooking);
             this.Controls.Add(this.btnRegPay);

@@ -57,7 +57,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(313, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Busqueda de Clientes";
+            this.label1.Text = "Búsqueda de Clientes";
             // 
             // btnRegCustomer
             // 
@@ -230,7 +230,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1244, 834);
+            this.ClientSize = new System.Drawing.Size(1246, 762);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnFindCustomer);
             this.Controls.Add(this.btnRegBooking);

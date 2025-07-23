@@ -12,56 +12,21 @@ namespace BLL.Service
     {
         private readonly IUserRepository<User> _userRepo;
 
-        // Constructor por defecto que obtiene el repositorio desde el Factory
         public UserService()
         {
             _userRepo = Factory.Current.GetUserRepository();
         }
 
-        // Constructor alternativo (útil para inyección de dependencias o tests)
         public UserService(IUserRepository<User> userRepo)
         {
             _userRepo = userRepo;
         }
 
-        // LOGIN
-        public bool Login(string loginName, string password, out User user, out string message)
+        public User GetByLoginName(string loginName)
         {
-            user = null;
-            message = string.Empty;
-
-            if (string.IsNullOrWhiteSpace(loginName) || string.IsNullOrWhiteSpace(password))
-            {
-                message = "El usuario y la contraseña son requeridos.";
-                return false;
-            }
-
-            user = _userRepo.GetByLoginName(loginName);
-
-            if (user == null)
-            {
-                message = "Usuario o contraseña incorrectos";
-                return false;
-            }
-
-            if (user.Password != password)
-            {
-                message = "Contraseña incorrecta.";
-                user = null;
-                return false;
-            }
-
-            if (user.State != 1)
-            {
-                message = "El usuario no está activo.";
-                user = null;
-                return false;
-            }
-
-            return true;
+            return _userRepo.GetByLoginName(loginName);
         }
 
-        // REGISTRO
         public void RegisterUser(User user)
         {
             ValidateUser(user);
@@ -73,25 +38,28 @@ namespace BLL.Service
             _userRepo.Insert(user);
         }
 
-        // ACTUALIZACIÓN
         public void UpdateUser(User user)
         {
             if (user == null)
-                throw new ArgumentNullException(nameof(user), "El usuario no puede ser nulo.");
+                throw new ArgumentNullException(nameof(user));
 
             if (user.UserId == Guid.Empty)
-                throw new ArgumentException("El ID del usuario es obligatorio para modificar.");
+                throw new ArgumentException("El ID del usuario es obligatorio.");
 
-            ValidateUser(user); 
+            ValidateUser(user);
 
             var existingUser = _userRepo.GetOne(user.UserId);
             if (existingUser == null)
                 throw new InvalidOperationException("No se encontró el usuario a modificar.");
 
-            _userRepo.Update(user.UserId, user); // delegás el update a DAL
+            _userRepo.Update(user.UserId, user);
         }
 
-        // VALIDACIONES
+        public List<User> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail)
+        {
+            return _userRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail).ToList();
+        }
+
         private void ValidateUser(User user)
         {
             if (string.IsNullOrWhiteSpace(user.LoginName))
@@ -120,12 +88,9 @@ namespace BLL.Service
         {
             return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
-
-        public List<User> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail)
-        {
-            return _userRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail).ToList();
-        }
     }
 }
+
+
 
 

@@ -194,11 +194,47 @@
     <Compile Include="MenuFindCustomers.Designer.cs">
       <DependentUpon>MenuFindCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuFindFields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuFindFields.Designer.cs">
+      <DependentUpon>MenuFindFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuFindPromotions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuFindPromotions.Designer.cs">
+      <DependentUpon>MenuFindPromotions.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuFindUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuFindUser.Designer.cs">
       <DependentUpon>MenuFindUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuModField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuModField.Designer.cs">
+      <DependentUpon>MenuModField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuModProm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuModProm.Designer.cs">
+      <DependentUpon>MenuModProm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuRegField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuRegField.Designer.cs">
+      <DependentUpon>MenuRegField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuRegProm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuRegProm.Designer.cs">
+      <DependentUpon>MenuRegProm.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuRegUser.cs">
       <SubType>Form</SubType>
@@ -272,6 +308,12 @@
     <Compile Include="MenuRepCan.Designer.cs">
       <DependentUpon>MenuRepCan.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuRepPromotions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuRepPromotions.Designer.cs">
+      <DependentUpon>MenuRepPromotions.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuRepSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,8 +343,26 @@
     <EmbeddedResource Include="MenuFindCustomers.resx">
       <DependentUpon>MenuFindCustomers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MenuFindFields.resx">
+      <DependentUpon>MenuFindFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuFindPromotions.resx">
+      <DependentUpon>MenuFindPromotions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuFindUser.resx">
       <DependentUpon>MenuFindUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuModField.resx">
+      <DependentUpon>MenuModField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuModProm.resx">
+      <DependentUpon>MenuModProm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuRegField.resx">
+      <DependentUpon>MenuRegField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuRegProm.resx">
+      <DependentUpon>MenuRegProm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuRegUser.resx">
       <DependentUpon>MenuRegUser.cs</DependentUpon>
@@ -340,6 +400,9 @@
     <EmbeddedResource Include="MenuRepCan.resx">
       <DependentUpon>MenuRepCan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MenuRepPromotions.resx">
+      <DependentUpon>MenuRepPromotions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuRepSales.resx">
       <DependentUpon>MenuRepSales.cs</DependentUpon>
     </EmbeddedResource>
@@ -355,6 +418,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="I18n\Language.pt-BR">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="I18n\Language.en-US">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

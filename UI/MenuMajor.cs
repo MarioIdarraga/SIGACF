@@ -25,7 +25,8 @@ namespace UI
 
             // Cargar opciones de idioma en el ComboBox
             cmbLanguage.Items.Add("Español");
-            cmbLanguage.Items.Add("English");
+            cmbLanguage.Items.Add("Inglés");
+            cmbLanguage.Items.Add("Portugués");
             cmbLanguage.SelectedIndex = 0; // Idioma por defecto
 
             this.Translate(); // Aplica traducción inicial
@@ -38,10 +39,14 @@ namespace UI
 
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbLanguage.SelectedItem.ToString() == "Español")
+            string selectedLanguage = cmbLanguage.SelectedItem.ToString();
+
+            if (selectedLanguage == "Español")
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
-            else
+            else if (selectedLanguage == "Inglés")
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            else if (selectedLanguage == "Portugués")
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
 
             this.Translate(); // Método de extensión para traducir textos
         }

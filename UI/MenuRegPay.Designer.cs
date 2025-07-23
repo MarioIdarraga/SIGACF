@@ -41,12 +41,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(227, 458);
+            this.comboBox1.Location = new System.Drawing.Point(227, 507);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(186, 24);
             this.comboBox1.TabIndex = 114;
@@ -70,7 +72,7 @@
             this.btnFindBooking.Name = "btnFindBooking";
             this.btnFindBooking.Size = new System.Drawing.Size(174, 86);
             this.btnFindBooking.TabIndex = 111;
-            this.btnFindBooking.Text = "Busqueda de Reservas";
+            this.btnFindBooking.Text = "Búsqueda de Reservas";
             this.btnFindBooking.UseVisualStyleBackColor = false;
             this.btnFindBooking.Click += new System.EventHandler(this.btnFindBooking_Click);
             // 
@@ -83,7 +85,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(227, 387);
+            this.textBox3.Location = new System.Drawing.Point(227, 436);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(186, 22);
             this.textBox3.TabIndex = 109;
@@ -129,7 +131,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(61, 457);
+            this.label5.Location = new System.Drawing.Point(61, 506);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(132, 18);
             this.label5.TabIndex = 102;
@@ -140,7 +142,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(61, 391);
+            this.label4.Location = new System.Drawing.Point(61, 440);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 18);
             this.label4.TabIndex = 101;
@@ -168,12 +170,32 @@
             this.label10.TabIndex = 99;
             this.label10.Text = "Nro. de Pago";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(229, 376);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(186, 22);
+            this.textBox1.TabIndex = 116;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label2.Location = new System.Drawing.Point(63, 380);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(151, 23);
+            this.label2.TabIndex = 115;
+            this.label2.Text = "Fecha de Pago";
+            // 
             // MenuRegPay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1007, 667);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFindBooking);
@@ -209,5 +231,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

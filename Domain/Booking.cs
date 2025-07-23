@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Booking
+    public class Booking : IDVH
     {
 
         public Guid IdBooking { get; set; }
@@ -29,7 +29,7 @@ namespace Domain
 
         public int State { get; set; }
         public decimal ImporteBooking { get; set; }
-        ///No se ve en la carga de la reserva
+        public string DVH { get; set; }
 
     }
 }

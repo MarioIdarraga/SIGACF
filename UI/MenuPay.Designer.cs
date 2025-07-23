@@ -191,7 +191,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 32);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Busqueda de Pagos";
+            this.label1.Text = "Búsqueda de Pagos";
             // 
             // MenuPay
             // 

@@ -48,7 +48,6 @@
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.chkIsEmployee = new System.Windows.Forms.CheckBox();
             this.txtLoginName = new System.Windows.Forms.TextBox();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -125,7 +124,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Location = new System.Drawing.Point(498, 320);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 23);
+            this.label7.Size = new System.Drawing.Size(79, 18);
             this.label7.TabIndex = 28;
             this.label7.Text = "Domicilio";
             // 
@@ -251,18 +250,6 @@
             this.label10.TabIndex = 63;
             this.label10.Text = "Cargo/Posición";
             // 
-            // chkIsEmployee
-            // 
-            this.chkIsEmployee.AutoSize = true;
-            this.chkIsEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkIsEmployee.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chkIsEmployee.Location = new System.Drawing.Point(504, 527);
-            this.chkIsEmployee.Name = "chkIsEmployee";
-            this.chkIsEmployee.Size = new System.Drawing.Size(151, 24);
-            this.chkIsEmployee.TabIndex = 66;
-            this.chkIsEmployee.Text = "Es Empleado?";
-            this.chkIsEmployee.UseVisualStyleBackColor = true;
-            // 
             // txtLoginName
             // 
             this.txtLoginName.Location = new System.Drawing.Point(212, 264);
@@ -297,7 +284,6 @@
             this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtLoginName);
-            this.Controls.Add(this.chkIsEmployee);
             this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
@@ -347,7 +333,6 @@
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox chkIsEmployee;
         private System.Windows.Forms.TextBox txtLoginName;
         private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label11;

@@ -80,7 +80,7 @@ namespace UI
 
                 _customerSLService.Insert(newCustomer);
 
-                MessageBox.Show("Cliente guardado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El Cliente se ha Registrado Correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LimpiarCampos();
             }

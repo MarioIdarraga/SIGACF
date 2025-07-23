@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Field
+    public class Field : IDVH
     {
         public Guid IdField { get; set; }
 
@@ -18,6 +18,7 @@ namespace Domain
 
         public float HourlyCost { get; set; }
 
-        public int IdFieldState { get; set; } 
+        public int IdFieldState { get; set; }
+        public string DVH { get; set; }
     }
 }

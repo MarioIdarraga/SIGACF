@@ -70,7 +70,7 @@
             this.btnFindBooking.Name = "btnFindBooking";
             this.btnFindBooking.Size = new System.Drawing.Size(174, 86);
             this.btnFindBooking.TabIndex = 92;
-            this.btnFindBooking.Text = "Busqueda de Reservas";
+            this.btnFindBooking.Text = "Búsqueda de Reservas";
             this.btnFindBooking.UseVisualStyleBackColor = false;
             this.btnFindBooking.Click += new System.EventHandler(this.btnFindBooking_Click);
             // 
@@ -177,7 +177,7 @@
             this.btnFindCustomer.Name = "btnFindCustomer";
             this.btnFindCustomer.Size = new System.Drawing.Size(178, 87);
             this.btnFindCustomer.TabIndex = 99;
-            this.btnFindCustomer.Text = "Busqueda de Clientes";
+            this.btnFindCustomer.Text = "Búsqueda de Clientes";
             this.btnFindCustomer.UseVisualStyleBackColor = false;
             this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
             // 
@@ -248,7 +248,7 @@
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label9.Location = new System.Drawing.Point(511, 376);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 23);
+            this.label9.Size = new System.Drawing.Size(65, 18);
             this.label9.TabIndex = 107;
             this.label9.Text = "Importe";
             // 

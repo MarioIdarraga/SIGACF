@@ -53,5 +53,20 @@ namespace SL.Factory
 
             throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
         }
+
+        public IVerificadorVerticalRepository GetVerificadorVerticalRepository()
+        {
+            if (_backendSL == "SqlServer")
+            {
+                return new SL.DAL.Repositories.SqlServer.VerificadorVerticalRepository();
+            }
+
+            if (_backendSL == "File")
+            {
+                return new SL.DAL.Repositories.File.VerificadorVerticalRepository();
+            }
+
+            throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
+        }
     }
 }
