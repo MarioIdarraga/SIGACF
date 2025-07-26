@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(barraTitulo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
@@ -57,15 +58,6 @@
             this.btnClientes = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
-            this.cmbLanguage = new System.Windows.Forms.ComboBox();
-            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(16, 200);
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(121, 24);
-            this.cmbLanguage.TabIndex = 1;
-            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
-
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
@@ -96,6 +88,16 @@
             this.panel1.Size = new System.Drawing.Size(1733, 43);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(1033, 12);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(121, 24);
+            this.cmbLanguage.TabIndex = 4;
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
             // 
             // btnRestaurar
             // 
@@ -384,7 +386,7 @@
             this.btnAlquiler.Name = "btnAlquiler";
             this.btnAlquiler.Size = new System.Drawing.Size(339, 47);
             this.btnAlquiler.TabIndex = 3;
-            this.btnAlquiler.Text = "Ventas";
+            this.btnAlquiler.Text = "Ventas - Reservas";
             this.btnAlquiler.UseVisualStyleBackColor = true;
             this.btnAlquiler.Click += new System.EventHandler(this.btnAlquiler_Click);
             // 
@@ -412,7 +414,7 @@
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(333, 47);
             this.btnClientes.TabIndex = 1;
-            this.btnClientes.Text = "Clientes";
+            this.btnClientes.Text = "Ventas - Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
@@ -436,14 +438,6 @@
             this.panelContenedor.Name = "panelContenedor";
             this.panelContenedor.Size = new System.Drawing.Size(1378, 757);
             this.panelContenedor.TabIndex = 2;
-            // 
-            // cmbLanguage
-            // 
-            this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(1033, 12);
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(121, 24);
-            this.cmbLanguage.TabIndex = 4;
             // 
             // barraTitulo
             // 

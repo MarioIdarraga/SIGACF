@@ -38,9 +38,9 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRegCustomer = new System.Windows.Forms.Button();
-            this.btnFindCustomer = new System.Windows.Forms.Button();
-            this.btnModCustomer = new System.Windows.Forms.Button();
+            this.btnRegPromotion = new System.Windows.Forms.Button();
+            this.btnFindPromotion = new System.Windows.Forms.Button();
+            this.btnModPromotion = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -138,39 +138,42 @@
             this.label1.TabIndex = 89;
             this.label1.Text = "Modificar Promoción";
             // 
-            // btnRegCustomer
+            // btnRegPromotion
             // 
-            this.btnRegCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRegCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegCustomer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegCustomer.Location = new System.Drawing.Point(252, 44);
-            this.btnRegCustomer.Name = "btnRegCustomer";
-            this.btnRegCustomer.Size = new System.Drawing.Size(171, 86);
-            this.btnRegCustomer.TabIndex = 88;
-            this.btnRegCustomer.Text = "Cargar Promoción";
-            this.btnRegCustomer.UseVisualStyleBackColor = false;
+            this.btnRegPromotion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnRegPromotion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegPromotion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegPromotion.Location = new System.Drawing.Point(252, 44);
+            this.btnRegPromotion.Name = "btnRegPromotion";
+            this.btnRegPromotion.Size = new System.Drawing.Size(171, 86);
+            this.btnRegPromotion.TabIndex = 88;
+            this.btnRegPromotion.Text = "Cargar Promoción";
+            this.btnRegPromotion.UseVisualStyleBackColor = false;
+            this.btnRegPromotion.Click += new System.EventHandler(this.btnRegPromotion_Click);
             // 
-            // btnFindCustomer
+            // btnFindPromotion
             // 
-            this.btnFindCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnFindCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCustomer.Location = new System.Drawing.Point(72, 44);
-            this.btnFindCustomer.Name = "btnFindCustomer";
-            this.btnFindCustomer.Size = new System.Drawing.Size(174, 86);
-            this.btnFindCustomer.TabIndex = 87;
-            this.btnFindCustomer.Text = "Búsqueda de Promociones";
-            this.btnFindCustomer.UseVisualStyleBackColor = false;
+            this.btnFindPromotion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnFindPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindPromotion.Location = new System.Drawing.Point(72, 44);
+            this.btnFindPromotion.Name = "btnFindPromotion";
+            this.btnFindPromotion.Size = new System.Drawing.Size(174, 86);
+            this.btnFindPromotion.TabIndex = 87;
+            this.btnFindPromotion.Text = "Búsqueda de Promociones";
+            this.btnFindPromotion.UseVisualStyleBackColor = false;
+            this.btnFindPromotion.Click += new System.EventHandler(this.btnFindPromotion_Click);
             // 
-            // btnModCustomer
+            // btnModPromotion
             // 
-            this.btnModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModCustomer.Location = new System.Drawing.Point(527, 495);
-            this.btnModCustomer.Name = "btnModCustomer";
-            this.btnModCustomer.Size = new System.Drawing.Size(162, 52);
-            this.btnModCustomer.TabIndex = 86;
-            this.btnModCustomer.Text = "Modificar Promoción";
-            this.btnModCustomer.UseVisualStyleBackColor = true;
+            this.btnModPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModPromotion.Location = new System.Drawing.Point(527, 495);
+            this.btnModPromotion.Name = "btnModPromotion";
+            this.btnModPromotion.Size = new System.Drawing.Size(162, 52);
+            this.btnModPromotion.TabIndex = 86;
+            this.btnModPromotion.Text = "Modificar Promoción";
+            this.btnModPromotion.UseVisualStyleBackColor = true;
+            this.btnModPromotion.Click += new System.EventHandler(this.btnModPromotion_Click);
             // 
             // textBox2
             // 
@@ -196,9 +199,9 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnRegCustomer);
-            this.Controls.Add(this.btnFindCustomer);
-            this.Controls.Add(this.btnModCustomer);
+            this.Controls.Add(this.btnRegPromotion);
+            this.Controls.Add(this.btnFindPromotion);
+            this.Controls.Add(this.btnModPromotion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuModProm";
             this.Text = "MenuModProm";
@@ -219,9 +222,9 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnRegCustomer;
-        private System.Windows.Forms.Button btnFindCustomer;
-        private System.Windows.Forms.Button btnModCustomer;
+        private System.Windows.Forms.Button btnRegPromotion;
+        private System.Windows.Forms.Button btnFindPromotion;
+        private System.Windows.Forms.Button btnModPromotion;
         private System.Windows.Forms.TextBox textBox2;
     }
 }

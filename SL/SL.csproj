@@ -78,12 +78,14 @@
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
     <Compile Include="Helpers\AesEncryptionHelper.cs" />
+    <Compile Include="Helpers\DVHHelper.cs" />
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\PermissionHelper.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Service\BookingSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
     <Compile Include="Service\DVVService.cs" />
+    <Compile Include="Service\FieldSLService.cs" />
     <Compile Include="Service\PermissionSLService.cs" />
     <Compile Include="Service\UserSLService.cs" />
     <Compile Include="Service\LoggerService.cs" />

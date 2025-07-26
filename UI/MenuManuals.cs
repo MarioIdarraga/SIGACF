@@ -7,19 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.Factory;
+using SL.Service.Extension;
 using UI.Helpers;
 
 namespace UI
 {
-    public partial class MenuAdmin : Form
+    public partial class MenuManuals : Form
     {
         private Panel _panelContenedor;
-
-        public MenuAdmin(Panel panelContenedor)
+        public MenuManuals(Panel panelContenedor)
         {
+
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate(); //Traducir
+
+        }
+
+        private void btnMenuAdmin_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuAdmin(_panelContenedor));
         }
 
         private void OpenFormChild(object formchild)
@@ -32,26 +40,6 @@ namespace UI
             _panelContenedor.Controls.Add(fh);
             _panelContenedor.Tag = fh;
             fh.Show();
-        }
-
-        private void btnAdminEmployees_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuFindUser(_panelContenedor));
-        }
-
-        private void btnAdminFields_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuFindFields(_panelContenedor));
-        }
-
-        private void btnAdminProm_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuFindPromotions(_panelContenedor));
-        }
-
-        private void btnAdminManuals_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuManuals(_panelContenedor));
         }
     }
 }

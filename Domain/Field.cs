@@ -16,9 +16,16 @@ namespace Domain
 
         public int FieldType { get; set; }
 
-        public float HourlyCost { get; set; }
+        public decimal HourlyCost { get; set; }
 
         public int IdFieldState { get; set; }
         public string DVH { get; set; }
+    }
+
+    public enum FieldType
+    {
+        Futbol5 = 1,
+        Futbol7 = 2,
+        Futbol11 = 3
     }
 }

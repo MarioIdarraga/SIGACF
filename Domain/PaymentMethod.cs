@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Address
+    public class PaymentMethod
     {
-        public int id_Direccion { get; set; }
 
-        public string calle { get; set; }
-
-        public int numero { get; set; }
+        public int id_MetodoPago { get; set; }
 
         public string descripcion { get; set; }
-
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class MetodoPago
+    public class PayState
     {
 
-        public int id_MetodoPago { get; set; }
+        public int id_EstadoPago { get; set; }
 
         public string descripcion { get; set; }
     }

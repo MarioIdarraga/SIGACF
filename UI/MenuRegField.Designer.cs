@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.label10 = new System.Windows.Forms.Label();
-            this.txtTelephone = new System.Windows.Forms.TextBox();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.txtNroDocument = new System.Windows.Forms.TextBox();
-            this.btnRegCustomer = new System.Windows.Forms.Button();
+            this.txtHourlyCost = new System.Windows.Forms.TextBox();
+            this.txtCapacity = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.btnRegField = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.btnFindCustomer = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbFieldType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label10
@@ -48,40 +48,41 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Location = new System.Drawing.Point(426, 183);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(273, 40);
+            this.label10.Size = new System.Drawing.Size(218, 32);
             this.label10.TabIndex = 74;
             this.label10.Text = "Cargar Cancha";
             // 
-            // txtTelephone
+            // txtHourlyCost
             // 
-            this.txtTelephone.Location = new System.Drawing.Point(215, 397);
-            this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.Size = new System.Drawing.Size(186, 22);
-            this.txtTelephone.TabIndex = 70;
+            this.txtHourlyCost.Location = new System.Drawing.Point(215, 397);
+            this.txtHourlyCost.Name = "txtHourlyCost";
+            this.txtHourlyCost.Size = new System.Drawing.Size(186, 22);
+            this.txtHourlyCost.TabIndex = 70;
             // 
-            // txtLastName
+            // txtCapacity
             // 
-            this.txtLastName.Location = new System.Drawing.Point(215, 331);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(186, 22);
-            this.txtLastName.TabIndex = 69;
+            this.txtCapacity.Location = new System.Drawing.Point(215, 331);
+            this.txtCapacity.Name = "txtCapacity";
+            this.txtCapacity.Size = new System.Drawing.Size(186, 22);
+            this.txtCapacity.TabIndex = 69;
             // 
-            // txtNroDocument
+            // txtName
             // 
-            this.txtNroDocument.Location = new System.Drawing.Point(215, 262);
-            this.txtNroDocument.Name = "txtNroDocument";
-            this.txtNroDocument.Size = new System.Drawing.Size(186, 22);
-            this.txtNroDocument.TabIndex = 67;
+            this.txtName.Location = new System.Drawing.Point(215, 262);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(186, 22);
+            this.txtName.TabIndex = 67;
             // 
-            // btnRegCustomer
+            // btnRegField
             // 
-            this.btnRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegCustomer.Location = new System.Drawing.Point(508, 504);
-            this.btnRegCustomer.Name = "btnRegCustomer";
-            this.btnRegCustomer.Size = new System.Drawing.Size(162, 42);
-            this.btnRegCustomer.TabIndex = 66;
-            this.btnRegCustomer.Text = "Cargar Cancha";
-            this.btnRegCustomer.UseVisualStyleBackColor = true;
+            this.btnRegField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegField.Location = new System.Drawing.Point(508, 504);
+            this.btnRegField.Name = "btnRegField";
+            this.btnRegField.Size = new System.Drawing.Size(162, 42);
+            this.btnRegField.TabIndex = 66;
+            this.btnRegField.Text = "Cargar Cancha";
+            this.btnRegField.UseVisualStyleBackColor = true;
+            this.btnRegField.Click += new System.EventHandler(this.btnRegField_Click);
             // 
             // label14
             // 
@@ -123,7 +124,7 @@
             this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label18.Location = new System.Drawing.Point(49, 266);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(85, 23);
+            this.label18.Size = new System.Drawing.Size(68, 18);
             this.label18.TabIndex = 59;
             this.label18.Text = "Nombre";
             // 
@@ -137,14 +138,15 @@
             this.btnFindCustomer.TabIndex = 58;
             this.btnFindCustomer.Text = "Búsqueda de Canchas";
             this.btnFindCustomer.UseVisualStyleBackColor = false;
+            this.btnFindCustomer.Click += new System.EventHandler(this.btnFindField_Click);
             // 
-            // comboBox1
+            // cmbFieldType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(215, 461);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 24);
-            this.comboBox1.TabIndex = 75;
+            this.cmbFieldType.FormattingEnabled = true;
+            this.cmbFieldType.Location = new System.Drawing.Point(215, 461);
+            this.cmbFieldType.Name = "cmbFieldType";
+            this.cmbFieldType.Size = new System.Drawing.Size(186, 24);
+            this.cmbFieldType.TabIndex = 75;
             // 
             // MenuRegField
             // 
@@ -152,12 +154,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(992, 668);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbFieldType);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtTelephone);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.txtNroDocument);
-            this.Controls.Add(this.btnRegCustomer);
+            this.Controls.Add(this.txtHourlyCost);
+            this.Controls.Add(this.txtCapacity);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.btnRegField);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label16);
@@ -174,15 +176,15 @@
         #endregion
 
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTelephone;
-        private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.TextBox txtNroDocument;
-        private System.Windows.Forms.Button btnRegCustomer;
+        private System.Windows.Forms.TextBox txtHourlyCost;
+        private System.Windows.Forms.TextBox txtCapacity;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button btnRegField;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnFindCustomer;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbFieldType;
     }
 }

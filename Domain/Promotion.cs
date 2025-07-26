@@ -11,8 +11,6 @@ namespace Domain
 
         public Guid IdPromotion { get; set; }
 
-   //     public int Id { get; set; }
-
         public string Name { get; set; }
 
         public DateTime ValidFrom { get; set; }

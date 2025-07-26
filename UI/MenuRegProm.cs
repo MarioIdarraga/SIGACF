@@ -7,14 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.Factory;
+using SL.Service.Extension;
+using UI.Helpers;
 
 namespace UI
 {
     public partial class MenuRegProm : Form
     {
-        public MenuRegProm()
+        private Panel _panelContenedor;
+
+        //private readonly PromotionSLService _promotionSLService;
+
+        public MenuRegProm(Panel panelContenedor)
         {
             InitializeComponent();
+            _panelContenedor = panelContenedor;
+            this.Translate();
+            var promotionRepo = Factory.Current.GetPromotionRepository();
+            //var promotionService = new BLL.Service.PromotionService(promotionRepo);
+            //_promotionSLService = new PromotionSLService(promotionService);
+        }
+
+        private void OpenFormChild(object formchild)
+        {
+            if (_panelContenedor.Controls.Count > 0)
+                _panelContenedor.Controls.RemoveAt(0);
+
+            Form fh = formchild as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            _panelContenedor.Controls.Add(fh);
+            _panelContenedor.Tag = fh;
+            fh.Show();
+        }
+
+        private void btnFindPromotion_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuFindPromotions(_panelContenedor));
+        }
+
+        private void btnRegPromotion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

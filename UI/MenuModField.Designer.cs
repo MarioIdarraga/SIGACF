@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRegCustomer = new System.Windows.Forms.Button();
-            this.btnFindCustomer = new System.Windows.Forms.Button();
-            this.btnModCustomer = new System.Windows.Forms.Button();
+            this.btnRegField = new System.Windows.Forms.Button();
+            this.btnFindField = new System.Windows.Forms.Button();
+            this.btnModField = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
@@ -51,43 +51,46 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(425, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(314, 40);
+            this.label1.Size = new System.Drawing.Size(251, 32);
             this.label1.TabIndex = 59;
             this.label1.Text = "Modificar Cancha";
             // 
-            // btnRegCustomer
+            // btnRegField
             // 
-            this.btnRegCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRegCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegCustomer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegCustomer.Location = new System.Drawing.Point(232, 55);
-            this.btnRegCustomer.Name = "btnRegCustomer";
-            this.btnRegCustomer.Size = new System.Drawing.Size(171, 86);
-            this.btnRegCustomer.TabIndex = 58;
-            this.btnRegCustomer.Text = "Cargar Cancha";
-            this.btnRegCustomer.UseVisualStyleBackColor = false;
+            this.btnRegField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnRegField.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegField.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegField.Location = new System.Drawing.Point(232, 55);
+            this.btnRegField.Name = "btnRegField";
+            this.btnRegField.Size = new System.Drawing.Size(171, 86);
+            this.btnRegField.TabIndex = 58;
+            this.btnRegField.Text = "Cargar Cancha";
+            this.btnRegField.UseVisualStyleBackColor = false;
+            this.btnRegField.Click += new System.EventHandler(this.btnRegField_Click);
             // 
-            // btnFindCustomer
+            // btnFindField
             // 
-            this.btnFindCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnFindCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCustomer.Location = new System.Drawing.Point(52, 55);
-            this.btnFindCustomer.Name = "btnFindCustomer";
-            this.btnFindCustomer.Size = new System.Drawing.Size(174, 86);
-            this.btnFindCustomer.TabIndex = 57;
-            this.btnFindCustomer.Text = "Búsqueda de Canchas";
-            this.btnFindCustomer.UseVisualStyleBackColor = false;
+            this.btnFindField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnFindField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindField.Location = new System.Drawing.Point(52, 55);
+            this.btnFindField.Name = "btnFindField";
+            this.btnFindField.Size = new System.Drawing.Size(174, 86);
+            this.btnFindField.TabIndex = 57;
+            this.btnFindField.Text = "Búsqueda de Canchas";
+            this.btnFindField.UseVisualStyleBackColor = false;
+            this.btnFindField.Click += new System.EventHandler(this.btnFindField_Click);
             // 
-            // btnModCustomer
+            // btnModField
             // 
-            this.btnModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModCustomer.Location = new System.Drawing.Point(507, 506);
-            this.btnModCustomer.Name = "btnModCustomer";
-            this.btnModCustomer.Size = new System.Drawing.Size(162, 42);
-            this.btnModCustomer.TabIndex = 48;
-            this.btnModCustomer.Text = "Modificar Cancha";
-            this.btnModCustomer.UseVisualStyleBackColor = true;
+            this.btnModField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModField.Location = new System.Drawing.Point(507, 506);
+            this.btnModField.Name = "btnModField";
+            this.btnModField.Size = new System.Drawing.Size(162, 42);
+            this.btnModField.TabIndex = 48;
+            this.btnModField.Text = "Modificar Cancha";
+            this.btnModField.UseVisualStyleBackColor = true;
+            this.btnModField.Click += new System.EventHandler(this.btnModField_Click);
             // 
             // comboBox1
             // 
@@ -176,7 +179,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Location = new System.Drawing.Point(52, 510);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 23);
+            this.label2.Size = new System.Drawing.Size(61, 18);
             this.label2.TabIndex = 84;
             this.label2.Text = "Estado";
             // 
@@ -197,9 +200,9 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnRegCustomer);
-            this.Controls.Add(this.btnFindCustomer);
-            this.Controls.Add(this.btnModCustomer);
+            this.Controls.Add(this.btnRegField);
+            this.Controls.Add(this.btnFindField);
+            this.Controls.Add(this.btnModField);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuModField";
             this.Text = "MenuModField";
@@ -211,9 +214,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnRegCustomer;
-        private System.Windows.Forms.Button btnFindCustomer;
-        private System.Windows.Forms.Button btnModCustomer;
+        private System.Windows.Forms.Button btnRegField;
+        private System.Windows.Forms.Button btnFindField;
+        private System.Windows.Forms.Button btnModField;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.TextBox txtLastName;

@@ -212,6 +212,12 @@
     <Compile Include="MenuFindUser.Designer.cs">
       <DependentUpon>MenuFindUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuManuals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuManuals.Designer.cs">
+      <DependentUpon>MenuManuals.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuModField.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuFindUser.resx">
       <DependentUpon>MenuFindUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuManuals.resx">
+      <DependentUpon>MenuManuals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuModField.resx">
       <DependentUpon>MenuModField.cs</DependentUpon>

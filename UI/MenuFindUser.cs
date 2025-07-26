@@ -27,7 +27,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate(); //Traducir
 
             var userRepo = Factory.Current.GetUserRepository();
             var userService = new BLL.Service.UserService(userRepo);

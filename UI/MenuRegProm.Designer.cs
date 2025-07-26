@@ -32,12 +32,12 @@
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
-            this.btnRegCustomer = new System.Windows.Forms.Button();
+            this.btnRegPromotion = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnFindCustomer = new System.Windows.Forms.Button();
+            this.btnFindPromotion = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Location = new System.Drawing.Point(436, 192);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(324, 40);
+            this.label10.Size = new System.Drawing.Size(259, 32);
             this.label10.TabIndex = 85;
             this.label10.Text = "Cargar Promoción";
             // 
@@ -73,15 +73,16 @@
             this.txtNroDocument.Size = new System.Drawing.Size(186, 22);
             this.txtNroDocument.TabIndex = 82;
             // 
-            // btnRegCustomer
+            // btnRegPromotion
             // 
-            this.btnRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegCustomer.Location = new System.Drawing.Point(518, 513);
-            this.btnRegCustomer.Name = "btnRegCustomer";
-            this.btnRegCustomer.Size = new System.Drawing.Size(162, 42);
-            this.btnRegCustomer.TabIndex = 81;
-            this.btnRegCustomer.Text = "Cargar Promoción";
-            this.btnRegCustomer.UseVisualStyleBackColor = true;
+            this.btnRegPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegPromotion.Location = new System.Drawing.Point(518, 513);
+            this.btnRegPromotion.Name = "btnRegPromotion";
+            this.btnRegPromotion.Size = new System.Drawing.Size(162, 42);
+            this.btnRegPromotion.TabIndex = 81;
+            this.btnRegPromotion.Text = "Cargar Promoción";
+            this.btnRegPromotion.UseVisualStyleBackColor = true;
+            this.btnRegPromotion.Click += new System.EventHandler(this.btnRegPromotion_Click);
             // 
             // label14
             // 
@@ -90,7 +91,7 @@
             this.label14.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label14.Location = new System.Drawing.Point(59, 477);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(123, 23);
+            this.label14.Size = new System.Drawing.Size(98, 18);
             this.label14.TabIndex = 80;
             this.label14.Text = "Descripción";
             // 
@@ -101,7 +102,7 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label15.Location = new System.Drawing.Point(59, 410);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(150, 23);
+            this.label15.Size = new System.Drawing.Size(120, 18);
             this.label15.TabIndex = 79;
             this.label15.Text = "Vigencia Hasta";
             // 
@@ -112,7 +113,7 @@
             this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label16.Location = new System.Drawing.Point(59, 344);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(155, 23);
+            this.label16.Size = new System.Drawing.Size(124, 18);
             this.label16.TabIndex = 78;
             this.label16.Text = "Vigencia Desde";
             // 
@@ -127,16 +128,17 @@
             this.label18.TabIndex = 77;
             this.label18.Text = "Nombre";
             // 
-            // btnFindCustomer
+            // btnFindPromotion
             // 
-            this.btnFindCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnFindCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCustomer.Location = new System.Drawing.Point(64, 68);
-            this.btnFindCustomer.Name = "btnFindCustomer";
-            this.btnFindCustomer.Size = new System.Drawing.Size(178, 87);
-            this.btnFindCustomer.TabIndex = 76;
-            this.btnFindCustomer.Text = "Búsqueda de Promociones";
-            this.btnFindCustomer.UseVisualStyleBackColor = false;
+            this.btnFindPromotion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnFindPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindPromotion.Location = new System.Drawing.Point(64, 68);
+            this.btnFindPromotion.Name = "btnFindPromotion";
+            this.btnFindPromotion.Size = new System.Drawing.Size(178, 87);
+            this.btnFindPromotion.TabIndex = 76;
+            this.btnFindPromotion.Text = "Búsqueda de Promociones";
+            this.btnFindPromotion.UseVisualStyleBackColor = false;
+            this.btnFindPromotion.Click += new System.EventHandler(this.btnFindPromotion_Click);
             // 
             // textBox1
             // 
@@ -156,12 +158,12 @@
             this.Controls.Add(this.txtTelephone);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtNroDocument);
-            this.Controls.Add(this.btnRegCustomer);
+            this.Controls.Add(this.btnRegPromotion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.btnFindCustomer);
+            this.Controls.Add(this.btnFindPromotion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuRegProm";
             this.Text = "MenuRegProm";
@@ -176,12 +178,12 @@
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtNroDocument;
-        private System.Windows.Forms.Button btnRegCustomer;
+        private System.Windows.Forms.Button btnRegPromotion;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button btnFindCustomer;
+        private System.Windows.Forms.Button btnFindPromotion;
         private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -17,12 +17,12 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Fields] (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState ) VALUES (@Name, @Capacity, @FieldType, @HourlyCost, IdFieldState)";
+            get => "INSERT INTO [dbo].[Fields] (Name, Capacity, FieldType, HourlyCost, IdFieldState, DVH ) VALUES (@Name, @Capacity, @FieldType, @HourlyCost, @IdFieldState, @DVH)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Fields] SET (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState ) WHERE @IdField = @IdField";
+            get => "UPDATE [dbo].[Fields] SET (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState, DVH ) WHERE @IdField = @IdField";
         }
 
         private string DeleteStatement
@@ -32,20 +32,18 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState FROM [dbo].[Fields] WHERE IdField = @IdField";
+            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState, DVH FROM [dbo].[Fields] WHERE IdField = @IdField";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState  FROM [dbo].[Fields]";
+            get => "SELECT IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState, DVH  FROM [dbo].[Fields]";
         }
         #endregion
 
         #region Methods
 
-        /// <summary>
-        /// Elimina un registro de la tabla [Field] según su ID.
-        /// </summary>
+
         public void Delete(Guid Id)
         {
             SqlHelper.ExecuteNonQuery(
@@ -58,9 +56,7 @@ namespace DAL.Repositories.SqlServer
             );
         }
 
-        /// <summary>
-        /// Devuelve un objeto Field según su ID (o null si no existe).
-        /// </summary>
+        
         public Field GetOne(Guid Id)
         {
             using (var reader = SqlHelper.ExecuteReader(
@@ -79,17 +75,15 @@ namespace DAL.Repositories.SqlServer
                         Name = reader.GetString(1),
                         Capacity = reader.GetInt32(2),
                         FieldType = reader.GetInt32(3),
-                        HourlyCost = (float)reader.GetDecimal(4),  // Se asume que es DECIMAL(10,2) en SQL
-                        IdFieldState = reader.GetInt32(5)
+                        HourlyCost = reader.GetDecimal(4), 
+                        IdFieldState = reader.GetInt32(5),
+                        DVH = reader.GetString(6)
                     };
                 }
             }
             return null;
         }
 
-        /// <summary>
-        /// Inserta un nuevo registro en la tabla [Field].
-        /// </summary>
         public void Insert(Field Object)
         {
             SqlHelper.ExecuteNonQuery(
@@ -106,9 +100,6 @@ namespace DAL.Repositories.SqlServer
             );
         }
 
-        /// <summary>
-        /// Actualiza un registro en la tabla [Field].
-        /// </summary>
         public void Update(Guid Id, Field Object)
         {
             SqlHelper.ExecuteNonQuery(
@@ -125,9 +116,6 @@ namespace DAL.Repositories.SqlServer
             );
         }
 
-        /// <summary>
-        /// Retorna todos los registros de la tabla [Field].
-        /// </summary>
         public IEnumerable<Field> GetAll()
         {
             var list = new List<Field>();
@@ -143,8 +131,9 @@ namespace DAL.Repositories.SqlServer
                         Name = reader.GetString(1),
                         Capacity = reader.GetInt32(2),
                         FieldType = reader.GetInt32(3),
-                        HourlyCost = (float)reader.GetDecimal(4),
-                        IdFieldState = reader.GetInt32(5)
+                        HourlyCost = reader.GetDecimal(4),
+                        IdFieldState = reader.GetInt32(5),
+                        DVH = reader.GetString(6)
                     });
                 }
             }

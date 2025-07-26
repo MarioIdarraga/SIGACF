@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.lblStatus = new System.Windows.Forms.Label();
-            this.btnModUser = new System.Windows.Forms.Button();
+            this.btnModPromotion = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnFindUser = new System.Windows.Forms.Button();
+            this.btnFindPromotion = new System.Windows.Forms.Button();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
-            this.btnRegUser = new System.Windows.Forms.Button();
+            this.btnRegPromotion = new System.Windows.Forms.Button();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -56,17 +56,18 @@
             this.lblStatus.Text = "Listo para buscar promociones";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // btnModUser
+            // btnModPromotion
             // 
-            this.btnModUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnModUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModUser.Location = new System.Drawing.Point(385, 7);
-            this.btnModUser.Name = "btnModUser";
-            this.btnModUser.Size = new System.Drawing.Size(176, 85);
-            this.btnModUser.TabIndex = 102;
-            this.btnModUser.Text = "Modificar Promoción";
-            this.btnModUser.UseVisualStyleBackColor = false;
+            this.btnModPromotion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnModPromotion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModPromotion.Location = new System.Drawing.Point(385, 7);
+            this.btnModPromotion.Name = "btnModPromotion";
+            this.btnModPromotion.Size = new System.Drawing.Size(176, 85);
+            this.btnModPromotion.TabIndex = 102;
+            this.btnModPromotion.Text = "Modificar Promoción";
+            this.btnModPromotion.UseVisualStyleBackColor = false;
+            this.btnModPromotion.Click += new System.EventHandler(this.btnModPromotion_Click);
             // 
             // label4
             // 
@@ -75,7 +76,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label4.Location = new System.Drawing.Point(767, 184);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 23);
+            this.label4.Size = new System.Drawing.Size(61, 18);
             this.label4.TabIndex = 99;
             this.label4.Text = "Estado";
             // 
@@ -111,19 +112,20 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(19, 189);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 23);
+            this.label2.Size = new System.Drawing.Size(107, 18);
             this.label2.TabIndex = 92;
             this.label2.Text = "Fecha Desde";
             // 
-            // btnFindUser
+            // btnFindPromotion
             // 
-            this.btnFindUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindUser.Location = new System.Drawing.Point(902, 243);
-            this.btnFindUser.Name = "btnFindUser";
-            this.btnFindUser.Size = new System.Drawing.Size(167, 44);
-            this.btnFindUser.TabIndex = 91;
-            this.btnFindUser.Text = "Buscar Promociones";
-            this.btnFindUser.UseVisualStyleBackColor = true;
+            this.btnFindPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindPromotion.Location = new System.Drawing.Point(902, 243);
+            this.btnFindPromotion.Name = "btnFindPromotion";
+            this.btnFindPromotion.Size = new System.Drawing.Size(167, 44);
+            this.btnFindPromotion.TabIndex = 91;
+            this.btnFindPromotion.Text = "Buscar Promociones";
+            this.btnFindPromotion.UseVisualStyleBackColor = true;
+            this.btnFindPromotion.Click += new System.EventHandler(this.btnFindPromotion_Click);
             // 
             // dataGridViewUsers
             // 
@@ -135,17 +137,18 @@
             this.dataGridViewUsers.Size = new System.Drawing.Size(1110, 379);
             this.dataGridViewUsers.TabIndex = 90;
             // 
-            // btnRegUser
+            // btnRegPromotion
             // 
-            this.btnRegUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRegUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegUser.Location = new System.Drawing.Point(203, 7);
-            this.btnRegUser.Name = "btnRegUser";
-            this.btnRegUser.Size = new System.Drawing.Size(176, 85);
-            this.btnRegUser.TabIndex = 89;
-            this.btnRegUser.Text = "Cargar Promoción";
-            this.btnRegUser.UseVisualStyleBackColor = false;
+            this.btnRegPromotion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnRegPromotion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegPromotion.Location = new System.Drawing.Point(203, 7);
+            this.btnRegPromotion.Name = "btnRegPromotion";
+            this.btnRegPromotion.Size = new System.Drawing.Size(176, 85);
+            this.btnRegPromotion.TabIndex = 89;
+            this.btnRegPromotion.Text = "Cargar Promoción";
+            this.btnRegPromotion.UseVisualStyleBackColor = false;
+            this.btnRegPromotion.Click += new System.EventHandler(this.btnRegPromotion_Click);
             // 
             // btnMenuAdmin
             // 
@@ -159,6 +162,7 @@
             this.btnMenuAdmin.TabIndex = 88;
             this.btnMenuAdmin.Text = "Menu Administración";
             this.btnMenuAdmin.UseVisualStyleBackColor = false;
+            this.btnMenuAdmin.Click += new System.EventHandler(this.btnMenuAdmin_Click);
             // 
             // label1
             // 
@@ -167,7 +171,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(390, 106);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(473, 40);
+            this.label1.Size = new System.Drawing.Size(378, 32);
             this.label1.TabIndex = 87;
             this.label1.Text = "Búsqueda de Promociónes";
             // 
@@ -187,15 +191,15 @@
             this.ClientSize = new System.Drawing.Size(1154, 704);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.btnModUser);
+            this.Controls.Add(this.btnModPromotion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnFindUser);
+            this.Controls.Add(this.btnFindPromotion);
             this.Controls.Add(this.dataGridViewUsers);
-            this.Controls.Add(this.btnRegUser);
+            this.Controls.Add(this.btnRegPromotion);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -210,15 +214,15 @@
         #endregion
 
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button btnModUser;
+        private System.Windows.Forms.Button btnModPromotion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnFindUser;
+        private System.Windows.Forms.Button btnFindPromotion;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
-        private System.Windows.Forms.Button btnRegUser;
+        private System.Windows.Forms.Button btnRegPromotion;
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
