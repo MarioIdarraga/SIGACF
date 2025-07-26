@@ -27,7 +27,7 @@ namespace UI
 
         public MenuModBooking(Panel panelContenedor, Guid idBooking, Guid idCustomer, int nroDocument,
                       DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime,
-                      string field, string promotion, int state, decimal importeBooking)
+                      string field, string promotion, int state, decimal importeBooking, string dvh)
         {
             {
                 InitializeComponent();
@@ -49,6 +49,7 @@ namespace UI
                 cmbField.Text = field;
                 cmbPromotion.Text = promotion;
                 txtState.Text = state.ToString();
+                txtImporteBooking.Text = importeBooking.ToString();
 
                 CargarCombos();
             }
@@ -141,11 +142,13 @@ namespace UI
                     EndTime = dtpEndTime.Value.TimeOfDay,
                     Field = (Guid)cmbField.SelectedValue,
                     Promotion = (Guid)cmbPromotion.SelectedValue,
+                    State = int.Parse(txtState.Text),
+                    ImporteBooking = decimal.Parse(txtImporteBooking.Text),
                 };
 
                 _bookingSLService.Update(updatedBooking.IdBooking, updatedBooking);
 
-                MessageBox.Show("Reserva modificada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La Reserva se ha modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)

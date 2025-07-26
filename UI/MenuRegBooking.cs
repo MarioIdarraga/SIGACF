@@ -156,7 +156,7 @@ namespace UI
 
                 _bookingSLService.Insert(newBooking);
 
-                MessageBox.Show("Reserva guardada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La Reserva se ha Registrado Correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
             }
             catch (Exception ex)

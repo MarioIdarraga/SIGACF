@@ -51,6 +51,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtState = new System.Windows.Forms.TextBox();
+            this.txtImporteBooking = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -282,12 +284,32 @@
             this.txtState.Size = new System.Drawing.Size(186, 22);
             this.txtState.TabIndex = 125;
             // 
+            // txtImporteBooking
+            // 
+            this.txtImporteBooking.Location = new System.Drawing.Point(686, 487);
+            this.txtImporteBooking.Name = "txtImporteBooking";
+            this.txtImporteBooking.Size = new System.Drawing.Size(186, 22);
+            this.txtImporteBooking.TabIndex = 127;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(527, 488);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 18);
+            this.label11.TabIndex = 126;
+            this.label11.Text = "Importe";
+            // 
             // MenuModBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1142, 705);
+            this.Controls.Add(this.txtImporteBooking);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtState);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtIdBooking);
@@ -343,5 +365,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtState;
+        private System.Windows.Forms.TextBox txtImporteBooking;
+        private System.Windows.Forms.Label label11;
     }
 }

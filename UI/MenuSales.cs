@@ -88,11 +88,12 @@ namespace UI
                 string promotion = selectedRow.Cells["Promotion"].Value.ToString();
                 int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
                 decimal importeBooking = 0;
+                string dvh = selectedRow.Cells["DVH"].Value?.ToString() ?? string.Empty;
 
                 // Abrir el formulario de modificación pasando los datos
                 OpenFormChild(new MenuModBooking(_panelContenedor, idBooking, idCustomer, nroDocument,
                                                  registrationBooking, startTime,
-                                                 endTime, field, promotion, state, importeBooking));
+                                                 endTime, field, promotion, state, importeBooking, dvh));
             }
             catch (Exception ex)
             {

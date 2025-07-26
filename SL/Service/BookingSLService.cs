@@ -4,6 +4,7 @@ using System.Diagnostics.Tracing;
 using BLL.Service;
 using Domain;
 using SL.Helpers;
+using SL.Services;
 
 namespace SL
 {
@@ -18,32 +19,52 @@ namespace SL
 
         public void Insert(Booking booking)
         {
-            LoggerService.Log("Inicio de registro de reserva.");
+            LoggerService.Log("Inicio de registro de reserva.", EventLevel.Informational, Session.CurrentUser?.LoginName);
 
             try
             {
+                // Calcular DVH
+                booking.DVH = DVHHelper.CalcularDVH(booking);
+
+                // Insertar reserva
                 _bookingService.RegisterBooking(booking);
-                LoggerService.Log("Reserva registrada correctamente.");
+
+                // Recalcular DVV
+                var repo = global::DAL.Factory.Factory.Current.GetBookingRepository();
+                var bookings = repo.GetAll();
+                new DVVService().RecalcularDVV(bookings, "Bookings");
+
+                LoggerService.Log("Reserva registrada correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
             }
             catch (Exception ex)
             {
-                LoggerService.Log($"Error al registrar reserva: {ex.Message}", EventLevel.Error);
+                LoggerService.Log($"Error al registrar reserva: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
                 throw;
             }
         }
 
         public void Update(Guid idBooking, Booking booking)
         {
-            LoggerService.Log("Inicio de modificación de reserva.");
+            LoggerService.Log("Inicio de modificación de reserva.", EventLevel.Informational, Session.CurrentUser?.LoginName);
 
             try
             {
+                // Recalcular DVH
+                booking.DVH = DVHHelper.CalcularDVH(booking);
+
+                // Actualizar reserva
                 _bookingService.UpdateBooking(booking);
-                LoggerService.Log("Reserva modificada correctamente.");
+
+                // Recalcular DVV
+                var repo = global::DAL.Factory.Factory.Current.GetBookingRepository();
+                var bookings = repo.GetAll();
+                new DVVService().RecalcularDVV(bookings, "Bookings");
+
+                LoggerService.Log("Reserva modificada correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
             }
             catch (Exception ex)
             {
-                LoggerService.Log($"Error al modificar reserva: {ex.Message}", EventLevel.Error);
+                LoggerService.Log($"Error al modificar reserva: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
                 throw;
             }
         }
@@ -79,7 +100,6 @@ namespace SL
                 throw;
             }
         }
-
     }
 }
 

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Contracts;
@@ -16,11 +18,11 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Bookings] (IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking ) VALUES (@IdCustomer, @NroDocument, @RegistrationDate, @RegistrationBooking, @StartTime, @EndTime, @Field, @Promotion, @State, @ImporteBooking)";
+            get => "INSERT INTO [dbo].[Bookings] (IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking, DVH) VALUES (@IdCustomer, @NroDocument, @RegistrationDate, @RegistrationBooking, @StartTime, @EndTime, @Field, @Promotion, @State, @ImporteBooking, @DVH)";
         }
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Bookings] SET IdCustomer = @IdCustomer, NroDocument = @NroDocument, RegistrationDate = @RegistrationDate, RegistrationBooking = @RegistrationBooking, StartTime = @StartTime, EndTime = @EndTime, Field = @Field, Promotion = @Promotion, State = @State, ImporteBooking = @ImporteBooking WHERE IdBooking = @IdBooking";
+            get => "UPDATE [dbo].[Bookings] SET IdCustomer = @IdCustomer, NroDocument = @NroDocument, RegistrationDate = @RegistrationDate, RegistrationBooking = @RegistrationBooking, StartTime = @StartTime, EndTime = @EndTime, Field = @Field, Promotion = @Promotion, State = @State, ImporteBooking = @ImporteBooking, DVH =@DVH WHERE IdBooking = @IdBooking";
         }
 
 
@@ -31,12 +33,12 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking   FROM [dbo].[Bookings] WHERE IdBooking = @IdBooking";
+            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking, DVH FROM [dbo].[Bookings] WHERE IdBooking = @IdBooking";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking FROM [dbo].[Bookings]";
+            get => "SELECT IdBooking, IdCustomer, NroDocument, RegistrationDate, RegistrationBooking, StartTime, EndTime, Field, Promotion, State, ImporteBooking, DVH FROM [dbo].[Bookings]";
         }
         #endregion
 
@@ -53,7 +55,31 @@ namespace DAL.Repositories.SqlServer
 
         public IEnumerable<Booking> GetAll()
         {
-            throw new NotImplementedException();
+            var bookings = new List<Booking>();
+            string query = SelectAllStatement + " WHERE 1=1";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            using (var reader = SqlHelper.ExecuteReader(query, System.Data.CommandType.Text, parameters.ToArray()))
+            {
+                while (reader.Read())
+                {
+                    bookings.Add(new Booking
+                    {
+                        IdBooking = reader.GetGuid(0),
+                        IdCustomer = reader.GetGuid(1),
+                        NroDocument = reader.GetString(2),
+                        RegistrationDate = reader.GetDateTime(3),
+                        RegistrationBooking = reader.GetDateTime(4),
+                        StartTime = reader.GetTimeSpan(5),
+                        EndTime = reader.GetTimeSpan(6),
+                        Field = reader.GetGuid(7),
+                        Promotion = reader.GetGuid(8),
+                        State = reader.GetInt32(9),
+                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10),
+                        DVH = reader.GetString(11)
+                    });
+                }
+            }
+            return bookings;
         }
 
         public IEnumerable<Booking> GetAll(int? nroDocument = null, DateTime? registrationBooking = null, DateTime? registrationDate = null)
@@ -96,7 +122,8 @@ namespace DAL.Repositories.SqlServer
                         Field = reader.GetGuid(7),
                         Promotion = reader.GetGuid(8),
                         State = reader.GetInt32(9),
-                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10)
+                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10),
+                        DVH = reader.GetString(11)
                     });
                 }
             }
@@ -129,7 +156,9 @@ namespace DAL.Repositories.SqlServer
                         Field = reader.GetGuid(7),
                         Promotion = reader.GetGuid(8),
                         State = reader.GetInt32(9),
-                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10)
+                        ImporteBooking = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10),
+                        DVH = reader.GetString(11)
+
                     };
                 }
             }
@@ -152,7 +181,8 @@ namespace DAL.Repositories.SqlServer
                 new SqlParameter("@Field", Object.Field),
                 new SqlParameter("@Promotion", Object.Promotion),
                 new SqlParameter("@State", Object.State),
-                new SqlParameter("@ImporteBooking", Object.ImporteBooking)
+                new SqlParameter("@ImporteBooking", Object.ImporteBooking),
+                new SqlParameter("@DVH", Object.DVH)
                 });
         }
 
@@ -171,7 +201,8 @@ namespace DAL.Repositories.SqlServer
                 new SqlParameter("@Field", Object.Field),
                 new SqlParameter("@Promotion", Object.Promotion),
                 new SqlParameter("@State", Object.State),
-                new SqlParameter("@ImporteBooking", Object.ImporteBooking)
+                new SqlParameter("@ImporteBooking", Object.ImporteBooking),
+                new SqlParameter("@DVH", Object.DVH)
                 });
         }
     }
