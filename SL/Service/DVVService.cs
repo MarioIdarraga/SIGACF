@@ -38,10 +38,10 @@ namespace SL.Services
         {
             bool todoOk = true;
 
-            todoOk &= VerificarTabla<User>(_userRepo, "Usuarios");
-            todoOk &= VerificarTabla<Booking>(_reservaRepo, "Reservas");
-            todoOk &= VerificarTabla<Field>(_canchaRepo, "Canchas");
-            todoOk &= VerificarTabla<PermissionComponent>(_permisoRepo, "Permisos");
+            todoOk &= VerificarTabla<User>(_userRepo, "Users");
+            todoOk &= VerificarTabla<Booking>(_reservaRepo, "Bookings");
+            todoOk &= VerificarTabla<Field>(_canchaRepo, "Fields");
+            todoOk &= VerificarTabla<PermissionComponent>(_permisoRepo, "Permisions");
 
             return todoOk;
         }

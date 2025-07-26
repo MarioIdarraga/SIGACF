@@ -22,12 +22,12 @@ namespace DAL.Repositories.SqlServer
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Fields] SET (IdField, Name, Capacity, FieldType, HourlyCost, IdFieldState, DVH ) WHERE @IdField = @IdField";
+            get => "UPDATE [dbo].[Fields] SET Name = @Name, Capacity = @Capacity, FieldType = @FieldType, HourlyCost = @HourlyCost, IdFieldState = @IdFieldState, DVH = @DVH WHERE IdField = @IdField";
         }
 
         private string DeleteStatement
         {
-            get => "DELETE FROM [dbo].[Fields] WHERE @IdField = @IdField";
+            get => "DELETE FROM [dbo].[Fields] WHERE IdField = @IdField";
         }
 
         private string SelectOneStatement
@@ -95,7 +95,8 @@ namespace DAL.Repositories.SqlServer
                     new SqlParameter("@Capacity", Object.Capacity),
                     new SqlParameter("@FieldType", Object.FieldType),
                     new SqlParameter("@HourlyCost", Object.HourlyCost),
-                    new SqlParameter("@IdFieldState", Object.IdFieldState)
+                    new SqlParameter("@IdFieldState", Object.IdFieldState),
+                    new SqlParameter("@DVH", Object.DVH) 
                 }
             );
         }
@@ -107,11 +108,13 @@ namespace DAL.Repositories.SqlServer
                 CommandType.Text,
                 new SqlParameter[]
                 {
+                    new SqlParameter("@IdField", Id),
                     new SqlParameter("@Name", Object.Name),
                     new SqlParameter("@Capacity", Object.Capacity),
                     new SqlParameter("@FieldType", Object.FieldType),
                     new SqlParameter("@HourlyCost", Object.HourlyCost),
-                    new SqlParameter("@IdFieldState", Object.IdFieldState)
+                    new SqlParameter("@IdFieldState", Object.IdFieldState),
+                    new SqlParameter("@DVH", Object.DVH),
                 }
             );
         }

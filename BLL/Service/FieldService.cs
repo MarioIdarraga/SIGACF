@@ -17,31 +17,39 @@ namespace BLL.Service
 
         public void Insert(Field field)
         {
-            ValidateField(field);
-            _fieldRepo.Insert(field);
+            try
+            {
+                ValidateField(field);
+                _fieldRepo.Insert(field);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar la cancha en la capa BLL", ex);
+            }
         }
 
         public void Update(Field field)
         {
-            if (field == null)
-                throw new ArgumentNullException(nameof(field), "La cancha no puede ser nula.");
-
-            if (field.IdField == Guid.Empty)
-                throw new ArgumentException("El ID de la cancha es obligatorio para modificar.");
-
-            ValidateField(field);
-
-            var existingField = _fieldRepo.GetOne(field.IdField);
-            if (existingField == null)
-                throw new InvalidOperationException("No se encontró la cancha a modificar.");
-
-            _fieldRepo.Update(field.IdField, field);
+            try
+            {
+                ValidateField(field);
+                _fieldRepo.Update(field.IdField, field);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la cancha en la capa BLL", ex);
+            }
         }
 
-        //public List<Field> GetAll(string name = null, int? capacity = null, int? fieldType = null)
-        //{
-        //    return _fieldRepo.GetAll(name, capacity, fieldType).ToList();
-        //}
+        public List<Field> GetAll(string name = null, int? capacity = null, int? fieldType = null, int? fieldState = null)
+        {
+            return _fieldRepo.GetAll()
+                             .Where(f => (string.IsNullOrEmpty(name) || f.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0) &&
+                                         (!capacity.HasValue || f.Capacity == capacity.Value) &&
+                                         (!fieldType.HasValue || f.FieldType == fieldType.Value) &&
+                                         (!fieldState.HasValue || f.IdFieldState == fieldState.Value))
+                             .ToList();
+        }
 
         private void ValidateField(Field field)
         {

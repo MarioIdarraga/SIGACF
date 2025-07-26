@@ -32,15 +32,15 @@
             this.btnRegField = new System.Windows.Forms.Button();
             this.btnFindField = new System.Windows.Forms.Button();
             this.btnModField = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.txtTelephone = new System.Windows.Forms.TextBox();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.txtNroDocument = new System.Windows.Forms.TextBox();
+            this.cmbFieldType = new System.Windows.Forms.ComboBox();
+            this.txtHourlyCost = new System.Windows.Forms.TextBox();
+            this.txtCapacity = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtState = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -92,34 +92,34 @@
             this.btnModField.UseVisualStyleBackColor = true;
             this.btnModField.Click += new System.EventHandler(this.btnModField_Click);
             // 
-            // comboBox1
+            // cmbFieldType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(218, 437);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(185, 24);
-            this.comboBox1.TabIndex = 83;
+            this.cmbFieldType.FormattingEnabled = true;
+            this.cmbFieldType.Location = new System.Drawing.Point(218, 437);
+            this.cmbFieldType.Name = "cmbFieldType";
+            this.cmbFieldType.Size = new System.Drawing.Size(185, 24);
+            this.cmbFieldType.TabIndex = 83;
             // 
-            // txtTelephone
+            // txtHourlyCost
             // 
-            this.txtTelephone.Location = new System.Drawing.Point(218, 373);
-            this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.Size = new System.Drawing.Size(185, 22);
-            this.txtTelephone.TabIndex = 82;
+            this.txtHourlyCost.Location = new System.Drawing.Point(218, 373);
+            this.txtHourlyCost.Name = "txtHourlyCost";
+            this.txtHourlyCost.Size = new System.Drawing.Size(185, 22);
+            this.txtHourlyCost.TabIndex = 82;
             // 
-            // txtLastName
+            // txtCapacity
             // 
-            this.txtLastName.Location = new System.Drawing.Point(218, 307);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(185, 22);
-            this.txtLastName.TabIndex = 81;
+            this.txtCapacity.Location = new System.Drawing.Point(218, 307);
+            this.txtCapacity.Name = "txtCapacity";
+            this.txtCapacity.Size = new System.Drawing.Size(185, 22);
+            this.txtCapacity.TabIndex = 81;
             // 
-            // txtNroDocument
+            // txtName
             // 
-            this.txtNroDocument.Location = new System.Drawing.Point(218, 238);
-            this.txtNroDocument.Name = "txtNroDocument";
-            this.txtNroDocument.Size = new System.Drawing.Size(185, 22);
-            this.txtNroDocument.TabIndex = 80;
+            this.txtName.Location = new System.Drawing.Point(218, 238);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(185, 22);
+            this.txtName.TabIndex = 80;
             // 
             // label14
             // 
@@ -165,12 +165,12 @@
             this.label18.TabIndex = 76;
             this.label18.Text = "Nombre";
             // 
-            // textBox1
+            // txtState
             // 
-            this.textBox1.Location = new System.Drawing.Point(218, 506);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 22);
-            this.textBox1.TabIndex = 85;
+            this.txtState.Location = new System.Drawing.Point(218, 506);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(185, 22);
+            this.txtState.TabIndex = 85;
             // 
             // label2
             // 
@@ -189,12 +189,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(990, 666);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtState);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.txtTelephone);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.txtNroDocument);
+            this.Controls.Add(this.cmbFieldType);
+            this.Controls.Add(this.txtHourlyCost);
+            this.Controls.Add(this.txtCapacity);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label16);
@@ -217,15 +217,15 @@
         private System.Windows.Forms.Button btnRegField;
         private System.Windows.Forms.Button btnFindField;
         private System.Windows.Forms.Button btnModField;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox txtTelephone;
-        private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.TextBox txtNroDocument;
+        private System.Windows.Forms.ComboBox cmbFieldType;
+        private System.Windows.Forms.TextBox txtHourlyCost;
+        private System.Windows.Forms.TextBox txtCapacity;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtState;
         private System.Windows.Forms.Label label2;
     }
 }

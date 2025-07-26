@@ -31,15 +31,15 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnModField = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnFindFielad = new System.Windows.Forms.Button();
-            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.btnFindField = new System.Windows.Forms.Button();
+            this.dataGridViewFields = new System.Windows.Forms.DataGridView();
             this.btnRegField = new System.Windows.Forms.Button();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.cmbFieldType = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStatus
@@ -78,13 +78,6 @@
             this.label3.TabIndex = 98;
             this.label3.Text = "Estado";
             // 
-            // txtNroDocument
-            // 
-            this.txtNroDocument.Location = new System.Drawing.Point(240, 188);
-            this.txtNroDocument.Name = "txtNroDocument";
-            this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
-            this.txtNroDocument.TabIndex = 93;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -96,25 +89,26 @@
             this.label2.TabIndex = 92;
             this.label2.Text = "Tipo de Cancha";
             // 
-            // btnFindFielad
+            // btnFindField
             // 
-            this.btnFindFielad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindFielad.Location = new System.Drawing.Point(940, 248);
-            this.btnFindFielad.Name = "btnFindFielad";
-            this.btnFindFielad.Size = new System.Drawing.Size(167, 44);
-            this.btnFindFielad.TabIndex = 91;
-            this.btnFindFielad.Text = "Buscar Canchas";
-            this.btnFindFielad.UseVisualStyleBackColor = true;
+            this.btnFindField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindField.Location = new System.Drawing.Point(940, 248);
+            this.btnFindField.Name = "btnFindField";
+            this.btnFindField.Size = new System.Drawing.Size(167, 44);
+            this.btnFindField.TabIndex = 91;
+            this.btnFindField.Text = "Buscar Canchas";
+            this.btnFindField.UseVisualStyleBackColor = true;
+            this.btnFindField.Click += new System.EventHandler(this.btnFindField_Click);
             // 
-            // dataGridViewUsers
+            // dataGridViewFields
             // 
-            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsers.Location = new System.Drawing.Point(60, 323);
-            this.dataGridViewUsers.Name = "dataGridViewUsers";
-            this.dataGridViewUsers.RowHeadersWidth = 51;
-            this.dataGridViewUsers.RowTemplate.Height = 24;
-            this.dataGridViewUsers.Size = new System.Drawing.Size(1110, 379);
-            this.dataGridViewUsers.TabIndex = 90;
+            this.dataGridViewFields.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFields.Location = new System.Drawing.Point(60, 323);
+            this.dataGridViewFields.Name = "dataGridViewFields";
+            this.dataGridViewFields.RowHeadersWidth = 51;
+            this.dataGridViewFields.RowTemplate.Height = 24;
+            this.dataGridViewFields.Size = new System.Drawing.Size(1110, 379);
+            this.dataGridViewFields.TabIndex = 90;
             // 
             // btnRegField
             // 
@@ -154,13 +148,21 @@
             this.label1.TabIndex = 87;
             this.label1.Text = "Búsqueda de Canchas";
             // 
-            // comboBox1
+            // cmbState
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(545, 186);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(188, 24);
-            this.comboBox1.TabIndex = 104;
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(545, 186);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(188, 24);
+            this.cmbState.TabIndex = 104;
+            // 
+            // cmbFieldType
+            // 
+            this.cmbFieldType.FormattingEnabled = true;
+            this.cmbFieldType.Location = new System.Drawing.Point(198, 186);
+            this.cmbFieldType.Name = "cmbFieldType";
+            this.cmbFieldType.Size = new System.Drawing.Size(188, 24);
+            this.cmbFieldType.TabIndex = 105;
             // 
             // MenuFindFields
             // 
@@ -168,21 +170,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1227, 715);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbFieldType);
+            this.Controls.Add(this.cmbState);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnModField);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnFindFielad);
-            this.Controls.Add(this.dataGridViewUsers);
+            this.Controls.Add(this.btnFindField);
+            this.Controls.Add(this.dataGridViewFields);
             this.Controls.Add(this.btnRegField);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuFindFields";
             this.Text = "MenuFindFields";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFields)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,13 +195,13 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnModField;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnFindFielad;
-        private System.Windows.Forms.DataGridView dataGridViewUsers;
+        private System.Windows.Forms.Button btnFindField;
+        private System.Windows.Forms.DataGridView dataGridViewFields;
         private System.Windows.Forms.Button btnRegField;
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbState;
+        private System.Windows.Forms.ComboBox cmbFieldType;
     }
 }

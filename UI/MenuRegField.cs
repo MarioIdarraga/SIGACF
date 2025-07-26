@@ -54,7 +54,7 @@ namespace UI
 
         private void btnFindField_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuFindPromotions(_panelContenedor));
+            OpenFormChild(new MenuFindFields(_panelContenedor));
         }
 
 
@@ -91,8 +91,7 @@ namespace UI
                     Capacity = capacity,
                     HourlyCost = hourlyCost,
                     FieldType = (int)Enum.Parse(typeof(FieldType), cmbFieldType.SelectedItem.ToString()),
-                    IdFieldState = 1, //Estado habilitada
-                    DVH = string.Empty // Si usás verificación, lo calculás después
+                    IdFieldState = 1, //Estado habilitado
                 };
 
                 _fieldSLService.Insert(newField);
