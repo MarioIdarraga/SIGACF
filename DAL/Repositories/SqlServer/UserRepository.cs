@@ -16,12 +16,12 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Users] (LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State) VALUES (@LoginName, @Password, @NroDocument, @FirstName, @LastName, @Position, @Email, @Address, @Telephone, @State)";
+            get => "INSERT INTO [dbo].[Users] (UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State, DVH) VALUES (@UserId, @LoginName, @Password, @NroDocument, @FirstName, @LastName, @Position, @Mail, @Address, @Telephone, @State, @DVH)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Users] SET LoginName = @LoginName, Password = @Password, NroDocument = @NroDocument, FirstName = @firstName, LastName = @LastName, Position = @Position, Mail = @Mail, Address = @Address, Telephone = @Telephone, State = @State WHERE UserId = @UserId";
+            get => "UPDATE [dbo].[Users] SET LoginName = @LoginName, Password = @Password, NroDocument = @NroDocument, FirstName = @firstName, LastName = @LastName, Position = @Position, Mail = @Mail, Address = @Address, Telephone = @Telephone, State = @State, DVH = @DVH WHERE UserId = @UserId";
         }
 
         private string DeleteStatement
@@ -31,12 +31,12 @@ namespace DAL.Repositories.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State FROM [dbo].[Users] WHERE UserId = @UserId";
+            get => "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State, DVH FROM [dbo].[Users] WHERE UserId = @UserId";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Telephone, Mail, Address, State FROM [dbo].[Users]";
+            get => "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Telephone, Mail, Address, State, DVH FROM [dbo].[Users]";
         }
         #endregion
 
@@ -102,10 +102,11 @@ namespace DAL.Repositories.SqlServer
                         FirstName = reader.IsDBNull(4) ? string.Empty : reader.GetString(4),   
                         LastName = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),  
                         Position = reader.IsDBNull(6) ? string.Empty : reader.GetString(6),   
-                        Telephone = reader.IsDBNull(8) ? string.Empty : reader.GetString(8), 
-                        Mail = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),   
-                        Address = reader.IsDBNull(10) ? string.Empty : reader.GetString(10), 
-                        State = reader.GetInt32(11)
+                        Telephone = reader.IsDBNull(7) ? string.Empty : reader.GetString(7), 
+                        Mail = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),   
+                        Address = reader.IsDBNull(9) ? string.Empty : reader.GetString(9), 
+                        State = reader.GetInt32(10),
+                        DVH = reader.GetString(11) 
                     });
                 }
             }
@@ -141,7 +142,8 @@ namespace DAL.Repositories.SqlServer
         {
             
             SqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text,
-                new SqlParameter[] {    new SqlParameter("@LoginName", Object.LoginName),
+                new SqlParameter[] {    new SqlParameter("@UserId", Object.UserId),
+                                        new SqlParameter("@LoginName", Object.LoginName),
                                         new SqlParameter("@Password", Object.Password),
                                         new SqlParameter("@NroDocument", Object.NroDocument),
                                         new SqlParameter("@FirstName", Object.FirstName),
@@ -151,6 +153,7 @@ namespace DAL.Repositories.SqlServer
                                         new SqlParameter("@Address", Object.Address),
                                         new SqlParameter("@Telephone", Object.Telephone),
                                         new SqlParameter("@State", Object.State),
+                                        new SqlParameter("@DVH", Object.DVH)
                                     });
         }
 
@@ -169,16 +172,41 @@ namespace DAL.Repositories.SqlServer
                                         new SqlParameter("@Address", Object.Address),
                                         new SqlParameter("@Telephone", Object.Telephone),
                                         new SqlParameter("@State", Object.State),
+                                        new SqlParameter("@DVH", Object.DVH)
                                     });
         }
 
-        IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            var users = new List<User>();
+
+            using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, CommandType.Text))
+            {
+                while (reader.Read())
+                {
+                    users.Add(new User
+                    {
+                        UserId = reader.GetGuid(0),
+                        LoginName = reader.GetString(1),
+                        Password = reader.GetString(2),
+                        NroDocument = reader.GetInt32(3),
+                        FirstName = reader.IsDBNull(4) ? string.Empty : reader.GetString(4),
+                        LastName = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
+                        Position = reader.IsDBNull(6) ? string.Empty : reader.GetString(6),
+                        Mail = reader.IsDBNull(7) ? string.Empty : reader.GetString(7),
+                        Address = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),
+                        Telephone = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),
+                        State = reader.GetInt32(10),
+                        DVH = reader.GetString(11)
+                    });
+                }
+            }
+
+            return users;
         }
         public User GetByLoginName(string loginName)
         {
-            const string query = "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State " +
+            const string query = "SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position, Mail, Address, Telephone, State, DVH " +
                                  "FROM [dbo].[Users] WHERE LoginName = @LoginName";
 
             var parameters = new SqlParameter[] { new SqlParameter("@LoginName", loginName) };
@@ -200,6 +228,7 @@ namespace DAL.Repositories.SqlServer
                         Address = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),
                         Telephone = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),
                         State = reader.GetInt32(10),
+                        DVH = reader.GetString(11)
                     };
                 }
             }

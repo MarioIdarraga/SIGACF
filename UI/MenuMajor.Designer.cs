@@ -226,7 +226,7 @@
             this.btnAdmin.Location = new System.Drawing.Point(16, 519);
             this.btnAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(333, 47);
+            this.btnAdmin.Size = new System.Drawing.Size(368, 47);
             this.btnAdmin.TabIndex = 9;
             this.btnAdmin.Text = "Administración";
             this.btnAdmin.UseVisualStyleBackColor = true;
@@ -283,7 +283,7 @@
             this.bntReportes.Location = new System.Drawing.Point(16, 464);
             this.bntReportes.Margin = new System.Windows.Forms.Padding(4);
             this.bntReportes.Name = "bntReportes";
-            this.bntReportes.Size = new System.Drawing.Size(339, 47);
+            this.bntReportes.Size = new System.Drawing.Size(368, 47);
             this.bntReportes.TabIndex = 8;
             this.bntReportes.Text = "Reportes";
             this.bntReportes.UseVisualStyleBackColor = true;
@@ -320,7 +320,7 @@
             this.btnCan.Location = new System.Drawing.Point(16, 410);
             this.btnCan.Margin = new System.Windows.Forms.Padding(4);
             this.btnCan.Name = "btnCan";
-            this.btnCan.Size = new System.Drawing.Size(339, 47);
+            this.btnCan.Size = new System.Drawing.Size(404, 47);
             this.btnCan.TabIndex = 7;
             this.btnCan.Text = "Cancelaciones";
             this.btnCan.UseVisualStyleBackColor = true;
@@ -338,7 +338,7 @@
             this.btnPay.Location = new System.Drawing.Point(16, 356);
             this.btnPay.Margin = new System.Windows.Forms.Padding(4);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(339, 47);
+            this.btnPay.Size = new System.Drawing.Size(368, 47);
             this.btnPay.TabIndex = 6;
             this.btnPay.Text = "Pagos";
             this.btnPay.UseVisualStyleBackColor = true;
@@ -384,7 +384,7 @@
             this.btnAlquiler.Location = new System.Drawing.Point(16, 302);
             this.btnAlquiler.Margin = new System.Windows.Forms.Padding(4);
             this.btnAlquiler.Name = "btnAlquiler";
-            this.btnAlquiler.Size = new System.Drawing.Size(339, 47);
+            this.btnAlquiler.Size = new System.Drawing.Size(404, 47);
             this.btnAlquiler.TabIndex = 3;
             this.btnAlquiler.Text = "Ventas - Reservas";
             this.btnAlquiler.UseVisualStyleBackColor = true;
@@ -412,7 +412,7 @@
             this.btnClientes.Location = new System.Drawing.Point(16, 248);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(333, 47);
+            this.btnClientes.Size = new System.Drawing.Size(404, 47);
             this.btnClientes.TabIndex = 1;
             this.btnClientes.Text = "Ventas - Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -10,8 +11,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
+using DAL.Contracts;
+using DAL.Factory;
 using Domain;
 using SL;
+using SL.Helpers;
 using SL.BLL;
 using SL.Service;
 using UI.Helpers;
@@ -20,11 +25,44 @@ namespace UI
 {
     public partial class Login : Form
     {
-        public Login()
+        private object _panelContenedor;
+        private object panelContenedor;
+
+        public Login() // eliminá el parámetro si no se usa
         {
             InitializeComponent();
-            this.Translate();
+
+            var repo = Factory.Current.GetUserRepository();
+            var userService = new UserService(repo);
+            var userSLService = new UserSLService(userService);
+
+            if (!userSLService.AnyUsersExist())
+            {
+                string defaultUsername = ConfigurationManager.AppSettings["DefaultAdminUser"];
+                string defaultPassword = ConfigurationManager.AppSettings["DefaultAdminPassword"];
+
+                var defaultUser = new User
+                {
+                    UserId = Guid.NewGuid(),
+                    LoginName = defaultUsername,
+                    Password = defaultPassword,
+                    NroDocument = 12345678,
+                    FirstName = "Admin",                                                                                                                                                    
+                    LastName = "Principal",
+                    Position = "Administrador",
+                    Mail = "admin@miapp.com",
+                    Address = "Dirección por defecto",
+                    Telephone = "11112222",
+                    State = 1,
+                };
+
+                defaultUser.DVH = DVHHelper.CalcularDVH(defaultUser);
+                userSLService.Insert(defaultUser);
+
+                MessageBox.Show($"Se creó un usuario administrador por defecto:\nUsuario: {defaultUsername}\nContraseña: {defaultPassword}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -85,9 +123,7 @@ namespace UI
             {
 
                 var permisoService = new PermissionSLService();
-                Session.User = usuario;
-
-                Session.User = usuario;
+                UI.Helpers.Session.User = usuario;
 
                 MessageBox.Show($"Bienvenido {usuario.FirstName} {usuario.LastName}", "Acceso concedido");
 

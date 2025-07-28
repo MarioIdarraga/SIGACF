@@ -88,6 +88,11 @@ namespace BLL.Service
         {
             return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
+
+        public object GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

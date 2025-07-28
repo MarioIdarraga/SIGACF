@@ -41,7 +41,7 @@ namespace SL.Services
             todoOk &= VerificarTabla<User>(_userRepo, "Users");
             todoOk &= VerificarTabla<Booking>(_reservaRepo, "Bookings");
             todoOk &= VerificarTabla<Field>(_canchaRepo, "Fields");
-            todoOk &= VerificarTabla<PermissionComponent>(_permisoRepo, "Permisions");
+            todoOk &= VerificarTabla<PermissionComponent>(_permisoRepo, "Permissions");
 
             return todoOk;
         }
