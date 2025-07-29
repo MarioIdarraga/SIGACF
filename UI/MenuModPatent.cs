@@ -7,23 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.Factory;
 using SL.Composite;
 using SL.Service;
 using UI.Helpers;
 
 namespace UI
 {
-    public partial class MenuRegPatent : Form
+    public partial class MenuModPatent : Form
     {
+
+        private Patente _patente;
+
         private Panel _panelContenedor;
 
         private readonly PermissionSLService _permissionSLService;
-        public MenuRegPatent(Panel panelContenedor)
+        public MenuModPatent(Panel panelContenedor, Patente patente)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
             this.Translate();
+
             _permissionSLService = new PermissionSLService();
+
+            _patente = patente; 
+
+            txtName.Text = _patente.Name;
+            txtFormName.Text = _patente.FormName;
         }
 
         private void OpenFormChild(object formchild)
@@ -46,6 +56,11 @@ namespace UI
 
         private void btnRegPatent_Click(object sender, EventArgs e)
         {
+            OpenFormChild(new MenuRegPatent(_panelContenedor));
+        }
+
+        private void btnModPatent_Click(object sender, EventArgs e)
+        {
             var name = txtName.Text.Trim();
             var formName = txtFormName.Text.Trim();
 
@@ -55,22 +70,20 @@ namespace UI
                 return;
             }
 
-            var patente = new Patente
-            {
-                Name = name,
-                FormName = string.IsNullOrWhiteSpace(formName) ? null : formName
-            };
+            // Usás el objeto que recibiste para modificar
+            _patente.Name = name;
+            _patente.FormName = string.IsNullOrWhiteSpace(formName) ? null : formName;
 
             try
             {
-                _permissionSLService.SavePatent(patente);
-                MessageBox.Show("Patente cargada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtName.Clear();
-                txtFormName.Clear();
+                _permissionSLService.UpdatePatent(_patente);
+
+                MessageBox.Show("Patente modificada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al guardar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al modificar la patente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -53,7 +53,15 @@ namespace UI
 
         private void btnModPatent_Click(object sender, EventArgs e)
         {
-            //OpenFormChild(new MenuModPatent(_panelContenedor));
+            if (dataGridViewPatents.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una patente para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var selectedPatent = (Patente)dataGridViewPatents.SelectedRows[0].DataBoundItem;
+
+            OpenFormChild(new MenuModPatent(_panelContenedor, selectedPatent));
         }
 
         private void btnFindPatent_Click(object sender, EventArgs e)
@@ -64,13 +72,7 @@ namespace UI
                                                   .OfType<Patente>()
                                                   .ToList();
 
-                dataGridViewPatents.DataSource = patents.Select(p => new
-                {
-                    p.IdComponent,
-                    p.Name,
-                    p.FormName,
-                    p.DVH
-                }).ToList();
+                dataGridViewPatents.DataSource = patents;
             }
             catch (Exception ex)
             {

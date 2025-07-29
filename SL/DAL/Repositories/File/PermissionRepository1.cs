@@ -41,5 +41,10 @@ namespace SL.DAL.Repositories.File
         {
             throw new NotImplementedException();
         }
+
+        public void UpdatePatent(Patente patente)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

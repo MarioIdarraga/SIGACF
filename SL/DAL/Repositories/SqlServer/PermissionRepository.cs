@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using SL.Composite;
 using SL.DAL.Contracts;
@@ -20,6 +21,8 @@ namespace SL.DAL.Repositories.SqlServer
         private string InsertStatementComponentRelationship => @"INSERT INTO [dbo].[ComponentRelationship] (ParentId, ChildId) VALUES (@ParentId, @ChildId)";
 
         private string InsertStatementUserFamily => @"INSERT INTO [dbo].[UserPermissionComponent] (UserId, IdComponent) VALUES (@UserId, @IdComponent)";
+
+        private string UpdateStatementPermissionComponent => @"UPDATE PermissionComponent SET Name = @Name, FormName = @FormName, DVH = @DVH WHERE IdComponent = @IdComponent";
 
         private string DeleteStatementUserFamilies => @"DELETE FROM [dbo].[UserPermissionComponent] WHERE UserId = @UserId AND IdComponent IN (
           SELECT IdComponent FROM PermissionComponent WHERE ComponentType = 'Familia'
@@ -173,6 +176,18 @@ namespace SL.DAL.Repositories.SqlServer
             new SqlParameter("@IdComponent", patente.IdComponent),
             new SqlParameter("@Name", patente.Name),
             new SqlParameter("@ComponentType", "Patente"),
+            new SqlParameter("@FormName", patente.FormName != null ? (object)patente.FormName : DBNull.Value),
+            new SqlParameter("@DVH", patente.DVH != null ? (object)patente.DVH : DBNull.Value)
+                });
+        }
+
+        public void UpdatePatent(Patente patente)
+        {
+            SqlHelper.ExecuteNonQuery(UpdateStatementPermissionComponent, CommandType.Text,
+                new SqlParameter[]
+                {
+            new SqlParameter("@IdComponent", patente.IdComponent),
+            new SqlParameter("@Name", patente.Name),
             new SqlParameter("@FormName", patente.FormName != null ? (object)patente.FormName : DBNull.Value),
             new SqlParameter("@DVH", patente.DVH != null ? (object)patente.DVH : DBNull.Value)
                 });

@@ -236,6 +236,12 @@
     <Compile Include="MenuModField.Designer.cs">
       <DependentUpon>MenuModField.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuModPatent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuModPatent.Designer.cs">
+      <DependentUpon>MenuModPatent.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuModProm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuModField.resx">
       <DependentUpon>MenuModField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuModPatent.resx">
+      <DependentUpon>MenuModPatent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuModProm.resx">
       <DependentUpon>MenuModProm.cs</DependentUpon>

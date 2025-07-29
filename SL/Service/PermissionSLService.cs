@@ -48,34 +48,6 @@ namespace SL.Service
             }
         }
 
-        public void SavePatent(Patente patente)
-        {
-            LoggerService.Log("Inicio de registro de patente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
-
-            try
-            {
-                if (string.IsNullOrWhiteSpace(patente.Name))
-                    throw new ArgumentException("El nombre de la patente es obligatorio.");
-
-                // Calcular DVH
-                patente.DVH = DVHHelper.CalcularDVH(patente);
-
-                // Guardar
-                _repo.SavePatent(patente);
-
-                // Recalcular DVV
-                var all = _repo.GetAllPermissionComponents();
-                new DVVService().RecalcularDVV(all, "PermissionComponent");
-
-                LoggerService.Log("Patente registrada correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
-            }
-            catch (Exception ex)
-            {
-                LoggerService.Log($"Error al registrar patente: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
-                throw;
-            }
-        }
-
         public void SaveFamily(Familia familia)
         {
             LoggerService.Log("Inicio de registro de familia.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -144,6 +116,65 @@ namespace SL.Service
                 throw;
             }
         }
+
+        //Patentes:
+
+        public void SavePatent(Patente patente)
+        {
+            LoggerService.Log("Inicio de registro de patente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(patente.Name))
+                    throw new ArgumentException("El nombre de la patente es obligatorio.");
+
+                // Calcular DVH
+                patente.DVH = DVHHelper.CalcularDVH(patente);
+
+                // Guardar
+                _repo.SavePatent(patente);
+
+                // Recalcular DVV
+                var all = _repo.GetAllPermissionComponents();
+                new DVVService().RecalcularDVV(all, "PermissionComponent");
+
+                LoggerService.Log("Patente registrada correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al registrar patente: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
+
+        public void UpdatePatent(Patente patente)
+        {
+            LoggerService.Log("Inicio de modificación de patente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(patente.Name))
+                    throw new ArgumentException("El nombre de la patente es obligatorio.");
+
+                // Calcular DVH con los datos modificados
+                patente.DVH = DVHHelper.CalcularDVH(patente);
+
+                // Guardar en repositorio
+                _repo.UpdatePatent(patente);
+
+                // Recalcular DVV
+                var all = _repo.GetAllPermissionComponents();
+                new DVVService().RecalcularDVV(all, "PermissionComponent");
+
+                LoggerService.Log("Patente modificada correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al modificar patente: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
+
     }
 }
 

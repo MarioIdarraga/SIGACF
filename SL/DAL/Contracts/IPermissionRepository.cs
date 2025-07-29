@@ -25,6 +25,8 @@ namespace SL.DAL.Contracts
 
         void SavePatent(Patente patente);
 
+        void UpdatePatent(Patente patente);
+
         //Para implementar DVV
 
         List<PermissionComponent> GetAllPermissionComponents();
