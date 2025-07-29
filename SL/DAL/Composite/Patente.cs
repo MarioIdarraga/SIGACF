@@ -9,7 +9,7 @@ namespace SL.Composite
     public class Patente : PermissionComponent
     {
         public string Name { get; set; }
-        public string formName { get; set; }
+        public string FormName { get; set; }
 
         public Patente() { }
 

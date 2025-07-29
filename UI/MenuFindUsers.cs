@@ -16,14 +16,14 @@ using UI.Helpers;
 
 namespace UI
 {
-    public partial class MenuFindUser : Form
+    public partial class MenuFindUsers : Form
     {
 
         private readonly UserSLService _userSLService;
 
         private Panel _panelContenedor;
 
-        public MenuFindUser(Panel panelContenedor)
+        public MenuFindUsers(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
@@ -158,6 +158,16 @@ namespace UI
             {
                 MessageBox.Show($"Error al buscar clientes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnFindFamilies_Click(object sender, EventArgs e)
+        {
+            //OpenFormChild(new MenuFindFamilies(_panelContenedor));
+        }
+
+        private void btnFindPatents_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuFindPatents(_panelContenedor));
         }
     }
 }

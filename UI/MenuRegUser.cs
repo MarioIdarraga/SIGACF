@@ -48,7 +48,7 @@ namespace UI
 
         private void btnFindEmployee_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuFindUser(_panelContenedor));
+            OpenFormChild(new MenuFindUsers(_panelContenedor));
         }
 
         private void btnModUser_Click(object sender, EventArgs e)

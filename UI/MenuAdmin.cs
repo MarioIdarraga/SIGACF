@@ -36,7 +36,7 @@ namespace UI
 
         private void btnAdminEmployees_Click(object sender, EventArgs e)
         {
-            OpenFormChild(new MenuFindUser(_panelContenedor));
+            OpenFormChild(new MenuFindUsers(_panelContenedor));
         }
 
         private void btnAdminFields_Click(object sender, EventArgs e)

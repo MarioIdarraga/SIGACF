@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class MenuFindUser
+    partial class MenuFindUsers
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnModUser = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.btnFindFamilies = new System.Windows.Forms.Button();
+            this.btnFindPatents = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -222,12 +224,42 @@
             this.lblStatus.Text = "Listo para buscar usuarios";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // btnFindFamilies
+            // 
+            this.btnFindFamilies.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFindFamilies.BackColor = System.Drawing.Color.Teal;
+            this.btnFindFamilies.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFindFamilies.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindFamilies.Location = new System.Drawing.Point(580, 41);
+            this.btnFindFamilies.Name = "btnFindFamilies";
+            this.btnFindFamilies.Size = new System.Drawing.Size(176, 85);
+            this.btnFindFamilies.TabIndex = 87;
+            this.btnFindFamilies.Text = "Menu Familas";
+            this.btnFindFamilies.UseVisualStyleBackColor = false;
+            this.btnFindFamilies.Click += new System.EventHandler(this.btnFindFamilies_Click);
+            // 
+            // btnFindPatents
+            // 
+            this.btnFindPatents.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFindPatents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnFindPatents.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFindPatents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindPatents.Location = new System.Drawing.Point(762, 41);
+            this.btnFindPatents.Name = "btnFindPatents";
+            this.btnFindPatents.Size = new System.Drawing.Size(176, 85);
+            this.btnFindPatents.TabIndex = 88;
+            this.btnFindPatents.Text = "Menu Patentes";
+            this.btnFindPatents.UseVisualStyleBackColor = false;
+            this.btnFindPatents.Click += new System.EventHandler(this.btnFindPatents_Click);
+            // 
             // MenuFindUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1177, 741);
+            this.Controls.Add(this.btnFindPatents);
+            this.Controls.Add(this.btnFindFamilies);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnModUser);
             this.Controls.Add(this.label6);
@@ -247,7 +279,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuFindUser";
-            this.Text = "MenuFindEmployees";
+            this.Text = "MenuFindFamilies";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -273,5 +305,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnModUser;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnFindFamilies;
+        private System.Windows.Forms.Button btnFindPatents;
     }
 }

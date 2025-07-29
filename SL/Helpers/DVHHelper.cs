@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Domain;
+using SL.Composite;
 using SL.Domain;
 using SL.Helpers;
 
@@ -47,6 +48,16 @@ public static class DVHHelper
                       $"{user.Address}" +
                       $"{user.Telephone}" +
                       $"{user.State}";
+
+        return HashHelper.CalculateSHA256(data);
+    }
+
+    public static string CalcularDVH(PermissionComponent component)
+    {
+        string data = $"{component.IdComponent}" +
+                      $"{component.Name}" +
+                      $"{component.FormName ?? ""}" +
+                      $"{component.ComponentType}";
 
         return HashHelper.CalculateSHA256(data);
     }

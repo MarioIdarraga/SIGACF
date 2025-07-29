@@ -10,7 +10,12 @@ namespace SL.Composite
     public abstract class PermissionComponent : IDVH
     {
         public Guid IdComponent { get; set; }
-        
+
+        public string Name { get; set; }
+        public string FormName { get; set; }
+        public string ComponentType { get; set; }
+        public string DVH { get; set; }
+
         public PermissionComponent()
         {
         }
@@ -21,7 +26,7 @@ namespace SL.Composite
 
         public abstract void Remove(PermissionComponent component);
 
-        public string DVH { get; set; }
+
 
     }
 }

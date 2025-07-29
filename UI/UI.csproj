@@ -200,23 +200,35 @@
     <Compile Include="MenuFindFields.Designer.cs">
       <DependentUpon>MenuFindFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuFindPatents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuFindPatents.Designer.cs">
+      <DependentUpon>MenuFindPatents.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuFindPromotions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuFindPromotions.Designer.cs">
       <DependentUpon>MenuFindPromotions.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuFindUser.cs">
+    <Compile Include="MenuFindUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuFindUser.Designer.cs">
-      <DependentUpon>MenuFindUser.cs</DependentUpon>
+    <Compile Include="MenuFindUsers.Designer.cs">
+      <DependentUpon>MenuFindUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuManuals.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuManuals.Designer.cs">
       <DependentUpon>MenuManuals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuModFamily.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuModFamily.Designer.cs">
+      <DependentUpon>MenuModFamily.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuModField.cs">
       <SubType>Form</SubType>
@@ -230,11 +242,23 @@
     <Compile Include="MenuModProm.Designer.cs">
       <DependentUpon>MenuModProm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuRegFamily.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuRegFamily.Designer.cs">
+      <DependentUpon>MenuRegFamily.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuRegField.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuRegField.Designer.cs">
       <DependentUpon>MenuRegField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuRegPatent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuRegPatent.Designer.cs">
+      <DependentUpon>MenuRegPatent.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuRegProm.cs">
       <SubType>Form</SubType>
@@ -326,6 +350,12 @@
     <Compile Include="MenuRepSales.Designer.cs">
       <DependentUpon>MenuRepSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuFindFamilies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuFindFamilies.Designer.cs">
+      <DependentUpon>MenuFindFamilies.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,14 +382,20 @@
     <EmbeddedResource Include="MenuFindFields.resx">
       <DependentUpon>MenuFindFields.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MenuFindPatents.resx">
+      <DependentUpon>MenuFindPatents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuFindPromotions.resx">
       <DependentUpon>MenuFindPromotions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuFindUser.resx">
-      <DependentUpon>MenuFindUser.cs</DependentUpon>
+    <EmbeddedResource Include="MenuFindUsers.resx">
+      <DependentUpon>MenuFindUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuManuals.resx">
       <DependentUpon>MenuManuals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuModFamily.resx">
+      <DependentUpon>MenuModFamily.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuModField.resx">
       <DependentUpon>MenuModField.cs</DependentUpon>
@@ -367,8 +403,14 @@
     <EmbeddedResource Include="MenuModProm.resx">
       <DependentUpon>MenuModProm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MenuRegFamily.resx">
+      <DependentUpon>MenuRegFamily.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuRegField.resx">
       <DependentUpon>MenuRegField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuRegPatent.resx">
+      <DependentUpon>MenuRegPatent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuRegProm.resx">
       <DependentUpon>MenuRegProm.cs</DependentUpon>
@@ -414,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuRepSales.resx">
       <DependentUpon>MenuRepSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuFindFamilies.resx">
+      <DependentUpon>MenuFindFamilies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuSales.resx">
       <DependentUpon>MenuSales.cs</DependentUpon>

@@ -72,7 +72,7 @@
     <Compile Include="DAL\Repositories\File\VerificadorVerticalRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\LanguageRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\LoggerRepository.cs" />
-    <Compile Include="DAL\Repositories\SqlServer\PermissionRepository1.cs" />
+    <Compile Include="DAL\Repositories\SqlServer\PermissionRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\VerificadorVerticalRepository.cs" />
     <Compile Include="DAL\Tools\SqlHelper.cs" />
     <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />

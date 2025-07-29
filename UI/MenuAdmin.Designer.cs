@@ -81,7 +81,7 @@
             this.btnAdminEmployees.Name = "btnAdminEmployees";
             this.btnAdminEmployees.Size = new System.Drawing.Size(174, 86);
             this.btnAdminEmployees.TabIndex = 80;
-            this.btnAdminEmployees.Text = "Usuarios";
+            this.btnAdminEmployees.Text = "Usuarios / Permisos";
             this.btnAdminEmployees.UseVisualStyleBackColor = false;
             this.btnAdminEmployees.Click += new System.EventHandler(this.btnAdminEmployees_Click);
             // 
@@ -103,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1162, 694);
+            this.ClientSize = new System.Drawing.Size(929, 555);
             this.Controls.Add(this.btnAdminManuals);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdminProm);
