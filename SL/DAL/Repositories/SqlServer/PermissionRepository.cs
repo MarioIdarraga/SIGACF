@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using SL.Composite;
 using SL.DAL.Contracts;
 using SL.DAL.Tools;
@@ -24,6 +25,9 @@ namespace SL.DAL.Repositories.SqlServer
 
         private string UpdateStatementPermissionComponent => @"UPDATE PermissionComponent SET Name = @Name, FormName = @FormName, DVH = @DVH WHERE IdComponent = @IdComponent";
 
+        private const string DeleteStatementComponentChildren = @"DELETE FROM ComponentRelationship WHERE ParentId = @ParentId";
+
+        private const string UpdateStatementFamily = @"UPDATE PermissionComponent SET Name = @Name, DVH = @DVH WHERE IdComponent = @IdComponent";
         private string DeleteStatementUserFamilies => @"DELETE FROM [dbo].[UserPermissionComponent] WHERE UserId = @UserId AND IdComponent IN (
           SELECT IdComponent FROM PermissionComponent WHERE ComponentType = 'Familia'
       )";
@@ -127,6 +131,23 @@ namespace SL.DAL.Repositories.SqlServer
             return result;
         }
 
+        public List<(Guid ParentId, Guid ChildId)> GetAllPermissionRelations()
+        {
+            var relaciones = new List<(Guid ParentId, Guid ChildId)>();
+
+            using (var reader = SqlHelper.ExecuteReader(
+                   "SELECT ParentId, ChildId FROM ComponentRelationship", CommandType.Text))
+            {
+                while (reader.Read())
+                {
+                    var parentId = reader.GetGuid(0);
+                    var childId = reader.GetGuid(1);
+                    relaciones.Add((parentId, childId));   // ← alias ParentId / ChildId
+                }
+            }
+            return relaciones;
+        }
+
         public List<PermissionComponent> GetPermissionsForUser(Guid userId)
         {
             throw new NotImplementedException();
@@ -155,13 +176,40 @@ namespace SL.DAL.Repositories.SqlServer
                 });
 
             // 2. Insertar relaciones con hijos
-            foreach (var child in family.GetChildrens())
+            foreach (var child in family.GetChildren())
             {
                 SqlHelper.ExecuteNonQuery(InsertStatementComponentRelationship, System.Data.CommandType.Text,
                     new SqlParameter[]
                     {
                 new SqlParameter("@ParentId", family.IdComponent),
                 new SqlParameter("@ChildId", child.IdComponent)
+                    });
+            }
+        }
+
+        public void UpdateFamily(Familia familia)
+        {
+            // 1. Actualizar datos propios (Name y DVH)
+            SqlHelper.ExecuteNonQuery(UpdateStatementFamily, CommandType.Text,
+                new[]
+                {
+            new SqlParameter("@IdComponent", familia.IdComponent),
+            new SqlParameter("@Name",         familia.Name),
+            new SqlParameter("@DVH",          (object)familia.DVH ?? DBNull.Value)
+                });
+
+            // 2. Borrar relaciones existentes
+            SqlHelper.ExecuteNonQuery(DeleteStatementComponentChildren, CommandType.Text,
+                new[] { new SqlParameter("@ParentId", familia.IdComponent) });
+
+            // 3. Insertar nuevas relaciones
+            foreach (var child in familia.GetChildren())
+            {
+                SqlHelper.ExecuteNonQuery(InsertStatementComponentRelationship, CommandType.Text,
+                    new[]
+                    {
+                new SqlParameter("@ParentId", familia.IdComponent),
+                new SqlParameter("@ChildId",  child.IdComponent)
                     });
             }
         }
@@ -180,6 +228,8 @@ namespace SL.DAL.Repositories.SqlServer
             new SqlParameter("@DVH", patente.DVH != null ? (object)patente.DVH : DBNull.Value)
                 });
         }
+
+
 
         public void UpdatePatent(Patente patente)
         {

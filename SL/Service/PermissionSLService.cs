@@ -27,7 +27,27 @@ namespace SL.Service
 
         public List<Familia> GetAllFamilies()
         {
-            return _repo.GetAllFamilies();
+            // 1. Traemos todos los componentes (patentes + familias)
+            var allComponents = _repo.GetAllPermissionComponents();
+
+            // 2. Traemos TODAS las relaciones padre‑hijo
+            var relaciones = _repo.GetAllPermissionRelations();
+
+            // 3. Diccionario [Guid → PermissionComponent] p/ acceso rápido
+            var dict = allComponents.ToDictionary(pc => pc.IdComponent, pc => pc);
+
+            // 4. Re‑construimos la jerarquía
+            foreach (var rel in relaciones)          // rel.ParentId / rel.ChildId
+            {
+                if (dict.TryGetValue(rel.ParentId, out var padre) && padre is Familia familia &&
+                    dict.TryGetValue(rel.ChildId, out var hijo))
+                {
+                    familia.Add(hijo);
+                }
+            }
+
+            // 5. Solo devolvemos las familias
+            return allComponents.OfType<Familia>().ToList();
         }
 
         public void AssignFamiliesToUser(Guid userId, List<Guid> familyIds)
@@ -57,6 +77,14 @@ namespace SL.Service
                 if (string.IsNullOrWhiteSpace(familia.Name))
                     throw new ArgumentException("El nombre de la familia es obligatorio.");
 
+                var existentes = _repo.GetAllPermissionComponents();
+                bool yaExiste = existentes
+                    .OfType<Familia>()
+                    .Any(f => string.Equals(f.Name, familia.Name, StringComparison.OrdinalIgnoreCase));
+
+                if (yaExiste)
+                    throw new Exception($"Ya existe una familia con el nombre '{familia.Name}'.");
+
                 if (familia.GetChild() == 0)
                     throw new ArgumentException("La familia debe contener al menos un permiso.");
 
@@ -78,6 +106,41 @@ namespace SL.Service
                 throw;
             }
         }
+
+        public void UpdateFamily(Familia familia)
+        {
+            LoggerService.Log("Inicio modificación de familia.", EventLevel.Informational,
+                              Session.CurrentUser?.LoginName);
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(familia.Name))
+                    throw new ArgumentException("El nombre de la familia es obligatorio.");
+
+                if (familia.GetChild() == 0)
+                    throw new ArgumentException("La familia debe contener al menos un permiso.");
+
+                // Recalcular DVH
+                familia.DVH = DVHHelper.CalcularDVH(familia);
+
+                // Persistir cambios
+                _repo.UpdateFamily(familia);
+
+                // Recalcular DVV
+                var all = _repo.GetAllPermissionComponents();
+                new DVVService().RecalcularDVV(all, "PermissionComponent");
+
+                LoggerService.Log("Familia modificada correctamente.", EventLevel.Informational,
+                                  Session.CurrentUser?.LoginName);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al modificar familia: {ex.Message}", EventLevel.Error,
+                                  Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
+
 
         public List<Patente> GetAllPatents()
         {

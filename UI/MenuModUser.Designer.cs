@@ -49,13 +49,13 @@
             this.btnMenuFindUser = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
-            this.txtPosition = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtLoginName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.chkIsEmployee = new System.Windows.Forms.CheckBox();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.lblNroDocument = new System.Windows.Forms.Label();
+            this.cmbFamily = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtState
@@ -262,13 +262,6 @@
             this.btnMenuAdmin.UseVisualStyleBackColor = false;
             this.btnMenuAdmin.Click += new System.EventHandler(this.btnMenuAdmin_Click);
             // 
-            // txtPosition
-            // 
-            this.txtPosition.Location = new System.Drawing.Point(210, 628);
-            this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Size = new System.Drawing.Size(190, 22);
-            this.txtPosition.TabIndex = 62;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -324,9 +317,17 @@
             this.lblNroDocument.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.lblNroDocument.Location = new System.Drawing.Point(44, 452);
             this.lblNroDocument.Name = "lblNroDocument";
-            this.lblNroDocument.Size = new System.Drawing.Size(189, 23);
+            this.lblNroDocument.Size = new System.Drawing.Size(151, 18);
             this.lblNroDocument.TabIndex = 68;
             this.lblNroDocument.Text = "Nro de Documento";
+            // 
+            // cmbFamily
+            // 
+            this.cmbFamily.FormattingEnabled = true;
+            this.cmbFamily.Location = new System.Drawing.Point(210, 623);
+            this.cmbFamily.Name = "cmbFamily";
+            this.cmbFamily.Size = new System.Drawing.Size(188, 24);
+            this.cmbFamily.TabIndex = 70;
             // 
             // MenuModUser
             // 
@@ -334,12 +335,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1043, 676);
+            this.Controls.Add(this.cmbFamily);
             this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.lblNroDocument);
             this.Controls.Add(this.chkIsEmployee);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtLoginName);
-            this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.txtState);
@@ -393,12 +394,12 @@
         private System.Windows.Forms.Button btnMenuFindUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMenuAdmin;
-        private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtLoginName;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox chkIsEmployee;
         private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label lblNroDocument;
+        private System.Windows.Forms.ComboBox cmbFamily;
     }
 }

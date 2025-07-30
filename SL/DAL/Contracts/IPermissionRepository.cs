@@ -23,12 +23,15 @@ namespace SL.DAL.Contracts
 
         void SaveFamily(Familia family);
 
+        void UpdateFamily(Familia familia);
+
         void SavePatent(Patente patente);
 
         void UpdatePatent(Patente patente);
 
-        //Para implementar DVV
+        List<(Guid ParentId, Guid ChildId)> GetAllPermissionRelations();
 
+        //Para implementar DVV
         List<PermissionComponent> GetAllPermissionComponents();
 
 

@@ -24,7 +24,7 @@ namespace SL.Helpers
                 }
                 else if (item is Familia f)
                 {
-                    Recorrer(result, f.GetChildrens());
+                    Recorrer(result, f.GetChildren());
                 }
             }
         }

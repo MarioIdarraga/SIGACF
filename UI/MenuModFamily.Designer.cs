@@ -28,112 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtState = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbFieldType = new System.Windows.Forms.ComboBox();
-            this.txtHourlyCost = new System.Windows.Forms.TextBox();
-            this.txtCapacity = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegFamily = new System.Windows.Forms.Button();
             this.btnFindFamily = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.listBoxAdd = new System.Windows.Forms.ListBox();
+            this.checkedListPatent = new System.Windows.Forms.CheckedListBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.btnModFamily = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // txtState
-            // 
-            this.txtState.Location = new System.Drawing.Point(239, 501);
-            this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(185, 22);
-            this.txtState.TabIndex = 99;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(73, 505);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 18);
-            this.label2.TabIndex = 98;
-            this.label2.Text = "Estado";
-            // 
-            // cmbFieldType
-            // 
-            this.cmbFieldType.FormattingEnabled = true;
-            this.cmbFieldType.Location = new System.Drawing.Point(239, 432);
-            this.cmbFieldType.Name = "cmbFieldType";
-            this.cmbFieldType.Size = new System.Drawing.Size(185, 24);
-            this.cmbFieldType.TabIndex = 97;
-            // 
-            // txtHourlyCost
-            // 
-            this.txtHourlyCost.Location = new System.Drawing.Point(239, 368);
-            this.txtHourlyCost.Name = "txtHourlyCost";
-            this.txtHourlyCost.Size = new System.Drawing.Size(185, 22);
-            this.txtHourlyCost.TabIndex = 96;
-            // 
-            // txtCapacity
-            // 
-            this.txtCapacity.Location = new System.Drawing.Point(239, 302);
-            this.txtCapacity.Name = "txtCapacity";
-            this.txtCapacity.Size = new System.Drawing.Size(185, 22);
-            this.txtCapacity.TabIndex = 95;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(239, 233);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(185, 22);
-            this.txtName.TabIndex = 94;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label14.Location = new System.Drawing.Point(73, 439);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(129, 18);
-            this.label14.TabIndex = 93;
-            this.label14.Text = "Tipo De Cancha";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label15.Location = new System.Drawing.Point(73, 372);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(96, 18);
-            this.label15.TabIndex = 92;
-            this.label15.Text = "Costo Hora";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label16.Location = new System.Drawing.Point(73, 306);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(87, 18);
-            this.label16.TabIndex = 91;
-            this.label16.Text = "Capacidad";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label18.Location = new System.Drawing.Point(73, 237);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(68, 18);
-            this.label18.TabIndex = 90;
-            this.label18.Text = "Nombre";
             // 
             // label1
             // 
@@ -158,6 +64,7 @@
             this.btnRegFamily.TabIndex = 88;
             this.btnRegFamily.Text = "Cargar Familia";
             this.btnRegFamily.UseVisualStyleBackColor = false;
+            this.btnRegFamily.Click += new System.EventHandler(this.btnRegFamily_Click);
             // 
             // btnFindFamily
             // 
@@ -169,38 +76,104 @@
             this.btnFindFamily.TabIndex = 87;
             this.btnFindFamily.Text = "Búsqueda de Familias";
             this.btnFindFamily.UseVisualStyleBackColor = false;
+            this.btnFindFamily.Click += new System.EventHandler(this.btnFindFamily_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.Location = new System.Drawing.Point(791, 423);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(162, 42);
+            this.btnRemove.TabIndex = 99;
+            this.btnRemove.Text = "Quitar";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(555, 423);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(162, 42);
+            this.btnAdd.TabIndex = 98;
+            this.btnAdd.Text = "Agregar";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // listBoxAdd
+            // 
+            this.listBoxAdd.FormattingEnabled = true;
+            this.listBoxAdd.ItemHeight = 16;
+            this.listBoxAdd.Location = new System.Drawing.Point(555, 285);
+            this.listBoxAdd.Name = "listBoxAdd";
+            this.listBoxAdd.Size = new System.Drawing.Size(398, 132);
+            this.listBoxAdd.TabIndex = 97;
+            // 
+            // checkedListPatent
+            // 
+            this.checkedListPatent.FormattingEnabled = true;
+            this.checkedListPatent.Location = new System.Drawing.Point(252, 285);
+            this.checkedListPatent.Name = "checkedListPatent";
+            this.checkedListPatent.Size = new System.Drawing.Size(282, 208);
+            this.checkedListPatent.TabIndex = 96;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(252, 225);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(186, 22);
+            this.txtName.TabIndex = 94;
             // 
             // btnModFamily
             // 
             this.btnModFamily.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModFamily.Location = new System.Drawing.Point(528, 501);
+            this.btnModFamily.Location = new System.Drawing.Point(310, 511);
             this.btnModFamily.Name = "btnModFamily";
             this.btnModFamily.Size = new System.Drawing.Size(162, 42);
-            this.btnModFamily.TabIndex = 86;
+            this.btnModFamily.TabIndex = 93;
             this.btnModFamily.Text = "Modificar Familia";
             this.btnModFamily.UseVisualStyleBackColor = true;
             this.btnModFamily.Click += new System.EventHandler(this.btnModFamily_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label14.Location = new System.Drawing.Point(86, 285);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(157, 18);
+            this.label14.TabIndex = 92;
+            this.label14.Text = "Listado de Patentes";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label18.Location = new System.Drawing.Point(86, 229);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(68, 18);
+            this.label18.TabIndex = 91;
+            this.label18.Text = "Nombre";
             // 
             // MenuModFamily
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(993, 666);
-            this.Controls.Add(this.txtState);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbFieldType);
-            this.Controls.Add(this.txtHourlyCost);
-            this.Controls.Add(this.txtCapacity);
+            this.ClientSize = new System.Drawing.Size(1039, 693);
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.listBoxAdd);
+            this.Controls.Add(this.checkedListPatent);
             this.Controls.Add(this.txtName);
+            this.Controls.Add(this.btnModFamily);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRegFamily);
             this.Controls.Add(this.btnFindFamily);
-            this.Controls.Add(this.btnModFamily);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuModFamily";
             this.Text = "MenuModFamily";
@@ -210,20 +183,16 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtState;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbFieldType;
-        private System.Windows.Forms.TextBox txtHourlyCost;
-        private System.Windows.Forms.TextBox txtCapacity;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRegFamily;
         private System.Windows.Forms.Button btnFindFamily;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ListBox listBoxAdd;
+        private System.Windows.Forms.CheckedListBox checkedListPatent;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnModFamily;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label18;
     }
 }

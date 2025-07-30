@@ -5,7 +5,9 @@ using System.Linq;
 using BLL.Service;
 using Domain;
 using SL;
+using SL.Composite;
 using SL.Helpers;
+using SL.Service;
 using SL.Services;
 
 public class UserSLService
@@ -55,44 +57,53 @@ public class UserSLService
     }
 
 
-    public void Insert(User user)
+    public void Insert(User user, Guid familyId)
     {
-        LoggerService.Log("Inicio de registro de Usuario.");
+        LoggerService.Log("Inicio de registro de Usuario con familia asignada.");
 
         try
         {
+            // 1. Encriptar contraseña
             user.Password = AesEncryptionHelper.Encrypt(user.Password);
 
-            // Calcular DVH con helper común
+            // 2. Calcular DVH
             user.DVH = DVHHelper.CalcularDVH(user);
 
+            // 3. Insertar usuario
             _userService.RegisterUser(user);
 
-            // Recalcular DVV usando el repositorio y el servicio
+            // 4. Recalcular DVV
             var repo = DAL.Factory.Factory.Current.GetUserRepository();
             var usuarios = repo.GetAll();
             new DVVService().RecalcularDVV(usuarios, "Users");
 
-            LoggerService.Log("Usuario registrado correctamente.");
+            // 5. Relacionar usuario con familia de permisos
+            var permissionService = new PermissionSLService();
+            permissionService.AssignFamiliesToUser(user.UserId, new List<Guid> { familyId });
+
+            LoggerService.Log("Usuario registrado correctamente con familia asignada.");
         }
         catch (Exception ex)
         {
-            LoggerService.Log($"Error al registrar usuario: {ex.Message}", EventLevel.Error);
+            LoggerService.Log($"Error al registrar usuario con familia: {ex.Message}", EventLevel.Error);
             throw;
         }
     }
 
-    public void Update(User user)
+
+    public void Update(User user, Guid familyId)
     {
-        LoggerService.Log("Inicio de actualización de Usuario.");
+        LoggerService.Log("Inicio de modificación de Usuario.");
 
         try
         {
+            // Encriptar contraseña si fue modificada
             user.Password = AesEncryptionHelper.Encrypt(user.Password);
 
-            // Calcular DVH con helper común
+            // Recalcular DVH
             user.DVH = DVHHelper.CalcularDVH(user);
 
+            // Actualizar usuario
             _userService.UpdateUser(user);
 
             // Recalcular DVV
@@ -100,11 +111,15 @@ public class UserSLService
             var usuarios = repo.GetAll();
             new DVVService().RecalcularDVV(usuarios, "Users");
 
-            LoggerService.Log("Usuario actualizado correctamente.");
+            // 🔁 Actualizar relación con la familia (permiso)
+            var permissionService = new PermissionSLService();
+            permissionService.AssignFamiliesToUser(user.UserId, new List<Guid> { familyId });
+
+            LoggerService.Log("Usuario modificado correctamente.");
         }
         catch (Exception ex)
         {
-            LoggerService.Log($"Error al actualizar usuario: {ex.Message}", EventLevel.Error);
+            LoggerService.Log($"Error al modificar usuario: {ex.Message}", EventLevel.Error);
             throw;
         }
     }

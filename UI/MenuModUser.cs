@@ -11,6 +11,7 @@ using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
+using SL.Composite;
 using SL.Service.Extension;
 using UI.Helpers;
 
@@ -43,7 +44,7 @@ namespace UI
             txtNroDocument.Text = nroDocument.ToString();
             txtFirstName.Text = firstName;
             txtLastName.Text = lastName;
-            txtPosition.Text = position;
+            cmbFamily.Text = position;
             txtMail.Text = mail;
             txtAddress.Text = address;
             txtTelephone.Text = telephone;
@@ -95,7 +96,7 @@ namespace UI
                     string.IsNullOrWhiteSpace(txtNroDocument.Text) ||
                     string.IsNullOrWhiteSpace(txtFirstName.Text) ||
                     string.IsNullOrWhiteSpace(txtLastName.Text) ||
-                    string.IsNullOrWhiteSpace(txtPosition.Text) ||
+                    string.IsNullOrWhiteSpace(cmbFamily.Text) ||
                     string.IsNullOrWhiteSpace(txtMail.Text) ||
                     string.IsNullOrWhiteSpace(txtAddress.Text) ||
                     string.IsNullOrWhiteSpace(txtTelephone.Text) ||
@@ -115,15 +116,17 @@ namespace UI
                     NroDocument = int.Parse(txtNroDocument.Text),
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
-                    Position = txtPosition.Text,
+                    Position = ((PermissionComponent)cmbFamily.SelectedItem).Name,
                     Mail = txtMail.Text,
                     Address = txtAddress.Text,
                     Telephone = txtTelephone.Text,
                     State = int.Parse(txtState.Text)
                 };
 
-                // Llamar al método Update de la SL
-                _userSLService.Update(updatedUser);
+                var famSeleccionada = (PermissionComponent)cmbFamily.SelectedItem;
+                Guid familyId = famSeleccionada.IdComponent;
+
+                _userSLService.Update(updatedUser, familyId);
 
                 MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

@@ -31,11 +31,11 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnModFamily = new System.Windows.Forms.Button();
             this.btnFindFamily = new System.Windows.Forms.Button();
-            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.dataGridViewFamilies = new System.Windows.Forms.DataGridView();
             this.btnRegFamily = new System.Windows.Forms.Button();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFamilies)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStatus
@@ -74,15 +74,15 @@
             this.btnFindFamily.UseVisualStyleBackColor = true;
             this.btnFindFamily.Click += new System.EventHandler(this.btnFindFamily_Click);
             // 
-            // dataGridViewUsers
+            // dataGridViewFamilies
             // 
-            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsers.Location = new System.Drawing.Point(26, 319);
-            this.dataGridViewUsers.Name = "dataGridViewUsers";
-            this.dataGridViewUsers.RowHeadersWidth = 51;
-            this.dataGridViewUsers.RowTemplate.Height = 24;
-            this.dataGridViewUsers.Size = new System.Drawing.Size(1110, 379);
-            this.dataGridViewUsers.TabIndex = 90;
+            this.dataGridViewFamilies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFamilies.Location = new System.Drawing.Point(26, 319);
+            this.dataGridViewFamilies.Name = "dataGridViewFamilies";
+            this.dataGridViewFamilies.RowHeadersWidth = 51;
+            this.dataGridViewFamilies.RowTemplate.Height = 24;
+            this.dataGridViewFamilies.Size = new System.Drawing.Size(1110, 379);
+            this.dataGridViewFamilies.TabIndex = 90;
             // 
             // btnRegFamily
             // 
@@ -131,14 +131,14 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnModFamily);
             this.Controls.Add(this.btnFindFamily);
-            this.Controls.Add(this.dataGridViewUsers);
+            this.Controls.Add(this.dataGridViewFamilies);
             this.Controls.Add(this.btnRegFamily);
             this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuFindFamilies";
             this.Text = "MenuRolePremission";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFamilies)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,7 +149,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnModFamily;
         private System.Windows.Forms.Button btnFindFamily;
-        private System.Windows.Forms.DataGridView dataGridViewUsers;
+        private System.Windows.Forms.DataGridView dataGridViewFamilies;
         private System.Windows.Forms.Button btnRegFamily;
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.Label label1;

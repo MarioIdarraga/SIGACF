@@ -16,8 +16,9 @@ using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
-using SL.Helpers;
 using SL.BLL;
+using SL.Composite;
+using SL.Helpers;
 using SL.Service;
 using UI.Helpers;
 
@@ -28,7 +29,7 @@ namespace UI
         private object _panelContenedor;
         private object panelContenedor;
 
-        public Login() // eliminá el parámetro si no se usa
+        public Login()
         {
             InitializeComponent();
 
@@ -47,22 +48,52 @@ namespace UI
                     LoginName = defaultUsername,
                     Password = defaultPassword,
                     NroDocument = 12345678,
-                    FirstName = "Admin",                                                                                                                                                    
+                    FirstName = "Admin",
                     LastName = "Principal",
                     Position = "Administrador",
                     Mail = "admin@miapp.com",
                     Address = "Dirección por defecto",
                     Telephone = "11112222",
-                    State = 1,
+                    State = 1
                 };
 
                 defaultUser.DVH = DVHHelper.CalcularDVH(defaultUser);
-                userSLService.Insert(defaultUser);
+
+                var permissionSLService = new PermissionSLService();
+
+                // Buscar o crear familia "Administrador"
+                var familias = permissionSLService.GetAllFamilies();
+                var adminFamily = familias.FirstOrDefault(f => f.Name == "Administrador");
+
+                if (adminFamily == null)
+                {
+                    adminFamily = new Familia
+                    {
+                        IdComponent = Guid.NewGuid(),
+                        Name = "Administrador"
+                    };
+
+                    permissionSLService.SaveFamily(adminFamily);
+
+                    // Crear patente
+                    var patenteRegPatent = new Patente
+                    {
+                        IdComponent = Guid.NewGuid(),
+                        Name = "MenuRegPatent",
+                        FormName = "MenuRegPatent"
+                    };
+
+                    permissionSLService.SavePatent(patenteRegPatent);
+                    permissionSLService.AssignFamiliesToUser(defaultUser.UserId, new List<Guid> { adminFamily.IdComponent });
+
+                }
+
+                // Insertar usuario con la familia creada
+                userSLService.Insert(defaultUser, adminFamily.IdComponent);
 
                 MessageBox.Show($"Se creó un usuario administrador por defecto:\nUsuario: {defaultUsername}\nContraseña: {defaultPassword}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {

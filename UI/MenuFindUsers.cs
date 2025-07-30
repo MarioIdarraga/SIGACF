@@ -162,7 +162,7 @@ namespace UI
 
         private void btnFindFamilies_Click(object sender, EventArgs e)
         {
-            //OpenFormChild(new MenuFindFamilies(_panelContenedor));
+            OpenFormChild(new MenuFindFamilies(_panelContenedor));
         }
 
         private void btnFindPatents_Click(object sender, EventArgs e)

@@ -22,6 +22,11 @@ namespace SL.DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public List<(Guid ParentId, Guid ChildId)> GetAllPermissionRelations()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<PermissionComponent> GetPermissionsForUser(Guid userId)
         {
             throw new NotImplementedException();
@@ -38,6 +43,11 @@ namespace SL.DAL.Repositories.File
         }
 
         public void SavePatent(Patente patente)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateFamily(Familia familia)
         {
             throw new NotImplementedException();
         }

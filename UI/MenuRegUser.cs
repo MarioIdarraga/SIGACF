@@ -12,6 +12,8 @@ using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
+using SL.Composite;
+using SL.Service;
 using SL.Service.Extension;
 using UI.Helpers;
 
@@ -31,6 +33,11 @@ namespace UI
             var userRepo = Factory.Current.GetUserRepository();
             var userService = new BLL.Service.UserService(userRepo);
             _userSLService = new UserSLService(userService);
+
+            var familias = new PermissionSLService().GetAllFamilies();
+            cmbFamily.DataSource = familias;
+            cmbFamily.DisplayMember = "Name";
+            cmbFamily.ValueMember = "IdComponent";
         }
 
         private void OpenFormChild(object formchild)
@@ -65,7 +72,14 @@ namespace UI
         {
             try
             {
-             
+
+                var famSeleccionada = cmbFamily.SelectedItem as Familia;
+                if (famSeleccionada == null)
+                {
+                    MessageBox.Show("Seleccione una familia de permisos.");
+                    return;
+                }
+
                 User newUser = new User
                 {
                     UserId = Guid.NewGuid(),
@@ -74,11 +88,11 @@ namespace UI
                     NroDocument = int.Parse(txtNroDocument.Text.Trim()),
                     FirstName = txtFirstName.Text.Trim(),
                     LastName = txtLastName.Text.Trim(),
-                    Position = txtPosition.Text.Trim(),
+                    Position = famSeleccionada.Name,
                     Mail = txtEmail.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
                     Telephone = txtTelephone.Text.Trim(),
-                    State = 0  //Estado Inicial o Nuevo, asi despues le hago el cambio de estado, cuando ingrese por primera vez.
+                    State = 1  //Estado Inicial o Nuevo, asi despues le hago el cambio de estado, cuando ingrese por primera vez.
 
                 };
 
@@ -94,7 +108,10 @@ namespace UI
                     return;
                 }
 
-                _userSLService.Insert(newUser);
+                _userSLService.Insert(newUser, famSeleccionada.IdComponent);
+
+                new PermissionSLService().AssignFamiliesToUser(
+                newUser.UserId, new List<Guid> { famSeleccionada.IdComponent });
 
                 MessageBox.Show("Usuario registrado con éxito, recuerde darle la contraseña al usuario nuevo, ya que debera cambiarla al momento " +
                     "de su primer login en el aplicativo", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -105,7 +122,6 @@ namespace UI
                 txtNroDocument.Clear();
                 txtFirstName.Clear();
                 txtLastName.Clear();
-                txtPosition.Clear();
                 txtEmail.Clear();
                 txtAddress.Clear();
                 txtTelephone.Clear();

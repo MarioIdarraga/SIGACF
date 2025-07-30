@@ -9,22 +9,17 @@ namespace SL.Composite
     public class Familia : PermissionComponent
     {
         private List<PermissionComponent> childrens = new List<PermissionComponent>();
-        public string Name { get; set; }
 
+        public Familia() { }
         public Familia(string nombre, PermissionComponent component)
         {
+            Name = nombre;
+
             if (component != null)
-            {
                 childrens.Add(component);
-                Name = nombre;
-            }
-            else
-            {
-                throw new Exception("No se puede crear una familia sin un componente");
-            }
         }
 
-        public List<PermissionComponent> GetChildrens()
+        public List<PermissionComponent> GetChildren()
         {
             return childrens;
         }
