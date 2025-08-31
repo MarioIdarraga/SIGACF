@@ -45,6 +45,8 @@
             this.btnRegBooking = new System.Windows.Forms.Button();
             this.btnFindCustomer = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +105,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(68, 240);
+            this.label2.Location = new System.Drawing.Point(69, 240);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 18);
             this.label2.TabIndex = 5;
@@ -111,35 +113,35 @@
             // 
             // txtNroDocument
             // 
-            this.txtNroDocument.Location = new System.Drawing.Point(251, 234);
+            this.txtNroDocument.Location = new System.Drawing.Point(227, 234);
             this.txtNroDocument.Name = "txtNroDocument";
             this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
             this.txtNroDocument.TabIndex = 6;
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(555, 234);
+            this.txtFirstName.Location = new System.Drawing.Point(522, 234);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(188, 22);
             this.txtFirstName.TabIndex = 7;
             // 
             // txtTelephone
             // 
-            this.txtTelephone.Location = new System.Drawing.Point(251, 313);
+            this.txtTelephone.Location = new System.Drawing.Point(227, 313);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(170, 22);
             this.txtTelephone.TabIndex = 8;
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(949, 230);
+            this.txtLastName.Location = new System.Drawing.Point(841, 230);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(167, 22);
             this.txtLastName.TabIndex = 9;
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(555, 317);
+            this.txtMail.Location = new System.Drawing.Point(522, 317);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(188, 22);
             this.txtMail.TabIndex = 10;
@@ -160,7 +162,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(816, 235);
+            this.label4.Location = new System.Drawing.Point(751, 235);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 18);
             this.label4.TabIndex = 12;
@@ -205,7 +207,7 @@
             // btnFindCustomer
             // 
             this.btnFindCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCustomer.Location = new System.Drawing.Point(949, 296);
+            this.btnFindCustomer.Location = new System.Drawing.Point(1003, 296);
             this.btnFindCustomer.Name = "btnFindCustomer";
             this.btnFindCustomer.Size = new System.Drawing.Size(162, 42);
             this.btnFindCustomer.TabIndex = 84;
@@ -218,12 +220,31 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatus.Location = new System.Drawing.Point(935, 345);
+            this.lblStatus.Location = new System.Drawing.Point(987, 345);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(203, 20);
             this.lblStatus.TabIndex = 85;
             this.lblStatus.Text = "Listo para buscar clientes";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // cmbState
+            // 
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(839, 315);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(121, 24);
+            this.cmbState.TabIndex = 86;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label7.Location = new System.Drawing.Point(753, 320);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 18);
+            this.label7.TabIndex = 87;
+            this.label7.Text = "Estado";
             // 
             // MenuFindCustomers
             // 
@@ -231,6 +252,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1246, 762);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cmbState);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnFindCustomer);
             this.Controls.Add(this.btnRegBooking);
@@ -276,5 +299,7 @@
         private System.Windows.Forms.Button btnRegBooking;
         private System.Windows.Forms.Button btnFindCustomer;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ComboBox cmbState;
+        private System.Windows.Forms.Label label7;
     }
 }

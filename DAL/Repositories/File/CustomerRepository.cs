@@ -87,5 +87,10 @@ namespace DAL.Repositories.File
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Customer> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

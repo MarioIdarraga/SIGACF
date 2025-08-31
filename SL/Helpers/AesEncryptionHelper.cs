@@ -63,4 +63,27 @@ public static class AesEncryptionHelper
 
         return plaintext;
     }
+
+    public static bool IsEncryptedAES(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return false;
+
+        // Verificamos si el string parece ser Base64
+        try
+        {
+            // Si no es Base64, lanza error aquí
+            var base64Bytes = Convert.FromBase64String(input);
+
+            // Ahora sí intentamos desencriptar
+            var decrypted = Decrypt(input);
+
+            // Si no falla, es probablemente un texto AES válido
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }

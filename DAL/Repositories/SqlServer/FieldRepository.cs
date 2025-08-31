@@ -153,6 +153,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Field> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

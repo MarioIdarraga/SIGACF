@@ -39,25 +39,10 @@ namespace BLL.Service
             if (customer.NroDocument <= 0)
                 throw new ArgumentException("El número de documento debe ser válido y mayor que cero.");
 
-            if (string.IsNullOrWhiteSpace(customer.Mail) || !IsValidEmail(customer.Mail))
-                throw new ArgumentException("El email no es válido.");
 
             if (customer.State < 0)
                 throw new ArgumentException("El estado del cliente debe ser un valor válido.");
 
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-        }
-
-        private int CalculateAge(DateTime birthDate)
-        {
-            var today = DateTime.Today;
-            var age = today.Year - birthDate.Year;
-            if (birthDate > today.AddYears(-age)) age--;
-            return age;
         }
 
         public void UpdateCustomer(Customer customer)
@@ -77,9 +62,9 @@ namespace BLL.Service
             _customerRepo.Update(customer.IdCustomer, customer);
         }
 
-        public List<Customer> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail)
+        public List<Customer> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail, int state)
         {
-            return _customerRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail).ToList();
+            return _customerRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail, state).ToList();
         }
     }
 }

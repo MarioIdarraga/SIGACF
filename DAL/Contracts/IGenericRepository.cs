@@ -21,8 +21,7 @@ namespace DAL.Contracts
 
         T GetOne(Guid Id);
 
-        IEnumerable<T> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail);
-
+        IEnumerable<T> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state);
     }
 }
 

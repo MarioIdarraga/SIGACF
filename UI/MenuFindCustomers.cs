@@ -165,11 +165,11 @@ namespace UI
             string lastName = string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text.Trim();
             string telephone = string.IsNullOrWhiteSpace(txtTelephone.Text) ? null : txtTelephone.Text.Trim();
             string mail = string.IsNullOrWhiteSpace(txtMail.Text) ? null : txtMail.Text.Trim();
+            int state = string.IsNullOrWhiteSpace(cmbState.Text) ? 0 : Convert.ToInt32(cmbState.Text.Trim());
 
             try
             {
-
-                var customers = _customerSLService.GetAll(nroDocumento, firstName, lastName, telephone, mail);
+                var customers = _customerSLService.GetAll(nroDocumento, firstName, lastName, telephone, mail, state);
 
                 dataGridViewCustomers.DataSource = customers.ToList();
 

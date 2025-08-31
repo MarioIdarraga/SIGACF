@@ -30,6 +30,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<CustomerState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public CustomerState GetOne(Guid Id)
         {
             throw new NotImplementedException();

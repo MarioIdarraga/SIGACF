@@ -8,9 +8,11 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
+using SL;
 using UI.Helpers;
 
 namespace UI
@@ -19,7 +21,7 @@ namespace UI
     {
 
 
-        IGenericRepository<Booking> repositoryBooking = Factory.Current.GetBookingRepository();
+        private readonly BookingSLService _bookingSLService;
         private Panel _panelContenedor;
         public MenuCanBooking(Panel panelContenedor, Guid idBooking, Guid idCustomer, int nroDocument,
                       DateTime registrationBooking, TimeSpan startTime, TimeSpan endTime,
@@ -28,6 +30,10 @@ namespace UI
             InitializeComponent();
             _panelContenedor = panelContenedor;
             this.Translate(); // Assuming you have a Translate method for localization
+
+            var repo = Factory.Current.GetBookingRepository();
+            var bllService = new BookingService(repo);
+            _bookingSLService = new BookingSLService(bllService);
 
             // Asignar valores a los controles del formulario
 
@@ -87,7 +93,7 @@ namespace UI
                     State = 3
                 };
 
-                repositoryBooking.Update(canBooking.IdBooking, canBooking);
+                _bookingSLService.Update(canBooking.IdBooking, canBooking);
 
                 MessageBox.Show("Reserva cancelada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

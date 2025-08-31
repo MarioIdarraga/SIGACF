@@ -83,6 +83,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Promotion> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public Promotion GetOne(Guid Id)
         {
             using (var reader = SqlHelper.ExecuteReader(

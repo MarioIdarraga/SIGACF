@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.NroDocument = new System.Windows.Forms.TextBox();
+            this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnFindCan = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -46,12 +46,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // NroDocument
+            // txtNroDocument
             // 
-            this.NroDocument.Location = new System.Drawing.Point(212, 213);
-            this.NroDocument.Name = "NroDocument";
-            this.NroDocument.Size = new System.Drawing.Size(170, 22);
-            this.NroDocument.TabIndex = 21;
+            this.txtNroDocument.Location = new System.Drawing.Point(212, 213);
+            this.txtNroDocument.Name = "txtNroDocument";
+            this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
+            this.txtNroDocument.TabIndex = 21;
             // 
             // label2
             // 
@@ -209,7 +209,7 @@
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtTelephone);
             this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.NroDocument);
+            this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnFindCan);
             this.Controls.Add(this.dataGridView1);
@@ -225,7 +225,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox NroDocument;
+        private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFindCan;
         private System.Windows.Forms.DataGridView dataGridView1;

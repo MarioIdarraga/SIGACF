@@ -1,9 +1,10 @@
-﻿using DAL.Contracts;
-using Domain;
-using System.Data.SqlClient;
-using DAL.Tools;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using DAL.Contracts;
+using DAL.Tools;
+using Domain;
 
 namespace DAL.Repositories.SqlServer
 {
@@ -147,6 +148,64 @@ namespace DAL.Repositories.SqlServer
         public IEnumerable<Customer> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customer> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            var customers = new List<Customer>();
+            string query = SelectAllStatement + " WHERE 1=1";
+            var parameters = new List<SqlParameter>();
+
+            if (nroDocument.HasValue)
+            {
+                query += " AND NroDocument = @NroDocument";
+                parameters.Add(new SqlParameter("@NroDocument", nroDocument.Value));
+            }
+
+            if (!string.IsNullOrWhiteSpace(firstName))
+            {
+                query += " AND FirstName LIKE @FirstName";
+                parameters.Add(new SqlParameter("@FirstName", $"%{firstName}%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(lastName))
+            {
+                query += " AND LastName LIKE @LastName";
+                parameters.Add(new SqlParameter("@LastName", $"%{lastName}%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(telephone))
+            {
+                query += " AND Telephone LIKE @Telephone";
+                parameters.Add(new SqlParameter("@Telephone", $"%{telephone}%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(mail))
+            {
+                query += " AND Mail LIKE @Mail";
+                parameters.Add(new SqlParameter("@Mail", $"%{mail}%"));
+            }
+
+            using (var reader = SqlHelper.ExecuteReader(query, CommandType.Text, parameters.ToArray()))
+            {
+                while (reader.Read())
+                {
+                    customers.Add(new Customer
+                    {
+                        IdCustomer = reader.GetGuid(0),
+                        NroDocument = reader.GetInt32(1),
+                        FirstName = reader.GetString(2),
+                        LastName = reader.GetString(3),
+                        State = reader.GetInt32(4),
+                        Comment = reader.IsDBNull(5) ? null : reader.GetString(5),
+                        Telephone = reader.IsDBNull(6) ? null : reader.GetString(6),
+                        Mail = reader.IsDBNull(7) ? null : reader.GetString(7),
+                        Address = reader.IsDBNull(8) ? null : reader.GetString(8)
+                    });
+                }
+            }
+
+            return customers;
         }
 
         #endregion Metodos

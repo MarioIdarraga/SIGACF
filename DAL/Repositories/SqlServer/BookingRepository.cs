@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -131,6 +132,11 @@ namespace DAL.Repositories.SqlServer
         }
 
         public IEnumerable<Booking> GetAll(int? nroDocument, DateTime registrationBooking, DateTime registrationDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Booking> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
         {
             throw new NotImplementedException();
         }

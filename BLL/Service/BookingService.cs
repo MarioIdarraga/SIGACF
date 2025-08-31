@@ -71,6 +71,10 @@ namespace BLL.Service
             return _bookingRepo.GetAll(nroDocumento, registrationBooking, registrationDate).ToList();
         }
 
+        public List<Booking> GetAllRep(int? nroDocumento, string firstName, string lastName, string telephone, string mail, int estado)
+        {
+            return _bookingRepo.GetAll(nroDocumento, firstName, lastName, telephone, mail, estado).ToList();
+        }
         public decimal CalcularImporteReserva(Guid idField, TimeSpan startTime, TimeSpan endTime, Guid idPromotion)
         {
             var fieldRepo = Factory.Current.GetFieldRepository();

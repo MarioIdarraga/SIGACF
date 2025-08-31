@@ -64,10 +64,6 @@ namespace DAL.Repositories.SqlServer
             return list;
         }
 
-        public IEnumerable<FieldState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<FieldState> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
@@ -85,6 +81,11 @@ namespace DAL.Repositories.SqlServer
         }
 
         public void Update(Guid Id, FieldState Object)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<FieldState> IGenericRepository<FieldState>.GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
         {
             throw new NotImplementedException();
         }

@@ -30,6 +30,11 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public IEnumerable<FieldState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public FieldState GetOne(Guid Id)
         {
             throw new NotImplementedException();

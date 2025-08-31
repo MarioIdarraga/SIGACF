@@ -100,6 +100,25 @@ namespace SL
                 throw;
             }
         }
+
+        public List<Booking> GetCanceledBookings(int? nroDocumento, string firstName, string lastName, string telephone, string mail)
+        {
+            LoggerService.Log("Inicio búsqueda de reservas canceladas.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+
+            try
+            {
+                // Estado cancelado = 3
+                var result = _bookingService.GetAllRep(nroDocumento, firstName, lastName, telephone, mail, 3);
+
+                LoggerService.Log($"Fin búsqueda canceladas. Resultados: {result.Count}", EventLevel.Informational, Session.CurrentUser?.LoginName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al buscar cancelaciones: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
     }
 }
 
