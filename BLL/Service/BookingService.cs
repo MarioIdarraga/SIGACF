@@ -18,7 +18,7 @@ namespace BLL.Service
 
         public void RegisterBooking(Booking booking)
         {
-            ValidateBooking(booking);
+            ValidateBookingCreate(booking);
             _bookingRepo.Insert(booking);
         }
 
@@ -30,7 +30,7 @@ namespace BLL.Service
             if (booking.IdBooking == Guid.Empty)
                 throw new ArgumentException("El ID de la reserva es obligatorio.");
 
-            ValidateBooking(booking);
+            ValidateBookingCan(booking);
 
             var existing = _bookingRepo.GetOne(booking.IdBooking);
             if (existing == null)
@@ -39,7 +39,7 @@ namespace BLL.Service
             _bookingRepo.Update(booking.IdBooking, booking);
         }
 
-        private void ValidateBooking(Booking booking)
+        private void ValidateBookingCreate(Booking booking)
         {
             if (booking == null)
                 throw new ArgumentNullException(nameof(booking));
@@ -64,6 +64,21 @@ namespace BLL.Service
 
             if (booking.Field == Guid.Empty)
                 throw new ArgumentException("Debe seleccionarse una cancha.");
+        }
+        private void ValidateBookingCan(Booking booking)
+        {
+            if (booking == null)
+                throw new ArgumentNullException(nameof(booking));
+
+            if (booking.IdCustomer == Guid.Empty)
+                throw new ArgumentException("Debe asociarse un cliente a la reserva.");
+
+            if (string.IsNullOrWhiteSpace(booking.NroDocument))
+                throw new ArgumentException("El número de documento es obligatorio.");
+
+            if (booking.Field == Guid.Empty)
+                throw new ArgumentException("Debe seleccionarse una cancha.");
+
         }
 
         public List<Booking> GetAll(int? nroDocumento, DateTime? registrationBooking, DateTime? registrationDate)

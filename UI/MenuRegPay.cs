@@ -22,7 +22,15 @@ namespace UI
             InitializeComponent();
             _panelContenedor = panelContenedor;
 
-            this.Translate(); 
+            this.Translate();
+
+
+            // Asignar valores a los controles del formulario
+            //txtIdBooking.Text = idBooking.ToString();
+            //txtNroReserva.Text = nroReserva.ToString();
+            //txtImporteBooking.Text = importeBooking.ToString("F2"); // Formatear a 2 decimales
+            //txtEstado.Text = estado;
+            
 
         }
 

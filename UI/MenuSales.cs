@@ -54,7 +54,7 @@ namespace UI
                 // Validar si hay filas en el DataGridView
                 if (dataGridViewBookings.Rows.Count == 0)
                 {
-                    MessageBox.Show("Debe seleccionar un usuario de la lista para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Debe seleccionar una reserva de la lista para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -168,13 +168,21 @@ namespace UI
                 selectedRow.Cells["Promotion"].Value == null ||
                 selectedRow.Cells["State"].Value == null)
 
+       
                 {
                     MessageBox.Show("La reserva seleccionada tiene datos inválidos. Intente seleccionar otra.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Extraer valores de la fila
+                int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
+                if (state == 3)
+                {
+                    MessageBox.Show("La reserva ya está en estado 3 (cancelada/no vigente). No se puede volver a cancelar.",
+                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 Guid idBooking = (Guid)selectedRow.Cells["IdBooking"].Value;
                 Guid idCustomer = (Guid)selectedRow.Cells["IdCustomer"].Value;
                 int nroDocument = Convert.ToInt32(selectedRow.Cells["NroDocument"].Value);
@@ -183,10 +191,9 @@ namespace UI
                 TimeSpan endTime = (TimeSpan)selectedRow.Cells["EndTime"].Value;
                 string field = selectedRow.Cells["Field"].Value.ToString();
                 string promotion = selectedRow.Cells["Promotion"].Value.ToString();
-                int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
-                decimal importeBooking = 0; 
+                decimal importeBooking = 0;
 
-                // Abrir el formulario de modificación pasando los datos
+
                 OpenFormChild(new MenuCanBooking(_panelContenedor, idBooking, idCustomer, nroDocument,
                                                  registrationBooking, startTime,
                                                  endTime, field, promotion, state, importeBooking));

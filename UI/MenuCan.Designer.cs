@@ -67,9 +67,9 @@
             // btnFindCan
             // 
             this.btnFindCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCan.Location = new System.Drawing.Point(912, 281);
+            this.btnFindCan.Location = new System.Drawing.Point(897, 281);
             this.btnFindCan.Name = "btnFindCan";
-            this.btnFindCan.Size = new System.Drawing.Size(167, 44);
+            this.btnFindCan.Size = new System.Drawing.Size(182, 50);
             this.btnFindCan.TabIndex = 19;
             this.btnFindCan.Text = "Buscar Cancelaciones";
             this.btnFindCan.UseVisualStyleBackColor = true;

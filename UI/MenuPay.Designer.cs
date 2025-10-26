@@ -96,9 +96,9 @@
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
             this.lblStatus.Location = new System.Drawing.Point(694, 315);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(210, 20);
+            this.lblStatus.Size = new System.Drawing.Size(238, 25);
             this.lblStatus.TabIndex = 94;
-            this.lblStatus.Text = "Listo para buscar reservas";
+            this.lblStatus.Text = "Listo para buscar pagos";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // dtpRegistrationBooking
@@ -116,7 +116,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label4.Location = new System.Drawing.Point(120, 287);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 23);
+            this.label4.Size = new System.Drawing.Size(65, 18);
             this.label4.TabIndex = 91;
             this.label4.Text = "Metodo";
             // 
@@ -127,7 +127,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label3.Location = new System.Drawing.Point(546, 212);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 23);
+            this.label3.Size = new System.Drawing.Size(121, 18);
             this.label3.TabIndex = 90;
             this.label3.Text = "Fecha de Pago";
             // 
