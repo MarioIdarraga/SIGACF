@@ -94,9 +94,8 @@
             this.btnAdminManuals.Name = "btnAdminManuals";
             this.btnAdminManuals.Size = new System.Drawing.Size(176, 85);
             this.btnAdminManuals.TabIndex = 84;
-            this.btnAdminManuals.Text = "Manuales";
+            this.btnAdminManuals.Text = "BackUp";
             this.btnAdminManuals.UseVisualStyleBackColor = false;
-            this.btnAdminManuals.Click += new System.EventHandler(this.btnAdminManuals_Click);
             // 
             // MenuAdmin
             // 

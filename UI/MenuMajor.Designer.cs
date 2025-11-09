@@ -36,6 +36,7 @@
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.menuVertical = new System.Windows.Forms.Panel();
+            this.btnManuals = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -155,6 +156,7 @@
             // menuVertical
             // 
             this.menuVertical.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.menuVertical.Controls.Add(this.btnManuals);
             this.menuVertical.Controls.Add(this.panel12);
             this.menuVertical.Controls.Add(this.btnAdmin);
             this.menuVertical.Controls.Add(this.panel6);
@@ -174,6 +176,24 @@
             this.menuVertical.Name = "menuVertical";
             this.menuVertical.Size = new System.Drawing.Size(355, 757);
             this.menuVertical.TabIndex = 1;
+            // 
+            // btnManuals
+            // 
+            this.btnManuals.FlatAppearance.BorderSize = 0;
+            this.btnManuals.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SeaGreen;
+            this.btnManuals.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManuals.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManuals.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnManuals.Image = ((System.Drawing.Image)(resources.GetObject("btnManuals.Image")));
+            this.btnManuals.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnManuals.Location = new System.Drawing.Point(16, 574);
+            this.btnManuals.Margin = new System.Windows.Forms.Padding(4);
+            this.btnManuals.Name = "btnManuals";
+            this.btnManuals.Size = new System.Drawing.Size(368, 47);
+            this.btnManuals.TabIndex = 11;
+            this.btnManuals.Text = "Manuales";
+            this.btnManuals.UseVisualStyleBackColor = true;
+            this.btnManuals.Click += new System.EventHandler(this.btnManuals_Click);
             // 
             // panel12
             // 
@@ -499,5 +519,6 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Button btnManuals;
     }
 }

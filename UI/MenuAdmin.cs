@@ -48,10 +48,5 @@ namespace UI
         {
             OpenFormChild(new MenuFindPromotions(_panelContenedor));
         }
-
-        private void btnAdminManuals_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuManuals(_panelContenedor));
-        }
     }
 }

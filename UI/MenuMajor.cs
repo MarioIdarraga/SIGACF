@@ -181,5 +181,10 @@ namespace UI
         {
             OpenFormChild(new MenuAdmin(this.panelContenedor));
         }
+
+        private void btnManuals_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuManuals(this.panelContenedor));
+        }
     }
 }
