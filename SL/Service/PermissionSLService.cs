@@ -238,6 +238,36 @@ namespace SL.Service
             }
         }
 
+        public Patente FindPatentByFormName(string formName)
+        {
+            if (string.IsNullOrWhiteSpace(formName)) return null;
+
+            foreach (var fam in GetAllFamilies())
+            {
+                var found = FindPatentDFS(fam, formName);
+                if (found != null) return found;
+            }
+            return null;
+        }
+
+        private Patente FindPatentDFS(Familia fam, string formName)
+        {
+            foreach (var child in fam.GetChildren())
+            {
+                var asPat = child as Patente;
+                if (asPat != null && string.Equals(asPat.FormName, formName, StringComparison.OrdinalIgnoreCase))
+                    return asPat;
+
+                var asFam = child as Familia;
+                if (asFam != null)
+                {
+                    var r = FindPatentDFS(asFam, formName);
+                    if (r != null) return r;
+                }
+            }
+            return null;
+        }
+
     }
 }
 

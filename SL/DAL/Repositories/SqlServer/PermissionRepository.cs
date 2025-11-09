@@ -12,8 +12,6 @@ namespace SL.DAL.Repositories.SqlServer
     internal class PermissionRepository : IPermissionRepository
     {
 
-
-
         #region Statements
 
         private string InsertStatementPermissionComponent => @"INSERT INTO [dbo].[PermissionComponent] (IdComponent, Name, ComponentType, FormName, DVH)
@@ -150,8 +148,36 @@ namespace SL.DAL.Repositories.SqlServer
 
         public List<PermissionComponent> GetPermissionsForUser(Guid userId)
         {
-            throw new NotImplementedException();
+            var result = new List<PermissionComponent>();
+
+            using (var reader = SqlHelper.ExecuteReader(
+                       SelectStatementPermissionsForUser,
+                       CommandType.Text,
+                       new[] { new SqlParameter("@UserId", userId) }))
+            {
+                while (reader.Read())
+                {
+                    var id = reader.GetGuid(0);
+                    var name = reader.GetString(1);
+                    var type = reader.GetString(2);
+                    var formName = reader.IsDBNull(3) ? null : reader.GetString(3);
+
+                    if (string.Equals(type, "Patente", StringComparison.OrdinalIgnoreCase))
+                    {
+                        result.Add(new Patente
+                        {
+                            IdComponent = id,
+                            Name = name,
+                            FormName = formName,
+                            DVH = null // no viene en este SELECT
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
+
 
         public void RemoveFamiliesFromUser(Guid userId)
         {

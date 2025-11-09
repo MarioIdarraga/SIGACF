@@ -19,6 +19,10 @@ namespace UI
 {
     public partial class barraTitulo : Form
     {
+
+        private readonly HashSet<string> _allowedForms = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        public void SetAllowedForms(IEnumerable<string> forms) { _allowedForms.Clear(); foreach (var f in forms) if (!string.IsNullOrWhiteSpace(f)) _allowedForms.Add(f); }
+
         public barraTitulo()
         {
             InitializeComponent();
@@ -27,9 +31,19 @@ namespace UI
             cmbLanguage.Items.Add("Español");
             cmbLanguage.Items.Add("Inglés");
             cmbLanguage.Items.Add("Portugués");
-            cmbLanguage.SelectedIndex = 0; // Idioma por defecto
+            cmbLanguage.SelectedIndex = 0;
 
-            this.Translate(); // Aplica traducción inicial
+            //Mapeo de botones para permisos
+            btnClientes.Tag = "MenuFindCustomers";
+            btnAlquiler.Tag = "MenuSales";
+            btnPay.Tag = "MenuPay";
+            btnCan.Tag = "MenuCan";
+            bntReportes.Tag = "MenuRep";
+            btnAdmin.Tag = "MenuAdmin";
+
+            this.Translate();
+
+            //ApplyAuthorization();
 
 
             PermissionSLService permissionSL = new PermissionSLService();
@@ -98,6 +112,45 @@ namespace UI
             fh.Show();
         
         }
+
+        //private void ShowIfAllowed(Button btn)
+        //{
+        //    var formName = btn.Tag as string;
+        //    btn.Visible = (!string.IsNullOrWhiteSpace(formName) && _allowedForms.Contains(formName));
+        //}
+
+        //private void HideAllMenuItems()
+        //{
+        //    foreach (Control c in menuVertical.Controls)
+        //    {
+        //        // Ocultamos todo lo que “parece” un ítem de menú (tenga Tag o sea boton-like)
+        //        if (c is ButtonBase || c.Tag != null)
+        //            c.Visible = false;
+        //    }
+        //}
+
+        //public void ApplyAuthorization()
+        //{
+        //    // Debug de AllowedForms y Tags
+        //    var sb = new StringBuilder();
+        //    sb.AppendLine("AllowedForms:");
+        //    foreach (var f in _allowedForms) sb.AppendLine(" - " + f);
+        //    sb.AppendLine("Tags:");
+        //    foreach (Control c in menuVertical.Controls)
+        //        sb.AppendLine($" - {c.Name} -> {c.Tag}");
+        //    MessageBox.Show(sb.ToString(), "DEBUG permisos");
+
+        //    HideAllMenuItems();
+
+        //    // Mostrar solo los que corresponde (llama con tus controles reales)
+        //    ShowIfAllowed(btnClientes);
+        //    ShowIfAllowed(btnAlquiler);
+        //    ShowIfAllowed(btnPay);
+        //    ShowIfAllowed(btnCan);
+        //    ShowIfAllowed(bntReportes);
+        //    ShowIfAllowed(btnAdmin);
+        //}
+
 
         private void btnClientes_Click(object sender, EventArgs e)
         {

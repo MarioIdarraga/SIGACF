@@ -143,24 +143,30 @@ namespace UI
         {
             this.Translate();
 
-            string login = txtUser.Text.Trim();
-            string password = txtPass.Text.Trim();
+            var login = txtUser.Text.Trim();
+            var password = txtPass.Text.Trim();
 
-            LoginService service = new LoginService();
-            User usuario;
-            string message;
-
-            if (service.TryLogin(login, password, out usuario, out message))
+            var service = new LoginService();
+            if (service.TryLogin(login, password, out var usuario, out var message))
             {
-
-                var permisoService = new PermissionSLService();
+                // Guardar usuario en sesión
                 UI.Helpers.Session.User = usuario;
 
-                MessageBox.Show($"Bienvenido {usuario.FirstName} {usuario.LastName}", "Acceso concedido");
+                // 1) Traer patentes planas del usuario y armar el set de formularios permitidos
+                var permisoService = new SL.Service.PermissionSLService();
+                var allowedForms = new HashSet<string>(
+                    permisoService.GetPatentesByUser(usuario.UserId)
+                                  .Where(p => !string.IsNullOrWhiteSpace(p.FormName))
+                                  .Select(p => p.FormName),
+                    StringComparer.OrdinalIgnoreCase);
 
+                // 2) Abrir el menú principal y aplicar autorización
                 var frm = new barraTitulo();
+                //frm.SetAllowedForms(allowedForms); // método en MenuMajor que carga la lista
+                //frm.ApplyAuthorization();          // método en MenuMajor que oculta/muestra botones
                 frm.Show();
 
+                MessageBox.Show($"Bienvenido {usuario.FirstName} {usuario.LastName}", "Acceso concedido");
                 this.Hide();
             }
             else
@@ -168,6 +174,7 @@ namespace UI
                 MessageBox.Show(message, "Error de autenticación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btnCerrarLogin_Click(object sender, EventArgs e)
         {
