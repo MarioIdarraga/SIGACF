@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL.Service;
 using UI.Helpers;
 
 namespace UI
@@ -14,11 +17,15 @@ namespace UI
     public partial class MenuAdmin : Form
     {
         private Panel _panelContenedor;
+        private readonly ManagerAdminstration _managerAdminstration;
+        private readonly string _defaultBackupDirectory;
 
         public MenuAdmin(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
+            _managerAdminstration = new ManagerAdminstration();
+            _defaultBackupDirectory = ConfigurationManager.AppSettings["DefaultBackupDirectory"] ?? @"C:\SqlBackups";
             this.Translate(); // Assuming you have a Translate method for localization
         }
 
@@ -47,16 +54,6 @@ namespace UI
         private void btnAdminProm_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindPromotions(_panelContenedor));
-        }
-
-        private void btnAdminManuals_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuBackUp(_panelContenedor));
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
