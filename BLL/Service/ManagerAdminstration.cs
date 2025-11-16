@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using DAL.Tools;
 
 namespace BLL.Service
 {
@@ -41,15 +42,7 @@ namespace BLL.Service
                 Value = filePath
             };
 
-            using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand(backupCommand, connection))
-            {
-                command.CommandType = CommandType.Text;
-                command.Parameters.Add(pathParameter);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+            SqlHelper.ExecuteNonQuery(backupCommand, CommandType.Text, pathParameter);
         }
     }
 }
