@@ -96,6 +96,7 @@
             this.btnAdminManuals.TabIndex = 84;
             this.btnAdminManuals.Text = "BackUp";
             this.btnAdminManuals.UseVisualStyleBackColor = false;
+            this.btnAdminManuals.Click += new System.EventHandler(this.btnAdminManuals_Click);
             // 
             // MenuAdmin
             // 
