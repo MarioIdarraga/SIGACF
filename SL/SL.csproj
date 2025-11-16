@@ -61,15 +61,18 @@
     <Compile Include="DAL\Composite\Familia.cs" />
     <Compile Include="DAL\Composite\Patente.cs" />
     <Compile Include="DAL\Composite\PermissionComponent.cs" />
+    <Compile Include="DAL\Contracts\IBackupRepository.cs" />
     <Compile Include="DAL\Contracts\IGenericBusinessService.cs" />
     <Compile Include="DAL\Contracts\ILogger.cs" />
     <Compile Include="DAL\Contracts\IPermissionRepository.cs" />
     <Compile Include="DAL\Contracts\IVerificadorVerticalRepository.cs" />
     <Compile Include="DAL\Factory\SLFactory.cs" />
+    <Compile Include="DAL\Repositories\File\BackupRepository.cs" />
     <Compile Include="DAL\Repositories\File\LoggerRepository.cs" />
     <Compile Include="DAL\Repositories\File\LanguageRepository.cs" />
     <Compile Include="DAL\Repositories\File\PermissionRepository1.cs" />
     <Compile Include="DAL\Repositories\File\VerificadorVerticalRepository.cs" />
+    <Compile Include="DAL\Repositories\SqlServer\BackupRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\LanguageRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\LoggerRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\PermissionRepository.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\PermissionHelper.cs" />
     <Compile Include="Helpers\Session.cs" />
+    <Compile Include="Service\BackupSLService.cs" />
     <Compile Include="Service\BookingSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
     <Compile Include="Service\DVVService.cs" />

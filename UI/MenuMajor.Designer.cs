@@ -340,7 +340,7 @@
             this.btnCan.Location = new System.Drawing.Point(16, 410);
             this.btnCan.Margin = new System.Windows.Forms.Padding(4);
             this.btnCan.Name = "btnCan";
-            this.btnCan.Size = new System.Drawing.Size(404, 47);
+            this.btnCan.Size = new System.Drawing.Size(379, 46);
             this.btnCan.TabIndex = 7;
             this.btnCan.Text = "Cancelaciones";
             this.btnCan.UseVisualStyleBackColor = true;
@@ -404,9 +404,9 @@
             this.btnAlquiler.Location = new System.Drawing.Point(16, 302);
             this.btnAlquiler.Margin = new System.Windows.Forms.Padding(4);
             this.btnAlquiler.Name = "btnAlquiler";
-            this.btnAlquiler.Size = new System.Drawing.Size(404, 47);
+            this.btnAlquiler.Size = new System.Drawing.Size(379, 47);
             this.btnAlquiler.TabIndex = 3;
-            this.btnAlquiler.Text = "Ventas - Reservas";
+            this.btnAlquiler.Text = "Reservas";
             this.btnAlquiler.UseVisualStyleBackColor = true;
             this.btnAlquiler.Click += new System.EventHandler(this.btnAlquiler_Click);
             // 
@@ -432,9 +432,9 @@
             this.btnClientes.Location = new System.Drawing.Point(16, 248);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(4);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(404, 47);
+            this.btnClientes.Size = new System.Drawing.Size(379, 46);
             this.btnClientes.TabIndex = 1;
-            this.btnClientes.Text = "Ventas - Clientes";
+            this.btnClientes.Text = "Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 

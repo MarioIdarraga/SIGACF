@@ -24,6 +24,13 @@ namespace SL.Factory
             _backendSL = ConfigurationManager.AppSettings["backendSL"];
         }
 
+        public IBackupRepository GetBackupRepository()
+        {
+            var cs = ConfigurationManager.ConnectionStrings["SqlConnectionString"]?.ConnectionString
+                     ?? throw new InvalidOperationException("SqlConnectionString no configurada.");
+            return new SL.DAL.Repositories.SqlServer.BackupRepository(cs);
+        }
+
         public ILogger GetLoggerRepository()
         {
             if (_backendSL == "SqlServer")
@@ -70,3 +77,27 @@ namespace SL.Factory
         }
     }
 }
+//        public IBackupRepository GetBackupRepository()
+//        {
+//            if (string.IsNullOrWhiteSpace(_backendSL))
+//                throw new InvalidOperationException("Config 'backendSL' no está seteada.");
+
+//            switch (_backendSL.ToLowerInvariant())
+//            {
+//                case "sqlserver":
+//                    {
+//                        var cs = ConfigurationManager.ConnectionStrings["SqlConnectionString"]?.ConnectionString
+//                                 ?? throw new InvalidOperationException("SqlConnectionString no configurada.");
+//                        return new SL.DAL.Repositories.SqlServer.BackupRepository(cs); // ctor que recibe cs
+//                    }
+
+//                case "file":
+//                    throw new NotSupportedException("Backup no soportado para backendSL='File'.");
+
+//                default:
+//                    throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
+//            }
+        
+//        }
+//    }
+//}

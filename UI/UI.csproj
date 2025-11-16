@@ -176,6 +176,12 @@
     <Compile Include="MenuAdmin.Designer.cs">
       <DependentUpon>MenuAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuBackUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuBackUp.Designer.cs">
+      <DependentUpon>MenuBackUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuCan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuAdmin.resx">
       <DependentUpon>MenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuBackUp.resx">
+      <DependentUpon>MenuBackUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuCan.resx">
       <DependentUpon>MenuCan.cs</DependentUpon>
