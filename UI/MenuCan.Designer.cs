@@ -43,6 +43,7 @@
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +68,7 @@
             // btnFindCan
             // 
             this.btnFindCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindCan.Location = new System.Drawing.Point(897, 281);
+            this.btnFindCan.Location = new System.Drawing.Point(895, 264);
             this.btnFindCan.Name = "btnFindCan";
             this.btnFindCan.Size = new System.Drawing.Size(182, 50);
             this.btnFindCan.TabIndex = 19;
@@ -194,12 +195,25 @@
             this.txtMail.Size = new System.Drawing.Size(188, 22);
             this.txtMail.TabIndex = 25;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Gray;
+            this.lblStatus.Location = new System.Drawing.Point(857, 317);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(252, 20);
+            this.lblStatus.TabIndex = 113;
+            this.lblStatus.Text = "Listo para buscar cancelaciones";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // MenuCan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1172, 741);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnFindBooking);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -240,5 +254,6 @@
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -42,7 +42,15 @@ namespace BLL.Service
                 Value = filePath
             };
 
-            SqlHelper.ExecuteNonQuery(backupCommand, CommandType.Text, pathParameter);
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand(backupCommand, connection))
+            {
+                command.CommandType = CommandType.Text;
+                command.Parameters.Add(pathParameter);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

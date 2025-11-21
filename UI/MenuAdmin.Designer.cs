@@ -45,7 +45,6 @@
             this.label1.Size = new System.Drawing.Size(341, 32);
             this.label1.TabIndex = 83;
             this.label1.Text = "Menu de Administración";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnAdminProm
             // 

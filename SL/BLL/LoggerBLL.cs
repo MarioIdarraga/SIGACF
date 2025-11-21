@@ -14,17 +14,7 @@ namespace SL.Logging
         public static void Store(string message, EventLevel severity, string performedBy)
         {
             var loggerRepository = SLFactory.Current.GetLoggerRepository();
-
             loggerRepository.Store(message, severity, performedBy);
-
-            switch (severity)
-            {
-                case EventLevel.Critical:
-                case EventLevel.Warning:
-                case EventLevel.Error:
-                    loggerRepository.Store(message, severity, performedBy);
-                    break;
-            }
         }
     }
 }

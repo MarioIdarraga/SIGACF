@@ -17,27 +17,27 @@ namespace DAL.Repositories.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[BookingsState] (IdStateBooking, Description) VALUES (@IdStateBooking, @Description)";
+            get => "INSERT INTO [dbo].[BookingsStates] (IdStateBooking, Description) VALUES (@IdStateBooking, @Description)";
         }
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[BookingsState] SET (IdStateBooking, Description) WHERE IdStateBooking = @IdStateBooking";
+            get => "UPDATE [dbo].[BookingsStates] SET (IdStateBooking, Description) WHERE IdStateBooking = @IdStateBooking";
         }
 
         private string DeleteStatement
         {
-            get => "DELETE FROM [dbo].[BookingsState] WHERE IdStateBooking = @IdStateBooking";
+            get => "DELETE FROM [dbo].[BookingsStates] WHERE IdStateBooking = @IdStateBooking";
         }
 
         private string SelectOneStatement
         {
-            get => "SELECT IdStateBooking, IdStateBooking, Description FROM [dbo].[BookingsState] WHERE IdStateBooking = @IdStateBooking";
+            get => "SELECT IdStateBooking, Description FROM [dbo].[BookingsStates] WHERE IdStateBooking = @IdStateBooking";
         }
 
         private string SelectAllStatement
         {
-            get => "SELECT IdStateBooking, IdStateBooking, Description FROM [dbo].[BookingsState]";
+            get => "SELECT IdStateBooking, Description FROM [dbo].[BookingsStates]";
         }
         #endregion
 
@@ -122,19 +122,32 @@ namespace DAL.Repositories.SqlServer
         public IEnumerable<BookingState> GetAll()
         {
             var list = new List<BookingState>();
-            using (var reader = SqlHelper.ExecuteReader(
-                SelectAllStatement,
-                CommandType.Text))
+
+            try
             {
-                while (reader.Read())
+                using (var reader = SqlHelper.ExecuteReader(
+                    SelectAllStatement,
+                    CommandType.Text))
                 {
-                    list.Add(new BookingState
+                    while (reader.Read())
                     {
-                        IdStateBooking = reader.GetInt32(0),
-                        Description = reader.GetString(1)
-                    });
+                        list.Add(new BookingState
+                        {
+                            IdStateBooking = reader.GetInt32(0),
+                            Description = reader.GetString(1)
+                        });
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error al obtener los estados de reserva.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se produjo un error inesperado al obtener los estados de reserva.", ex);
+            }
+
             return list;
         }
 
@@ -149,6 +162,11 @@ namespace DAL.Repositories.SqlServer
         }
 
         public IEnumerable<BookingState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<BookingState> GetAll(DateTime? from, DateTime? to, int state)
         {
             throw new NotImplementedException();
         }

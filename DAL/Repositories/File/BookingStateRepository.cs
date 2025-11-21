@@ -35,6 +35,11 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public IEnumerable<BookingState> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public BookingState GetOne(Guid Id)
         {
             throw new NotImplementedException();

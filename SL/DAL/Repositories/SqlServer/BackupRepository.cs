@@ -36,7 +36,7 @@ namespace SL.DAL.Repositories.SqlServer
             var fullPath = Path.Combine(backupFolder, fileName);
 
             // COPY_ONLY evita interferir con backups diferenciales
-            var sql = $"BACKUP DATABASE [{dbName}] TO DISK=@p0 WITH {(copyOnly ? "COPY_ONLY," : "")} COMPRESSION, INIT, STATS=5;";
+            var sql = $"BACKUP DATABASE [{dbName}] TO DISK=@p0 WITH {(copyOnly ? "COPY_ONLY," : "")} INIT, STATS=5;";
 
             using (var cn = new SqlConnection(_cs))
             using (var cmd = new SqlCommand(sql, cn) { CommandTimeout = 0 })

@@ -35,6 +35,11 @@ namespace DAL.Repositories.Memory
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Promotion> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public Promotion GetOne(Guid Id)
         {
             throw new NotImplementedException();

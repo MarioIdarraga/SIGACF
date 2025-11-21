@@ -119,6 +119,29 @@ namespace SL
                 throw;
             }
         }
+
+        /// <summary>
+        /// Obtiene todas las reservas canceladas en un rango de fechas determinado.
+        /// </summary>
+        /// <param name="from">Fecha de inicio (opcional)</param>
+        /// <param name="to">Fecha de fin (opcional)</param>
+        /// <returns>Lista de reservas canceladas</returns>
+        public List<Booking> GetCanceledBookingsByDateRange(DateTime? from, DateTime? to)
+        {
+            LoggerService.Log("Inicio búsqueda de cancelaciones por fecha.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+
+            try
+            {
+                var result = _bookingService.GetAllByDateRangeAndState(from, to, 3); // 3 = Cancelado
+                LoggerService.Log($"Fin búsqueda. Resultados: {result.Count}", EventLevel.Informational, Session.CurrentUser?.LoginName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error en búsqueda de cancelaciones: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
     }
 }
 

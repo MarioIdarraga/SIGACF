@@ -37,6 +37,7 @@
             this.btnRepBooking = new System.Windows.Forms.Button();
             this.btnRepSales = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExportPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +80,7 @@
             // btnGenRepCan
             // 
             this.btnGenRepCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenRepCan.Location = new System.Drawing.Point(461, 285);
+            this.btnGenRepCan.Location = new System.Drawing.Point(370, 286);
             this.btnGenRepCan.Name = "btnGenRepCan";
             this.btnGenRepCan.Size = new System.Drawing.Size(164, 44);
             this.btnGenRepCan.TabIndex = 57;
@@ -135,12 +136,24 @@
             this.label1.TabIndex = 53;
             this.label1.Text = "Reporte de Cancelaciones";
             // 
+            // btnExportPdf
+            // 
+            this.btnExportPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportPdf.Location = new System.Drawing.Point(564, 286);
+            this.btnExportPdf.Name = "btnExportPdf";
+            this.btnExportPdf.Size = new System.Drawing.Size(164, 44);
+            this.btnExportPdf.TabIndex = 62;
+            this.btnExportPdf.Text = "Generar PDF";
+            this.btnExportPdf.UseVisualStyleBackColor = true;
+            this.btnExportPdf.Click += new System.EventHandler(this.btnExportPdf_Click);
+            // 
             // MenuRepCan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1180, 741);
+            this.Controls.Add(this.btnExportPdf);
             this.Controls.Add(this.dtpDateUntilCan);
             this.Controls.Add(this.dtpDateSinceCan);
             this.Controls.Add(this.label3);
@@ -170,5 +183,6 @@
         private System.Windows.Forms.Button btnRepBooking;
         private System.Windows.Forms.Button btnRepSales;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExportPdf;
     }
 }

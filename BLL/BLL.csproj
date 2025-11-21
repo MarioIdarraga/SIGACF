@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessException\BusinessException.cs" />
+    <Compile Include="BusinessException\DatabaseAccessException.cs" />
     <Compile Include="Contracts\IGenericBusinessService.cs" />
     <Compile Include="Contracts\IGenericManager.cs" />
+    <Compile Include="Service\BookingStateService.cs" />
     <Compile Include="Service\FieldService.cs" />
     <Compile Include="Service\ManagerAdminstration.cs" />
     <Compile Include="Service\ManagerReport.cs" />
@@ -54,9 +57,7 @@
     <Compile Include="Service\PayService.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessException\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{AB4CA04A-E52B-4978-8817-6B85BB30AB3F}</Project>

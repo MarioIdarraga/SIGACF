@@ -215,3 +215,19 @@ BackUp Full=BackUp Full
 MenuBackUp=MenuBackUp
 Reservations=Reservations
 lunes, 10 de noviembre de 2025=lunes, 10 de noviembre de 2025
+admmin=admmin
+LoginName;Usuario
+Password;Contraseña
+NroDocument;Nro de Documento
+FirstName;Nombre
+LastName;Apellido
+Position;Cargo
+Mail;Correo electrónico
+Address;Dirección
+Telephone;Teléfono
+IsEmployee;Es Empleado
+State;Estado
+Listo para buscar cancelaciones=Listo para buscar cancelaciones
+admina=admina
+admi=admi
+Generar PDF=Generar PDF

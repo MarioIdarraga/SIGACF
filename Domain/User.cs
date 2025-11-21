@@ -18,5 +18,6 @@ namespace Domain
         public string Telephone { get; set; }
         public int State { get; set; }
         public string DVH { get; set; }
+        public bool IsEmployee { get; set; }
     }
 }

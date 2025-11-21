@@ -14,25 +14,56 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario responsable de realizar la búsqueda y visualización
+    /// de familias de permisos dentro del sistema.
+    /// 
+    /// Permite:
+    /// - Volver al menú de administración.
+    /// - Registrar nuevas familias.
+    /// - Modificar familias existentes.
+    /// - Buscar todas las familias con sus permisos asociados.
+    /// 
+    /// Utiliza <see cref="PermissionSLService"/> para consultar la capa de servicios (SL).
+    /// </summary>
     public partial class MenuFindFamilies : Form
     {
-
+        /// <summary>
+        /// Panel contenedor donde se cargan los formularios hijos.
+        /// </summary>
         private Panel _panelContenedor;
 
+        /// <summary>
+        /// Servicio de permisos proveniente de la capa SL.
+        /// Encargado de obtener, modificar y consultar familias.
+        /// </summary>
         private readonly PermissionSLService _permissionSLService;
+
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario <see cref="MenuFindFamilies"/>.
+        /// </summary>
+        /// <param name="Contenedor">Panel donde se cargarán los formularios hijos.</param>
         public MenuFindFamilies(Panel Contenedor)
         {
             InitializeComponent();
             _panelContenedor = Contenedor;
+
+            // Traducción dinámica según idioma seleccionado
             this.Translate();
 
-            _permissionSLService = new PermissionSLService(); ;
+            _permissionSLService = new PermissionSLService();
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor principal.
+        /// Reemplaza el contenido previamente existente.
+        /// </summary>
+        /// <param name="formchild">Formulario hijo a visualizar.</param>
         private void OpenFormChild(object formchild)
         {
             if (_panelContenedor.Controls.Count > 0)
                 _panelContenedor.Controls.RemoveAt(0);
+
             Form fh = formchild as Form;
             fh.TopLevel = false;
             fh.Dock = DockStyle.Fill;
@@ -41,23 +72,41 @@ namespace UI
             fh.Show();
         }
 
-
+        /// <summary>
+        /// Evento del botón "Menu Administración".
+        /// Regresa al menú principal de administración.
+        /// </summary>
+        /// <param name="sender">Objeto que dispara el evento.</param>
+        /// <param name="e">Argumentos del evento.</param>
         private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuAdmin(_panelContenedor));
         }
 
+        /// <summary>
+        /// Evento del botón "Registrar Familia".
+        /// Abre el formulario de registro de nuevas familias.
+        /// </summary>
         private void btnRegFamily_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuRegFamily(_panelContenedor));
         }
 
+        /// <summary>
+        /// Evento del botón "Modificar Familia".
+        /// Abre el formulario de modificación de la familia seleccionada.
+        /// 
+        /// Requisitos:
+        /// - Debe haber una fila seleccionada.
+        /// - La familia debe existir en la lista obtenida desde SL.
+        /// </summary>
         private void btnModFamily_Click(object sender, EventArgs e)
         {
             if (dataGridViewFamilies.SelectedRows.Count > 0)
             {
                 string nombre = dataGridViewFamilies.SelectedRows[0].Cells["Nombre"].Value.ToString();
                 var familia = _permissionSLService.GetAllFamilies().FirstOrDefault(f => f.Name == nombre);
+
                 if (familia != null)
                 {
                     OpenFormChild(new MenuModFamily(_panelContenedor, familia));
@@ -69,6 +118,15 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Evento del botón "Buscar Familias".
+        /// Obtiene todas las familias registradas y las muestra en el <see cref="DataGridView"/>.
+        /// 
+        /// Maneja:
+        /// - Cantidad de resultados.
+        /// - Estado del label inferior.
+        /// - Excepciones en la capa SL.
+        /// </summary>
         private void btnFindFamily_Click(object sender, EventArgs e)
         {
             try
@@ -98,3 +156,4 @@ namespace UI
         }
     }
 }
+

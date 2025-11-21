@@ -156,8 +156,5 @@ namespace UI
                 MessageBox.Show("Error al modificar la reserva: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
     }
 }

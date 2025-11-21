@@ -88,6 +88,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Promotion> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public Promotion GetOne(Guid Id)
         {
             using (var reader = SqlHelper.ExecuteReader(

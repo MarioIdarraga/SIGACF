@@ -208,6 +208,11 @@ namespace DAL.Repositories.SqlServer
             return customers;
         }
 
+        public IEnumerable<Customer> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion Metodos
     }
 }

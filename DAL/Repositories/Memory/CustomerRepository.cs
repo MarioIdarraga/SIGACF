@@ -53,6 +53,11 @@ namespace DAL.Repositories.Memory
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Customer> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public Customer GetOne(Guid Id)
         {
             return _customers.FirstOrDefault(c => c.IdCustomer == Id);

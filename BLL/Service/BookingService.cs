@@ -114,6 +114,25 @@ namespace BLL.Service
 
             return importe;
         }
+
+        /// <summary>
+        /// Obtiene todas las reservas en un rango de fechas y con un estado específico.
+        /// </summary>
+        /// <param name="from">Fecha inicial (opcional)</param>
+        /// <param name="to">Fecha final (opcional)</param>
+        /// <param name="state">Estado de la reserva</param>
+        /// <returns>Lista de reservas</returns>
+        public List<Booking> GetAllByDateRangeAndState(DateTime? from, DateTime? to, int state)
+        {
+            try
+            {
+                return _bookingRepo.GetAll(from, to, state).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener reservas por rango de fechas y estado.", ex);
+            }
+        }
     }
 }
 

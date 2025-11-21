@@ -158,6 +158,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Field> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

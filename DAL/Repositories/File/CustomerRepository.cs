@@ -92,5 +92,10 @@ namespace DAL.Repositories.File
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Customer> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

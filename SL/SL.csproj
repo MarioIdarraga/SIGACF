@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Numerics" />
@@ -84,9 +85,11 @@
     <Compile Include="Helpers\DVHHelper.cs" />
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\PermissionHelper.cs" />
+    <Compile Include="Helpers\SafeExecutor.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Service\BackupSLService.cs" />
     <Compile Include="Service\BookingSLService.cs" />
+    <Compile Include="Service\BookingStateSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
     <Compile Include="Service\DVVService.cs" />
     <Compile Include="Service\FieldSLService.cs" />

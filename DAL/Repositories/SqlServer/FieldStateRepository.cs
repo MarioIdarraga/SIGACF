@@ -70,6 +70,11 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        public IEnumerable<FieldState> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public FieldState GetOne(Guid Id)
         {
             throw new NotImplementedException();

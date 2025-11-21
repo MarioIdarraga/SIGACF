@@ -63,6 +63,11 @@ namespace DAL.Repositories.Memory
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Field> GetAll(DateTime? from, DateTime? to, int state)
+        {
+            throw new NotImplementedException();
+        }
+
         public Field GetOne(Guid Id)
         {
             throw new NotImplementedException();
