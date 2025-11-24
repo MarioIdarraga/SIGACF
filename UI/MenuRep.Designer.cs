@@ -96,6 +96,7 @@
             this.btnRepPromo.TabIndex = 80;
             this.btnRepPromo.Text = "Promociones más usadas";
             this.btnRepPromo.UseVisualStyleBackColor = false;
+            this.btnRepPromo.Click += new System.EventHandler(this.btnRepPromo_Click);
             // 
             // MenuRep
             // 

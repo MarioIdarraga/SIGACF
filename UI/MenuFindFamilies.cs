@@ -1,4 +1,9 @@
-﻿using System;
+﻿using DAL.Contracts;
+using DAL.Factory;
+using Domain;
+using SL;
+using SL.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL.Factory;
-using SL;
-using SL.Service;
 using UI.Helpers;
 
 namespace UI
@@ -38,6 +40,8 @@ namespace UI
         /// Encargado de obtener, modificar y consultar familias.
         /// </summary>
         private readonly PermissionSLService _permissionSLService;
+
+        private readonly IGenericRepository<Booking> _bookingRepo;
 
         /// <summary>
         /// Inicializa una nueva instancia del formulario <see cref="MenuFindFamilies"/>.
@@ -154,6 +158,52 @@ namespace UI
                 MessageBox.Show($"Error al buscar familias: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Obtiene todas las reservas de una cancha para una fecha específica.
+        /// </summary>
+        /// <param name="fieldId">Identificador de la cancha.</param>
+        /// <param name="bookingDate">Fecha de la reserva (solo la parte de fecha).</param>
+        /// <returns>Lista de reservas para esa cancha en la fecha indicada.</returns>
+        public List<Booking> GetBookingsByFieldAndDate(Guid fieldId, DateTime bookingDate)
+        {
+            try
+            {
+                // Usa la sobrecarga existente: nroDocument = null, filtra por RegistrationBooking
+                var reservasDelDia = _bookingRepo
+                    .GetAll(null, bookingDate.Date, null)
+                    .ToList();
+
+                return reservasDelDia
+                    .Where(b => b.Field == fieldId)
+                    .OrderBy(b => b.StartTime)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener reservas por cancha y fecha.", ex);
+            }
+        }
+
+        /// <summary>
+        /// Obtiene todas las reservas en un rango de fechas y con un estado específico.
+        /// </summary>
+        /// <param name="from">Fecha inicial (opcional).</param>
+        ///         <param name="to">Fecha final (opcional).</param>
+        ///         <param name="state">Estado de la reserva.</param>
+        ///         <returns>Lista de reservas.</returns>
+        public List<Booking> GetAllByDateRangeAndState(DateTime? from, DateTime? to, int state)
+        {
+            try
+            {
+                return _bookingRepo.GetAll(from, to, state).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener reservas por rango de fechas y estado.", ex);
+            }
+        }
     }
 }
+   
 

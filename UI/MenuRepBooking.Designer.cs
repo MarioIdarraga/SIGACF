@@ -145,6 +145,7 @@
             this.btnPrintBookings.TabIndex = 44;
             this.btnPrintBookings.Text = "Imprimir Reporte";
             this.btnPrintBookings.UseVisualStyleBackColor = true;
+            this.btnPrintBookings.Click += new System.EventHandler(this.btnPrintBookings_Click);
             // 
             // MenuRepBooking
             // 

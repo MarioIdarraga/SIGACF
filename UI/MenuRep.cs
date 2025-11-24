@@ -48,5 +48,10 @@ namespace UI
         {
             OpenFormChild(new MenuRepBooking(_panelContenedor));
         }
+
+        private void btnRepPromo_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuRepPromotions(_panelContenedor));
+        }
     }
 }

@@ -133,6 +133,64 @@ namespace BLL.Service
                 throw new Exception("Error al obtener reservas por rango de fechas y estado.", ex);
             }
         }
+
+        /// <summary>
+        /// Obtiene todas las reservas de una cancha para una fecha específica.
+        /// </summary>
+        /// <param name="fieldId">Identificador de la cancha.</param>
+        /// <param name="bookingDate">Fecha de la reserva (solo parte de fecha).</param>
+        /// <returns>Lista de reservas para esa cancha en esa fecha.</returns>
+        public List<Booking> GetBookingsByFieldAndDate(Guid fieldId, DateTime bookingDate)
+        {
+            try
+            {
+                // Reutilizamos GetAll(nroDocument, registrationBooking, registrationDate)
+                // nroDocument = null, registrationBooking = bookingDate
+                var reservasDelDia = _bookingRepo
+                    .GetAll(null, bookingDate.Date, null)
+                    .ToList();
+
+                return reservasDelDia
+                    .Where(b => b.Field == fieldId)
+                    .OrderBy(b => b.StartTime)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener reservas por cancha y fecha.", ex);
+            }
+        }
+        /// <summary>
+        /// Obtiene las reservas dentro de un rango de fechas.
+        /// Filtra por RegistrationBooking.Date entre from y to.
+        /// Si algún parámetro es null, no se aplica ese filtro.
+        /// </summary>
+        /// <param name="from">Fecha inicial (opcional).</param>
+        /// <param name="to">Fecha final (opcional).</param>
+        /// <returns>Listado de reservas en el rango indicado.</returns>
+        public IEnumerable<Booking> GetBookingsByDateRange(DateTime? from, DateTime? to)
+        {
+            try
+            {
+                var all = _bookingRepo.GetAll().ToList();
+
+                if (from.HasValue)
+                    all = all
+                        .Where(b => b.RegistrationBooking.Date >= from.Value.Date)
+                        .ToList();
+
+                if (to.HasValue)
+                    all = all
+                        .Where(b => b.RegistrationBooking.Date <= to.Value.Date)
+                        .ToList();
+
+                return all;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener reservas por rango de fechas.", ex);
+            }
+        }
     }
 }
 

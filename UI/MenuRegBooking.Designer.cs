@@ -49,6 +49,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtImporteBooking = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbHorariosDisponibles = new System.Windows.Forms.ComboBox();
+            this.btnVerHorarios = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -66,6 +72,7 @@
             // 
             this.btnFindBooking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnFindBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindBooking.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnFindBooking.Location = new System.Drawing.Point(59, 55);
             this.btnFindBooking.Name = "btnFindBooking";
             this.btnFindBooking.Size = new System.Drawing.Size(174, 86);
@@ -84,7 +91,8 @@
             // btnRegBooking
             // 
             this.btnRegBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegBooking.Location = new System.Drawing.Point(514, 506);
+            this.btnRegBooking.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegBooking.Location = new System.Drawing.Point(509, 565);
             this.btnRegBooking.Name = "btnRegBooking";
             this.btnRegBooking.Size = new System.Drawing.Size(162, 42);
             this.btnRegBooking.TabIndex = 83;
@@ -164,7 +172,7 @@
             // cmbField
             // 
             this.cmbField.FormattingEnabled = true;
-            this.cmbField.Location = new System.Drawing.Point(670, 258);
+            this.cmbField.Location = new System.Drawing.Point(684, 258);
             this.cmbField.Name = "cmbField";
             this.cmbField.Size = new System.Drawing.Size(186, 24);
             this.cmbField.TabIndex = 97;
@@ -173,6 +181,7 @@
             // 
             this.btnFindCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnFindCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindCustomer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnFindCustomer.Location = new System.Drawing.Point(417, 54);
             this.btnFindCustomer.Name = "btnFindCustomer";
             this.btnFindCustomer.Size = new System.Drawing.Size(178, 87);
@@ -195,7 +204,7 @@
             // cmbPromotion
             // 
             this.cmbPromotion.FormattingEnabled = true;
-            this.cmbPromotion.Location = new System.Drawing.Point(670, 320);
+            this.cmbPromotion.Location = new System.Drawing.Point(684, 320);
             this.cmbPromotion.Name = "cmbPromotion";
             this.cmbPromotion.Size = new System.Drawing.Size(186, 24);
             this.cmbPromotion.TabIndex = 101;
@@ -209,17 +218,21 @@
             // 
             // dtpStartTime
             // 
-            this.dtpStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartTime.CustomFormat = "HH:mm";
+            this.dtpStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStartTime.Location = new System.Drawing.Point(223, 476);
             this.dtpStartTime.Name = "dtpStartTime";
+            this.dtpStartTime.ShowUpDown = true;
             this.dtpStartTime.Size = new System.Drawing.Size(188, 22);
             this.dtpStartTime.TabIndex = 103;
             // 
             // dtpEndTime
             // 
-            this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndTime.CustomFormat = "HH:mm";
+            this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEndTime.Location = new System.Drawing.Point(221, 540);
             this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.ShowUpDown = true;
             this.dtpEndTime.Size = new System.Drawing.Size(188, 22);
             this.dtpEndTime.TabIndex = 104;
             // 
@@ -246,7 +259,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.Location = new System.Drawing.Point(511, 376);
+            this.label9.Location = new System.Drawing.Point(511, 479);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 18);
             this.label9.TabIndex = 107;
@@ -254,10 +267,76 @@
             // 
             // txtImporteBooking
             // 
-            this.txtImporteBooking.Location = new System.Drawing.Point(670, 375);
+            this.txtImporteBooking.Enabled = false;
+            this.txtImporteBooking.Location = new System.Drawing.Point(684, 478);
             this.txtImporteBooking.Name = "txtImporteBooking";
             this.txtImporteBooking.Size = new System.Drawing.Size(186, 22);
             this.txtImporteBooking.TabIndex = 108;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label10.Location = new System.Drawing.Point(506, 377);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(164, 18);
+            this.label10.TabIndex = 109;
+            this.label10.Text = "Horarios disponibles";
+            // 
+            // cmbHorariosDisponibles
+            // 
+            this.cmbHorariosDisponibles.FormattingEnabled = true;
+            this.cmbHorariosDisponibles.Location = new System.Drawing.Point(684, 371);
+            this.cmbHorariosDisponibles.Name = "cmbHorariosDisponibles";
+            this.cmbHorariosDisponibles.Size = new System.Drawing.Size(121, 24);
+            this.cmbHorariosDisponibles.TabIndex = 110;
+            this.cmbHorariosDisponibles.SelectedIndexChanged += new System.EventHandler(this.cmbHorariosDisponibles_SelectedIndexChanged);
+            // 
+            // btnVerHorarios
+            // 
+            this.btnVerHorarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerHorarios.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVerHorarios.Location = new System.Drawing.Point(703, 565);
+            this.btnVerHorarios.Name = "btnVerHorarios";
+            this.btnVerHorarios.Size = new System.Drawing.Size(225, 42);
+            this.btnVerHorarios.TabIndex = 111;
+            this.btnVerHorarios.Text = "Ver Horarios Disponibles";
+            this.btnVerHorarios.UseVisualStyleBackColor = true;
+            this.btnVerHorarios.Click += new System.EventHandler(this.btnVerHorarios_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(684, 425);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(59, 22);
+            this.numericUpDown1.TabIndex = 112;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(510, 425);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 18);
+            this.label11.TabIndex = 113;
+            this.label11.Text = "Duración";
             // 
             // MenuRegBooking
             // 
@@ -265,6 +344,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1012, 666);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.btnVerHorarios);
+            this.Controls.Add(this.cmbHorariosDisponibles);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txtImporteBooking);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtNroDocument);
@@ -286,9 +370,12 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuRegBooking";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "MenuRegBooking";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,5 +404,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtImporteBooking;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbHorariosDisponibles;
+        private System.Windows.Forms.Button btnVerHorarios;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label11;
     }
 }

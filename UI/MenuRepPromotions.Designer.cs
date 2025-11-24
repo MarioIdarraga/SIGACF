@@ -32,12 +32,13 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGenRepBookings = new System.Windows.Forms.Button();
+            this.btnGenRepPromotion = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRepCan = new System.Windows.Forms.Button();
             this.btnRepSales = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRepBooking = new System.Windows.Forms.Button();
+            this.btnExportPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,15 +78,16 @@
             this.label2.TabIndex = 50;
             this.label2.Text = "Fecha Desde";
             // 
-            // btnGenRepBookings
+            // btnGenRepPromotion
             // 
-            this.btnGenRepBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenRepBookings.Location = new System.Drawing.Point(499, 286);
-            this.btnGenRepBookings.Name = "btnGenRepBookings";
-            this.btnGenRepBookings.Size = new System.Drawing.Size(164, 44);
-            this.btnGenRepBookings.TabIndex = 49;
-            this.btnGenRepBookings.Text = "Generar Reporte";
-            this.btnGenRepBookings.UseVisualStyleBackColor = true;
+            this.btnGenRepPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenRepPromotion.Location = new System.Drawing.Point(402, 287);
+            this.btnGenRepPromotion.Name = "btnGenRepPromotion";
+            this.btnGenRepPromotion.Size = new System.Drawing.Size(164, 44);
+            this.btnGenRepPromotion.TabIndex = 49;
+            this.btnGenRepPromotion.Text = "Generar Reporte";
+            this.btnGenRepPromotion.UseVisualStyleBackColor = true;
+            this.btnGenRepPromotion.Click += new System.EventHandler(this.btnGenRepPromotion_Click);
             // 
             // dataGridView1
             // 
@@ -108,6 +110,7 @@
             this.btnRepCan.TabIndex = 47;
             this.btnRepCan.Text = "Reporte de Cancelaciones";
             this.btnRepCan.UseVisualStyleBackColor = false;
+            this.btnRepCan.Click += new System.EventHandler(this.btnRepCan_Click);
             // 
             // btnRepSales
             // 
@@ -121,6 +124,7 @@
             this.btnRepSales.TabIndex = 46;
             this.btnRepSales.Text = "Reporte de Ventas";
             this.btnRepSales.UseVisualStyleBackColor = false;
+            this.btnRepSales.Click += new System.EventHandler(this.btnRepSales_Click);
             // 
             // label1
             // 
@@ -144,6 +148,18 @@
             this.btnRepBooking.TabIndex = 79;
             this.btnRepBooking.Text = "Reporte de Reservas";
             this.btnRepBooking.UseVisualStyleBackColor = false;
+            this.btnRepBooking.Click += new System.EventHandler(this.btnRepBooking_Click);
+            // 
+            // btnExportPdf
+            // 
+            this.btnExportPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportPdf.Location = new System.Drawing.Point(573, 287);
+            this.btnExportPdf.Name = "btnExportPdf";
+            this.btnExportPdf.Size = new System.Drawing.Size(164, 44);
+            this.btnExportPdf.TabIndex = 80;
+            this.btnExportPdf.Text = "Generar PDF";
+            this.btnExportPdf.UseVisualStyleBackColor = true;
+            this.btnExportPdf.Click += new System.EventHandler(this.btnExportPdf_Click);
             // 
             // MenuRepPromotions
             // 
@@ -151,12 +167,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1178, 744);
+            this.Controls.Add(this.btnExportPdf);
             this.Controls.Add(this.btnRepBooking);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnGenRepBookings);
+            this.Controls.Add(this.btnGenRepPromotion);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRepCan);
             this.Controls.Add(this.btnRepSales);
@@ -176,11 +193,12 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGenRepBookings;
+        private System.Windows.Forms.Button btnGenRepPromotion;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnRepCan;
         private System.Windows.Forms.Button btnRepSales;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRepBooking;
+        private System.Windows.Forms.Button btnExportPdf;
     }
 }
