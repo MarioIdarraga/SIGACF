@@ -93,6 +93,27 @@ namespace BLL.Service
         {
             throw new NotImplementedException();
         }
+
+        public User GetByLogin(string loginName)
+        {
+            return GetByLoginName(loginName);
+        }
+
+        public bool ValidatePassword(User user, string password)
+        {
+            if (user == null)
+                return false;
+
+            // La contraseña almacenada está encriptada con AES
+            string encryptedInput = AesEncryptionHelper.Encrypt(password);
+
+            return user.Password == encryptedInput;
+        }
+
+        public void Update(User user)
+        {
+            UpdateUser(user);
+        }
     }
 }
 

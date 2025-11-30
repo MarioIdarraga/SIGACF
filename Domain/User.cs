@@ -19,5 +19,10 @@ namespace Domain
         public int State { get; set; }
         public string DVH { get; set; }
         public bool IsEmployee { get; set; }
+
+        public string ResetToken { get; set; }
+        public DateTime? ResetTokenExpiration { get; set; }
+        public int FailedAttempts { get; set; }
+
     }
 }

@@ -35,12 +35,27 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
+        public User GetByPasswordResetToken(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetByUsernameOrEmail(string userOrMail)
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetOne(Guid Id)
         {
             throw new NotImplementedException();
         }
 
         public void Insert(User Object)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SavePasswordResetToken(Guid userId, string token, DateTime expiration)
         {
             throw new NotImplementedException();
         }

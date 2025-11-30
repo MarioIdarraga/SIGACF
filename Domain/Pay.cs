@@ -8,7 +8,7 @@ namespace Domain
 {
     public class Pay
     {
-        public Guid IdPay { get; set; }
+        public int IdPay { get; set; }
 
         public Guid IdBooking { get; set; }
 
@@ -18,7 +18,7 @@ namespace Domain
 
         public int MethodPay { get; set; }
 
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public int State { get; set; }
 

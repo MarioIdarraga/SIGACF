@@ -194,5 +194,21 @@ namespace DAL.Factory
                 return new Repositories.Memory.PayRepository();
             }
         }
+
+        public IPaymentMethodRepository GetPaymentMethodRepository()
+        {
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.PaymentMethodRepository();
+            }
+
+            if (backend == "File")
+            {
+                return new Repositories.File.PaymentMethodRepository();
+            }
+
+            throw new NotSupportedException($"El backendSL '{backend}' no es soportado.");
+        }
     }
 }
+

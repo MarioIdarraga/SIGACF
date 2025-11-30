@@ -9,8 +9,8 @@ namespace Domain
     public class PaymentMethod
     {
 
-        public int id_MetodoPago { get; set; }
+        public int IdPayMethod { get; set; }
 
-        public string descripcion { get; set; }
+        public string Description { get; set; }
     }
 }

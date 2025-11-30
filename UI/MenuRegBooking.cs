@@ -108,9 +108,6 @@ namespace UI
         /// </summary>
         private void ConfigurarControlesHora()
         {
-            dtpStartTime.Enabled = false;
-            dtpEndTime.Enabled = false;
-
             dtpStartTime.Format = DateTimePickerFormat.Custom;
             dtpStartTime.CustomFormat = "HH:mm";
             dtpStartTime.ShowUpDown = true;
@@ -118,6 +115,23 @@ namespace UI
             dtpEndTime.Format = DateTimePickerFormat.Custom;
             dtpEndTime.CustomFormat = "HH:mm";
             dtpEndTime.ShowUpDown = true;
+
+            // Forzar minutos y segundos en 00 siempre
+            dtpStartTime.ValueChanged += (s, e) =>
+            {
+                var fecha = dtpStartTime.Value.Date;
+                var hora = dtpStartTime.Value.Hour;
+
+                dtpStartTime.Value = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0);
+            };
+
+            dtpEndTime.ValueChanged += (s, e) =>
+            {
+                var fecha = dtpEndTime.Value.Date;
+                var hora = dtpEndTime.Value.Hour;
+
+                dtpEndTime.Value = new DateTime(fecha.Year, fecha.Month, fecha.Day, hora, 0, 0);
+            };
         }
 
         /// <summary>
@@ -227,10 +241,10 @@ namespace UI
             OpenFormChild(new MenuSales(_panelContenedor));
         }
 
-        private void btnRegPay_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuRegPay(_panelContenedor));
-        }
+        //private void btnRegPay_Click(object sender, EventArgs e)
+        //{
+        //    OpenFormChild(new MenuRegPay(_panelContenedor));
+        //}
 
         private void btnFindCustomer_Click(object sender, EventArgs e)
         {
@@ -492,8 +506,8 @@ namespace UI
 
                 var fecha = dtpRegistrationBooking.Value.Date;
 
-                dtpStartTime.Value = fecha + horaInicio;
-                dtpEndTime.Value = fecha + horaFin;
+                dtpStartTime.Value = fecha.Add(horaInicio).AddSeconds(-fecha.Add(horaInicio).Second);
+                dtpEndTime.Value = fecha.Add(horaFin).AddSeconds(-fecha.Add(horaFin).Second);
 
                 ActualizarImporte();
             }
@@ -515,6 +529,7 @@ namespace UI
         {
             ActualizarImporte();
         }
+
     }
 }
 

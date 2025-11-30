@@ -49,27 +49,38 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Obtiene todas las promociones.
+        /// </summary>
+        /// <returns>Lista de promociones.</returns>
         public IEnumerable<Promotion> GetAll()
         {
-            var promotions = new List<Promotion>();
-
-            using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, CommandType.Text))
+            try
             {
-                while (reader.Read())
-                {
-                    promotions.Add(new Promotion
-                    {
-                        IdPromotion = reader.GetGuid(0),
-                        Name = reader.GetString(1),
-                        ValidFrom = reader.GetDateTime(2),
-                        ValidTo = reader.GetDateTime(3),
-                        PromotionDescripcion = reader.GetString(4),
-                        DiscountPercentage = reader.IsDBNull(5) ? 0 : reader.GetInt32(5)
-                    });
-                }
-            }
+                var list = new List<Promotion>();
 
-            return promotions;
+                using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, CommandType.Text))
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Promotion
+                        {
+                            IdPromotion = reader.GetGuid(0),
+                            Name = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            ValidFrom = reader.GetDateTime(2),
+                            ValidTo = reader.GetDateTime(3),
+                            PromotionDescripcion = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            DiscountPercentage = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5)
+                        });
+                    }
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las promociones.", ex);
+            }
         }
 
 
@@ -93,30 +104,43 @@ namespace DAL.Repositories.SqlServer
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Obtiene una promoción por su identificador.
+        /// </summary>
+        /// <param name="Id">Identificador de la promoción.</param>
+        /// <returns>Instancia de la promoción o null si no existe.</returns>
         public Promotion GetOne(Guid Id)
         {
-            using (var reader = SqlHelper.ExecuteReader(
-                SelectOneStatement,
-                CommandType.Text,
-                new SqlParameter[]
-                {
-            new SqlParameter("@IdPromotion", Id)
-                }))
+            try
             {
-                if (reader.Read())
-                {
-                    return new Promotion
+                using (var reader = SqlHelper.ExecuteReader(
+                    SelectOneStatement,
+                    CommandType.Text,
+                    new SqlParameter[]
                     {
-                        IdPromotion = reader.GetGuid(0),
-                        Name = reader.GetString(1),
-                        ValidFrom = reader.GetDateTime(2),
-                        ValidTo = reader.GetDateTime(3),
-                        PromotionDescripcion = reader.GetString(4),
-                        DiscountPercentage = reader.GetInt32(5)
-                    };
+                new SqlParameter("@IdPromotion", Id)
+                    }))
+                {
+                    if (reader.Read())
+                    {
+                        return new Promotion
+                        {
+                            IdPromotion = reader.GetGuid(0),
+                            Name = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            ValidFrom = reader.GetDateTime(2),
+                            ValidTo = reader.GetDateTime(3),
+                            PromotionDescripcion = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            DiscountPercentage = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5)
+                        };
+                    }
+
+                    return null;
                 }
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la promoción.", ex);
+            }
         }
 
 

@@ -145,7 +145,6 @@
             this.btnRegPay.TabIndex = 93;
             this.btnRegPay.Text = "Registrar Pago";
             this.btnRegPay.UseVisualStyleBackColor = false;
-            this.btnRegPay.Click += new System.EventHandler(this.btnRegPay_Click);
             // 
             // label6
             // 

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using DAL.Contracts;
+using DAL.Repositories.SqlServer;
+using SL.DAL.Contracts;
+using SL.DAL.Repositories.File;
+using SL.DAL.Repositories.SqlServer;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Contracts;
-using SL.DAL.Contracts;
-using SL.DAL.Repositories.File;
-using SL.DAL.Repositories.SqlServer;
 
 namespace SL.Factory
 {
@@ -77,6 +78,7 @@ namespace SL.Factory
         }
     }
 }
+
 //        public IBackupRepository GetBackupRepository()
 //        {
 //            if (string.IsNullOrWhiteSpace(_backendSL))

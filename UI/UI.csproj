@@ -168,7 +168,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Session.cs" />
+    <Compile Include="FrmForcePasswordChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmForcePasswordChange.Designer.cs">
+      <DependentUpon>FrmForcePasswordChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRecoverPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRecoverPassword.Designer.cs">
+      <DependentUpon>FrmRecoverPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmResetPassword.Designer.cs">
+      <DependentUpon>FrmResetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\TranslatorHelper.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -382,6 +399,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmForcePasswordChange.resx">
+      <DependentUpon>FrmForcePasswordChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRecoverPassword.resx">
+      <DependentUpon>FrmRecoverPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmResetPassword.resx">
+      <DependentUpon>FrmResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -496,9 +522,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="I18n\Language.pt-BR">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="I18n\Language.en-US">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

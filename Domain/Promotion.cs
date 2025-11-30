@@ -18,6 +18,6 @@ namespace Domain
         public DateTime ValidTo { get; set; }
 
         public string PromotionDescripcion { get; set; }
-        public int DiscountPercentage { get; set; }
+        public int? DiscountPercentage { get; set; }
     }
 }

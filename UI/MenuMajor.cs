@@ -1,27 +1,36 @@
-﻿using System;
+﻿using Domain;
+using SL;
+using SL.Helpers;
+using SL.Service;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Domain;
-using SL;
-using SL.Service;
 using UI.Helpers;
 
 namespace UI
 {
     public partial class barraTitulo : Form
     {
-
         private readonly HashSet<string> _allowedForms = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        public void SetAllowedForms(IEnumerable<string> forms) { _allowedForms.Clear(); foreach (var f in forms) if (!string.IsNullOrWhiteSpace(f)) _allowedForms.Add(f); }
+
+        /// <summary>
+        /// Guarda el tipo del formulario hijo actualmente abierto,
+        /// para poder recargarlo cuando cambia el idioma.
+        /// </summary>
+        private Type _currentChildFormType;
+
+        public void SetAllowedForms(IEnumerable<string> forms)
+        {
+            _allowedForms.Clear();
+            foreach (var f in forms)
+                if (!string.IsNullOrWhiteSpace(f))
+                    _allowedForms.Add(f);
+        }
 
         public barraTitulo()
         {
@@ -30,10 +39,9 @@ namespace UI
             // Cargar opciones de idioma en el ComboBox
             cmbLanguage.Items.Add("Español");
             cmbLanguage.Items.Add("Inglés");
-            cmbLanguage.Items.Add("Portugués");
             cmbLanguage.SelectedIndex = 0;
 
-            //Mapeo de botones para permisos
+            // Mapeo de botones para permisos
             btnClientes.Tag = "MenuFindCustomers";
             btnAlquiler.Tag = "MenuSales";
             btnPay.Tag = "MenuPay";
@@ -43,27 +51,49 @@ namespace UI
 
             this.Translate();
 
-            //ApplyAuthorization();
-
+            //ApplyAuthorization();  // cuando quieras reactivar permisos
 
             PermissionSLService permissionSL = new PermissionSLService();
-            User currentUser = Session.User;
-
+            User currentUser = Session.CurrentUser;
         }
 
+        /// <summary>
+        /// Maneja el cambio de idioma desde el combo.
+        /// Cambia la cultura, traduce el formulario y recarga el formulario hijo actual.
+        /// </summary>
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedLanguage = cmbLanguage.SelectedItem.ToString();
+            try
+            {
+                string selectedLanguage = cmbLanguage.SelectedItem.ToString();
 
-            if (selectedLanguage == "Español")
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
-            else if (selectedLanguage == "Inglés")
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-            else if (selectedLanguage == "Portugués")
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+                if (selectedLanguage == "Español")
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
+                else if (selectedLanguage == "Inglés")
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
-            this.Translate(); // Método de extensión para traducir textos
+                this.Translate();
+                ReloadCurrentChild();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cambiar idioma: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        /// <summary>
+        /// Recarga el formulario hijo actual con la cultura/idioma vigentes.
+        /// </summary>
+        private void ReloadCurrentChild()
+        {
+            if (_currentChildFormType == null)
+                return;
+
+            Form newForm = (Form)Activator.CreateInstance(_currentChildFormType, this.panelContenedor);
+            OpenFormChild(newForm);
+        }
+
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
@@ -90,9 +120,9 @@ namespace UI
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
 
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -100,57 +130,22 @@ namespace UI
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void OpenFormChild(object formchild)
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor y guarda su tipo.
+        /// </summary>
+        private void OpenFormChild(Form formchild)
         {
+            _currentChildFormType = formchild.GetType();
+
             if (this.panelContenedor.Controls.Count > 0)
                 this.panelContenedor.Controls.RemoveAt(0);
-            Form fh = formchild as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panelContenedor.Controls.Add(fh);
-            this.panelContenedor.Tag = fh;
-            fh.Show();
-        
+
+            formchild.TopLevel = false;
+            formchild.Dock = DockStyle.Fill;
+            this.panelContenedor.Controls.Add(formchild);
+            this.panelContenedor.Tag = formchild;
+            formchild.Show();
         }
-
-        //private void ShowIfAllowed(Button btn)
-        //{
-        //    var formName = btn.Tag as string;
-        //    btn.Visible = (!string.IsNullOrWhiteSpace(formName) && _allowedForms.Contains(formName));
-        //}
-
-        //private void HideAllMenuItems()
-        //{
-        //    foreach (Control c in menuVertical.Controls)
-        //    {
-        //        // Ocultamos todo lo que “parece” un ítem de menú (tenga Tag o sea boton-like)
-        //        if (c is ButtonBase || c.Tag != null)
-        //            c.Visible = false;
-        //    }
-        //}
-
-        //public void ApplyAuthorization()
-        //{
-        //    // Debug de AllowedForms y Tags
-        //    var sb = new StringBuilder();
-        //    sb.AppendLine("AllowedForms:");
-        //    foreach (var f in _allowedForms) sb.AppendLine(" - " + f);
-        //    sb.AppendLine("Tags:");
-        //    foreach (Control c in menuVertical.Controls)
-        //        sb.AppendLine($" - {c.Name} -> {c.Tag}");
-        //    MessageBox.Show(sb.ToString(), "DEBUG permisos");
-
-        //    HideAllMenuItems();
-
-        //    // Mostrar solo los que corresponde (llama con tus controles reales)
-        //    ShowIfAllowed(btnClientes);
-        //    ShowIfAllowed(btnAlquiler);
-        //    ShowIfAllowed(btnPay);
-        //    ShowIfAllowed(btnCan);
-        //    ShowIfAllowed(bntReportes);
-        //    ShowIfAllowed(btnAdmin);
-        //}
-
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
@@ -188,3 +183,5 @@ namespace UI
         }
     }
 }
+
+

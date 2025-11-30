@@ -107,11 +107,10 @@ namespace BLL.Service
 
             decimal importe = (decimal)horas * (decimal)field.HourlyCost;
 
-            if (promotion != null && promotion.DiscountPercentage > 0)
+            if (promotion != null && (promotion.DiscountPercentage ?? 0) > 0)
             {
-                importe -= importe * promotion.DiscountPercentage / 100;
+                importe -= importe * ((promotion.DiscountPercentage ?? 0) / 100m);
             }
-
             return importe;
         }
 

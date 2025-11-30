@@ -25,10 +25,18 @@ namespace Domain
 
         public Guid Field { get; set; }
 
+        public string Description { get; set; }
+
         public Guid Promotion { get; set; }
 
+        public string PromotionDescription { get; set; }
+
         public int State { get; set; }
+
+        public string StateDescription { get; set; }
+
         public decimal ImporteBooking { get; set; }
+
         public string DVH { get; set; }
 
     }

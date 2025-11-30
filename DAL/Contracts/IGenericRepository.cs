@@ -24,6 +24,7 @@ namespace DAL.Contracts
         IEnumerable<T> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state);
 
         IEnumerable<T> GetAll(DateTime? from, DateTime? to, int state);
+
     }
 }
 

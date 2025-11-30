@@ -10,11 +10,11 @@ namespace DAL.Contracts
     public interface IPayRepository 
     {
         void Insert(Pay obj);
-        void Update(Guid id, Pay obj);
-        void Delete(Guid id);
+        void Update(int id, Pay obj);
+        void Delete(int id);
         IEnumerable<Pay> GetAll();
         IEnumerable<Pay> GetAll(DateTime? registrationSincePay, DateTime? registrationUntilPay);
-        Pay GetOne(Guid id);
+        Pay GetOne(int id);
 
     }
 }

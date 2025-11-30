@@ -132,6 +132,7 @@
             this.lnkPass.TabIndex = 4;
             this.lnkPass.TabStop = true;
             this.lnkPass.Text = "¿Ha olvidado su contraseña?";
+            this.lnkPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPass_LinkClicked);
             // 
             // label1
             // 
@@ -141,7 +142,7 @@
             this.label1.Location = new System.Drawing.Point(737, 123);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 44);
+            this.label1.Size = new System.Drawing.Size(107, 35);
             this.label1.TabIndex = 5;
             this.label1.Text = "Acceso";
             // 
@@ -170,7 +171,6 @@
             this.btnMaximizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMaximizarLogin.TabIndex = 7;
             this.btnMaximizarLogin.TabStop = false;
-            this.btnMaximizarLogin.Click += new System.EventHandler(this.btnMaximizarLogin_Click);
             // 
             // btnMinimizarLogin
             // 
@@ -183,7 +183,6 @@
             this.btnMinimizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMinimizarLogin.TabIndex = 8;
             this.btnMinimizarLogin.TabStop = false;
-            this.btnMinimizarLogin.Click += new System.EventHandler(this.btnMinimizarLogin_Click);
             // 
             // btnRestaurarLogin
             // 
@@ -196,7 +195,6 @@
             this.btnRestaurarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnRestaurarLogin.TabIndex = 9;
             this.btnRestaurarLogin.TabStop = false;
-            this.btnRestaurarLogin.Click += new System.EventHandler(this.btnRestaurarLogin_Click);
             // 
             // Login
             // 
@@ -220,8 +218,6 @@
             this.Opacity = 0.8D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login - Cancha 5/13";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

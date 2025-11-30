@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFindBooking = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtState = new System.Windows.Forms.TextBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.txtField = new System.Windows.Forms.TextBox();
+            this.txtNroDocument = new System.Windows.Forms.TextBox();
             this.btnRegPay = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDateTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbPaymentMethod
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(227, 507);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 24);
-            this.comboBox1.TabIndex = 114;
+            this.cmbPaymentMethod.FormattingEnabled = true;
+            this.cmbPaymentMethod.Location = new System.Drawing.Point(243, 500);
+            this.cmbPaymentMethod.Name = "cmbPaymentMethod";
+            this.cmbPaymentMethod.Size = new System.Drawing.Size(186, 24);
+            this.cmbPaymentMethod.TabIndex = 114;
             // 
             // label1
             // 
@@ -74,35 +74,34 @@
             this.btnFindBooking.TabIndex = 111;
             this.btnFindBooking.Text = "Búsqueda de Reservas";
             this.btnFindBooking.UseVisualStyleBackColor = false;
-            this.btnFindBooking.Click += new System.EventHandler(this.btnFindBooking_Click);
             // 
-            // textBox8
+            // txtState
             // 
-            this.textBox8.Location = new System.Drawing.Point(625, 257);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(186, 22);
-            this.textBox8.TabIndex = 110;
+            this.txtState.Location = new System.Drawing.Point(625, 257);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(186, 22);
+            this.txtState.TabIndex = 110;
             // 
-            // textBox3
+            // txtAmount
             // 
-            this.textBox3.Location = new System.Drawing.Point(227, 436);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 22);
-            this.textBox3.TabIndex = 109;
+            this.txtAmount.Location = new System.Drawing.Point(243, 436);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(186, 22);
+            this.txtAmount.TabIndex = 109;
             // 
-            // textBox2
+            // txtField
             // 
-            this.textBox2.Location = new System.Drawing.Point(227, 316);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(186, 22);
-            this.textBox2.TabIndex = 108;
+            this.txtField.Location = new System.Drawing.Point(243, 319);
+            this.txtField.Name = "txtField";
+            this.txtField.Size = new System.Drawing.Size(186, 22);
+            this.txtField.TabIndex = 108;
             // 
-            // textBox9
+            // txtNroDocument
             // 
-            this.textBox9.Location = new System.Drawing.Point(227, 254);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(186, 22);
-            this.textBox9.TabIndex = 107;
+            this.txtNroDocument.Location = new System.Drawing.Point(243, 257);
+            this.txtNroDocument.Name = "txtNroDocument";
+            this.txtNroDocument.Size = new System.Drawing.Size(186, 22);
+            this.txtNroDocument.TabIndex = 107;
             // 
             // btnRegPay
             // 
@@ -155,9 +154,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(61, 320);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 18);
+            this.label3.Size = new System.Drawing.Size(65, 18);
             this.label3.TabIndex = 100;
-            this.label3.Text = "Nro de Reserva";
+            this.label3.Text = "Cancha";
             // 
             // label10
             // 
@@ -166,16 +165,16 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Location = new System.Drawing.Point(61, 258);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 18);
+            this.label10.Size = new System.Drawing.Size(156, 18);
             this.label10.TabIndex = 99;
-            this.label10.Text = "Nro. de Pago";
+            this.label10.Text = "Nro. de Documento";
             // 
-            // textBox1
+            // txtDateTime
             // 
-            this.textBox1.Location = new System.Drawing.Point(229, 376);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 22);
-            this.textBox1.TabIndex = 116;
+            this.txtDateTime.Location = new System.Drawing.Point(243, 376);
+            this.txtDateTime.Name = "txtDateTime";
+            this.txtDateTime.Size = new System.Drawing.Size(186, 22);
+            this.txtDateTime.TabIndex = 116;
             // 
             // label2
             // 
@@ -184,9 +183,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Location = new System.Drawing.Point(63, 380);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 23);
+            this.label2.Size = new System.Drawing.Size(176, 18);
             this.label2.TabIndex = 115;
-            this.label2.Text = "Fecha de Pago";
+            this.label2.Text = "Fecha y Hora Reserva";
             // 
             // MenuRegPay
             // 
@@ -194,15 +193,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1007, 667);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDateTime);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbPaymentMethod);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFindBooking);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.txtState);
+            this.Controls.Add(this.txtAmount);
+            this.Controls.Add(this.txtField);
+            this.Controls.Add(this.txtNroDocument);
             this.Controls.Add(this.btnRegPay);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label5);
@@ -218,20 +217,20 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbPaymentMethod;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFindBooking;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtState;
+        private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.TextBox txtField;
+        private System.Windows.Forms.TextBox txtNroDocument;
         private System.Windows.Forms.Button btnRegPay;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDateTime;
         private System.Windows.Forms.Label label2;
     }
 }

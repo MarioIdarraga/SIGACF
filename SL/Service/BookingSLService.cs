@@ -111,8 +111,12 @@ namespace SL
         #region Búsquedas generales
 
         /// <summary>
-        /// Obtiene reservas filtradas por documento y fechas de registro / reserva.
+        /// Obtiene reservas filtradas por documento y fechas, y completa la descripción de cancha y promoción.
         /// </summary>
+        /// <param name="nroDocumento">Número de documento del cliente.</param>
+        /// <param name="registrationBooking">Fecha de reserva.</param>
+        /// <param name="registrationDate">Fecha de registro.</param>
+        /// <returns>Lista de reservas completadas.</returns>
         public List<Booking> GetAll(int? nroDocumento, DateTime? registrationBooking, DateTime? registrationDate)
         {
             LoggerService.Log("Inicio búsqueda de reservas.", EventLevel.Informational, CurrentUser);
@@ -120,20 +124,31 @@ namespace SL
             try
             {
                 var result = _bookingService.GetAll(nroDocumento, registrationBooking, registrationDate);
-                LoggerService.Log($"Fin búsqueda de reservas. Resultados: {result.Count}.", EventLevel.Informational, CurrentUser);
+
+                CompletarDescripcionCancha(result);
+                CompletarDescripcionPromocion(result);
+                CompletarDescripcionEstado(result);
+
+                LoggerService.Log(
+                    $"Fin búsqueda de reservas. Resultados: {result.Count}.", EventLevel.Warning, CurrentUser);
+
                 return result;
             }
             catch (BusinessException ex)
             {
-                LoggerService.Log($"Error de negocio al buscar reservas: {ex.Message}", EventLevel.Warning, CurrentUser);
+                LoggerService.Log(
+                    $"Error de negocio al buscar reservas: {ex.Message}", EventLevel.Warning, CurrentUser);
                 throw;
             }
             catch (Exception ex)
             {
-                LoggerService.Log($"Error inesperado al buscar reservas: {ex}", EventLevel.Error, CurrentUser);
+                LoggerService.Log(
+                    $"Error inesperado al buscar reservas: {ex}", EventLevel.Warning, CurrentUser);
                 throw;
             }
         }
+
+
 
         /// <summary>
         /// Obtiene todas las reservas dentro de un rango de fechas (RegistrationBooking).
@@ -301,6 +316,162 @@ namespace SL
                 throw;
             }
         }
+
+        /// <summary>
+        /// Asigna el nombre del campo a la descripción de la reserva.
+        /// </summary>
+        /// <param name="bookings">Lista de reservas a completar.</param>
+        private void CompletarDescripcionCancha(List<Booking> bookings)
+        {
+            LoggerService.Log("Inicio asignación de descripciones de cancha.", EventLevel.Informational, CurrentUser);
+
+            try
+            {
+                var fieldRepo = global::DAL.Factory.Factory.Current.GetFieldRepository();
+
+                foreach (var b in bookings)
+                {
+                    if (b.Field == Guid.Empty)
+                    {
+                        b.Description = "Sin descripción";
+                        continue;
+                    }
+
+                    var field = fieldRepo.GetOne(b.Field);
+                    b.Description = field?.Name ?? "Sin descripción";
+                }
+
+                LoggerService.Log("Fin asignación de descripciones de cancha.", EventLevel.Informational, CurrentUser);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al completar descripción de cancha: {ex}", EventLevel.Error, CurrentUser);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Asigna el nombre de la promoción a la descripción de promoción de la reserva.
+        /// </summary>
+        /// <param name="bookings">Lista de reservas a completar.</param>
+        private void CompletarDescripcionPromocion(List<Booking> bookings)
+        {
+            LoggerService.Log("Inicio asignación de descripciones de promoción.", EventLevel.Informational, CurrentUser);
+
+            try
+            {
+                var promoRepo = global::DAL.Factory.Factory.Current.GetPromotionRepository();
+
+                foreach (var b in bookings)
+                {
+                    if (b.Promotion == Guid.Empty)
+                    {
+                        b.PromotionDescription = "Sin promoción";
+                        continue;
+                    }
+
+                    var promo = promoRepo.GetOne(b.Promotion);
+                    b.PromotionDescription = promo?.Name ?? "Sin promoción";
+                }
+
+                LoggerService.Log("Fin asignación de descripciones de promoción.", EventLevel.Informational, CurrentUser);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al completar descripción de promoción: {ex}", EventLevel.Error, CurrentUser);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Completa la descripción del estado de cada reserva.
+        /// </summary>
+        private void CompletarDescripcionEstado(List<Booking> bookings)
+        {
+            foreach (var b in bookings)
+            {
+                switch (b.State)
+                {
+                    case 1:
+                        b.StateDescription = "Pendiente";
+                        break;
+
+                    case 2:
+                        b.StateDescription = "Confirmada";
+                        break;
+
+                    case 3:
+                        b.StateDescription = "Cancelada";
+                        break;
+
+                    default:
+                        b.StateDescription = "Desconocido";
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Actualiza únicamente el estado de una reserva.
+        /// Recalcula DVH y DVV como corresponde.
+        /// </summary>
+        /// <summary>
+        /// Actualiza únicamente el estado de la reserva utilizando el método Update genérico,
+        /// aplicando DVH, DVV y logs.
+        /// </summary>
+        /// <summary>
+        /// Actualiza únicamente el estado de la reserva utilizando el repositorio genérico.
+        /// </summary>
+        public void UpdateState(Guid idBooking, int newState)
+        {
+            LoggerService.Log(
+                $"Inicio actualización de estado de reserva {idBooking}.",
+                EventLevel.Informational,
+                CurrentUser);
+
+            try
+            {
+                // 1) Obtener repositorio
+                var repo = global::DAL.Factory.Factory.Current.GetBookingRepository();
+
+                // 2) Traer reserva completa
+                var booking = repo.GetOne(idBooking);
+                if (booking == null)
+                    throw new BusinessException("La reserva no existe.");
+
+                // 3) Actualizar estado
+                booking.State = newState;
+
+                // 4) Recalcular DVH
+                booking.DVH = DVHHelper.CalcularDVH(booking);
+
+                // 5) Ejecutar update genérico
+                repo.Update(idBooking, booking);
+
+                // 6) Recalcular DVV de la tabla Bookings
+                var bookings = repo.GetAll();
+                new DVVService().RecalcularDVV(bookings, "Bookings");
+
+                LoggerService.Log(
+                    $"Reserva {idBooking} actualizada a estado {newState}.",
+                    EventLevel.Informational,
+                    CurrentUser);
+            }
+            catch (BusinessException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log(
+                    $"Error actualizando estado reserva {idBooking}: {ex}",
+                    EventLevel.Error,
+                    CurrentUser);
+
+                throw new Exception("Error al actualizar la reserva.", ex);
+            }
+        }
+
 
         #endregion
     }

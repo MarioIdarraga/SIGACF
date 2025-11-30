@@ -117,10 +117,10 @@ namespace UI
             OpenFormChild(new MenuSales(_panelContenedor));
         }
 
-        private void btnRegPay_Click(object sender, EventArgs e)
-        {
-            OpenFormChild(new MenuRegPay(_panelContenedor));
-        }
+        //private void btnRegPay_Click(object sender, EventArgs e)
+        //{
+        //    OpenFormChild(new MenuRegPay(_panelContenedor));
+        //}
 
         private void btnCanBooking_Click(object sender, EventArgs e)
         {

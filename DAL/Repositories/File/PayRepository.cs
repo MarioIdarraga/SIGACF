@@ -11,7 +11,7 @@ namespace DAL.Repositories.File
     internal class PayRepository : IPayRepository
 
     {
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -26,7 +26,7 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
-        public Pay GetOne(Guid id)
+        public Pay GetOne(int id)
         {
             throw new NotImplementedException();
         }
@@ -36,7 +36,7 @@ namespace DAL.Repositories.File
             throw new NotImplementedException();
         }
 
-        public void Update(Guid id, Pay obj)
+        public void Update(int id, Pay obj)
         {
             throw new NotImplementedException();
         }
