@@ -1,29 +1,65 @@
 ﻿using SL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace UI
 {
     public partial class FrmRecoverPassword : Form
     {
+        /// <summary>
+        /// Texto placeholder mostrado dentro del campo de usuario/correo.
+        /// </summary>
+        private const string PlaceholderText = "Ingrese su usuario o correo (*)";
+
+        /// <summary>
+        /// Importación Win32 para permitir arrastrar el formulario.
+        /// </summary>
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        /// <summary>
+        /// Importación Win32 para enviar mensajes a la ventana del formulario.
+        /// </summary>
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        /// <summary>
+        /// Inicializa el formulario y configura el placeholder.
+        /// </summary>
         public FrmRecoverPassword()
         {
             InitializeComponent();
+
+            this.MouseDown += new MouseEventHandler(this.FrmRecoverPassword_MouseDown);
+
+            txtDato.Text = PlaceholderText;
+            txtDato.ForeColor = Color.SeaGreen;
+
+            this.Shown += (s, e) => this.ActiveControl = null;
         }
 
+        /// <summary>
+        /// Permite mover el formulario haciendo clic y arrastrando.
+        /// </summary>
+        private void FrmRecoverPassword_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
 
+        /// <summary>
+        /// Cierra la ventana de recuperación.
+        /// </summary>
         private void btnCerrarRecoveryPassword_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
 
+        /// <summary>
+        /// Maximiza la ventana y muestra botón de restaurar.
+        /// </summary>
         private void btnMaximizarLogin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -32,8 +68,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Restaura la ventana de login a tamaño normal y alterna
-        /// la visibilidad de los botones de maximizar/restaurar.
+        /// Restaura el tamaño normal de la ventana y alterna los botones.
         /// </summary>
         private void btnRestaurarLogin_Click(object sender, EventArgs e)
         {
@@ -43,7 +78,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Minimiza la ventana de login.
+        /// Minimiza la ventana.
         /// </summary>
         private void btnMinimizarRecoveryPassword_Click(object sender, EventArgs e)
         {
@@ -51,9 +86,8 @@ namespace UI
         }
 
         /// <summary>
-        /// Maneja el evento del botón "Enviar Solicitud".
-        /// Envía la solicitud de recuperación mediante la capa SL.
-        /// Registra logs y maneja excepciones.
+        /// Envía una solicitud de recuperación de contraseña.
+        /// Valida datos, registra logs y maneja excepciones.
         /// </summary>
         private void btnEnviarRecoveryPassword_Click(object sender, EventArgs e)
         {
@@ -61,13 +95,16 @@ namespace UI
             {
                 string dato = txtDato.Text.Trim();
 
-                if (string.IsNullOrWhiteSpace(dato) || dato.Length < 3)
+                if (string.IsNullOrWhiteSpace(dato) ||
+                    dato == PlaceholderText ||
+                    dato.Length < 3)
                 {
                     MessageBox.Show(
                         "Debe ingresar un usuario o correo válido.",
                         "Dato inválido",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+
                     return;
                 }
 
@@ -100,7 +137,7 @@ namespace UI
                 LoggerService.Log(
                     $"Error inesperado en FrmRecoverPassword: {ex}",
                     System.Diagnostics.Tracing.EventLevel.Error,
-                    SL.Helpers.Session.CurrentUser.LoginName);
+                    SL.Helpers.Session.CurrentUser?.LoginName);
 
                 MessageBox.Show(
                     "Ocurrió un error inesperado. Intente nuevamente.",
@@ -110,9 +147,29 @@ namespace UI
             }
         }
 
-        private void btnMaximizarRecoveryPassword_Click_1(object sender, EventArgs e)
+        /// <summary>
+        /// Limpia el placeholder al ingresar al campo de texto.
+        /// </summary>
+        private void txtDato_Enter(object sender, EventArgs e)
         {
+            if (txtDato.Text == PlaceholderText)
+            {
+                txtDato.Text = string.Empty;
+                txtDato.ForeColor = Color.SeaGreen;
+            }
+        }
 
+        /// <summary>
+        /// Restaura el placeholder cuando el campo queda vacío.
+        /// </summary>
+        private void txtDato_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDato.Text))
+            {
+                txtDato.Text = PlaceholderText;
+                txtDato.ForeColor = Color.SeaGreen; 
+            }
         }
     }
 }
+

@@ -529,7 +529,6 @@ namespace UI
         {
             ActualizarImporte();
         }
-
     }
 }
 

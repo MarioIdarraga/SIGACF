@@ -1,22 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL.BusinessException;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
 using SL.Composite;
-using SL.Service.Extension;
-using UI.Helpers;
-using BLL.BusinessException;
+using SL.Helpers;
 using SL.Service;
+using SL.Service.Extension;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Diagnostics.Tracing;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using UI.Helpers;
 
 namespace UI
 {
@@ -77,6 +78,8 @@ namespace UI
             txtTelephone.Text = telephone;
             chkIsEmployee.Checked = isEmployee;
             txtState.Text = State.ToString();
+
+            LoadFamilies();
         }
 
         /// <summary>
@@ -156,53 +159,34 @@ namespace UI
         }
 
         /// <summary>
-        /// Toma los datos del formulario y realiza la modificación del usuario
-        /// llamando a la capa de servicios (SL).
+        /// Maneja el evento de modificación de usuario. 
+        /// Valida campos, actualiza el usuario y maneja excepciones de negocio y generales.
+        /// </summary>
+        /// <summary>
+        /// Modifica un usuario existente aplicando validaciones y enviando la actualización a la capa SL.
         /// </summary>
         private void btnModUser_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validar que todos los campos requeridos estén completos
-                if (string.IsNullOrWhiteSpace(txtLoginName.Text) ||
-                    string.IsNullOrWhiteSpace(txtPassword.Text) ||
-                    string.IsNullOrWhiteSpace(txtNroDocument.Text) ||
-                    string.IsNullOrWhiteSpace(txtFirstName.Text) ||
-                    string.IsNullOrWhiteSpace(txtLastName.Text) ||
-                    string.IsNullOrWhiteSpace(cmbFamily.Text) ||
-                    string.IsNullOrWhiteSpace(txtMail.Text) ||
-                    string.IsNullOrWhiteSpace(txtAddress.Text) ||
-                    string.IsNullOrWhiteSpace(txtTelephone.Text) ||
-                    string.IsNullOrWhiteSpace(txtState.Text))
-                {
-                    MessageBox.Show(
-                        "Por favor, complete todos los campos antes de modificar el usuario.",
-                        "Advertencia",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Validar que tengamos un Id de usuario válido
                 if (_userId == Guid.Empty)
                     throw new BusinessException("No se encontró el identificador del usuario a modificar.");
 
-                // Convertir campos numéricos
-                if (!int.TryParse(txtNroDocument.Text, out int nroDoc))
+                if (!int.TryParse(txtNroDocument.Text.Trim(), out int nroDoc))
                     throw new BusinessException("El número de documento no es válido.");
 
-                if (!int.TryParse(txtState.Text, out int state))
-                    throw new BusinessException("El estado del usuario no es válido.");
+                if (!int.TryParse(txtState.Text.Trim(), out int state))
+                    throw new BusinessException("El estado no es válido.");
 
-                if (!(cmbFamily.SelectedItem is PermissionComponent famSeleccionada))
+                var famSeleccionada = cmbFamily.SelectedItem as PermissionComponent;
+                if (famSeleccionada == null)
                     throw new BusinessException("Debe seleccionar un cargo/posición válido.");
 
-                Guid familyId = famSeleccionada.IdComponent;
+                Guid familyId = famSeleccionada.IdComponent; ;
 
-                // Crear objeto User con los datos del formulario
                 User updatedUser = new User
                 {
-                    UserId = _userId, // usamos el Id interno
+                    UserId = _userId,
                     LoginName = txtLoginName.Text.Trim(),
                     Password = txtPassword.Text.Trim(),
                     NroDocument = nroDoc,
@@ -228,7 +212,7 @@ namespace UI
             {
                 MessageBox.Show(
                     ex.Message,
-                    "Error",
+                    "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
@@ -236,11 +220,50 @@ namespace UI
             {
                 LoggerService.Log(
                     $"Error inesperado al modificar el usuario: {ex}",
-                    EventLevel.Critical);
+                    EventLevel.Critical,
+                    Session.CurrentUser?.LoginName);
 
                 MessageBox.Show(
-                    "Ocurrió un error inesperado al modificar el usuario. " +
-                    "Intente nuevamente o contacte al administrador.",
+                    "Ocurrió un error inesperado al modificar el usuario. Intente nuevamente o contacte al administrador.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+
+        /// <summary>
+        /// Carga todas las familias/perfiles (PermissionComponent de tipo Familia)
+        /// en el ComboBox cmbFamily, obtenidas desde la capa SL.
+        /// </summary>
+        private void LoadFamilies()
+        {
+            try
+            {
+                PermissionSLService permissionSL = new PermissionSLService();
+
+                // Trae todos los componentes tipo "Familia"
+                var families = permissionSL.GetAllFamilies();
+
+                if (families == null || families.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron familias/perfiles para asignar.",
+                        "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                cmbFamily.DataSource = families;
+                cmbFamily.DisplayMember = "Name";   // Nombre visible
+                cmbFamily.ValueMember = "IdComponent"; // Valor interno
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log(
+                    $"Error al cargar familias en MenuModUser: {ex}",
+                    EventLevel.Error);
+
+                MessageBox.Show(
+                    "Ocurrió un error al cargar los cargos/posiciones.",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

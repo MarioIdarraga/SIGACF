@@ -4,6 +4,7 @@ using SL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using UI.Helpers;
 
@@ -11,9 +12,27 @@ namespace UI
 {
     public partial class Login : Form
     {
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        /// <summary>
+        /// Permite arrastrar el formulario desde el panel designado.
+        /// </summary>
+        private void panelLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
         public Login()
         {
             InitializeComponent();
+
+            this.MouseDown += new MouseEventHandler(this.panelLogin_MouseDown);
+            this.panel1.MouseDown += new MouseEventHandler(this.panelLogin_MouseDown);
         }
 
         /// <summary>
@@ -147,5 +166,23 @@ namespace UI
             Application.Exit();
         }
 
+        private void btnRestaurarLogin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            btnMaximizarLogin.Visible = true;
+            btnRestaurarLogin.Visible = false;
+        }
+
+        private void btnMaximizarLogin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizarLogin.Visible = false;
+            btnRestaurarLogin.Visible = true;
+        }
+
+        private void btnMinimizarLogin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

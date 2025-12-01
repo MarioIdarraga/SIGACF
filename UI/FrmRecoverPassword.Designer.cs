@@ -48,7 +48,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SeaGreen;
-            this.label1.Location = new System.Drawing.Point(128, 91);
+            this.label1.Location = new System.Drawing.Point(111, 97);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(301, 35);
@@ -61,12 +61,14 @@
             this.txtDato.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDato.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDato.ForeColor = System.Drawing.Color.SeaGreen;
-            this.txtDato.Location = new System.Drawing.Point(118, 181);
+            this.txtDato.Location = new System.Drawing.Point(101, 187);
             this.txtDato.Margin = new System.Windows.Forms.Padding(4);
             this.txtDato.Name = "txtDato";
             this.txtDato.Size = new System.Drawing.Size(322, 34);
             this.txtDato.TabIndex = 7;
-            this.txtDato.Text = "Ingrese su usuario o correo";
+            this.txtDato.Text = "Ingrese su usuario o correo (*)";
+            this.txtDato.Enter += new System.EventHandler(this.txtDato_Enter);
+            this.txtDato.Leave += new System.EventHandler(this.txtDato_Leave);
             // 
             // btnEnviarRecoveryPassword
             // 
@@ -76,7 +78,7 @@
             this.btnEnviarRecoveryPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnviarRecoveryPassword.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnviarRecoveryPassword.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnEnviarRecoveryPassword.Location = new System.Drawing.Point(118, 304);
+            this.btnEnviarRecoveryPassword.Location = new System.Drawing.Point(101, 310);
             this.btnEnviarRecoveryPassword.Margin = new System.Windows.Forms.Padding(4);
             this.btnEnviarRecoveryPassword.Name = "btnEnviarRecoveryPassword";
             this.btnEnviarRecoveryPassword.Size = new System.Drawing.Size(322, 49);
@@ -90,12 +92,12 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SeaGreen;
-            this.label2.Location = new System.Drawing.Point(114, 253);
+            this.label2.Location = new System.Drawing.Point(70, 258);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(388, 23);
+            this.label2.Size = new System.Drawing.Size(495, 29);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Se enviara un correo si los datos son correctos";
+            this.label2.Text = "*Se enviara un correo si los datos son correctos";
             // 
             // btnRestaurarRecoveryPassword
             // 
@@ -134,7 +136,6 @@
             this.btnMaximizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMaximizarLogin.TabIndex = 11;
             this.btnMaximizarLogin.TabStop = false;
-            this.btnMaximizarLogin.Click += new System.EventHandler(this.btnMaximizarRecoveryPassword_Click_1);
             // 
             // btnCerrarRecoveryPassword
             // 

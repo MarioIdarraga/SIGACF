@@ -152,15 +152,16 @@ namespace UI
                     selectedRow.Cells["FirstName"].Value == null ||
                     selectedRow.Cells["LastName"].Value == null ||
                     selectedRow.Cells["Position"].Value == null ||
+                    selectedRow.Cells["Telephone"].Value == null ||
                     selectedRow.Cells["Mail"].Value == null ||
                     selectedRow.Cells["Address"].Value == null ||
-                    selectedRow.Cells["Telephone"].Value == null ||
                     selectedRow.Cells["IsEmployee"].Value == null ||
                     selectedRow.Cells["State"].Value == null)
                 {
                     MessageBox.Show("El usuario seleccionado tiene datos inválidos. Intente seleccionar otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
 
                 // Extraer valores de la fila
                 Guid userId = (Guid)selectedRow.Cells["UserId"].Value;
@@ -170,9 +171,9 @@ namespace UI
                 string firstName = selectedRow.Cells["FirstName"].Value.ToString();
                 string lastName = selectedRow.Cells["LastName"].Value.ToString();
                 string position = selectedRow.Cells["Position"].Value.ToString();
+                string telephone = selectedRow.Cells["Telephone"].Value.ToString();
                 string mail = selectedRow.Cells["Mail"].Value.ToString();
                 string address = selectedRow.Cells["Address"].Value.ToString();
-                string telephone = selectedRow.Cells["Telephone"].Value.ToString();
                 bool isEmployee = Convert.ToBoolean(selectedRow.Cells["IsEmployee"].Value);
                 int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
 

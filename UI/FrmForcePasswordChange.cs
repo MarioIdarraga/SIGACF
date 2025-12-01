@@ -1,30 +1,60 @@
 ﻿using BLL.BusinessException;
 using BLL.Service;
 using Domain;
-using SL.Service;          // CORRECTO: acá vive UserSLService
+using SL.Service;          
 using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using UI.Helpers;          // CORRECTO: acá vive FormHelper
+using UI.Helpers;          
 
 namespace UI
 {
     /// <summary>
-    /// Formulario para cambiar la contraseña cuando el usuario
-    /// debe actualizarla obligatoriamente (estado 0).
+    /// Formulario para cambio obligatorio de contraseña.
     /// </summary>
     public partial class FrmForcePasswordChange : Form
     {
         private readonly User _user;
         private readonly UserSLService _userSLService;
 
+        private const string PlaceholderNew = "Ingrese su nueva contraseña";
+        private const string PlaceholderConfirm = "Re ingrese su nueva contraseña";
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         /// <summary>
-        /// Inicializa el formulario y recibe el usuario a modificar.
+        /// Permite mover el formulario desde zonas habilitadas.
+        /// </summary>
+        private void FrmForcePasswordChange_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        /// <summary>
+        /// Inicializa y establece placeholders.
         /// </summary>
         public FrmForcePasswordChange(User user)
         {
             InitializeComponent();
+
             _user = user;
             _userSLService = new UserSLService(new UserService());
+
+            txtNewPassword.Text = PlaceholderNew;
+            txtNewPassword.ForeColor = Color.SeaGreen;
+
+            txtConfirmPassword.Text = PlaceholderConfirm;
+            txtConfirmPassword.ForeColor = Color.SeaGreen;
+
+            btnCerrarPasswordChange.MouseDown += FrmForcePasswordChange_MouseDown;
+            btnMinimizarPasswordChange.MouseDown += FrmForcePasswordChange_MouseDown;
+            btnRestaurarPasswordChange.MouseDown += FrmForcePasswordChange_MouseDown;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -33,7 +63,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Guarda el cambio de contraseña del usuario.
+        /// Guarda el cambio de contraseña.
         /// </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -42,10 +72,10 @@ namespace UI
                 string newPass = txtNewPassword.Text.Trim();
                 string confirmPass = txtConfirmPassword.Text.Trim();
 
-                if (string.IsNullOrWhiteSpace(newPass))
+                if (newPass == PlaceholderNew)
                     throw new BusinessException("Debe ingresar una nueva contraseña.");
 
-                if (string.IsNullOrWhiteSpace(confirmPass))
+                if (confirmPass == PlaceholderConfirm)
                     throw new BusinessException("Debe confirmar la contraseña.");
 
                 if (newPass != confirmPass)
@@ -58,7 +88,7 @@ namespace UI
 
                 MessageBox.Show(
                     "La contraseña se ha actualizado correctamente.",
-                    "Operación exitosa",
+                    "Éxito",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
@@ -66,16 +96,12 @@ namespace UI
             }
             catch (BusinessException bx)
             {
-                MessageBox.Show(
-                    bx.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show(bx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch (Exception)
+            catch
             {
                 MessageBox.Show(
-                    "Ocurrió un error inesperado al intentar actualizar la contraseña.",
+                    "Ocurrió un error inesperado al actualizar la contraseña.",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -87,15 +113,75 @@ namespace UI
             this.Close();
         }
 
-        private void btnMinimizarPasswordChange_Click(object sender, EventArgs e)
+        private void btnRestaurarPasswordChanged_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Normal;
+            btnMaximizarLogin.Visible = true;
+            btnRestaurarPasswordChange.Visible = false;
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizarLogin.Visible = false;
+            btnRestaurarPasswordChange.Visible = true;
+        }
+
+        private void txtNewPassword_Enter(object sender, EventArgs e)
+        {
+            if (txtNewPassword.Text == PlaceholderNew)
+            {
+                txtNewPassword.Text = "";
+                txtNewPassword.ForeColor = Color.LightGray;
+                txtNewPassword.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtNewPassword_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNewPassword.Text))
+            {
+                txtNewPassword.UseSystemPasswordChar = false;
+                txtNewPassword.Text = PlaceholderNew;
+                txtNewPassword.ForeColor = Color.SeaGreen;
+            }
+        }
+
+
+        private void txtConfirmPassword_Enter(object sender, EventArgs e)
+        {
+            if (txtConfirmPassword.Text == PlaceholderConfirm)
+            {
+                txtConfirmPassword.Text = "";
+                txtConfirmPassword.ForeColor = Color.LightGray;
+                txtConfirmPassword.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtConfirmPassword_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
+            {
+                txtConfirmPassword.UseSystemPasswordChar = false;
+                txtConfirmPassword.Text = PlaceholderConfirm;
+                txtConfirmPassword.ForeColor = Color.SeaGreen;
+            }
+        }
+
+        private void btnMaximizarPasswordChanged_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizarLogin.Visible = false;
+            btnMaximizarLogin.Visible = true;
         }
 
         private void btnRestaurarPasswordChange_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            btnRestaurarPasswordChange.Visible = true;
+            btnRestaurarPasswordChange.Visible = false;
         }
     }
 }
+
 

@@ -171,6 +171,7 @@
             this.btnMaximizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMaximizarLogin.TabIndex = 7;
             this.btnMaximizarLogin.TabStop = false;
+            this.btnMinimizarLogin.Click += new System.EventHandler(this.btnMaximizarLogin_Click);
             // 
             // btnMinimizarLogin
             // 
@@ -183,6 +184,7 @@
             this.btnMinimizarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMinimizarLogin.TabIndex = 8;
             this.btnMinimizarLogin.TabStop = false;
+            this.btnMinimizarLogin.Click += new System.EventHandler(this.btnMinimizarLogin_Click);
             // 
             // btnRestaurarLogin
             // 
@@ -195,6 +197,7 @@
             this.btnRestaurarLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnRestaurarLogin.TabIndex = 9;
             this.btnRestaurarLogin.TabStop = false;
+            this.btnRestaurarLogin.Click += new System.EventHandler(this.btnRestaurarLogin_Click);
             // 
             // Login
             // 

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridViewPay = new System.Windows.Forms.DataGridView();
-            this.btnModCustomer = new System.Windows.Forms.Button();
             this.btnRegCustomer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -55,18 +54,6 @@
             this.dataGridViewPay.Size = new System.Drawing.Size(1110, 379);
             this.dataGridViewPay.TabIndex = 18;
             // 
-            // btnModCustomer
-            // 
-            this.btnModCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnModCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModCustomer.Location = new System.Drawing.Point(216, 9);
-            this.btnModCustomer.Name = "btnModCustomer";
-            this.btnModCustomer.Size = new System.Drawing.Size(176, 85);
-            this.btnModCustomer.TabIndex = 17;
-            this.btnModCustomer.Text = "Modificar Cliente";
-            this.btnModCustomer.UseVisualStyleBackColor = false;
-            // 
             // btnRegCustomer
             // 
             this.btnRegCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -79,6 +66,7 @@
             this.btnRegCustomer.TabIndex = 16;
             this.btnRegCustomer.Text = "Registrar Cliente";
             this.btnRegCustomer.UseVisualStyleBackColor = false;
+            this.btnRegCustomer.Click += new System.EventHandler(this.btnRegCustomer_Click);
             // 
             // label1
             // 
@@ -129,7 +117,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label3.Location = new System.Drawing.Point(121, 267);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(189, 23);
+            this.label3.Size = new System.Drawing.Size(151, 18);
             this.label3.TabIndex = 90;
             this.label3.Text = "Fecha Pago Desde";
             // 
@@ -185,7 +173,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label5.Location = new System.Drawing.Point(121, 317);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(184, 23);
+            this.label5.Size = new System.Drawing.Size(147, 18);
             this.label5.TabIndex = 96;
             this.label5.Text = "Fecha Pago Hasta";
             // 
@@ -206,7 +194,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnFindPay);
             this.Controls.Add(this.dataGridViewPay);
-            this.Controls.Add(this.btnModCustomer);
             this.Controls.Add(this.btnRegCustomer);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -220,7 +207,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridViewPay;
-        private System.Windows.Forms.Button btnModCustomer;
         private System.Windows.Forms.Button btnRegCustomer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblStatus;

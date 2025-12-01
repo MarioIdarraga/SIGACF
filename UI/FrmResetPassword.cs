@@ -1,52 +1,99 @@
 ﻿using BLL.BusinessException;
-using BLL.Service;
 using SL;
 using SL.Helpers;
 using SL.Services;
 using System;
 using System.Diagnostics.Tracing;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace UI
 {
     /// <summary>
-    /// Formulario utilizado para restablecer la contraseña del usuario
-    /// mediante un token enviado por correo electrónico. Valida datos,
-    /// procesa el reseteo y actualiza el estado del usuario en la base.
+    /// Formulario utilizado para restablecer la contraseña del usuario mediante
+    /// un token enviado por correo electrónico.
+    /// Maneja placeholders, validaciones, reseteo y logs.
     /// </summary>
     public partial class FrmResetPassword : Form
     {
         private readonly LoginSLService _loginService;
 
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         /// <summary>
-        /// Inicializa el formulario de restablecimiento de contraseña.
+        /// Permite mover el formulario desde cualquier parte del mismo.
+        /// </summary>
+        private void FrmResetPassword_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        /// <summary>
+        /// Inicializa el formulario y aplica placeholders + evento de mover pantalla.
         /// </summary>
         public FrmResetPassword()
         {
             InitializeComponent();
             _loginService = new LoginSLService();
+
             ApplyPlaceholders();
+
+            // Habilitar drag en el formulario
+            this.MouseDown += FrmResetPassword_MouseDown;
+            btnCerrarResetPassword.MouseDown += FrmResetPassword_MouseDown;
         }
 
-        #region UI Helpers
-
         /// <summary>
-        /// Configura los textos iniciales de los campos (placeholders).
+        /// Configura los textos iniciales (placeholders) de los campos.
         /// </summary>
         private void ApplyPlaceholders()
         {
-            txtToken.Text = "Ingrese el código recibido";
-            txtNewPassword.Text = "Nueva contraseña";
-            txtConfirmPassword.Text = "Repetir contraseña";
+            SetInitialPlaceholder(txtToken, "Ingrese aquí el código recibido");
+            SetInitialPlaceholder(txtNewPassword, "Nueva Contraseña");
+            SetInitialPlaceholder(txtConfirmPassword, "Repetir Contraseña");
         }
 
-        #endregion
+        private void SetInitialPlaceholder(TextBox txt, string placeholder)
+        {
+            txt.Text = placeholder;
+            txt.ForeColor = Color.SeaGreen;
 
-        #region Eventos
+            txt.Enter += (s, e) => RemovePlaceholder(txt, placeholder);
+            txt.Leave += (s, e) => SetPlaceholder(txt, placeholder);
+        }
+
+        private void RemovePlaceholder(TextBox txt, string placeholder)
+        {
+            if (txt.Text == placeholder)
+            {
+                txt.Text = "";
+                txt.ForeColor = Color.White;
+
+                // Activar PasswordChar solo si es campo de contraseña
+                if (txt == txtNewPassword || txt == txtConfirmPassword)
+                    txt.PasswordChar = '*';
+            }
+        }
+
+        private void SetPlaceholder(TextBox txt, string placeholder)
+        {
+            if (string.IsNullOrWhiteSpace(txt.Text))
+            {
+                txt.PasswordChar = '\0';
+                txt.Text = placeholder;
+                txt.ForeColor = Color.SeaGreen;
+            }
+        }
 
         /// <summary>
-        /// Evento del botón Confirmar. Valida los campos, solicita el reseteo de contraseña
-        /// y actualiza la base de datos si el token es válido.
+        /// Valida los datos ingresados, resetea la contraseña y muestra mensajes al usuario.
         /// </summary>
         private void btnConfirmarFrmResetPassword_Click(object sender, EventArgs e)
         {
@@ -56,76 +103,79 @@ namespace UI
                 string pass1 = txtNewPassword.Text.Trim();
                 string pass2 = txtConfirmPassword.Text.Trim();
 
-                if (string.IsNullOrWhiteSpace(token))
+                if (token == "" || token == "Ingrese aquí el código recibido")
                     throw new BusinessException("Debe ingresar el código recibido por correo.");
 
-                if (string.IsNullOrWhiteSpace(pass1))
+                if (pass1 == "" || pass1 == "Nueva Contraseña")
                     throw new BusinessException("Debe ingresar una nueva contraseña.");
 
-                if (string.IsNullOrWhiteSpace(pass2))
+                if (pass2 == "" || pass2 == "Repetir Contraseña")
                     throw new BusinessException("Debe confirmar la nueva contraseña.");
 
                 if (pass1 != pass2)
                     throw new BusinessException("Las contraseñas no coinciden.");
 
-                // Procesar el reseteo de contraseña
-                if (_loginService.ResetPassword(token, pass1, out string message))
+                string message;
+
+                if (_loginService.ResetPassword(token, pass1, out message))
                 {
-                    LoggerService.Log(
-                        $"Contraseña restablecida correctamente mediante token: {token}",
-                        EventLevel.Informational);
-
-                    MessageBox.Show(
-                        message,
-                        "Operación exitosa",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
+                    LoggerService.Log("Contraseña restablecida correctamente.", EventLevel.Informational);
+                    MessageBox.Show(message, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
                 {
-                    LoggerService.Log(
-                        $"Fallo al restablecer contraseña: {message}",
-                        EventLevel.Warning);
-
-                    MessageBox.Show(
-                        message,
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (BusinessException bx)
+            catch (BusinessException ex)
             {
-                MessageBox.Show(
-                    bx.Message,
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                LoggerService.Log(
-                    $"Error inesperado en FrmResetPassword: {ex.Message}",
-                    EventLevel.Error);
-
-                MessageBox.Show(
-                    "Ocurrió un error inesperado durante el restablecimiento.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                LoggerService.Log($"Error inesperado en FrmResetPassword: {ex}", EventLevel.Error);
+                MessageBox.Show("Ocurrió un error inesperado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// Cierra el formulario sin realizar ninguna acción.
+        /// Cierra el formulario sin realizar cambios.
         /// </summary>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        #endregion
+        private void btnMinimizarResetPassword_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRestaurarResetPassword_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            btnMaximizarLogin.Visible = true;
+            btnRestaurarResetPassword.Visible = false;
+        }
+        private void btnRestaurarReset_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            btnMaximizarLogin.Visible = true;
+            btnRestaurarResetPassword.Visible = false;
+        }
+
+        private void btnMaximizarRecoveryPassword_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizarLogin.Visible = false;
+            btnMaximizarLogin.Visible = true;
+        }
+
+        private void btnCerrarRecoveryPassword_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
+

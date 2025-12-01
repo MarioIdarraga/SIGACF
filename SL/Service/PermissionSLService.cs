@@ -268,6 +268,47 @@ namespace SL.Service
             return null;
         }
 
+        /// <summary>
+        /// Obtiene la lista de componentes (FormName) permitidos para un usuario.
+        /// Esta lista se utiliza para habilitar / deshabilitar elementos del menú.
+        /// </summary>
+        /// <param name="userId">Id del usuario logueado</param>
+        /// <returns>Lista de nombres de formulario autorizados</returns>
+        public List<string> GetAllowedComponentsForUser(Guid userId)
+        {
+            LoggerService.Log("Inicio obtención de permisos del usuario.",
+                              EventLevel.Informational,
+                              Session.CurrentUser?.LoginName);
+
+            try
+            {
+                // Trae todas las patentes ya “aplanadas” del usuario
+                var patentes = GetPatentesByUser(userId);
+
+                if (patentes == null || patentes.Count == 0)
+                    return new List<string>();
+
+                // Devolvemos solo los FormName válidos
+                var componentes = patentes
+                    .Where(p => !string.IsNullOrWhiteSpace(p.FormName))
+                    .Select(p => p.FormName)
+                    .Distinct()
+                    .ToList();
+
+                LoggerService.Log($"Permisos obtenidos correctamente. Total: {componentes.Count}",
+                                  EventLevel.Informational,
+                                  Session.CurrentUser?.LoginName);
+
+                return componentes;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al obtener permisos del usuario: {ex.Message}",
+                                  EventLevel.Error,
+                                  Session.CurrentUser?.LoginName);
+                throw;
+            }
+        }
     }
 }
 

@@ -1,11 +1,13 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
+﻿using BLL.BusinessException;
 using BLL.Service;
 using DAL.Factory;
 using Domain;
 using SL;
+using System;
+using System.Diagnostics.Tracing;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using UI.Helpers;
 
 namespace UI
@@ -34,6 +36,44 @@ namespace UI
             CargarMetodosDePago();
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor.
+        /// </summary>
+        private void OpenFormChild(object formchild)
+        {
+            try
+            {
+                if (_panelContenedor.Controls.Count > 0)
+                    _panelContenedor.Controls.RemoveAt(0);
+
+                Form fh = formchild as Form;
+                fh.TopLevel = false;
+                fh.Dock = DockStyle.Fill;
+                _panelContenedor.Controls.Add(fh);
+                _panelContenedor.Tag = fh;
+                fh.Show();
+            }
+            catch (BusinessException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log(
+                    $"Error inesperado al abrir formulario hijo: {ex}",
+                    EventLevel.Critical);
+
+                MessageBox.Show(
+                    "Ocurrió un error inesperado al abrir el formulario. Intente nuevamente o contacte al administrador.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
         /// <summary>
         /// Carga los métodos de pago habilitados en el combo.
         /// </summary>
@@ -123,6 +163,11 @@ namespace UI
         {
             if (dataGridViewPay.Columns.Contains(col))
                 dataGridViewPay.Columns[col].Visible = false;
+        }
+
+        private void btnRegCustomer_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuRegCustomer(_panelContenedor));
         }
     }
 }

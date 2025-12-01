@@ -68,7 +68,6 @@
             this.btnMinimizarPasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMinimizarPasswordChange.TabIndex = 20;
             this.btnMinimizarPasswordChange.TabStop = false;
-            this.btnMinimizarPasswordChange.Click += new System.EventHandler(this.btnMinimizarPasswordChange_Click);
             // 
             // btnMaximizarLogin
             // 
@@ -125,6 +124,8 @@
             this.txtNewPassword.Size = new System.Drawing.Size(322, 34);
             this.txtNewPassword.TabIndex = 15;
             this.txtNewPassword.Text = "Ingrese su nueva contraseña";
+            this.txtNewPassword.Enter += new System.EventHandler(this.txtNewPassword_Enter);
+            this.txtNewPassword.Leave += new System.EventHandler(this.txtNewPassword_Leave);
             // 
             // lblTitulo
             // 
@@ -134,7 +135,7 @@
             this.lblTitulo.Location = new System.Drawing.Point(104, 121);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(346, 44);
+            this.lblTitulo.Size = new System.Drawing.Size(277, 35);
             this.lblTitulo.TabIndex = 14;
             this.lblTitulo.Text = "Cambiar Contraseña";
             // 
@@ -150,6 +151,8 @@
             this.txtConfirmPassword.Size = new System.Drawing.Size(322, 34);
             this.txtConfirmPassword.TabIndex = 22;
             this.txtConfirmPassword.Text = "Re Ingrese su nueva contraseña";
+            this.txtConfirmPassword.Enter += new System.EventHandler(this.txtConfirmPassword_Enter);
+            this.txtConfirmPassword.Leave += new System.EventHandler(this.txtConfirmPassword_Leave);
             // 
             // btnCancelar
             // 

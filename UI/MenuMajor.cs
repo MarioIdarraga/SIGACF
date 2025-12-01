@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -49,12 +50,15 @@ namespace UI
             bntReportes.Tag = "MenuRep";
             btnAdmin.Tag = "MenuAdmin";
 
-            this.Translate();
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 
-            //ApplyAuthorization();  // cuando quieras reactivar permisos
+
+            this.Translate();
 
             PermissionSLService permissionSL = new PermissionSLService();
             User currentUser = Session.CurrentUser;
+
+            ApplyAuthorization();
         }
 
         /// <summary>
@@ -93,6 +97,45 @@ namespace UI
             Form newForm = (Form)Activator.CreateInstance(_currentChildFormType, this.panelContenedor);
             OpenFormChild(newForm);
         }
+
+        /// <summary>
+        /// Oculta o muestra los botones dependiendo de las patentes/familias del usuario.
+        /// </summary>
+        private void ApplyAuthorization()
+        {
+            try
+            {
+                var user = Session.CurrentUser;
+                if (user == null)
+                    return;
+
+                PermissionSLService permissionSL = new PermissionSLService();
+
+                // Obtiene los permisos del usuario (lista de strings: "MenuPay", "MenuSales", etc.)
+                IEnumerable<string> allowed = permissionSL.GetAllowedComponentsForUser(user.UserId);
+
+                // Guarda internamente para usar más adelante si querés
+                SetAllowedForms(allowed);
+
+                // Recorre todos los botones del menú que tienen un Tag con el nombre del formulario
+                foreach (Control ctrl in menuVertical.Controls)
+                {
+                    if (ctrl is Button btn && btn.Tag != null)
+                    {
+                        string component = btn.Tag.ToString();
+
+                        // Si el usuario NO tiene permiso → lo ocultamos
+                        btn.Visible = allowed.Contains(component);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al aplicar permisos: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
