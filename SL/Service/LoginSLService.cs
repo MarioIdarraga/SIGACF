@@ -3,26 +3,23 @@ using Domain;
 using SL.Helpers;
 using System;
 using System.Diagnostics.Tracing;
-using DAL.Factory;
 using SL.Services;
 using BLL.BusinessException;
 
 namespace SL
 {
     /// <summary>
-    /// Servicio de Login ubicado en la capa SL.
-    /// Se encarga de validar credenciales, auditar el proceso de login
-    /// y aplicar reglas de negocio relacionadas al estado del usuario.
-    /// Retorna un bool como el resto de tus servicios, manteniendo el patrón
-    /// ya usado en el sistema.
+    /// Servicio de autenticación ubicado en la capa SL.
+    /// Coordina el proceso de login entre la UI y la BLL,
+    /// captura excepciones de negocio, registra auditoría
+    /// e inicializa la sesión del usuario.
     /// </summary>
     public class LoginSLService
     {
         private readonly UserSLService _userSLService;
 
         /// <summary>
-        /// Constructor del servicio de login.
-        /// Inicializa UserSLService para el manejo de usuarios.
+        /// Inicializa dependencias del servicio de login.
         /// </summary>
         public LoginSLService()
         {
@@ -30,15 +27,15 @@ namespace SL
         }
 
         /// <summary>
-        /// Valida las credenciales del usuario, registra auditoría
-        /// y verifica el estado del usuario (activo, bloqueado, cambio de contraseña, etc.).
-        /// Devuelve un booleano y un mensaje como el resto de tus servicios.
+        /// Intenta autenticar un usuario utilizando la capa BLL.
+        /// La SL no aplica reglas de negocio: solo captura errores,
+        /// registra eventos y comunica el resultado a la UI.
         /// </summary>
-        /// <param name="loginName">Nombre de usuario ingresado.</param>
+        /// <param name="loginName">Nombre de usuario.</param>
         /// <param name="password">Contraseña ingresada.</param>
-        /// <param name="user">Usuario autenticado si el login es exitoso.</param>
-        /// <param name="message">Mensaje de resultado para la UI.</param>
-        /// <returns>True si el login es válido; false en caso contrario.</returns>
+        /// <param name="user">Devuelve el usuario autenticado si el login fue exitoso.</param>
+        /// <param name="message">Mensaje descriptivo para la UI.</param>
+        /// <returns>true si el login fue exitoso; false en caso contrario.</returns>
         public bool TryLogin(string loginName, string password, out User user, out string message)
         {
             string actor = loginName ?? "Anonymous";
@@ -47,82 +44,59 @@ namespace SL
 
             try
             {
-                // 1) Validar usuario + contraseña usando BLL (maneja intentos y bloqueo)
                 var loginBLL = new LoginService();
-                bool loginOk = loginBLL.TryLogin(loginName, password, out user, out message);
 
-                if (!loginOk)
-                {
-                    LoggerService.Log(
-                        $"Fallo intento de login con usuario: {loginName}",
-                        EventLevel.Warning,
-                        actor);
+                // BLL devuelve el usuario o lanza BusinessException
+                user = loginBLL.Login(loginName, password);
 
-                    return false;
-                }
-
-                // 2) Validar estado del usuario
-                if (user.State == 0)
-                {
-                    message = "Debe cambiar su contraseña.";
-                    LoggerService.Log(
-                        $"Usuario {user.LoginName} debe cambiar su contraseña (Estado = 0).",
-                        EventLevel.Informational,
-                        user.LoginName);
-
-                    return false; // La UI abrirá el form de cambio
-                }
-
-                if (user.State == 3)
-                {
-                    message = "Su usuario está bloqueado. Solicite un nuevo código mediante '¿Olvidó su contraseña?'.";
-                    LoggerService.Log(
-                        $"Usuario {user.LoginName} bloqueado (Estado = 3).",
-                        EventLevel.Warning,
-                        user.LoginName);
-
-                    return false; // La UI mostrará el mensaje
-                }
-
-                // 3) Usuario activo
+                // Login correcto → setear sesión
                 Session.CurrentUser = user;
 
                 LoggerService.Log(
                     $"Usuario {user.LoginName} inició sesión correctamente.",
                     EventLevel.Informational,
-                    user.LoginName);
+                    user.LoginName
+                );
 
+                message = "Inicio de sesión exitoso.";
                 return true;
             }
             catch (BusinessException ex)
             {
+                // Error de negocio controlado por la BLL
                 LoggerService.Log(
-                    $"Error de negocio en login: {ex.Message}",
+                    $"Error de negocio durante login: {ex.Message}",
                     EventLevel.Warning,
-                    actor);
+                    actor
+                );
 
                 message = ex.Message;
                 return false;
             }
             catch (Exception ex)
             {
+                // Error inesperado
                 LoggerService.Log(
                     $"Error inesperado en LoginSLService.TryLogin: {ex}",
                     EventLevel.Error,
-                    actor);
+                    actor
+                );
 
-                message = "Ocurrió un error inesperado al intentar iniciar sesión. Intente nuevamente.";
+                message = "Ocurrió un error inesperado al intentar iniciar sesión.";
                 return false;
             }
         }
 
+        /// <summary>
+        /// Restablece la contraseña mediante un token temporal.
+        /// Incluye actualización de DVH y DVV y registro de auditoría.
+        /// </summary>
         public bool ResetPassword(string token, string newPassword, out string message)
         {
             message = string.Empty;
 
             try
             {
-
                 var userRepo = global::DAL.Factory.Factory.Current.GetUserRepository();
                 var user = userRepo.GetByPasswordResetToken(token);
 
@@ -135,7 +109,7 @@ namespace SL
                 // Encriptar nueva contraseña
                 user.Password = AesEncryptionHelper.Encrypt(newPassword);
 
-                // Resetear estado de seguridad
+                // Resetear seguridad
                 user.FailedAttempts = 0;
                 user.State = 1; // Activo
 
@@ -146,23 +120,27 @@ namespace SL
                 // Recalcular DVH
                 user.DVH = DVHHelper.CalcularDVH(user);
 
-                // Actualizar usuario
+                // Guardar cambios
                 userRepo.Update(user.UserId, user);
 
-                // Recalcular DVV
+                // Actualizar DVV
                 var usuarios = userRepo.GetAll();
                 new DVVService().RecalcularDVV(usuarios, "Users");
 
-                message = "La contraseña fue actualizada correctamente. Ya puede iniciar sesión.";
+                message = "La contraseña fue actualizada correctamente.";
                 return true;
             }
             catch (Exception ex)
             {
-                message = "Ocurrió un error inesperado al intentar actualizar la contraseña.";
-                LoggerService.Log($"Error en ResetPassword: {ex.Message}",
-                                   System.Diagnostics.Tracing.EventLevel.Error);
+                LoggerService.Log(
+                    $"Error inesperado en ResetPassword: {ex.Message}",
+                    EventLevel.Error
+                );
+
+                message = "Ocurrió un error al intentar actualizar la contraseña.";
                 return false;
             }
         }
     }
 }
+

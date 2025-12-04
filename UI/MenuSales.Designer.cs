@@ -50,7 +50,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(78, 318);
+            this.label4.Location = new System.Drawing.Point(69, 290);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(146, 18);
             this.label4.TabIndex = 27;
@@ -61,7 +61,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(504, 243);
+            this.label3.Location = new System.Drawing.Point(340, 290);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 18);
             this.label3.TabIndex = 26;
@@ -69,7 +69,7 @@
             // 
             // txtNroDocument
             // 
-            this.txtNroDocument.Location = new System.Drawing.Point(249, 239);
+            this.txtNroDocument.Location = new System.Drawing.Point(72, 250);
             this.txtNroDocument.Name = "txtNroDocument";
             this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
             this.txtNroDocument.TabIndex = 21;
@@ -79,7 +79,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(76, 245);
+            this.label2.Location = new System.Drawing.Point(69, 217);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 18);
             this.label2.TabIndex = 20;
@@ -88,9 +88,9 @@
             // btnFindBooking
             // 
             this.btnFindBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindBooking.Location = new System.Drawing.Point(685, 292);
+            this.btnFindBooking.Location = new System.Drawing.Point(741, 268);
             this.btnFindBooking.Name = "btnFindBooking";
-            this.btnFindBooking.Size = new System.Drawing.Size(167, 44);
+            this.btnFindBooking.Size = new System.Drawing.Size(206, 44);
             this.btnFindBooking.TabIndex = 19;
             this.btnFindBooking.Text = "Consultar Reserva";
             this.btnFindBooking.UseVisualStyleBackColor = true;
@@ -99,11 +99,11 @@
             // dataGridViewBookings
             // 
             this.dataGridViewBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBookings.Location = new System.Drawing.Point(71, 369);
+            this.dataGridViewBookings.Location = new System.Drawing.Point(12, 369);
             this.dataGridViewBookings.Name = "dataGridViewBookings";
             this.dataGridViewBookings.RowHeadersWidth = 51;
             this.dataGridViewBookings.RowTemplate.Height = 24;
-            this.dataGridViewBookings.Size = new System.Drawing.Size(1110, 379);
+            this.dataGridViewBookings.Size = new System.Drawing.Size(1222, 379);
             this.dataGridViewBookings.TabIndex = 18;
             // 
             // btnModBooking
@@ -146,7 +146,7 @@
             // 
             // dtpRegistrationBooking
             // 
-            this.dtpRegistrationBooking.Location = new System.Drawing.Point(674, 237);
+            this.dtpRegistrationBooking.Location = new System.Drawing.Point(343, 327);
             this.dtpRegistrationBooking.Name = "dtpRegistrationBooking";
             this.dtpRegistrationBooking.ShowCheckBox = true;
             this.dtpRegistrationBooking.Size = new System.Drawing.Size(188, 22);
@@ -154,7 +154,7 @@
             // 
             // dtpRegistrationDate
             // 
-            this.dtpRegistrationDate.Location = new System.Drawing.Point(241, 312);
+            this.dtpRegistrationDate.Location = new System.Drawing.Point(72, 327);
             this.dtpRegistrationDate.Name = "dtpRegistrationDate";
             this.dtpRegistrationDate.ShowCheckBox = true;
             this.dtpRegistrationDate.Size = new System.Drawing.Size(200, 22);
@@ -189,11 +189,11 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatus.Location = new System.Drawing.Point(652, 346);
+            this.lblStatus.Location = new System.Drawing.Point(722, 329);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(210, 20);
+            this.lblStatus.Size = new System.Drawing.Size(236, 20);
             this.lblStatus.TabIndex = 86;
             this.lblStatus.Text = "Listo para buscar reservas";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -203,7 +203,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1201, 767);
+            this.ClientSize = new System.Drawing.Size(1246, 762);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnCanBooking);
             this.Controls.Add(this.btnRegPay);

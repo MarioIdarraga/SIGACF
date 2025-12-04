@@ -47,11 +47,11 @@
             // dataGridViewPay
             // 
             this.dataGridViewPay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPay.Location = new System.Drawing.Point(35, 352);
+            this.dataGridViewPay.Location = new System.Drawing.Point(12, 352);
             this.dataGridViewPay.Name = "dataGridViewPay";
             this.dataGridViewPay.RowHeadersWidth = 51;
             this.dataGridViewPay.RowTemplate.Height = 24;
-            this.dataGridViewPay.Size = new System.Drawing.Size(1110, 379);
+            this.dataGridViewPay.Size = new System.Drawing.Size(1220, 379);
             this.dataGridViewPay.TabIndex = 18;
             // 
             // btnRegCustomer
@@ -60,7 +60,7 @@
             this.btnRegCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegCustomer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegCustomer.Location = new System.Drawing.Point(35, 9);
+            this.btnRegCustomer.Location = new System.Drawing.Point(35, 12);
             this.btnRegCustomer.Name = "btnRegCustomer";
             this.btnRegCustomer.Size = new System.Drawing.Size(175, 85);
             this.btnRegCustomer.TabIndex = 16;
@@ -73,7 +73,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(403, 140);
+            this.label1.Location = new System.Drawing.Point(425, 150);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 32);
             this.label1.TabIndex = 15;
@@ -82,18 +82,18 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
             this.lblStatus.Location = new System.Drawing.Point(694, 315);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(190, 20);
+            this.lblStatus.Size = new System.Drawing.Size(266, 25);
             this.lblStatus.TabIndex = 94;
             this.lblStatus.Text = "Listo para buscar pagos";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // dtpPayFrom
             // 
-            this.dtpPayFrom.Location = new System.Drawing.Point(291, 261);
+            this.dtpPayFrom.Location = new System.Drawing.Point(319, 230);
             this.dtpPayFrom.Name = "dtpPayFrom";
             this.dtpPayFrom.ShowCheckBox = true;
             this.dtpPayFrom.Size = new System.Drawing.Size(188, 22);
@@ -104,7 +104,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(556, 212);
+            this.label4.Location = new System.Drawing.Point(40, 279);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 18);
             this.label4.TabIndex = 91;
@@ -115,7 +115,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(121, 267);
+            this.label3.Location = new System.Drawing.Point(320, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 18);
             this.label3.TabIndex = 90;
@@ -123,7 +123,7 @@
             // 
             // txtNroDocument
             // 
-            this.txtNroDocument.Location = new System.Drawing.Point(291, 208);
+            this.txtNroDocument.Location = new System.Drawing.Point(43, 230);
             this.txtNroDocument.Name = "txtNroDocument";
             this.txtNroDocument.Size = new System.Drawing.Size(170, 22);
             this.txtNroDocument.TabIndex = 89;
@@ -133,7 +133,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(118, 214);
+            this.label2.Location = new System.Drawing.Point(40, 194);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 18);
             this.label2.TabIndex = 88;
@@ -144,7 +144,7 @@
             this.btnFindPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindPay.Location = new System.Drawing.Point(727, 261);
             this.btnFindPay.Name = "btnFindPay";
-            this.btnFindPay.Size = new System.Drawing.Size(167, 44);
+            this.btnFindPay.Size = new System.Drawing.Size(192, 44);
             this.btnFindPay.TabIndex = 87;
             this.btnFindPay.Text = "Consultar Pagos";
             this.btnFindPay.UseVisualStyleBackColor = true;
@@ -153,14 +153,14 @@
             // cmbMethodPayment
             // 
             this.cmbMethodPayment.FormattingEnabled = true;
-            this.cmbMethodPayment.Location = new System.Drawing.Point(727, 206);
+            this.cmbMethodPayment.Location = new System.Drawing.Point(43, 309);
             this.cmbMethodPayment.Name = "cmbMethodPayment";
             this.cmbMethodPayment.Size = new System.Drawing.Size(167, 24);
             this.cmbMethodPayment.TabIndex = 95;
             // 
             // dtpPayTo
             // 
-            this.dtpPayTo.Location = new System.Drawing.Point(291, 311);
+            this.dtpPayTo.Location = new System.Drawing.Point(319, 309);
             this.dtpPayTo.Name = "dtpPayTo";
             this.dtpPayTo.ShowCheckBox = true;
             this.dtpPayTo.Size = new System.Drawing.Size(188, 22);
@@ -171,7 +171,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(121, 317);
+            this.label5.Location = new System.Drawing.Point(320, 274);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(147, 18);
             this.label5.TabIndex = 96;
@@ -182,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1177, 741);
+            this.ClientSize = new System.Drawing.Size(1244, 762);
             this.Controls.Add(this.dtpPayTo);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbMethodPayment);

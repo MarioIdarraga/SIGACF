@@ -2,7 +2,7 @@
 Ingresar=Ingresar
 Contraseña=Contraseña
 Usuario=Usuario
-123456778=123456778
+
 Administración=Administración
 Reportes=Reportes
 Cancelaciones=Cancelaciones
@@ -10,29 +10,23 @@ Pagos=Pagos
 Ventas=Ventas
 Clientes=Clientes
 Español=Español
-MenuRegCustomer=MenuRegCustomer
+3
 Registrar Cliente=Registrar Cliente
 Estado=Estado
 Comentarios=Comentarios
 Dirección=Dirección
 Mail=Mail
-Telefono=Telefono
+Telefono=Teléfono
 Apellido=Apellido
 Nombre=Nombre
 Nro de Documento=Nro de Documento
-Busqueda de Clientes=Busqueda de Clientes
-Administración=Administración
-Reportes=Reportes
-Cancelaciones=Cancelaciones
-Pagos=Pagos
-Ventas=Ventas
-Clientes=Clientes
+Busqueda de Clientes=Búsqueda de Clientes
+
 Listo para buscar clientes=Listo para buscar clientes
 Consultar Cliente=Consultar Cliente
-Registrar Reserva=Registrar Reserva
 Modificar Cliente=Modificar Cliente
-Busqueda de Clientes=Busqueda de Clientes
-Estado=Estado
+Registrar Reserva=Registrar Reserva
+
 Listo para buscar reservas=Listo para buscar reservas
 Cancelar Reserva=Cancelar Reserva
 Registrar Pago=Registrar Pago
@@ -40,56 +34,25 @@ Fecha de Registro=Fecha de Registro
 Fecha de Reserva=Fecha de Reserva
 Buscar Reserva=Buscar Reserva
 Modificar Reserva=Modificar Reserva
-Busqueda de Reservas=Busqueda de Reservas
+Busqueda de Reservas=Búsqueda de Reservas
+
 Buscar Cliente=Buscar Cliente
-Busqueda de Pagos=Busqueda de Pagos
+Busqueda de Pagos=Búsqueda de Pagos
 Buscar Cancelaciones=Buscar Cancelaciones
-Busqueda de Cancelaciones=Busqueda de Cancelaciones
-Menu de Reportes=Menu de Reportes
+Busqueda de Cancelaciones=Búsqueda de Cancelaciones
+
+Menu de Reportes=Menú de Reportes
 Reservas=Reservas
 Ventas Mensuales=Ventas Mensuales
-Menu de Administración=Menu de Administración
+
+Menu de Administración=Menú de Administración
 Promociones=Promociones
 Canchas=Canchas
 Usuarios=Usuarios
-MenuCan=MenuCan
-Busqueda de Reservas=Busqueda de Reservas
-Buscar Cancelaciones=Buscar Cancelaciones
-Cancelar Reserva=Cancelar Reserva
-Busqueda de Cancelaciones=Busqueda de Cancelaciones
 
 LOGIN=LOGIN
-Marito1985=Marito1985
-MenuRent=MenuRent
-Ready to search reservations=Ready to search reservations
-Cancel Reservation=Cancel Reservation
-Register Payment=Register Payment
-domingo, 22 de junio de 2025=domingo, 22 de junio de 2025
-Registration Date=Registration Date
-Reservation Date=Reservation Date
-Document Number=Document Number
-Search Reservation=Search Reservation
-Edit Reservation=Edit Reservation
-Register Reservation=Register Reservation
-Reservation Search=Reservation Search
-Administration=Administration
-Reports=Reports
-Cancellations=Cancellations
-Payments=Payments
-Sales=Sales
-Customers=Customers
-MenuCustomers=MenuCustomers
-Ready to search customers=Ready to search customers
-View Customer=View Customer
-Email=Email
-Phone=Phone
-Last Name=Last Name
-First Name=First Name
-Edit Customer=Edit Customer
-Register Customer=Register Customer
-Customer Search=Customer Search
 Acceso=Acceso
-marito1985=marito1985
+
 Id Reserva=Id Reserva
 Promoción=Promoción
 Cancha=Cancha
@@ -97,100 +60,94 @@ Hora Fin=Hora Fin
 Hora Inicio=Hora Inicio
 Fecha Reserva=Fecha Reserva
 Id Cliente=Id Cliente
-Metodo de Pago=Metodo de Pago
+Metodo de Pago=Método de Pago
 Importe=Importe
 Nro de Reserva=Nro de Reserva
 Nro. de Pago=Nro. de Pago
-Id reserva=Id reserva
+
 Listo para buscar usuarios=Listo para buscar usuarios
 Modificar Usuario=Modificar Usuario
 Buscar Usuario=Buscar Usuario
 Registrar Usuario=Registrar Usuario
-Menu Administración=Menu Administración
-Busqueda de Usuarios=Busqueda de Usuarios
-Es Empleado?=Es Empleado?
+Busqueda de Usuarios=Búsqueda de Usuarios
+Es Empleado?=¿Es Empleado?
 Id de Usuario=Id de Usuario
 Cargo/Posición=Cargo/Posición
-Password=Password
+Password=Contraseña
+
 MenuModUser=MenuModUser
-19113731=19113731
-Analista Funcional=Analista Funcional
-Administration Menu=Administration Menu
-1=1
-1164377169=1164377169
-maestra baldini=maestra baldini
-jorge@macro.com.ar=jorge@macro.com.ar
-Idarraga=Idarraga
-Jorge Mario=Jorge Mario
-1243b7cc-b29f-452b-aa0b-6df57c6e0e3f=1243b7cc-b29f-452b-aa0b-6df57c6e0e3f
-Edit User=Edit User
-Status=Status
-Address=Address
-Register User=Register User
-User Search=User Search
+Administration Menu=Menú de Administración
+
+Edit User=Modificar Usuario
+Status=Estado
+Address=Dirección
+Register User=Registrar Usuario
+User Search=Búsqueda de Usuarios
+
 Promociones más usadas=Promociones más usadas
-marito985=marito985
-admin123=admin123
 Manuales=Manuales
 Registrar=Registrar
 Domicilio=Domicilio
-Login Name=Login Name
-Busqueda de Empleados=Busqueda de Empleados
+Login Name=Nombre de Usuario
+Busqueda de Empleados=Búsqueda de Empleados
+
 Ventas - Reservas=Ventas - Reservas
 Ventas - Clientes=Ventas - Clientes
-Búsqueda de Clientes=Búsqueda de Clientes
+
 Consultar Reserva=Consultar Reserva
-Búsqueda de Reservas=Búsqueda de Reservas
+
 Búsqueda de Pagos=Búsqueda de Pagos
 Búsqueda de Cancelaciones=Búsqueda de Cancelaciones
-martio1985=martio1985
+
 Listo para buscar canchas=Listo para buscar canchas
 Modificar Cancha=Modificar Cancha
 Tipo de Cancha=Tipo de Cancha
 Buscar Canchas=Buscar Canchas
 Cargar Cancha=Cargar Cancha
 Búsqueda de Canchas=Búsqueda de Canchas
+
 Listo para buscar promociones=Listo para buscar promociones
 Modificar Promoción=Modificar Promoción
 Fecha Hasta=Fecha Hasta
 Fecha Desde=Fecha Desde
 Buscar Promociones=Buscar Promociones
 Cargar Promoción=Cargar Promoción
-Búsqueda de Promociónes=Búsqueda de Promociónes
-Menu de Descargada de Manuales=Menu de Descargada de Manuales
+Búsqueda de Promociones=Búsqueda de Promociones
+
+Menu de Descargada de Manuales=Menú de Descarga de Manuales
 Manual de Instalación=Manual de Instalación
 Manual de Desarrollador=Manual de Desarrollador
 Manual de Usuario=Manual de Usuario
+
 Tipo De Cancha=Tipo De Cancha
-Costo Hora=Costo Hora
+Costo Hora=Costo por Hora
 Capacidad=Capacidad
 Descripción=Descripción
 Vigencia Hasta=Vigencia Hasta
 Vigencia Desde=Vigencia Desde
-Búsqueda de Promociones=Búsqueda de Promociones
-Porcentaje Descuento=Porcentaje Descuento
-adm123=adm123
-12345678=12345678
-admin=admin
+Porcentaje Descuento=Porcentaje de Descuento
+
 Usuarios / Permisos=Usuarios / Permisos
-Menu Patentes=Menu Patentes
-Menu Familas=Menu Familas
+Menu Patentes=Menú de Patentes
+Menu Familas=Menú de Familias
 Listo para buscar patentes=Listo para buscar patentes
 Modificar Patente=Modificar Patente
 Buscar Patentes=Buscar Patentes
 Registrar Patente=Registrar Patente
-Menu Usuarios=Menu Usuarios
+Menu Usuarios=Menú de Usuarios
 Búsqueda de Patentes=Búsqueda de Patentes
 Cargar Patente=Cargar Patente
-Nombre Formulario=Nombre Formulario
+Nombre Formulario=Nombre del Formulario
+
 Listo para buscar ventas=Listo para buscar ventas
-Fechas Hasta=Fechas Hasta
+Fechas Hasta=Fecha Hasta
 Generar Reporte=Generar Reporte
 Reporte de Cancelaciones=Reporte de Cancelaciones
 Reporte de Reservas=Reporte de Reservas
 Reporte de Ventas=Reporte de Ventas
 Imprimir Reporte=Imprimir Reporte
-Busqueda de Familias=Busqueda de Familias
+
+Busqueda de Familias=Búsqueda de Familias
 Listo para buscar familias=Listo para buscar familias
 Modificar Familia=Modificar Familia
 Buscar Familias=Buscar Familias
@@ -200,46 +157,68 @@ Agregar=Agregar
 Cargar Familia=Cargar Familia
 Listado de Patentes=Listado de Patentes
 Búsqueda de Familias=Búsqueda de Familias
-123456=123456
-romario1985=romario1985
+
 Fecha de Pago=Fecha de Pago
-Metodo=Metodo
+Metodo=Método
 Admin=Admin
-Se encontraron 2 clientes.=Se encontraron 2 clientes.
-admin7=admin7
 Listo para buscar pagos=Listo para buscar pagos
+
 BackUp=BackUp
-Menu de BackUp=Menu de BackUp
-Restore=Restore
+Menu de BackUp=Menú de BackUp
+Restore=Restaurar
 BackUp Full=BackUp Full
 MenuBackUp=MenuBackUp
-Reservations=Reservations
-lunes, 10 de noviembre de 2025=lunes, 10 de noviembre de 2025
-admmin=admmin
-LoginName;Usuario
-Password;Contraseña
-NroDocument;Nro de Documento
-FirstName;Nombre
-LastName;Apellido
-Position;Cargo
-Mail;Correo electrónico
-Address;Dirección
-Telephone;Teléfono
-IsEmployee;Es Empleado
-State;Estado
-Listo para buscar cancelaciones=Listo para buscar cancelaciones
-admina=admina
-admi=admi
-Generar PDF=Generar PDF
-Reporte de Promociones más usadas=Reporte de Promociones más usadas
-sfdsf=sfdsf
-Romario1985=Romario1985
-ddfdf=ddfdf
-Se encontraron 2 reservas.=Se encontraron 2 reservas.
-domingo, 30 de noviembre de 2025=domingo, 30 de noviembre de 2025
-Fecha y Hora Reserva=Fecha y Hora Reserva
-Nro. de Documento=Nro. de Documento
-Consultar Pagos=Consultar Pagos
+
 Fecha Pago Hasta=Fecha Pago Hasta
 Fecha Pago Desde=Fecha Pago Desde
-MenuPay=MenuPay
+Consultar Pagos=Consultar Pagos
+
+MenuPay=Menu de Pagos
+
+Fecha y Hora Reserva=Fecha y Hora de la Reserva
+MenuManuals=Menú de Manuales
+Manual Download Menu=Menú de Descarga de Manuales
+Installation Manual=Manual de Instalación
+Developer Manual=Manual de Desarrollador
+User Manual=Manual de Usuario
+Manuals=Manuales
+Administration=Administración
+Reports=Reportes
+Cancellations=Cancelaciones
+Payments=Pagos
+Reservations=Reservas
+Customers=Clientes
+
+Búsqueda de Clientes=Búsqueda de Clientes
+Búsqueda de Reservas=Búsqueda de Reservas
+Listo para buscar cancelaciones=Listo para buscar cancelaciones
+
+MenuCustomers=Menú de Clientes
+
+Ready to search customers=Listo para buscar clientes
+View Customer=Consultar Cliente
+Register Reservation=Registrar Reserva
+Email=Correo electrónico
+Phone=Teléfono
+Last Name=Apellido
+First Name=Nombre
+Document Number=Nro de Documento
+Edit Customer=Modificar Cliente
+Register Customer=Registrar Cliente
+Customer Search=Búsqueda de Clientes
+
+NroDocument=Nro Documento
+FirstName=Nombre
+LastName=Apellido
+State=Estado
+Comment=Comentario
+Telephone:Telefono
+Mail=Mail
+RegistrationBooking=Registración Reserva
+StartTime=Hora Inicio
+EndTine=Hora Fin
+PromotionDescription=Promoción
+IdPay=Nro de Pago
+Date=Fecha
+MethodPay=Metodo de Pago
+Amount=Monto

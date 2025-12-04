@@ -40,7 +40,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(305, 238);
+            this.label1.Location = new System.Drawing.Point(404, 228);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(341, 32);
             this.label1.TabIndex = 83;
@@ -51,7 +51,7 @@
             this.btnAdminProm.BackColor = System.Drawing.Color.DarkOrange;
             this.btnAdminProm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdminProm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdminProm.Location = new System.Drawing.Point(454, 331);
+            this.btnAdminProm.Location = new System.Drawing.Point(553, 321);
             this.btnAdminProm.Name = "btnAdminProm";
             this.btnAdminProm.Size = new System.Drawing.Size(176, 85);
             this.btnAdminProm.TabIndex = 82;
@@ -65,7 +65,7 @@
             this.btnAdminFields.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdminFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdminFields.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAdminFields.Location = new System.Drawing.Point(277, 331);
+            this.btnAdminFields.Location = new System.Drawing.Point(376, 321);
             this.btnAdminFields.Name = "btnAdminFields";
             this.btnAdminFields.Size = new System.Drawing.Size(171, 86);
             this.btnAdminFields.TabIndex = 81;
@@ -77,7 +77,7 @@
             // 
             this.btnAdminEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAdminEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdminEmployees.Location = new System.Drawing.Point(97, 331);
+            this.btnAdminEmployees.Location = new System.Drawing.Point(196, 321);
             this.btnAdminEmployees.Name = "btnAdminEmployees";
             this.btnAdminEmployees.Size = new System.Drawing.Size(174, 86);
             this.btnAdminEmployees.TabIndex = 80;
@@ -90,7 +90,7 @@
             this.btnAdminManuals.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnAdminManuals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdminManuals.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdminManuals.Location = new System.Drawing.Point(636, 331);
+            this.btnAdminManuals.Location = new System.Drawing.Point(735, 321);
             this.btnAdminManuals.Name = "btnAdminManuals";
             this.btnAdminManuals.Size = new System.Drawing.Size(176, 85);
             this.btnAdminManuals.TabIndex = 84;
@@ -103,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(929, 555);
+            this.ClientSize = new System.Drawing.Size(1241, 762);
             this.Controls.Add(this.btnAdminManuals);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdminProm);

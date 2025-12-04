@@ -7,6 +7,7 @@ Administración=Administration
 Reportes=Reports
 Configuración=Settings
 English=English
+
 Listo para buscar reservas=Ready to search reservations
 Cancelar Reserva=Cancel Reservation
 Registrar Pago=Register Payment
@@ -17,122 +18,94 @@ Buscar Reserva=Search Reservation
 Modificar Reserva=Edit Reservation
 Registrar Reserva=Register Reservation
 Busqueda de Reservas=Reservation Search
+
 Mail=Email
 Telefono=Phone
 Apellido=Last Name
 Nombre=First Name
+
 Buscar Cancelaciones=Search Cancellations
 Busqueda de Cancelaciones=Cancellation Search
+
 Menu de Reportes=Reports Menu
 Reservas=Reservations
 Ventas Mensuales=Monthly Sales
+
 Menu de Administración=Administration Menu
 Promociones=Promotions
 Canchas=Fields
 Usuarios=Users
+
 Listo para buscar clientes=Ready to search customers
 Consultar Cliente=View Customer
 Modificar Cliente=Edit Customer
 Registrar Cliente=Register Customer
 Busqueda de Clientes=Customer Search
+
 Estado=Status
 Metodo de Pago=Payment Method
 Importe=Amount
 Nro de Reserva=Reservation Number
 Nro. de Pago=Payment Number
+
 Buscar Cliente=Search Customer
 Busqueda de Pagos=Payment Search
+
 Listo para buscar usuarios=Ready to search users
 Modificar Usuario=Edit User
 Buscar Usuario=Search User
 Registrar Usuario=Register User
-Menu Administración=Administration Menu
 Busqueda de Usuarios=User Search
+
 Comentarios=Comments
 Dirección=Address
-MenuCustomers=MenuCustomers
-Administration=Administration
-Reports=Reports
-Cancellations=Cancellations
-Payments=Payments
-Sales=Sales
-Customers=Customers
-Fechas Hasta=End Dates
+
+Fechas Hasta=End Date
 Fecha Desde=Start Date
 Generar Reporte=Generate Report
+
 Reporte de Reservas=Reservation Report
 Reporte de Ventas=Sales Report
 Reporte de Cancelaciones=Cancellation Report
 Imprimir Reporte=Print Report
+
 Listo para buscar ventas=Ready to search sales
 
-MenuModUser=MenuModUser
-19113731=19113731
-Es Empleado?=Es Empleado?
-Id de Usuario=Id de Usuario
-marito1985=marito1985
-Analista Funcional=Analista Funcional
-Cargo/Posición=Cargo/Posición
-1=1
-1164377169=1164377169
-maestra baldini=maestra baldini
-jorge@macro.com.ar=jorge@macro.com.ar
-Idarraga=Idarraga
-Jorge Mario=Jorge Mario
-123456778=123456778
-1243b7cc-b29f-452b-aa0b-6df57c6e0e3f=1243b7cc-b29f-452b-aa0b-6df57c6e0e3f
-Password=Password
-Usuario=Usuario
-Document Number=Document Number
-Administration Menu=Administration Menu
-Edit User=Edit User
-Status=Status
-Phone=Phone
-Address=Address
-Email=Email
-Last Name=Last Name
-First Name=First Name
-Register User=Register User
-User Search=User Search
-Búsqueda de Clientes=Búsqueda de Clientes
-Ventas - Reservas=Ventas - Reservas
-Ventas - Clientes=Ventas - Clientes
-Inglés=Inglés
-Se encontraron 2 clientes.=Se encontraron 2 clientes.
-Consultar Reserva=Consultar Reserva
-Búsqueda de Reservas=Búsqueda de Reservas
-Metodo=Metodo
-Fecha de Pago=Fecha de Pago
-Búsqueda de Pagos=Búsqueda de Pagos
-Búsqueda de Cancelaciones=Búsqueda de Cancelaciones
-Manuales=Manuales
-Menu de Descargada de Manuales=Menu de Descargada de Manuales
-Manual de Instalación=Manual de Instalación
-Manual de Desarrollador=Manual de Desarrollador
-Manual de Usuario=Manual de Usuario
+Manual de Instalación=Installation Manual
+Manual de Desarrollador=Developer Manual
+Manual de Usuario=User Manual
+Manuales=Manuals
+Menu de Descargada de Manuales=Manual Download Menu
+
 BackUp=BackUp
-Usuarios / Permisos=Usuarios / Permisos
-Menu de BackUp=Menu de BackUp
+Menu de BackUp=BackUp Menu
 Restore=Restore
-BackUp Full=BackUp Full
+BackUp Full=Full BackUp
+
+Usuarios / Permisos=Users / Permissions
+
 MenuRent=MenuRent
-lunes, 10 de noviembre de 2025=lunes, 10 de noviembre de 2025
-Reservations=Reservations
-Ready to search reservations=Ready to search reservations
-Cancel Reservation=Cancel Reservation
-Register Payment=Register Payment
-Registration Date=Registration Date
-Reservation Date=Reservation Date
-Edit Reservation=Edit Reservation
-Register Reservation=Register Reservation
-Listo para buscar pagos=Listo para buscar pagos
-Se encontraron 2 reservas.=Se encontraron 2 reservas.
-domingo, 30 de noviembre de 2025=domingo, 30 de noviembre de 2025
-MenuPay=MenuPay
-Fecha Pago Hasta=Fecha Pago Hasta
-Fecha Pago Desde=Fecha Pago Desde
-Consultar Pagos=Consultar Pagos
+
+Listo para buscar pagos=Ready to search payments
+
+Fecha Pago Hasta=Payment Date To
+Fecha Pago Desde=Payment Date From
+Consultar Pagos=View Payments
+
 Edit Customer=Edit Customer
 Register Customer=Register Customer
 Ready to search customers=Ready to search customers
 View Customer=View Customer
+
+Inglés=English
+Búsqueda de Clientes=Customer Search
+Consultar Reserva=View Reservation
+Búsqueda de Reservas=Reservation Search
+Metodo=Method
+Búsqueda de Pagos=Payment Search
+Listo para buscar cancelaciones=Ready to search cancellations
+Búsqueda de Cancelaciones=Cancellation Search
+Promociones más usadas=Most Used Promotions
+MenuCustomers=Menu Customers
+Teléfono=Phone
+Generar PDF=Generar PDF

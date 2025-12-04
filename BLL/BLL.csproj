@@ -43,7 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessException\BusinessException.cs" />
+    <Compile Include="BusinessException\CambioPasswordRequeridoException.cs" />
+    <Compile Include="BusinessException\CanchaInexistenteException.cs" />
+    <Compile Include="BusinessException\ClienteDniDuplicadoException.cs" />
+    <Compile Include="BusinessException\ClienteInexistenteException.cs" />
     <Compile Include="BusinessException\DatabaseAccessException.cs" />
+    <Compile Include="BusinessException\DuracionReservaInvalidaException.cs" />
+    <Compile Include="BusinessException\PasswordIncorrectaException.cs" />
+    <Compile Include="BusinessException\ReservaDuplicadaException.cs" />
+    <Compile Include="BusinessException\UsuarioBloqueadoException.cs" />
+    <Compile Include="BusinessException\UsuarioInexistenteException.cs" />
     <Compile Include="Contracts\IGenericBusinessService.cs" />
     <Compile Include="Service\BookingStateService.cs" />
     <Compile Include="Service\FieldService.cs" />
@@ -55,7 +64,6 @@
     <Compile Include="Service\PayService.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{AB4CA04A-E52B-4978-8817-6B85BB30AB3F}</Project>

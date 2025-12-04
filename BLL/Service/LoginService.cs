@@ -1,9 +1,14 @@
-﻿using BLL.BusinessException;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BLL.BusinessException;
 using Domain;
-using System;
 
 namespace BLL.Service
 {
+    /// <summary>
+    /// Gestiona la lógica de autenticación de usuarios.
+    /// </summary>
     public class LoginService
     {
         private readonly UserService _userService;
@@ -13,58 +18,56 @@ namespace BLL.Service
             _userService = new UserService();
         }
 
-        public bool TryLogin(string loginName, string password, out User user, out string message)
+        /// <summary>
+        /// Intenta autenticar un usuario aplicando reglas de negocio
+        /// y gestionando los intentos fallidos.
+        /// </summary>
+        public User Login(string loginName, string password)
         {
-            message = string.Empty;
-            user = _userService.GetByLogin(loginName);
+            // Validaciones generales → ArgumentException
+            if (string.IsNullOrWhiteSpace(loginName))
+                throw new ArgumentException("Debe ingresar un nombre de usuario.", nameof(loginName));
 
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Debe ingresar una contraseña.", nameof(password));
+
+            // Buscar usuario
+            var user = _userService.GetByLogin(loginName);
             if (user == null)
-            {
-                message = "Usuario inexistente.";
-                return false;
-            }
+                throw new UsuarioInexistenteException("El usuario ingresado no existe.");
 
-            // Usuario bloqueado
+            // Usuario ya bloqueado
             if (user.State == 3)
-            {
-                message = "Su usuario está bloqueado. Solicite un nuevo código mediante '¿Olvidó su contraseña?'.";
-                return false;
-            }
+                throw new UsuarioBloqueadoException("Su usuario está bloqueado. Solicite recuperación de contraseña.");
 
             // Validar contraseña
             bool passOk = _userService.ValidatePassword(user, password);
-
             if (!passOk)
             {
                 user.FailedAttempts++;
 
+                // Límite de intentos → bloquear usuario
                 if (user.FailedAttempts >= 3)
                 {
                     user.State = 3;
-                    message = "Usuario bloqueado por múltiples intentos fallidos.";
-                }
-                else
-                {
-                    message = "Contraseña incorrecta.";
+                    _userService.Update(user);
+                    throw new UsuarioBloqueadoException("Usuario bloqueado por múltiples intentos fallidos.");
                 }
 
                 _userService.Update(user);
-                return false;
+                throw new PasswordIncorrectaException("Contraseña incorrecta.");
             }
 
             // Login correcto → resetear intentos
             user.FailedAttempts = 0;
             _userService.Update(user);
 
-            // Si requiere cambio de contraseña
+            // Requiere cambio de contraseña
             if (user.State == 0)
-            {
-                message = "Debe cambiar su contraseña.";
-                return false;
-            }
+                throw new CambioPasswordRequeridoException("Debe cambiar su contraseña antes de continuar.");
 
-            message = "Login exitoso.";
-            return true;
+            // Usuario válido
+            return user;
         }
     }
 }
