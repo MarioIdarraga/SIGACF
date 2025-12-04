@@ -1,4 +1,10 @@
-﻿using System;
+﻿using BLL.Service;
+using DAL.Contracts;
+using DAL.Factory;
+using Domain;
+using SL;
+using SL.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +13,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL.Service;
-using DAL.Contracts;
-using DAL.Factory;
-using Domain;
-using SL;
 using UI.Helpers;
 
 namespace UI
@@ -27,7 +28,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate(); 
 
             var repo = Factory.Current.GetBookingRepository();
             var bllService = new BookingService(repo);
@@ -212,6 +213,31 @@ namespace UI
         }
 
         /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridViewBookings.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Busca reservas según los filtros ingresados y actualiza el listado.
         /// </summary>
         private void btnFindBooking_Click(object sender, EventArgs e)
@@ -295,6 +321,8 @@ namespace UI
                             break;
                     }
                 }
+
+                TranslateGridHeaders();
 
                 lblStatus.Text = bookings.Any()
                     ? $"Se encontraron {bookings.Count()} reservas."

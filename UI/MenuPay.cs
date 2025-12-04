@@ -3,6 +3,7 @@ using BLL.Service;
 using DAL.Factory;
 using Domain;
 using SL;
+using SL.BLL;
 using System;
 using System.Diagnostics.Tracing;
 using System.Drawing;
@@ -96,6 +97,30 @@ namespace UI
         }
 
         /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridViewPay.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
+        /// <summary>
         /// Ejecuta la búsqueda de pagos aplicando filtros de fecha y método.
         /// </summary>
         private void btnFindPay_Click(object sender, EventArgs e)
@@ -121,6 +146,7 @@ namespace UI
                 var list = _paySLService.GetAll(null, dateFrom, dateTo, method).ToList();
 
                 dataGridViewPay.DataSource = list;
+                TranslateGridHeaders();
                 FormatearGrilla();
 
                 lblStatus.Text = list.Any()

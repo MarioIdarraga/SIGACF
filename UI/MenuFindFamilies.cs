@@ -2,6 +2,7 @@
 using DAL.Factory;
 using Domain;
 using SL;
+using SL.BLL;
 using SL.Service;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,30 @@ namespace UI
         }
 
         /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridViewFamilies.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
+        /// <summary>
         /// Evento del botón "Buscar Familias".
         /// Obtiene todas las familias registradas y las muestra en el <see cref="DataGridView"/>.
         /// 
@@ -151,6 +176,7 @@ namespace UI
                 }).ToList();
 
                 dataGridViewFamilies.DataSource = bindingList;
+                TranslateGridHeaders();
                 lblStatus.Text = $"Se encontraron {bindingList.Count} familia(s).";
             }
             catch (Exception ex)

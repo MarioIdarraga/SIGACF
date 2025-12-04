@@ -10,7 +10,6 @@ Pagos=Pagos
 Ventas=Ventas
 Clientes=Clientes
 Español=Español
-3
 Registrar Cliente=Registrar Cliente
 Estado=Estado
 Comentarios=Comentarios
@@ -212,7 +211,7 @@ FirstName=Nombre
 LastName=Apellido
 State=Estado
 Comment=Comentario
-Telephone:Telefono
+Telephone=Telefono
 Mail=Mail
 RegistrationBooking=Registración Reserva
 StartTime=Hora Inicio
@@ -222,3 +221,10 @@ IdPay=Nro de Pago
 Date=Fecha
 MethodPay=Metodo de Pago
 Amount=Monto
+Position=Posición
+Menu Administración=Menu Administración
+IsEmployee=Es Empleado?
+FailedAttempts=Cantidad de Fallos
+Búsqueda de Promociónes=Búsqueda de Promociónes
+Generar PDF=Generar PDF
+Reporte de Promociones más usadas=Reporte de Promociones más usadas

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DAL.Factory;
+using SL.BLL;
+using SL.Service.Extension;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL.Factory;
-using SL.Service.Extension;
 using UI.Helpers;
 
 namespace UI
@@ -54,9 +55,32 @@ namespace UI
             OpenFormChild(new MenuModProm(_panelContenedor));
         }
 
+        /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        //private void TranslateGridHeaders()
+        //{
+        //    foreach (DataGridViewColumn col in dataGridViewPatents.Columns)
+        //    {
+        //        // Saltar columnas técnicas
+        //        if (col.Name == "UserId")
+        //            continue;
+
+        //        try
+        //        {
+        //            col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+        //        }
+        //        catch
+        //        {
+        //            // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+        //        }
+        //    }
+        //}
         private void btnFindPromotion_Click(object sender, EventArgs e)
         {
-
+           // TranslateGridHeaders();
         }
     }
 }

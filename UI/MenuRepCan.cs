@@ -4,6 +4,7 @@ using Domain;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using SL;
+using SL.BLL;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -67,6 +68,30 @@ namespace UI
         }
 
         /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
+        /// <summary>
         /// Busca cancelaciones por rango de fechas y las muestra en el DataGridView.
         /// </summary>
         private void btnGenRepCan_Click(object sender, EventArgs e)
@@ -92,6 +117,7 @@ namespace UI
                 }).ToList();
 
                 dataGridView1.DataSource = viewData;
+                TranslateGridHeaders();
 
                 MessageBox.Show(
                     bookings.Any()

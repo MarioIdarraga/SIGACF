@@ -1,4 +1,12 @@
-﻿using System;
+﻿using BLL.BusinessException;
+using BLL.Service;
+using DAL.Factory;
+using Domain;
+using SL;
+using SL.BLL;
+using SL.Service;
+using SL.Service.Extension;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,13 +16,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL.BusinessException;
-using BLL.Service;
-using DAL.Factory;
-using Domain;
-using SL;
-using SL.Service;
-using SL.Service.Extension;
 using UI.Helpers;
 
 namespace UI
@@ -208,6 +209,31 @@ namespace UI
         }
 
         /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridViewFields.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Ejecuta la búsqueda de canchas según tipo y estado seleccionados,
         /// y muestra el resultado en el DataGridView.
         /// </summary>
@@ -239,6 +265,7 @@ namespace UI
 
                 // Ocultar columnas técnicas
                 HideTechnicalColumns();
+                TranslateGridHeaders();
 
                 lblStatus.Text = fields.Any()
                     ? $"Se encontraron {fields.Count()} canchas."

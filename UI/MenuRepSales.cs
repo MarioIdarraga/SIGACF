@@ -1,4 +1,9 @@
-﻿using System;
+﻿using BLL.Service;
+using DAL.Contracts;
+using DAL.Factory;
+using SL.BLL;
+using SL.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL.Service;
-using DAL.Contracts;
-using DAL.Factory;
-using SL.Services;
 using UI.Helpers;
 
 namespace UI
@@ -53,6 +54,30 @@ namespace UI
             OpenFormChild(new MenuRepCan(_panelContenedor));
         }
 
+        /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
         private void btnGenRepSales_Click(object sender, EventArgs e)
         {
             DateTime? since = dtpDateSinceSales.Checked ? dtpDateSinceSales.Value : (DateTime?)null;
@@ -62,6 +87,7 @@ namespace UI
             {
                 var results = _uiPayService.GetFilteredPayments(since, until);
                 dataGridView1.DataSource = results.ToList();
+                TranslateGridHeaders();
 
                 lblStatus.Text = results.Any()
                     ? $"Se encontraron {results.Count()} pagos."

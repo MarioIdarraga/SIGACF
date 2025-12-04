@@ -1,16 +1,17 @@
-﻿using System;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using BLL.Service;
+﻿using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using SL;
+using SL.BLL;
+using System;
+using System.Diagnostics;
+using System.Diagnostics.Tracing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 using UI.Helpers;
 
 namespace UI
@@ -88,6 +89,30 @@ namespace UI
         #endregion
 
         /// <summary>
+        /// Traduce los encabezados de las columnas del DataGridView
+        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
+        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// </summary>
+        private void TranslateGridHeaders()
+        {
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
+        }
+
+        /// <summary>
         /// Genera el reporte de promociones más usadas en el rango de fechas.
         /// Llena el DataGridView con: Promoción, VecesUsada, TotalReservado.
         /// </summary>
@@ -123,6 +148,7 @@ namespace UI
                     .ToList();
 
                 dataGridView1.DataSource = viewData;
+                TranslateGridHeaders();
 
                 MessageBox.Show(
                     viewData.Any()
