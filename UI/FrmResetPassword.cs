@@ -7,6 +7,7 @@ using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using UI.Helpers;
 
 namespace UI
 {
@@ -41,6 +42,7 @@ namespace UI
         public FrmResetPassword()
         {
             InitializeComponent();
+            this.Translate(); 
             _loginService = new LoginSLService();
 
             ApplyPlaceholders();

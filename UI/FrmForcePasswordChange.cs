@@ -42,6 +42,7 @@ namespace UI
         public FrmForcePasswordChange(User user)
         {
             InitializeComponent();
+            this.Translate(); // Localización
 
             _user = user;
             _userSLService = new UserSLService(new UserService());

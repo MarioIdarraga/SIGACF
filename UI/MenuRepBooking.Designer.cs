@@ -66,7 +66,7 @@
             // btnGenRepBookings
             // 
             this.btnGenRepBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenRepBookings.Location = new System.Drawing.Point(311, 286);
+            this.btnGenRepBookings.Location = new System.Drawing.Point(320, 276);
             this.btnGenRepBookings.Name = "btnGenRepBookings";
             this.btnGenRepBookings.Size = new System.Drawing.Size(164, 44);
             this.btnGenRepBookings.TabIndex = 34;
@@ -139,11 +139,11 @@
             // btnPrintBookings
             // 
             this.btnPrintBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintBookings.Location = new System.Drawing.Point(599, 286);
+            this.btnPrintBookings.Location = new System.Drawing.Point(517, 276);
             this.btnPrintBookings.Name = "btnPrintBookings";
             this.btnPrintBookings.Size = new System.Drawing.Size(164, 44);
             this.btnPrintBookings.TabIndex = 44;
-            this.btnPrintBookings.Text = "Imprimir Reporte";
+            this.btnPrintBookings.Text = "Generar PDF";
             this.btnPrintBookings.UseVisualStyleBackColor = true;
             this.btnPrintBookings.Click += new System.EventHandler(this.btnPrintBookings_Click);
             // 

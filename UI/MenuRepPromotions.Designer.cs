@@ -81,7 +81,7 @@
             // btnGenRepPromotion
             // 
             this.btnGenRepPromotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenRepPromotion.Location = new System.Drawing.Point(402, 287);
+            this.btnGenRepPromotion.Location = new System.Drawing.Point(391, 275);
             this.btnGenRepPromotion.Name = "btnGenRepPromotion";
             this.btnGenRepPromotion.Size = new System.Drawing.Size(164, 44);
             this.btnGenRepPromotion.TabIndex = 49;
@@ -153,7 +153,7 @@
             // btnExportPdf
             // 
             this.btnExportPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportPdf.Location = new System.Drawing.Point(573, 287);
+            this.btnExportPdf.Location = new System.Drawing.Point(562, 275);
             this.btnExportPdf.Name = "btnExportPdf";
             this.btnExportPdf.Size = new System.Drawing.Size(164, 44);
             this.btnExportPdf.TabIndex = 80;

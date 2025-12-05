@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using UI.Helpers;
 
 namespace UI
 {
@@ -31,6 +32,7 @@ namespace UI
         public FrmRecoverPassword()
         {
             InitializeComponent();
+            this.Translate(); 
 
             this.MouseDown += new MouseEventHandler(this.FrmRecoverPassword_MouseDown);
 

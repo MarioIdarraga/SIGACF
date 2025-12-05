@@ -38,6 +38,7 @@
             this.btnRepBooking = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.btnExportPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +81,7 @@
             // btnGenRepSales
             // 
             this.btnGenRepSales.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenRepSales.Location = new System.Drawing.Point(461, 285);
+            this.btnGenRepSales.Location = new System.Drawing.Point(370, 274);
             this.btnGenRepSales.Name = "btnGenRepSales";
             this.btnGenRepSales.Size = new System.Drawing.Size(164, 44);
             this.btnGenRepSales.TabIndex = 48;
@@ -139,14 +140,24 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatus.Location = new System.Drawing.Point(444, 332);
+            this.lblStatus.Location = new System.Drawing.Point(439, 329);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(194, 20);
+            this.lblStatus.Size = new System.Drawing.Size(218, 20);
             this.lblStatus.TabIndex = 87;
             this.lblStatus.Text = "Listo para buscar ventas";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // btnExportPdf
+            // 
+            this.btnExportPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportPdf.Location = new System.Drawing.Point(564, 274);
+            this.btnExportPdf.Name = "btnExportPdf";
+            this.btnExportPdf.Size = new System.Drawing.Size(164, 44);
+            this.btnExportPdf.TabIndex = 88;
+            this.btnExportPdf.Text = "Generar PDF";
+            this.btnExportPdf.UseVisualStyleBackColor = true;
             // 
             // MenuRepSales
             // 
@@ -154,6 +165,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1180, 741);
+            this.Controls.Add(this.btnExportPdf);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.dtpDateUntilSales);
             this.Controls.Add(this.dtpDateSinceSales);
@@ -186,5 +198,6 @@
         private System.Windows.Forms.Button btnRepBooking;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnExportPdf;
     }
 }
