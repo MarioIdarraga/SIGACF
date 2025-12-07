@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnBackUp = new System.Windows.Forms.Button();
+            this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -70,12 +71,27 @@
             this.btnBackUp.UseVisualStyleBackColor = false;
             this.btnBackUp.Click += new System.EventHandler(this.btnBackUp_Click);
             // 
+            // btnMenuAdmin
+            // 
+            this.btnMenuAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnMenuAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenuAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuAdmin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnMenuAdmin.Location = new System.Drawing.Point(12, 12);
+            this.btnMenuAdmin.Name = "btnMenuAdmin";
+            this.btnMenuAdmin.Size = new System.Drawing.Size(175, 85);
+            this.btnMenuAdmin.TabIndex = 89;
+            this.btnMenuAdmin.Text = "Menu Administración";
+            this.btnMenuAdmin.UseVisualStyleBackColor = false;
+            this.btnMenuAdmin.Click += new System.EventHandler(this.btnMenuAdmin_Click);
+            // 
             // MenuBackUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(929, 555);
+            this.Controls.Add(this.btnMenuAdmin);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.btnBackUp);
@@ -92,5 +108,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRestore;
         private System.Windows.Forms.Button btnBackUp;
+        private System.Windows.Forms.Button btnMenuAdmin;
     }
 }

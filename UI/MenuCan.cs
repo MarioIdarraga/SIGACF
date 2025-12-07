@@ -42,7 +42,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Localización
+            this.Translate();
 
             var repo = Factory.Current.GetBookingRepository();
             var bllService = new BookingService(repo);
@@ -215,13 +215,8 @@ namespace UI
                     b.RegistrationBooking,
                     b.StartTime,
                     b.EndTime,
-                    b.Field,
-                    b.Promotion,
-
-                    // Aquí concatenamos número + descripción
-                    State = statesLookup.TryGetValue(b.State, out var desc)
-                        ? $"{b.State} - {desc}"
-                        : b.State.ToString(),
+                    Field = b.Description,
+                    Promotion = b.PromotionDescription,
 
                     b.ImporteBooking,
                     b.DVH

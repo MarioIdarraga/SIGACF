@@ -23,5 +23,6 @@ namespace DAL.Contracts
         User GetByUsernameOrEmail(string userOrMail);
         void SavePasswordResetToken(Guid userId, string token, DateTime expiration);
         User GetByPasswordResetToken(string token);
+        User GetByDocument(int nroDocument);
     }
 }

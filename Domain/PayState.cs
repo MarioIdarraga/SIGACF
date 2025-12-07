@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
+
+    /// <summary>
+    /// Representa el estado de un pago.
+    /// </summary>
     public class PayState
     {
-
-        public int id_EstadoPago { get; set; }
-
-        public string descripcion { get; set; }
+        public int IdPayState { get; set; }
+        public string Description { get; set; }
     }
 }

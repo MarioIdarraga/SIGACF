@@ -92,19 +92,21 @@
     <Compile Include="Service\BookingSLService.cs" />
     <Compile Include="Service\BookingStateSLService.cs" />
     <Compile Include="Service\CustomerSLService.cs" />
+    <Compile Include="Service\CustomerStateSLService.cs" />
     <Compile Include="Service\DVVService.cs" />
     <Compile Include="Service\FieldSLService.cs" />
     <Compile Include="Service\PasswordRecoverySLService.cs" />
     <Compile Include="Service\PaymentMethodSLService.cs" />
     <Compile Include="Service\PaySLService.cs" />
+    <Compile Include="Service\PayStateSLService.cs" />
     <Compile Include="Service\PermissionSLService.cs" />
+    <Compile Include="Service\PromotionSLService.cs" />
     <Compile Include="Service\UserSLService.cs" />
     <Compile Include="Service\LoggerService.cs" />
     <Compile Include="Service\LoginSLService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Extension\ExceptionExtension.cs" />
     <Compile Include="Service\Extension\StringExtension.cs" />
-    <Compile Include="Service\UIPayService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

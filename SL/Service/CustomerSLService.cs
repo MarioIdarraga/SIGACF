@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Linq;
 using System.Text.RegularExpressions;
 using BLL.Service;
 using Domain;
@@ -12,9 +13,12 @@ namespace SL
     {
         private readonly CustomerService _customerService;
 
-        public CustomerSLService(CustomerService customerService)
+        private readonly CustomerStateService _customerStateService;
+
+        public CustomerSLService(CustomerService customerService, CustomerStateService customerStateService)
         {
             _customerService = customerService;
+            _customerStateService = customerStateService;
         }
 
         public void Insert(Customer customer)
@@ -67,13 +71,18 @@ namespace SL
             }
         }
 
-        public List<Customer> GetAll(int? nroDocumento, string firstName, string lastName, string telephone, string mail, int state)
+        /// <summary>
+        /// Obtiene la lista de clientes filtrada y mapea la descripción del estado,
+        /// desencriptando los datos sensibles antes de devolverlos.
+        /// </summary>
+        public List<Customer> GetAll(int? nroDocumento, string firstName, string lastName,
+                             string telephone, string mail, int state)
         {
-            LoggerService.Log("Inicio búsqueda de clientes.", EventLevel.Informational, Session.CurrentUser?.LoginName);
+            LoggerService.Log("Inicio búsqueda de clientes.",
+                EventLevel.Informational, Session.CurrentUser?.LoginName);
 
             try
             {
-                // Encriptar filtros si vienen como texto plano
                 if (!string.IsNullOrWhiteSpace(mail) && !AesEncryptionHelper.IsEncryptedAES(mail))
                     mail = AesEncryptionHelper.Encrypt(mail);
 
@@ -91,15 +100,28 @@ namespace SL
                         customer.Telephone = AesEncryptionHelper.Decrypt(customer.Telephone);
                 }
 
-                LoggerService.Log($"Fin búsqueda de clientes. Resultados: {result.Count}", EventLevel.Informational, Session.CurrentUser?.LoginName);
+                var states = _customerStateService.GetAll();
+
+                foreach (var cust in result)
+                {
+                    cust.StateDescription =
+                        states.FirstOrDefault(s => s.IdCustomerState == cust.State)?.Description
+                        ?? "Desconocido";
+                }
+
+                LoggerService.Log($"Fin búsqueda de clientes. Resultados: {result.Count}",
+                    EventLevel.Informational, Session.CurrentUser?.LoginName);
+
                 return result;
             }
             catch (Exception ex)
             {
-                LoggerService.Log($"Error al buscar clientes: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
+                LoggerService.Log($"Error al buscar clientes: {ex.Message}",
+                    EventLevel.Error, Session.CurrentUser?.LoginName);
                 throw;
             }
         }
+
 
         // 🔍 Validación previa a encriptación
         private void ValidateCustomer(Customer customer)

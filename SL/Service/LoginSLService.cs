@@ -49,6 +49,13 @@ namespace SL
                 // BLL devuelve el usuario o lanza BusinessException
                 user = loginBLL.Login(loginName, password);
 
+                // Validar si el usuario requiere cambio de contraseña (State = 0)
+                if (user.State == 0)
+                {
+                    message = "Debe cambiar su contraseña antes de continuar.";
+                    return false;  
+                }
+
                 // Login correcto → setear sesión
                 Session.CurrentUser = user;
 

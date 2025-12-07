@@ -18,9 +18,13 @@ namespace Domain
 
         public int MethodPay { get; set; }
 
+        public string PaymentMethodDescription { get; set; }
+
         public decimal Amount { get; set; }
 
         public int State { get; set; }
+
+        public string StateDescription { get; set; }
 
     }
 }

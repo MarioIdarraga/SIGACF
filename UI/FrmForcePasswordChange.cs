@@ -44,6 +44,9 @@ namespace UI
             InitializeComponent();
             this.Translate(); // Localización
 
+            if (user == null)
+                throw new BusinessException("No se pudo cargar el usuario para cambiar la contraseña.");
+
             _user = user;
             _userSLService = new UserSLService(new UserService());
 
@@ -85,7 +88,7 @@ namespace UI
                 _user.Password = newPass;
                 _user.State = 1;
 
-                _userSLService.Update(_user, Guid.Empty);
+                _userSLService.Update(_user, null);
 
                 MessageBox.Show(
                     "La contraseña se ha actualizado correctamente.",

@@ -204,6 +204,11 @@ namespace UI
                 }
             }
         }
+
+        private void btnMenuAdmin_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuAdmin(_panelContenedor));
+        }
     }
 }
 

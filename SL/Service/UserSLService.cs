@@ -91,7 +91,7 @@ public class UserSLService
     }
 
 
-    public void Update(User user, Guid familyId)
+    public void Update(User user, Guid? familyId = null)
     {
         LoggerService.Log("Inicio de modificación de Usuario.");
 
@@ -111,9 +111,12 @@ public class UserSLService
             var usuarios = repo.GetAll();
             new DVVService().RecalcularDVV(usuarios, "Users");
 
-            // 🔁 Actualizar relación con la familia (permiso)
-            var permissionService = new PermissionSLService();
-            permissionService.AssignFamiliesToUser(user.UserId, new List<Guid> { familyId });
+            // 🔁 Actualizar relación con la familia SOLO si se envió una familia
+            if (familyId.HasValue)
+            {
+                var permissionService = new PermissionSLService();
+                permissionService.AssignFamiliesToUser(user.UserId, new List<Guid> { familyId.Value });
+            }
 
             LoggerService.Log("Usuario modificado correctamente.");
         }

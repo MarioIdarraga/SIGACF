@@ -30,7 +30,6 @@
         {
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnModPromotion = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtNroDocument = new System.Windows.Forms.TextBox();
@@ -40,18 +39,17 @@
             this.btnRegPromotion = new System.Windows.Forms.Button();
             this.btnMenuAdmin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatus.Location = new System.Drawing.Point(871, 293);
+            this.lblStatus.Location = new System.Drawing.Point(841, 290);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(241, 20);
+            this.lblStatus.Size = new System.Drawing.Size(270, 20);
             this.lblStatus.TabIndex = 103;
             this.lblStatus.Text = "Listo para buscar promociones";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -68,17 +66,6 @@
             this.btnModPromotion.Text = "Modificar Promoción";
             this.btnModPromotion.UseVisualStyleBackColor = false;
             this.btnModPromotion.Click += new System.EventHandler(this.btnModPromotion_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(767, 184);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 18);
-            this.label4.TabIndex = 99;
-            this.label4.Text = "Estado";
             // 
             // label3
             // 
@@ -175,24 +162,14 @@
             this.label1.TabIndex = 87;
             this.label1.Text = "Búsqueda de Promociónes";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(890, 180);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(188, 24);
-            this.comboBox1.TabIndex = 104;
-            // 
             // MenuFindPromotions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1154, 704);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnModPromotion);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtNroDocument);
@@ -215,7 +192,6 @@
 
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnModPromotion;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtNroDocument;
@@ -225,6 +201,5 @@
         private System.Windows.Forms.Button btnRegPromotion;
         private System.Windows.Forms.Button btnMenuAdmin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

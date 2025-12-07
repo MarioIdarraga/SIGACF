@@ -158,6 +158,7 @@
             this.btnExportPdf.TabIndex = 88;
             this.btnExportPdf.Text = "Generar PDF";
             this.btnExportPdf.UseVisualStyleBackColor = true;
+            this.btnExportPdf.Click += new System.EventHandler(this.btnExportPdf_Click);
             // 
             // MenuRepSales
             // 
@@ -179,7 +180,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MenuRepSales";
             this.Text = "MenuRepSales";
-            this.Load += new System.EventHandler(this.MenuRepSales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -76,9 +76,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICustomerStateRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IPaymentMethodRepository.cs" />
     <Compile Include="Contracts\IPayRepository.cs" />
+    <Compile Include="Contracts\IPayStateRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Factory\Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Repositories\File\FieldStateRepository.cs" />
     <Compile Include="Repositories\File\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\File\PayRepository.cs" />
+    <Compile Include="Repositories\File\PayStateRepository.cs" />
     <Compile Include="Repositories\File\PromotionRepository.cs" />
     <Compile Include="Repositories\File\UserRepository.cs" />
     <Compile Include="Repositories\Memory\BookingRepository.cs" />
@@ -100,6 +103,7 @@
     <Compile Include="Repositories\Memory\FieldStateRepository.cs" />
     <Compile Include="Repositories\Memory\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\Memory\PayRepository.cs" />
+    <Compile Include="Repositories\Memory\PayStateRepository.cs" />
     <Compile Include="Repositories\Memory\PromotionRepository.cs" />
     <Compile Include="Repositories\Memory\UserRepository.cs" />
     <Compile Include="Repositories\SqlServer\BookingRepository.cs" />
@@ -110,6 +114,7 @@
     <Compile Include="Repositories\SqlServer\FieldStateRepository.cs" />
     <Compile Include="Repositories\SqlServer\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\SqlServer\PayRepository.cs" />
+    <Compile Include="Repositories\SqlServer\PayStateRepository.cs" />
     <Compile Include="Repositories\SqlServer\PromotionRepository.cs" />
     <Compile Include="Repositories\SqlServer\UserRepository.cs" />
     <Compile Include="Tools\SqlHelper.cs" />

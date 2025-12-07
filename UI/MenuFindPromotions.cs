@@ -1,4 +1,6 @@
-﻿using DAL.Factory;
+﻿using BLL.Service;
+using DAL.Factory;
+using SL;
 using SL.BLL;
 using SL.Service.Extension;
 using System;
@@ -18,15 +20,17 @@ namespace UI
     {
         private Panel _panelContenedor;
 
+        private readonly PromotionSLService _promotionSLService;
+
         public MenuFindPromotions(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate();
 
-            var promotionRepo = Factory.Current.GetPromotionRepository();
-            //var promotionService = new BLL.Service.PromotionService(promotionRepo);
-            //_promotionSLService = new PromotionSLService(promotionService);
+            var repo = DAL.Factory.Factory.Current.GetPromotionRepository();
+            var bll = new PromotionService(repo);
+            _promotionSLService = new PromotionSLService(bll);
         }
 
         private void OpenFormChild(object formchild)
@@ -55,32 +59,57 @@ namespace UI
             OpenFormChild(new MenuModProm(_panelContenedor));
         }
 
+        
+        private void btnFindPromotion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var list = _promotionSLService.GetAll();
+
+                dataGridViewUsers.DataSource = list;
+
+                lblStatus.Text = list.Any()
+                    ? $"Se encontraron {list.Count} promociones."
+                    : "No se encontraron promociones.";
+
+                HideTechnicalColumns();
+                TranslateGridHeaders();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar promociones: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void HideTechnicalColumns()
+        {
+            if (dataGridViewUsers.Columns.Contains("IdPromotion"))
+                dataGridViewUsers.Columns["IdPromotion"].Visible = false;
+        }
+
         /// <summary>
         /// Traduce los encabezados de las columnas del DataGridView
         /// utilizando el mismo sistema de idiomas del resto de la aplicación.
         /// Usa el Name de la columna como clave en los archivos de idioma.
         /// </summary>
-        //private void TranslateGridHeaders()
-        //{
-        //    foreach (DataGridViewColumn col in dataGridViewPatents.Columns)
-        //    {
-        //        // Saltar columnas técnicas
-        //        if (col.Name == "UserId")
-        //            continue;
-
-        //        try
-        //        {
-        //            col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
-        //        }
-        //        catch
-        //        {
-        //            // Si no se encuentra la traducción, se deja el HeaderText tal cual.
-        //        }
-        //    }
-        //}
-        private void btnFindPromotion_Click(object sender, EventArgs e)
+        private void TranslateGridHeaders()
         {
-           // TranslateGridHeaders();
+            foreach (DataGridViewColumn col in dataGridViewUsers.Columns)
+            {
+                // Saltar columnas técnicas
+                if (col.Name == "UserId")
+                    continue;
+
+                try
+                {
+                    col.HeaderText = LanguageBLL.Current.Traductor(col.Name);
+                }
+                catch
+                {
+                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                }
+            }
         }
     }
 }

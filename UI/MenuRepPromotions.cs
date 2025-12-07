@@ -9,6 +9,7 @@ using SL.BLL;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -243,12 +244,12 @@ namespace UI
                             table.AddCell(new Phrase(value, normalFont));
 
                             // Sumamos el total de la columna TotalReservado
-                            if (column.HeaderText.ToLower().Contains("total") &&
-                                decimal.TryParse(
-                                    value.Replace("$", "").Replace(".", "").Replace(",", "."),
-                                    out decimal val))
+                            if (column.HeaderText.ToLower().Contains("total"))
                             {
-                                totalGeneral += val;
+                                var raw = value.Replace("$", "").Trim();
+
+                                if (decimal.TryParse(raw, NumberStyles.Any, new CultureInfo("es-AR"), out decimal val))
+                                    totalGeneral += val;
                             }
                         }
                     }

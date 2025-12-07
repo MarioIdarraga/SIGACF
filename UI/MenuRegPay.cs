@@ -109,7 +109,8 @@ namespace UI
 
                 var repo = DAL.Factory.Factory.Current.GetPayRepository();
                 var bll = new PayService(repo);
-                var sl = new PaySLService(bll);
+                var payMethodSL = new PaymentMethodSLService();
+                var sl = new PaySLService(bll, payMethodSL);
 
                 sl.Insert(pay);
 

@@ -1,197 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using DAL.Contracts;
 using Domain;
 
 namespace DAL.Repositories.File
 {
     /// <summary>
-    /// Repositorio FILE para gestionar los estados de cliente (CustomerState).
-    /// Utiliza almacenamiento en archivo de texto delimitado por '|'.
+    /// Repositorio FILE para CustomerState.
+    /// Gestiona la carga de estados de cliente desde archivo JSON.
+    /// Ideal para modo FILE cuando no se usa SQL Server.
     /// </summary>
-    internal class CustomerStateRepository : IGenericRepository<CustomerState>
+    internal class CustomerStateRepository : ICustomerStateRepository
     {
         private readonly string _filePath;
 
         /// <summary>
-        /// Inicializa el repositorio asegurando la existencia del archivo.
+        /// Inicializa el repositorio asegurando la existencia del archivo JSON.
         /// </summary>
         public CustomerStateRepository()
         {
             try
             {
-                string folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+                _filePath = ConfigurationManager.AppSettings["PathFile"]
+                            ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "CustomerStates.json");
+
+                string folder = Path.GetDirectoryName(_filePath);
 
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
 
-                _filePath = Path.Combine(folder, "CustomerStates.txt");
-
+                // Si no existe, crear archivo vacío con lista JSON
                 if (!System.IO.File.Exists(_filePath))
-                    System.IO.File.WriteAllText(_filePath, "");
+                    System.IO.File.WriteAllText(_filePath, "[]");
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al inicializar el repositorio de estados de cliente.", ex);
+                throw new Exception("Error al inicializar el repositorio de CustomerState.", ex);
             }
         }
 
         #region Helpers
 
         /// <summary>
-        /// Carga todos los estados desde el archivo.
+        /// Carga todos los estados de cliente desde el archivo JSON.
         /// </summary>
-        private List<CustomerState> LoadAll()
+        private List<CustomerState> LoadStates()
         {
             try
             {
-                var list = new List<CustomerState>();
+                if (!System.IO.File.Exists(_filePath))
+                    return new List<CustomerState>();
 
-                foreach (var line in System.IO.File.ReadAllLines(_filePath))
-                {
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-
-                    var parts = line.Split('|');
-                    if (parts.Length != 2) continue;
-
-                    list.Add(new CustomerState
-                    {
-                        IdCustomerState = int.Parse(parts[0]),
-                        Description = parts[1]
-                    });
-                }
-
-                return list;
+                string json = System.IO.File.ReadAllText(_filePath);
+                return JsonSerializer.Deserialize<List<CustomerState>>(json) ?? new List<CustomerState>();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al cargar los estados de cliente.", ex);
+                throw new Exception("Error al leer los estados de cliente del archivo.", ex);
             }
         }
 
         /// <summary>
-        /// Guarda todos los estados en el archivo.
+        /// Guarda toda la lista de estados en el archivo JSON.
         /// </summary>
-        private void SaveAll(List<CustomerState> list)
+        private void SaveStates(List<CustomerState> list)
         {
             try
             {
-                var lines = list.Select(x => $"{x.IdCustomerState}|{x.Description}");
-                System.IO.File.WriteAllLines(_filePath, lines);
+                string json = JsonSerializer.Serialize(list, new JsonSerializerOptions { WriteIndented = true });
+                System.IO.File.WriteAllText(_filePath, json);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al guardar los estados de cliente.", ex);
+                throw new Exception("Error al guardar los estados de cliente en el archivo.", ex);
             }
         }
 
         #endregion
 
-
-        #region CRUD
+        #region Methods GetAll & GetById
 
         /// <summary>
-        /// Inserta un nuevo estado de cliente.
+        /// Obtiene todos los estados de cliente almacenados en el archivo.
         /// </summary>
-        public void Insert(CustomerState Object)
+        public List<CustomerState> GetAll()
         {
             try
             {
-                var states = LoadAll();
-
-                if (states.Any(x => x.IdCustomerState == Object.IdCustomerState))
-                    throw new Exception("El estado de cliente ya existe.");
-
-                states.Add(Object);
-                SaveAll(states);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al insertar el estado de cliente.", ex);
-            }
-        }
-
-        /// <summary>
-        /// Actualiza un estado de cliente existente.
-        /// </summary>
-        public void Update(Guid Id, CustomerState Object)
-        {
-            try
-            {
-                var states = LoadAll();
-
-                var existing = states.FirstOrDefault(x => x.IdCustomerState == Object.IdCustomerState);
-
-                if (existing == null)
-                    throw new Exception("El estado de cliente no existe.");
-
-                states.Remove(existing);
-                states.Add(Object);
-                SaveAll(states);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al actualizar el estado de cliente.", ex);
-            }
-        }
-
-        /// <summary>
-        /// Elimina un estado de cliente.
-        /// </summary>
-        public void Delete(Guid Id)
-        {
-            try
-            {
-                int numericId = Convert.ToInt32(Id.ToString().Substring(0, 8), 16);
-
-                var states = LoadAll();
-                var item = states.FirstOrDefault(x => x.IdCustomerState == numericId);
-
-                if (item == null)
-                    throw new Exception("El estado de cliente no existe.");
-
-                states.Remove(item);
-                SaveAll(states);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar el estado de cliente.", ex);
-            }
-        }
-
-        /// <summary>
-        /// Obtiene un estado de cliente por su identificador.
-        /// </summary>
-        public CustomerState GetOne(Guid Id)
-        {
-            try
-            {
-                int numericId = Convert.ToInt32(Id.ToString().Substring(0, 8), 16);
-
-                var states = LoadAll();
-                return states.FirstOrDefault(x => x.IdCustomerState == numericId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el estado de cliente.", ex);
-            }
-        }
-
-        #endregion
-
-
-        #region GetAll
-
-        /// <summary>
-        /// Obtiene todos los estados de cliente.
-        /// </summary>
-        public IEnumerable<CustomerState> GetAll()
-        {
-            try
-            {
-                return LoadAll();
+                return LoadStates();
             }
             catch (Exception ex)
             {
@@ -200,38 +100,23 @@ namespace DAL.Repositories.File
         }
 
         /// <summary>
-        /// No aplican filtros en FILE. Retorna todos los estados.
+        /// Obtiene un estado de cliente por su identificador.
         /// </summary>
-        public IEnumerable<CustomerState> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
+        public CustomerState GetById(int id)
         {
-            return GetAll();
-        }
-
-        /// <summary>
-        /// No aplican filtros en FILE. Retorna todos los estados.
-        /// </summary>
-        public IEnumerable<CustomerState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
-        {
-            return GetAll();
-        }
-
-        /// <summary>
-        /// No aplican filtros en FILE. Retorna todos los estados.
-        /// </summary>
-        public IEnumerable<CustomerState> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
-        {
-            return GetAll();
-        }
-
-        /// <summary>
-        /// No aplican filtros en FILE. Retorna todos los estados.
-        /// </summary>
-        public IEnumerable<CustomerState> GetAll(DateTime? from, DateTime? to, int state)
-        {
-            return GetAll();
+            try
+            {
+                var list = LoadStates();
+                return list.FirstOrDefault(s => s.IdCustomerState == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el estado de cliente por ID.", ex);
+            }
         }
 
         #endregion
     }
 }
+
 

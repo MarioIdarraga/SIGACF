@@ -1,4 +1,9 @@
-﻿using System;
+﻿using BLL.Service;
+using DAL.Contracts;
+using DAL.Factory;
+using Domain;
+using SL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL.Contracts;
-using DAL.Factory;
-using Domain;
-using SL;
 using UI.Helpers;
 
 namespace UI
@@ -29,11 +30,15 @@ namespace UI
             _panelContenedor = panelContenedor;
             _idCustomer = idCustomer;
 
-            this.Translate(); 
+            this.Translate();
 
             var customerRepo = Factory.Current.GetCustomerRepository();
-            var customerService = new BLL.Service.CustomerService(customerRepo);
-            _customerSLService = new CustomerSLService(customerService);
+            var customerBLL = new CustomerService(customerRepo);
+
+            var customerStateRepo = Factory.Current.GetCustomerStateRepository();
+            var customerStateBLL = new CustomerStateService(customerStateRepo);
+
+            _customerSLService = new CustomerSLService(customerBLL, customerStateBLL);
 
             txtNroDocument.Text = nroDocument.ToString();
             txtFirstName.Text = firstName;

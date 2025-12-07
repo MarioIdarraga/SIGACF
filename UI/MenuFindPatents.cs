@@ -98,12 +98,25 @@ namespace UI
                                                   .ToList();
 
                 dataGridViewPatents.DataSource = patents;
+                HideTechnicalColumns();
                 TranslateGridHeaders();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al buscar las patentes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void HideTechnicalColumns()
+        {
+            if (dataGridViewPatents.Columns.Contains("IdComponent"))
+                dataGridViewPatents.Columns["IdComponent"].Visible = false;
+
+            if (dataGridViewPatents.Columns.Contains("ComponentType"))
+                dataGridViewPatents.Columns["ComponentType"].Visible = false;
+
+            if (dataGridViewPatents.Columns.Contains("DVH"))
+                dataGridViewPatents.Columns["DVH"].Visible = false;
         }
     }
 }

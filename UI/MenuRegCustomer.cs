@@ -28,10 +28,14 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); 
-            var repo = Factory.Current.GetCustomerRepository();
-            var bllService = new CustomerService(repo);
-            _customerSLService = new CustomerSLService(bllService);
+            this.Translate();
+            var customerRepo = Factory.Current.GetCustomerRepository();
+            var customerBLL = new CustomerService(customerRepo);
+
+            var customerStateRepo = Factory.Current.GetCustomerStateRepository();
+            var customerStateBLL = new CustomerStateService(customerStateRepo);
+
+            _customerSLService = new CustomerSLService(customerBLL, customerStateBLL);
         }
 
         private void OpenFormChild(object formchild)
@@ -71,7 +75,7 @@ namespace UI
                     NroDocument = nroDocument,
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
-                    State = 0,
+                    State = 1,
                     Comment = txtComment.Text,
                     Telephone = txtTelephone.Text,
                     Mail = txtMail.Text,

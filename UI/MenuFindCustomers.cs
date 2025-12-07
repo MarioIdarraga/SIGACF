@@ -30,8 +30,10 @@ namespace UI
 
         private readonly CustomerSLService _customerSLService;
 
+        private readonly CustomerStateSLService _customerStateSLService;
+
         /// <summary>
-        /// Constructor del formulario de búsqueda de clientes.
+        /// Constructor del formulario de búsqueda de clientes y de Estado de Clientes.
         /// Inicializa el panel contenedor, traduce el formulario
         /// e instancia el servicio de clientes de la capa SL.
         /// </summary>
@@ -45,9 +47,52 @@ namespace UI
             this.Translate();
 
             var repo = Factory.Current.GetCustomerRepository();
-            var bllService = new CustomerService(repo);
-            _customerSLService = new CustomerSLService(bllService);
+            var customerBLL = new CustomerService(repo);
+
+            var stateRepo = Factory.Current.GetCustomerStateRepository();
+            var stateBLL = new CustomerStateService(stateRepo);
+
+            _customerSLService = new CustomerSLService(customerBLL, stateBLL);
+
+            // Crear repositorio
+            var customerStateRepo = Factory.Current.GetCustomerStateRepository();
+
+            // Crear BLL
+            var customerStateBLL = new CustomerStateService(customerStateRepo);
+
+            // Crear SL
+            _customerStateSLService = new CustomerStateSLService(customerStateBLL);
+
+            // Cargar ComboBox
+            LoadStates();
+
+
         }
+
+        /// <summary>
+        /// Carga los estados de cliente en el ComboBox utilizando la capa SL.
+        /// </summary>
+        private void LoadStates()
+        {
+            try
+            {
+                var states = _customerStateSLService.GetAll();
+
+                cmbState.DataSource = states;
+                cmbState.DisplayMember = "Description";
+                cmbState.ValueMember = "IdCustomerState";
+                cmbState.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log($"Error al cargar estados de cliente: {ex.Message}",
+                    System.Diagnostics.Tracing.EventLevel.Error);
+
+                MessageBox.Show("Error al cargar los estados de cliente.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         /// <summary>
         /// Abre un formulario hijo dentro del panel contenedor,
@@ -74,6 +119,8 @@ namespace UI
         {
             if (dataGridViewCustomers.Columns.Contains("IdCustomer"))
                 dataGridViewCustomers.Columns["IdCustomer"].Visible = false;
+            if (dataGridViewCustomers.Columns.Contains("State"))
+                dataGridViewCustomers.Columns["State"].Visible = false;
         }
 
         /// <summary>
@@ -277,7 +324,7 @@ namespace UI
         /// a la capa de servicios para obtener el listado de clientes.
         /// </summary>
         private void btnFindCustomer_Click(object sender, EventArgs e)
-        {
+            {
             int? nroDocumento = null;
             if (!string.IsNullOrWhiteSpace(txtNroDocument.Text))
             {
@@ -296,7 +343,7 @@ namespace UI
             string lastName = string.IsNullOrWhiteSpace(txtLastName.Text) ? null : txtLastName.Text.Trim();
             string telephone = string.IsNullOrWhiteSpace(txtTelephone.Text) ? null : txtTelephone.Text.Trim();
             string mail = string.IsNullOrWhiteSpace(txtMail.Text) ? null : txtMail.Text.Trim();
-            int state = string.IsNullOrWhiteSpace(cmbState.Text) ? 0 : Convert.ToInt32(cmbState.Text.Trim());
+            int state = cmbState.SelectedIndex == -1 ? 0 : (int)cmbState.SelectedValue;
 
             try
             {

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -111,7 +112,7 @@ namespace UI
                     HoraInicio = new DateTime(b.StartTime.Ticks).ToString("hh\\:mm"),
                     HoraFin = new DateTime(b.EndTime.Ticks).ToString("hh\\:mm"),
                     Estado = statesLookup.TryGetValue(b.State, out var desc)
-                        ? $"{b.State} - {desc}"
+                        ? $"{desc}"
                         : b.State.ToString(),
                     Importe = $"${b.ImporteBooking:N2}"
                 }).ToList();
@@ -196,9 +197,13 @@ namespace UI
                             var value = cell.Value?.ToString() ?? "";
                             table.AddCell(new Phrase(value, normalFont));
 
-                            if (cell.OwningColumn.HeaderText.ToLower().Contains("importe") &&
-                                decimal.TryParse(value.Replace("$", "").Replace(",", "."), out decimal val))
-                                total += val;
+                            if (cell.OwningColumn.HeaderText.ToLower().Contains("importe"))
+                            {
+                                var raw = value.Replace("$", "").Trim();
+
+                                if (decimal.TryParse(raw, NumberStyles.Any, new CultureInfo("es-AR"), out decimal val))
+                                    total += val;
+                            }
                         }
                     }
 

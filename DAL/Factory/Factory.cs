@@ -64,7 +64,7 @@ namespace DAL.Factory
 
         public IUserRepository<User> GetEmployeeRepository()
         {
- 
+
             if (backend == "SqlServer")
             {
                 return new Repositories.SqlServer.UserRepository();
@@ -163,20 +163,15 @@ namespace DAL.Factory
             }
         }
 
-        public IGenericRepository<CustomerState> GetCustomerStateRepository()
+        public ICustomerStateRepository GetCustomerStateRepository()
         {
             if (backend == "SqlServer")
-            {
-                return new Repositories.SqlServer.CustomerStateRepository();
-            }
+                return new DAL.Repositories.SqlServer.CustomerStateRepository();
+
             if (backend == "File")
-            {
-                return new Repositories.File.CustomerStateRepository();
-            }
-            else
-            {
-                return new Repositories.Memory.CustomerStateRepository();
-            }
+                return new DAL.Repositories.File.CustomerStateRepository();
+
+            return new DAL.Repositories.Memory.CustomerStateRepository();
         }
 
         public IPayRepository GetPayRepository()
@@ -208,6 +203,22 @@ namespace DAL.Factory
             }
 
             throw new NotSupportedException($"El backendSL '{backend}' no es soportado.");
+        }
+
+        public IPayStateRepository GetPayStateRepository()
+        {
+            if (backend == "SqlServer")
+            {
+                return new Repositories.SqlServer.PayStateRepository();
+            }
+
+            if (backend == "File")
+            {
+                return new Repositories.File.PayStateRepository();
+            }
+
+            throw new NotSupportedException($"El backendSL '{backend}' no es soportado.");
+
         }
     }
 }

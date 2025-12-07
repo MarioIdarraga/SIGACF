@@ -8,6 +8,7 @@ using SL.BLL;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -205,12 +206,12 @@ namespace UI
                             var value = cell.Value?.ToString() ?? string.Empty;
                             table.AddCell(new Phrase(value, normalFont));
 
-                            if (cell.OwningColumn.HeaderText.ToLower().Contains("importe") &&
-                                decimal.TryParse(
-                                    value.Replace("$", "").Replace(".", "").Replace(",", "."),
-                                    out decimal val))
+                            if (cell.OwningColumn.HeaderText.ToLower().Contains("importe"))
                             {
-                                total += val;
+                                var raw = value.Replace("$", "").Trim();
+
+                                if (decimal.TryParse(raw, NumberStyles.Any, new CultureInfo("es-AR"), out decimal val))
+                                    total += val;
                             }
                         }
                     }

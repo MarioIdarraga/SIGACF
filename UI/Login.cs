@@ -56,6 +56,16 @@ namespace UI
                 {
                     if (message.Contains("cambiar su contraseña"))
                     {
+                        if (usuario == null)
+                        {
+                            MessageBox.Show(
+                                "No se pudo cargar la información del usuario para el cambio de contraseña.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            return;
+                        }
+
                         MessageBox.Show(
                             message,
                             "Cambio de contraseña requerido",

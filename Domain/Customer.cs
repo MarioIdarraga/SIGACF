@@ -19,6 +19,8 @@ namespace Domain
 
         public int State { get; set; }
 
+        public string StateDescription { get; set; }
+
         public string Comment { get; set; }
 
         public string Telephone { get; set; }

@@ -59,7 +59,7 @@ namespace BLL.Service
         /// Obtiene clientes según filtros aplicados.
         /// </summary>
         public List<Customer> GetAll(int? nroDocumento, string firstName, string lastName,
-                                     string telephone, string mail, int state)
+                             string telephone, string mail, int state)
         {
             return _customerRepo
                 .GetAll(nroDocumento, firstName, lastName, telephone, mail, state)

@@ -28,11 +28,12 @@ namespace UI
             _panelContenedor = panelContenedor;
             this.Translate();
 
-            var repo = Factory.Current.GetPayRepository();
-            var bll = new PayService(repo);
-            _paySLService = new PaySLService(bll);
+            var payRepo = Factory.Current.GetPayRepository();
+            var payBLL = new PayService(payRepo);
 
             _paymentMethodSLService = new PaymentMethodSLService();
+
+            _paySLService = new PaySLService(payBLL, _paymentMethodSLService);
 
             CargarMetodosDePago();
         }
@@ -165,14 +166,16 @@ namespace UI
         /// </summary>
         private void FormatearGrilla()
         {
-
             Ocultar("IdBooking");
             Ocultar("State");
+            Ocultar("MethodPay"); 
 
-            // Colorear según estado
             foreach (DataGridViewRow row in dataGridViewPay.Rows)
             {
                 int estado = Convert.ToInt32(row.Cells["State"].Value);
+
+                if (dataGridViewPay.Columns.Contains("PaymentMethodDescription"))
+                    dataGridViewPay.Columns["PaymentMethodDescription"].HeaderText = "Método de Pago";
 
                 switch (estado)
                 {

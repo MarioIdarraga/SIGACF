@@ -74,6 +74,13 @@ namespace UI
         {
             if (dataGridViewUsers.Columns.Contains("UserId"))
                 dataGridViewUsers.Columns["UserId"].Visible = false;
+            if (dataGridViewUsers.Columns.Contains("Password"))
+                dataGridViewUsers.Columns["Password"].Visible = false;
+            if (dataGridViewUsers.Columns.Contains("DVH"))
+                dataGridViewUsers.Columns["DVH"].Visible = false;
+            if (dataGridViewUsers.Columns.Contains("ResetToken"))
+                dataGridViewUsers.Columns["ResetToken"].Visible = false;
+
         }
 
         /// <summary>

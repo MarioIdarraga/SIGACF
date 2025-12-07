@@ -64,7 +64,7 @@ namespace BLL.Service
 
             // Requiere cambio de contraseña
             if (user.State == 0)
-                throw new CambioPasswordRequeridoException("Debe cambiar su contraseña antes de continuar.");
+                return user;
 
             // Usuario válido
             return user;

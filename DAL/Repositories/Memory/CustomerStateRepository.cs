@@ -1,125 +1,74 @@
-﻿using System;
+﻿using DAL.Contracts;
+using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DAL.Contracts;
-using Domain;
 
 namespace DAL.Repositories.Memory
 {
     /// <summary>
-    /// Repositorio en memoria para los estados de cliente (CustomerState).
-    /// Sin SQL ni FILE, ideal para demo y pruebas.
+    /// Repositorio MEMORY para CustomerState.
+    /// Mantiene los estados del cliente en memoria,
+    /// simulando el comportamiento de un repositorio SQL o FILE.
     /// </summary>
-    internal class CustomerStateRepository : IGenericRepository<CustomerState>
+    internal class CustomerStateRepository : ICustomerStateRepository
     {
         /// <summary>
-        /// Estados precargados según la base de datos real.
+        /// Lista interna de estados cargados en memoria.
         /// </summary>
-        private static readonly List<CustomerState> _states = new List<CustomerState>
-        {
-            new CustomerState { IdCustomerState = 1, Description = "Activo" },
-            new CustomerState { IdCustomerState = 2, Description = "Inactivo" },
-            new CustomerState { IdCustomerState = 3, Description = "Suspendido" },
-            new CustomerState { IdCustomerState = 4, Description = "Bloqueado" }
-        };
+        private readonly List<CustomerState> _states;
 
-        #region CRUD
-
-        public void Insert(CustomerState Object)
+        /// <summary>
+        /// Inicializa el repositorio cargando los estados predeterminados.
+        /// </summary>
+        public CustomerStateRepository()
         {
             try
             {
-                if (_states.Any(x => x.IdCustomerState == Object.IdCustomerState))
-                    throw new Exception("El estado de cliente ya existe.");
-
-                _states.Add(Object);
+                _states = new List<CustomerState>
+                {
+                    new CustomerState { IdCustomerState = 1, Description = "Activo" },
+                    new CustomerState { IdCustomerState = 2, Description = "Inactivo" },
+                    new CustomerState { IdCustomerState = 3, Description = "Suspendido" },
+                    new CustomerState { IdCustomerState = 4, Description = "Bloqueado" }
+                };
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al insertar estado de cliente en memoria.", ex);
+                throw new Exception("Error al inicializar los estados de cliente en memoria.", ex);
             }
         }
 
-        public void Update(Guid Id, CustomerState Object)
+        /// <summary>
+        /// Obtiene todos los estados de cliente disponibles en memoria.
+        /// </summary>
+        public List<CustomerState> GetAll()
         {
             try
             {
-                int numericId = ConvertGuidToInt(Id);
-                var existing = _states.FirstOrDefault(x => x.IdCustomerState == numericId);
-
-                if (existing == null)
-                    throw new Exception("El estado de cliente no existe.");
-
-                existing.Description = Object.Description;
+                // Retornamos una copia para evitar modificaciones externas.
+                return new List<CustomerState>(_states);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar estado de cliente en memoria.", ex);
+                throw new Exception("Error al obtener los estados de cliente en memoria.", ex);
             }
         }
 
-        public void Delete(Guid Id)
+        /// <summary>
+        /// Obtiene un estado de cliente por su identificador.
+        /// </summary>
+        public CustomerState GetById(int id)
         {
             try
             {
-                int numericId = ConvertGuidToInt(Id);
-                var item = _states.FirstOrDefault(x => x.IdCustomerState == numericId);
-
-                if (item == null)
-                    throw new Exception("El estado de cliente no existe.");
-
-                _states.Remove(item);
+                return _states.FirstOrDefault(s => s.IdCustomerState == id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al eliminar estado de cliente en memoria.", ex);
+                throw new Exception("Error al obtener el estado de cliente por ID en memoria.", ex);
             }
         }
-
-        #endregion
-
-        #region SELECT
-
-        public CustomerState GetOne(Guid Id)
-        {
-            try
-            {
-                int numericId = ConvertGuidToInt(Id);
-                return _states.FirstOrDefault(x => x.IdCustomerState == numericId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener estado de cliente en memoria.", ex);
-            }
-        }
-
-        public IEnumerable<CustomerState> GetAll()
-        {
-            try
-            {
-                return _states.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener todos los estados de cliente en memoria.", ex);
-            }
-        }
-
-        // Las sobrecargas no aplican para estados → devuelven todo
-        public IEnumerable<CustomerState> GetAll(int? nd, string fn, string ln, string tel, string mail) => GetAll();
-        public IEnumerable<CustomerState> GetAll(int? nd, DateTime? rb, DateTime? rd) => GetAll();
-        public IEnumerable<CustomerState> GetAll(DateTime? from, DateTime? to, int state) => GetAll();
-        public IEnumerable<CustomerState> GetAll(int? nd, string fn, string ln, string tel, string mail, int state) => GetAll();
-
-        #endregion
-
-        #region Helpers
-
-        private int ConvertGuidToInt(Guid id)
-        {
-            return Convert.ToInt32(id.ToString().Substring(0, 8), 16);
-        }
-
-        #endregion
     }
 }
+

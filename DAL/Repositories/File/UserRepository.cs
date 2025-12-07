@@ -360,6 +360,11 @@ namespace DAL.Repositories.File
             }
         }
 
+        User IUserRepository<User>.GetByDocument(int nroDocument)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

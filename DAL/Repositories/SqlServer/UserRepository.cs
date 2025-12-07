@@ -82,6 +82,15 @@ namespace DAL.Repositories.SqlServer
                   WHERE LoginName = @LoginName";
         }
 
+        private string SelectByDocument
+        {
+            get =>
+                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                         Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+                  FROM [dbo].[Users]
+                  WHERE NroDocument = @NroDocument";
+        }
+
         private string SelectByUserOrMailStatement
         {
             get =>
@@ -298,6 +307,27 @@ namespace DAL.Repositories.SqlServer
                 using (var reader = SqlHelper.ExecuteReader(SelectByLoginNameStatement,
                         CommandType.Text,
                         new SqlParameter("@LoginName", loginName)))
+                {
+                    if (reader.Read())
+                    {
+                        return MapUser(reader);
+                    }
+                }
+
+                return null;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public User GetByDocument(int nroDocument)
+        {
+            try
+            {
+                using (var reader = SqlHelper.ExecuteReader(SelectByDocument,
+                        CommandType.Text,
+                        new SqlParameter("@NroDocument", nroDocument)))
                 {
                     if (reader.Read())
                     {

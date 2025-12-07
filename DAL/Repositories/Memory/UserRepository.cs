@@ -254,6 +254,16 @@ namespace DAL.Repositories.Memory
             }
         }
 
+        public object GetByDocument(int nroDocument)
+        {
+            throw new NotImplementedException();
+        }
+
+        User IUserRepository<User>.GetByDocument(int nroDocument)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

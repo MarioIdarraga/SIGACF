@@ -227,8 +227,11 @@ namespace SL
 
             try
             {
-                // Estado cancelado = 3
                 var result = _bookingService.GetAllRep(nroDocumento, firstName, lastName, telephone, mail, 3);
+                CompletarDescripcionCancha(result);
+                CompletarDescripcionPromocion(result);
+                CompletarDescripcionEstado(result);
+
                 LoggerService.Log(
                     $"Fin búsqueda de reservas canceladas. Resultados: {result.Count}.",
                     EventLevel.Informational,

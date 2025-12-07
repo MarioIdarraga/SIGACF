@@ -33,7 +33,11 @@ namespace BLL.Service
 
             var existingUser = _userRepo.GetByLoginName(user.LoginName);
             if (existingUser != null)
-                throw new InvalidOperationException("El nombre de usuario ya está en uso.");
+                throw new BLL.BusinessException.BusinessException("El nombre de usuario ya está en uso.");
+
+            var existingByDoc = _userRepo.GetByDocument(user.NroDocument);
+            if (existingByDoc != null)
+                throw new BLL.BusinessException.BusinessException($"El número de documento {user.NroDocument} ya está registrado.");
 
             _userRepo.Insert(user);
         }
