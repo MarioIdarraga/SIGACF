@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="SIGACF Help Builder EN">
+</HEAD>
+<BODY>
+
+<UL>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Access">
+            <param name="Local" value="en/access.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Login">
+            <param name="Local" value="en/access.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Customers">
+            <param name="Local" value="en/customers.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Register Customer">
+            <param name="Local" value="en/customers.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Edit Customer">
+            <param name="Local" value="en/customers.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Reservations">
+            <param name="Local" value="en/reservations.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Register Reservation">
+            <param name="Local" value="en/reservations.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Payments">
+            <param name="Local" value="en/payments.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Cancellations">
+            <param name="Local" value="en/cancellations.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Reports">
+            <param name="Local" value="en/reports.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Administration">
+            <param name="Local" value="en/administration.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Manuals">
+            <param name="Local" value="en/administration.html">
+        </OBJECT>
+    </LI>
+
+</UL>
+
+</BODY>
+</HTML>

@@ -1,0 +1,58 @@
+[OPTIONS]
+Auto Index=Yes
+Binary Index=Yes
+Compatibility=1.1 or later
+Compiled File=sigacf-help-en.chm
+Contents File=sigacf-help-en.hhc
+Default Window=default
+Default Topic=en/index.html
+Display compile progress=Yes
+Error log file=help_errors_en.log
+Full-text search=Yes
+Index File=sigacf-help-en.hhk
+Language=0x0409 English (United States)
+Title=SIGACF - Help (English)
+
+[WINDOWS]
+default="SIGACF Help (EN)","sigacf-help-en.hhc","sigacf-help-en.hhk","en/index.html","en/index.html",,,,,0x63520,,0x387e,[120,120,800,600],,,,
+
+[FILES]
+en/index.html
+en/introduction.html
+en/access.html
+en/menu.html
+en/customers.html
+en/reservations.html
+en/payments.html
+en/cancellations.html
+en/reports.html
+en/administration.html
+en/best_practices.html
+en/faq.html
+
+; IMAGE FILES
+img/fig_access_login_en.png
+img/fig_main_menu_en.png
+
+img/fig_customers_search_en.png
+img/fig_customers_register_en.png
+img/fig_customers_modify_en.png
+
+img/fig_reservations_search_en.png
+img/fig_reservations_register_en.png
+img/fig_reservations_modify_en.png
+
+img/fig_payments_search_en.png
+
+img/fig_cancellations_search_en.png
+
+img/fig_reports_menu_en.png
+img/fig_reports_sales_en.png
+img/fig_reports_cancellations_en.png
+img/fig_reports_reservations_en.png
+img/fig_reports_promotions_en.png
+
+img/fig_admin_users_en.png
+img/fig_admin_fields_en.png
+img/fig_admin_promotions_en.png
+img/fig_admin_manuals_en.png

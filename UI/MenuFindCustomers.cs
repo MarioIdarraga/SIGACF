@@ -1,21 +1,22 @@
-﻿using System;
+﻿using BLL.BusinessException;
+using BLL.Service;
+using DAL.Contracts;
+using DAL.Factory;
+using Domain;
+using SL;
+using SL.BLL;
+using SL.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BLL.Service;
-using DAL.Contracts;
-using DAL.Factory;
-using Domain;
-using SL;
 using UI.Helpers;
-using BLL.BusinessException;
-using SL.Service;
-using SL.BLL;
 
 namespace UI
 {
@@ -43,6 +44,7 @@ namespace UI
         public MenuFindCustomers(Panel panelContenedor)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             _panelContenedor = panelContenedor;
             this.Translate();
 
@@ -382,5 +384,60 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Abre el archivo de ayuda (CHM) en el idioma actual y navega a la sección correspondiente.
+        /// </summary>
+        private void ShowHelpSection()
+        {
+            try
+            {
+                string language = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+
+                string helpPath = language == "en"
+                    ? @"Help\sigacf-help-en.chm"
+                    : @"Help\sigacf-help-es.chm";
+
+                string topic = GetHelpTopic(language);
+
+                Help.ShowHelp(this, helpPath, HelpNavigator.Topic, topic);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible cargar la ayuda. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Devuelve la ruta del tema de ayuda asociado a este formulario según el idioma actual.
+        /// </summary>
+        private string GetHelpTopic(string language)
+        {
+            string prefix = language == "en" ? "en/" : "es/";
+            return prefix + "customers.html";
+        }
+
+        /// <summary>
+        /// Captura la tecla F1 y abre la sección de ayuda correspondiente a este formulario.
+        /// </summary>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            try
+            {
+                if (keyData == Keys.F1)
+                {
+                    ShowHelpSection();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ayuda. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
+

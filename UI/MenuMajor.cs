@@ -37,12 +37,12 @@ namespace UI
         {
             InitializeComponent();
 
-            // Cargar opciones de idioma en el ComboBox
+            this.KeyPreview = true;
+
             cmbLanguage.Items.Add("Español");
             cmbLanguage.Items.Add("Inglés");
             cmbLanguage.SelectedIndex = 0;
 
-            // Mapeo de botones para permisos
             btnClientes.Tag = "MenuFindCustomers";
             btnAlquiler.Tag = "MenuSales";
             btnPay.Tag = "MenuPay";
@@ -223,6 +223,78 @@ namespace UI
         private void btnManuals_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuManuals(this.panelContenedor));
+        }
+
+        /// <summary>
+        /// Abre el archivo de ayuda (CHM) en el idioma actual.
+        /// </summary>
+        private void ShowHelpSection()
+        {
+            try
+            {
+                string language = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+
+                // Carpeta base: donde está el EXE en tiempo de ejecución
+                string basePath = System.IO.Path.Combine(Application.StartupPath, "Help");
+
+                string helpFileName = language == "en"
+                    ? "sigacf-help-en.chm"
+                    : "sigacf-help-es.chm";
+
+                string helpPath = System.IO.Path.Combine(basePath, helpFileName);
+
+                if (!System.IO.File.Exists(helpPath))
+                {
+                    MessageBox.Show(
+                        "No se encontró el archivo de ayuda: " + helpPath,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Por ahora abrimos la página principal definida en el CHM
+                Help.ShowHelp(this, helpPath);
+                // Si más adelante querés navegar a un tópico puntual,
+                // usamos GetHelpTopic(language) y HelpNavigator.Topic.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible cargar la ayuda. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Devuelve la ruta del tema de ayuda asociado a este formulario según el idioma actual.
+        /// (Por ahora no se usa, pero queda listo si luego querés abrir un tópico puntual.)
+        /// </summary>
+        private string GetHelpTopic(string language)
+        {
+            string prefix = language == "en" ? "en/" : "es/";
+            return prefix + "menu.html";
+        }
+
+        /// <summary>
+        /// Captura la tecla F1 y abre la ayuda correspondiente.
+        /// </summary>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            try
+            {
+                if (keyData == Keys.F1)
+                {
+                    ShowHelpSection();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ayuda. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

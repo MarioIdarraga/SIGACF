@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="SIGACF Help Builder EN">
+</HEAD>
+<BODY>
+
+<UL>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Introduction">
+            <param name="Local" value="en/introduction.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="System Access">
+            <param name="Local" value="en/access.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Main Menu and Navigation">
+            <param name="Local" value="en/menu.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Sales Module – Customers">
+            <param name="Local" value="en/customers.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Sales Module – Reservations">
+            <param name="Local" value="en/reservations.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Payments Module">
+            <param name="Local" value="en/payments.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Cancellations Module">
+            <param name="Local" value="en/cancellations.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Reports Module">
+            <param name="Local" value="en/reports.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Administration Module">
+            <param name="Local" value="en/administration.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Best Practices and Security">
+            <param name="Local" value="en/best_practices.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Troubleshooting (FAQ)">
+            <param name="Local" value="en/faq.html">
+        </OBJECT>
+    </LI>
+
+</UL>
+
+</BODY>
+</HTML>

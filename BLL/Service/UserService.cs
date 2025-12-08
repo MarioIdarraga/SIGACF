@@ -118,6 +118,10 @@ namespace BLL.Service
         {
             UpdateUser(user);
         }
+        public User GetOne(Guid UserId)
+        {
+            return _userRepo.GetOne(UserId);
+        }
     }
 }
 

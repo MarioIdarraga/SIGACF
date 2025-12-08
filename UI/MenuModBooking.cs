@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL.BusinessException;
 using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics.Tracing;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using UI.Helpers;
 
 namespace UI
@@ -31,6 +33,8 @@ namespace UI
         {
             {
                 InitializeComponent();
+                dtpRegistrationBooking.Format = DateTimePickerFormat.Custom;
+                dtpRegistrationBooking.CustomFormat = "dd/MM/yyyy";
                 _panelContenedor = panelContenedor;
                 this.Translate();
 
@@ -52,6 +56,54 @@ namespace UI
                 txtImporteBooking.Text = importeBooking.ToString();
 
                 CargarCombos();
+
+                cmbHorariosDisponibles.SelectedIndexChanged += CmbHorariosDisponibles_SelectedIndexChanged;
+
+                txtIdBooking.Visible = false;
+                label9.Visible = false;
+
+                txtIdCustomer.Visible = false;
+                label3.Visible = false;
+
+            }
+        }
+
+        /// <summary>
+        /// Cuando el usuario selecciona un horario disponible,
+        /// se actualizan automáticamente Hora Inicio y Hora Fin.
+        /// </summary>
+        private void CmbHorariosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbHorariosDisponibles.SelectedItem == null)
+                    return;
+
+                if (!TimeSpan.TryParse(cmbHorariosDisponibles.SelectedItem.ToString(), out var horaInicio))
+                    return;
+
+                int horasSeleccionadas = (int)numericUpDown1.Value;
+                var duracionTurno = TimeSpan.FromHours(horasSeleccionadas);
+                var horaFin = horaInicio + duracionTurno;
+
+                var fecha = dtpRegistrationBooking.Value.Date;
+
+                dtpStartTime.Value = fecha.Add(horaInicio).AddSeconds(-fecha.Add(horaInicio).Second);
+                dtpEndTime.Value = fecha.Add(horaFin).AddSeconds(-fecha.Add(horaFin).Second);
+
+                ActualizarImporte();
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log(
+                    $"Error inesperado al seleccionar horario disponible: {ex}",
+                    EventLevel.Critical);
+
+                MessageBox.Show(
+                    "Ocurrió un error al seleccionar el horario. Intente nuevamente.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -155,6 +207,151 @@ namespace UI
             {
                 MessageBox.Show("Error al modificar la reserva: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        private void btnVerHorarios_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!(cmbField.SelectedItem is Field selectedField))
+                {
+                    MessageBox.Show("Debe seleccionar una cancha.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var fecha = dtpRegistrationBooking.Value.Date;
+
+                var reservas = _bookingSLService.GetBookingsByFieldAndDate(
+                    selectedField.IdField,
+                    fecha);
+
+                int horasSeleccionadas = (int)numericUpDown1.Value;
+                var duracionTurno = TimeSpan.FromHours(horasSeleccionadas);
+
+                var horariosLibres = CalcularHorariosDisponibles(reservas, duracionTurno);
+
+                if (horariosLibres.Count == 0)
+                {
+                    MessageBox.Show("No hay horarios disponibles para la fecha y duración seleccionadas.",
+                        "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbHorariosDisponibles.DataSource = null;
+                    return;
+                }
+
+                cmbHorariosDisponibles.DataSource = horariosLibres
+                    .Select(h => h.ToString(@"hh\:mm"))
+                    .ToList();
+            }
+            catch (BusinessException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log(
+                    $"Error inesperado al obtener horarios disponibles: {ex}",
+                    EventLevel.Critical);
+
+                MessageBox.Show(
+                    "Ocurrió un error inesperado al obtener los horarios disponibles. Intente nuevamente o contacte al administrador.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Calcula los horarios disponibles para una cancha y fecha
+        /// en base a las reservas existentes.
+        /// </summary>
+        private List<TimeSpan> CalcularHorariosDisponibles(List<Booking> bookings, TimeSpan slotDuration)
+        {
+            var horariosDisponibles = new List<TimeSpan>();
+
+            var horaApertura = new TimeSpan(8, 0, 0);
+            var horaCierre = new TimeSpan(23, 0, 0);
+
+            var reservasOrdenadas = bookings
+                .OrderBy(b => b.StartTime)
+                .ToList();
+
+            for (var hora = horaApertura; hora + slotDuration <= horaCierre; hora += slotDuration)
+            {
+                var horaFin = hora + slotDuration;
+
+                bool solapa = reservasOrdenadas.Any(b =>
+                    !(horaFin <= b.StartTime || hora >= b.EndTime));
+
+                if (!solapa)
+                {
+                    horariosDisponibles.Add(hora);
+                }
+            }
+
+            return horariosDisponibles;
+        }
+
+        /// <summary>
+        /// Recalcula el importe de la reserva cuando cambian
+        /// cancha, horario o promoción.
+        /// </summary>
+        private void ActualizarImporte()
+        {
+            try
+            {
+                if (cmbField.SelectedItem is Field selectedField &&
+                    dtpEndTime.Value > dtpStartTime.Value)
+                {
+                    TimeSpan horaInicio = dtpStartTime.Value.TimeOfDay;
+                    TimeSpan horaFin = dtpEndTime.Value.TimeOfDay;
+
+                    Guid idPromotion = Guid.Empty;
+                    if (cmbPromotion.SelectedItem is Promotion selectedPromotion)
+                        idPromotion = selectedPromotion.IdPromotion;
+
+                    decimal importe = _bookingSLService.CalcularImporteReserva(
+                        selectedField.IdField,
+                        horaInicio,
+                        horaFin,
+                        idPromotion);
+
+                    txtImporteBooking.Text = importe.ToString("0.00");
+                }
+                else
+                {
+                    txtImporteBooking.Text = "0.00";
+                }
+            }
+            catch (BusinessException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Log(
+                    $"Error inesperado al calcular el importe de la reserva: {ex}",
+                    EventLevel.Critical);
+
+                MessageBox.Show(
+                    "Ocurrió un error inesperado al calcular el importe. Intente nuevamente o contacte al administrador.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+        private void CmbField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarImporte();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DAL.Contracts;
+﻿#region Usings
+using DAL.Contracts;
 using DAL;
 using Domain;
 using System.Data.SqlClient;
@@ -6,12 +7,14 @@ using DAL.Tools;
 using System;
 using System.Collections.Generic;
 using System.Data;
+#endregion
 
 namespace DAL.Repositories.SqlServer
 {
     /// <summary>
-    /// Repositorio SQL Server responsable del acceso a datos de la entidad User.
-    /// Incluye operaciones CRUD, recuperación de contraseña y manejo de intentos fallidos.
+    /// Repositorio SQL Server responsable del acceso a datos para la entidad User.
+    /// Incluye operaciones CRUD, búsqueda y recuperación de contraseña.
+    /// Manejo de excepciones para detectar errores de BD.
     /// </summary>
     internal class UserRepository : IUserRepository<User>
     {
@@ -19,110 +22,81 @@ namespace DAL.Repositories.SqlServer
 
         #region Statements
 
-        private string InsertStatement
-        {
-            get =>
-                @"INSERT INTO [dbo].[Users]
-                (UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                 Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts)
-                VALUES
-                (@UserId, @LoginName, @Password, @NroDocument, @FirstName, @LastName, @Position,
-                 @Mail, @Address, @Telephone, @State, @DVH, @ResetToken, @ResetTokenExpiration, @FailedAttempts)";
-        }
+        private string InsertStatement =>
+            @"INSERT INTO [dbo].[Users]
+            (UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+             Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts)
+            VALUES
+            (@UserId, @LoginName, @Password, @NroDocument, @FirstName, @LastName, @Position,
+             @Mail, @Address, @Telephone, @State, @DVH, @ResetToken, @ResetTokenExpiration, @FailedAttempts)";
 
-        private string UpdateStatement
-        {
-            get =>
-                @"UPDATE [dbo].[Users] SET
-                    LoginName = @LoginName,
-                    Password = @Password,
-                    NroDocument = @NroDocument,
-                    FirstName = @FirstName,
-                    LastName = @LastName,
-                    Position = @Position,
-                    Mail = @Mail,
-                    Address = @Address,
-                    Telephone = @Telephone,
-                    State = @State,
-                    DVH = @DVH,
-                    ResetToken = @ResetToken,
-                    ResetTokenExpiration = @ResetTokenExpiration,
-                    FailedAttempts = @FailedAttempts
-                  WHERE UserId = @UserId";
-        }
+        private string UpdateStatement =>
+            @"UPDATE [dbo].[Users] SET
+                LoginName = @LoginName,
+                Password = @Password,
+                NroDocument = @NroDocument,
+                FirstName = @FirstName,
+                LastName = @LastName,
+                Position = @Position,
+                Mail = @Mail,
+                Address = @Address,
+                Telephone = @Telephone,
+                State = @State,
+                DVH = @DVH,
+                ResetToken = @ResetToken,
+                ResetTokenExpiration = @ResetTokenExpiration,
+                FailedAttempts = @FailedAttempts
+              WHERE UserId = @UserId";
 
-        private string DeleteStatement
-        {
-            get => "DELETE FROM [dbo].[Users] WHERE UserId = @UserId";
-        }
+        private string DeleteStatement =>
+            "DELETE FROM [dbo].[Users] WHERE UserId = @UserId";
 
-        private string SelectOneStatement
-        {
-            get =>
-                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                         Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
-                  FROM [dbo].[Users]
-                  WHERE UserId = @UserId";
-        }
+        private string SelectOneStatement =>
+            @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                     Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+              FROM [dbo].[Users]
+              WHERE UserId = @UserId";
 
-        private string SelectAllStatement
-        {
-            get =>
-                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                         Telephone, Mail, Address, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
-                  FROM [dbo].[Users]";
-        }
+        private string SelectAllStatement =>
+            @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                     Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+              FROM [dbo].[Users]";
 
-        private string SelectByLoginNameStatement
-        {
-            get =>
-                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                         Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
-                  FROM [dbo].[Users]
-                  WHERE LoginName = @LoginName";
-        }
+        private string SelectByLoginNameStatement =>
+            @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                     Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+              FROM [dbo].[Users]
+              WHERE LoginName = @LoginName";
 
-        private string SelectByDocument
-        {
-            get =>
-                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                         Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
-                  FROM [dbo].[Users]
-                  WHERE NroDocument = @NroDocument";
-        }
+        private string SelectByDocument =>
+            @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                     Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+              FROM [dbo].[Users]
+              WHERE NroDocument = @NroDocument";
 
-        private string SelectByUserOrMailStatement
-        {
-            get =>
-                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                         Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
-                  FROM [dbo].[Users]
-                  WHERE LoginName = @Value OR Mail = @Value";
-        }
+        private string SelectByUserOrMailStatement =>
+            @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                     Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+              FROM [dbo].[Users]
+              WHERE LoginName = @Value OR Mail = @Value";
 
-        private string UpdateResetTokenStatement
-        {
-            get =>
-                @"UPDATE [dbo].[Users]
-                  SET ResetToken = @Token, ResetTokenExpiration = @Expiration
-                  WHERE UserId = @UserId";
-        }
+        private string UpdateResetTokenStatement =>
+            @"UPDATE [dbo].[Users]
+              SET ResetToken = @Token, ResetTokenExpiration = @Expiration
+              WHERE UserId = @UserId";
 
-        private string SelectByResetTokenStatement
-        {
-            get =>
-                @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
-                         Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
-                  FROM [dbo].[Users]
-                  WHERE ResetToken = @Token AND ResetTokenExpiration > GETDATE()";
-        }
+        private string SelectByResetTokenStatement =>
+            @"SELECT UserId, LoginName, Password, NroDocument, FirstName, LastName, Position,
+                     Mail, Address, Telephone, State, DVH, ResetToken, ResetTokenExpiration, FailedAttempts
+              FROM [dbo].[Users]
+              WHERE ResetToken = @Token AND ResetTokenExpiration > GETDATE()";
 
         #endregion
 
         #region CRUD
 
         /// <summary>
-        /// Inserta un nuevo usuario en la base de datos.
+        /// Inserta un usuario en la base de datos.
         /// </summary>
         public void Insert(User Object)
         {
@@ -148,14 +122,18 @@ namespace DAL.Repositories.SqlServer
                         new SqlParameter("@FailedAttempts", Object.FailedAttempts)
                     });
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al insertar usuario.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
 
         /// <summary>
-        /// Actualiza un usuario existente en la base de datos.
+        /// Actualiza un usuario existente.
         /// </summary>
         public void Update(Guid UserId, User Object)
         {
@@ -181,7 +159,11 @@ namespace DAL.Repositories.SqlServer
                         new SqlParameter("@FailedAttempts", Object.FailedAttempts)
                     });
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al modificar usuario.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
@@ -191,9 +173,6 @@ namespace DAL.Repositories.SqlServer
 
         #region SELECT
 
-        /// <summary>
-        /// Obtiene todos los usuarios.
-        /// </summary>
         public IEnumerable<User> GetAll()
         {
             try
@@ -210,20 +189,16 @@ namespace DAL.Repositories.SqlServer
 
                 return users;
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al obtener usuarios.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        public IEnumerable<User> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Obtiene usuarios aplicando filtros.
-        /// </summary>
         public IEnumerable<User> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail)
         {
             var users = new List<User>();
@@ -260,20 +235,28 @@ namespace DAL.Repositories.SqlServer
                 parameters.Add(new SqlParameter("@Mail", "%" + mail + "%"));
             }
 
-            using (var reader = SqlHelper.ExecuteReader(query, CommandType.Text, parameters.ToArray()))
+            try
             {
-                while (reader.Read())
+                using (var reader = SqlHelper.ExecuteReader(query, CommandType.Text, parameters.ToArray()))
                 {
-                    users.Add(MapUser(reader));
+                    while (reader.Read())
+                    {
+                        users.Add(MapUser(reader));
+                    }
                 }
-            }
 
-            return users;
+                return users;
+            }
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al obtener usuarios filtrados.", ex);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Obtiene un usuario por su UserId.
-        /// </summary>
         public User GetOne(Guid UserId)
         {
             try
@@ -291,15 +274,16 @@ namespace DAL.Repositories.SqlServer
 
                 return user;
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al obtener usuario.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        /// <summary>
-        /// Obtiene un usuario por su LoginName.
-        /// </summary>
         public User GetByLoginName(string loginName)
         {
             try
@@ -316,11 +300,16 @@ namespace DAL.Repositories.SqlServer
 
                 return null;
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al obtener usuario por login.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
+
         public User GetByDocument(int nroDocument)
         {
             try
@@ -337,7 +326,11 @@ namespace DAL.Repositories.SqlServer
 
                 return null;
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al obtener usuario por documento.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
@@ -347,9 +340,6 @@ namespace DAL.Repositories.SqlServer
 
         #region Recuperación de contraseña
 
-        /// <summary>
-        /// Obtiene un usuario por LoginName o Email.
-        /// </summary>
         public User GetByUsernameOrEmail(string userOrMail)
         {
             try
@@ -366,15 +356,16 @@ namespace DAL.Repositories.SqlServer
 
                 return null;
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al buscar usuario por usuario/email.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        /// <summary>
-        /// Guarda el token de recuperación de contraseña.
-        /// </summary>
         public void SavePasswordResetToken(Guid userId, string token, DateTime expiration)
         {
             try
@@ -388,15 +379,16 @@ namespace DAL.Repositories.SqlServer
                         new SqlParameter("@Expiration", expiration)
                     });
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al guardar token de recuperación.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        /// <summary>
-        /// Obtiene un usuario válido mediante token de recuperación.
-        /// </summary>
         public User GetByPasswordResetToken(string token)
         {
             try
@@ -413,7 +405,11 @@ namespace DAL.Repositories.SqlServer
 
                 return null;
             }
-            catch
+            catch (SqlException ex)
+            {
+                throw new DataException("Error de base de datos al obtener usuario por token.", ex);
+            }
+            catch (Exception)
             {
                 throw;
             }
@@ -423,9 +419,6 @@ namespace DAL.Repositories.SqlServer
 
         #region Helpers
 
-        /// <summary>
-        /// Mapea una fila de SQL a un objeto User.
-        /// </summary>
         private User MapUser(SqlDataReader reader)
         {
             return new User
@@ -449,6 +442,11 @@ namespace DAL.Repositories.SqlServer
         }
 
         public void Delete(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<User> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
         }

@@ -255,4 +255,16 @@ PromotionDescripcion=Descripción Promoción
 DiscountPercentage=Porcentaje de Descuento
 IdPago=Nro de Pago
 ResetTokenExpiration=Expiración Token
-FormName=Nombre Formulario
+FormName=Nombre FormularioDuración=Duración
+1=1
+Ver Horarios Disponibles=Ver Horarios Disponibles
+Horarios disponibles=Horarios disponibles
+Duración=Duración
+MenuRepBooking=MenuRepBooking
+lunes, 8 de diciembre de 2025=lunes, 8 de diciembre de 2025
+End Date=End Date
+Start Date=Start Date
+Generate Report=Generate Report
+Cancellation Report=Cancellation Report
+Sales Report=Sales Report
+Reservation Report=Reservation Report

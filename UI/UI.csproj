@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\UI.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -522,12 +523,136 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Help\help_errors.log" />
+    <None Include="Help\help_errors_en.log" />
+    <Content Include="Help\sigacf-help-en.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Help\sigacf-help-en.hhc" />
+    <None Include="Help\sigacf-help-en.hhk" />
+    <None Include="Help\sigacf-help-en.hhp" />
+    <Content Include="Help\sigacf-help-es.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Help\sigacf-help.hhc" />
+    <None Include="Help\sigacf-help.hhk" />
+    <None Include="Help\sigacf-help.hhp" />
     <None Include="I18n\Language.en-US">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="I18n\Language.es-AR">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Help\en\access.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\administration.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\best_practices.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\cancellations.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\customers.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\faq.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\introduction.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\menu.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\payments.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\reports.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\en\reservations.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\acceso.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\administracion.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\buenas_practicas.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\cancelaciones.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\clientes.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\faq.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\introduccion.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\menu.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\pagos.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\reportes.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\es\reservas.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\img\fig_acceso_login.png" />
+    <Content Include="Help\img\fig_access_login_en.png" />
+    <Content Include="Help\img\fig_admin_canchas.png" />
+    <Content Include="Help\img\fig_admin_fields_en.png" />
+    <Content Include="Help\img\fig_admin_manuales.png" />
+    <Content Include="Help\img\fig_admin_manuals_en.png" />
+    <Content Include="Help\img\fig_admin_promociones.png" />
+    <Content Include="Help\img\fig_admin_promotions_en.png" />
+    <Content Include="Help\img\fig_admin_users_en.png" />
+    <Content Include="Help\img\fig_admin_usuarios.png" />
+    <Content Include="Help\img\fig_cancelaciones_busqueda.png" />
+    <Content Include="Help\img\fig_cancellations_search_en.png" />
+    <Content Include="Help\img\fig_clientes_busqueda.png" />
+    <Content Include="Help\img\fig_clientes_modificar.png" />
+    <Content Include="Help\img\fig_clientes_registro.png" />
+    <Content Include="Help\img\fig_customers_modify_en.png" />
+    <Content Include="Help\img\fig_customers_register_en.png" />
+    <Content Include="Help\img\fig_customers_search_en.png" />
+    <Content Include="Help\img\fig_main_menu_en.png" />
+    <Content Include="Help\img\fig_menu_principal.png" />
+    <Content Include="Help\img\fig_pagos_busqueda.png" />
+    <Content Include="Help\img\fig_payments_search_en.png" />
+    <Content Include="Help\img\fig_reportes_cancelaciones.png" />
+    <Content Include="Help\img\fig_reportes_menu.png" />
+    <Content Include="Help\img\fig_reportes_promociones.png" />
+    <Content Include="Help\img\fig_reportes_reservas.png" />
+    <Content Include="Help\img\fig_reportes_ventas.png" />
+    <Content Include="Help\img\fig_reports_cancellations_en.png" />
+    <Content Include="Help\img\fig_reports_menu_en.png" />
+    <Content Include="Help\img\fig_reports_promotions_en.png" />
+    <Content Include="Help\img\fig_reports_reservations_en.png" />
+    <Content Include="Help\img\fig_reports_sales_en.png" />
+    <Content Include="Help\img\fig_reservas_busqueda.png" />
+    <Content Include="Help\img\fig_reservas_modificar.png" />
+    <Content Include="Help\img\fig_reservas_registrar.png" />
+    <Content Include="Help\img\fig_reservations_modify_en.png" />
+    <Content Include="Help\img\fig_reservations_register_en.png" />
+    <Content Include="Help\img\fig_reservations_search_en.png" />
     <Content Include="Manuals\ManualUsuario.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

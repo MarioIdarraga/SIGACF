@@ -36,7 +36,7 @@ namespace BLL.Service
             if (user == null)
                 throw new UsuarioInexistenteException("El usuario ingresado no existe.");
 
-            // Usuario ya bloqueado
+            // Usuario bloqueado
             if (user.State == 3)
                 throw new UsuarioBloqueadoException("Su usuario está bloqueado. Solicite recuperación de contraseña.");
 

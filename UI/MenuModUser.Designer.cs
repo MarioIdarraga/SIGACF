@@ -214,7 +214,7 @@
             this.btnMenuRegUser.TabIndex = 42;
             this.btnMenuRegUser.Text = "Registrar Usuario";
             this.btnMenuRegUser.UseVisualStyleBackColor = false;
-            this.btnMenuRegUser.Click += new System.EventHandler(this.btnRegEmployee_Click);
+            this.btnMenuRegUser.Click += new System.EventHandler(this.btnMenuRegUser_Click_1);
             // 
             // btnMenuFindUser
             // 
@@ -226,7 +226,7 @@
             this.btnMenuFindUser.TabIndex = 41;
             this.btnMenuFindUser.Text = "Busqueda de Usuarios";
             this.btnMenuFindUser.UseVisualStyleBackColor = false;
-            this.btnMenuFindUser.Click += new System.EventHandler(this.btnFindEmployee_Click);
+            this.btnMenuFindUser.Click += new System.EventHandler(this.btnMenuFindUser_Click);
             // 
             // label1
             // 

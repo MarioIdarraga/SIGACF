@@ -92,7 +92,7 @@ namespace UI
                     Mail = txtEmail.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
                     Telephone = txtTelephone.Text.Trim(),
-                    State = 1  //Estado Inicial o Nuevo, asi despues le hago el cambio de estado, cuando ingrese por primera vez.
+                    State = 1
 
                 };
 

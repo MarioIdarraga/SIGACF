@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="SIGACF Help Builder">
+</HEAD>
+<BODY>
+
+<UL>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Acceso">
+            <param name="Local" value="es\acceso.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Clientes">
+            <param name="Local" value="es\clientes.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Registro de Clientes">
+            <param name="Local" value="es\clientes.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Modificar Cliente">
+            <param name="Local" value="es\clientes.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Reservas">
+            <param name="Local" value="es\reservas.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Pagos">
+            <param name="Local" value="es\pagos.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Cancelaciones">
+            <param name="Local" value="es\cancelaciones.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Reportes">
+            <param name="Local" value="es\reportes.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Administración">
+            <param name="Local" value="es\administracion.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="Seguridad">
+            <param name="Local" value="es\buenas_practicas.html">
+        </OBJECT>
+    </LI>
+
+    <LI> <OBJECT type="text/sitemap">
+            <param name="Name" value="FAQ">
+            <param name="Local" value="es\faq.html">
+        </OBJECT>
+    </LI>
+
+</UL>
+
+</BODY>
+</HTML>

@@ -1,22 +1,22 @@
-﻿using System;
+﻿using BLL.BusinessException;
+using DAL.Contracts;
+using DAL.Factory;
+using Domain;
+using SL;
+using SL.BLL;
+using SL.Service;
+using SL.Service.Extension;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL.Contracts;
-using DAL.Factory;
-using Domain;
-using SL;
-using SL.Service.Extension;
 using UI.Helpers;
-using BLL.BusinessException;
-using SL.Service;
-using SL.BLL;
-using System.Diagnostics.Tracing;
 
 namespace UI
 {
@@ -74,12 +74,18 @@ namespace UI
         {
             if (dataGridViewUsers.Columns.Contains("UserId"))
                 dataGridViewUsers.Columns["UserId"].Visible = false;
+
             if (dataGridViewUsers.Columns.Contains("Password"))
                 dataGridViewUsers.Columns["Password"].Visible = false;
+
             if (dataGridViewUsers.Columns.Contains("DVH"))
                 dataGridViewUsers.Columns["DVH"].Visible = false;
+
             if (dataGridViewUsers.Columns.Contains("ResetToken"))
                 dataGridViewUsers.Columns["ResetToken"].Visible = false;
+
+            if (dataGridViewUsers.Columns.Contains("IsEmployee"))
+                dataGridViewUsers.Columns["IsEmployee"].Visible = false;
 
         }
 
@@ -159,10 +165,9 @@ namespace UI
                     selectedRow.Cells["FirstName"].Value == null ||
                     selectedRow.Cells["LastName"].Value == null ||
                     selectedRow.Cells["Position"].Value == null ||
-                    selectedRow.Cells["Telephone"].Value == null ||
                     selectedRow.Cells["Mail"].Value == null ||
                     selectedRow.Cells["Address"].Value == null ||
-                    selectedRow.Cells["IsEmployee"].Value == null ||
+                    selectedRow.Cells["Telephone"].Value == null ||
                     selectedRow.Cells["State"].Value == null)
                 {
                     MessageBox.Show("El usuario seleccionado tiene datos inválidos. Intente seleccionar otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -178,14 +183,15 @@ namespace UI
                 string firstName = selectedRow.Cells["FirstName"].Value.ToString();
                 string lastName = selectedRow.Cells["LastName"].Value.ToString();
                 string position = selectedRow.Cells["Position"].Value.ToString();
-                string telephone = selectedRow.Cells["Telephone"].Value.ToString();
                 string mail = selectedRow.Cells["Mail"].Value.ToString();
-                string address = selectedRow.Cells["Address"].Value.ToString();
-                bool isEmployee = Convert.ToBoolean(selectedRow.Cells["IsEmployee"].Value);
+                string address = selectedRow.Cells["Address"].Value.ToString();          
+                string telephone = selectedRow.Cells["Telephone"].Value.ToString();
                 int state = Convert.ToInt32(selectedRow.Cells["State"].Value);
+                bool isEmployee = Convert.ToBoolean(selectedRow.Cells["IsEmployee"].Value);
+
 
                 // Abrir el formulario de modificación pasando los datos
-                OpenFormChild(new MenuModUser(_panelContenedor, userId, loginName, password, nroDocument, firstName, lastName, position, mail, address, telephone, isEmployee, state));
+                OpenFormChild(new MenuModUser(_panelContenedor, userId, loginName, password, nroDocument, firstName, lastName, position, mail, address, telephone, state, isEmployee ));
             }
             catch (BusinessException ex)
             {

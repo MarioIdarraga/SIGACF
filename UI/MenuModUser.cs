@@ -1,21 +1,12 @@
 ﻿using BLL.BusinessException;
-using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
 using SL.Composite;
 using SL.Helpers;
 using SL.Service;
-using SL.Service.Extension;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics.Tracing;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Helpers;
 
@@ -23,21 +14,16 @@ namespace UI
 {
     /// <summary>
     /// Formulario para modificar un usuario existente.
-    /// Permite editar los datos personales, credenciales, familia (perfil)
-    /// y estado del usuario seleccionado.
+    /// Permite actualizar datos personales, credenciales, cargo y estado.
     /// </summary>
     public partial class MenuModUser : Form
     {
-        private Panel _panelContenedor;
-
+        private readonly Panel _panelContenedor;
         private readonly UserSLService _userSLService;
-
-        // Id del usuario a modificar (solo en memoria, no se muestra en la UI)
         private readonly Guid _userId;
 
         /// <summary>
-        /// Constructor principal del formulario de modificación de usuario.
-        /// Recibe el panel contenedor y los datos del usuario a editar.
+        /// Constructor utilizado cuando el usuario proviene de la pantalla de búsqueda.
         /// </summary>
         public MenuModUser(
             Panel panelContenedor,
@@ -51,22 +37,20 @@ namespace UI
             string mail,
             string address,
             string telephone,
-            bool isEmployee,
-            int State)
+            int state,
+            bool isEmployee)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
 
-            this.Translate(); // Localización
+            this.Translate();
 
-            var userRepo = Factory.Current.GetUserRepository();
-            var userService = new BLL.Service.UserService(userRepo);
-            _userSLService = new UserSLService(userService);
+            var repo = Factory.Current.GetUserRepository();
+            var svc = new BLL.Service.UserService(repo);
+            _userSLService = new UserSLService(svc);
 
-            // Guardar el Id internamente (no hay textbox para el Id)
             _userId = userId;
 
-            // Llenar los campos del formulario con los datos del usuario
             txtLoginName.Text = loginName;
             txtPassword.Text = password;
             txtNroDocument.Text = nroDocument.ToString();
@@ -77,14 +61,13 @@ namespace UI
             txtAddress.Text = address;
             txtTelephone.Text = telephone;
             chkIsEmployee.Checked = isEmployee;
-            txtState.Text = State.ToString();
+            txtState.Text = state.ToString();
 
             LoadFamilies();
         }
 
         /// <summary>
-        /// Constructor alternativo que solo recibe el panel contenedor.
-        /// Usado si se instancia el formulario sin usuario seleccionado.
+        /// Constructor alternativo sin datos iniciales.
         /// </summary>
         public MenuModUser(Panel panelContenedor)
         {
@@ -93,98 +76,81 @@ namespace UI
 
             this.Translate();
 
-            var userRepo = Factory.Current.GetUserRepository();
-            var userService = new BLL.Service.UserService(userRepo);
-            _userSLService = new UserSLService(userService);
+            var repo = Factory.Current.GetUserRepository();
+            var svc = new BLL.Service.UserService(repo);
+            _userSLService = new UserSLService(svc);
 
-            // No tenemos aún usuario -> Guid.Empty
             _userId = Guid.Empty;
         }
 
         /// <summary>
-        /// Abre un formulario hijo dentro del panel contenedor,
-        /// removiendo cualquier control existente.
+        /// Abre un formulario hijo dentro del contenedor.
         /// </summary>
-        private void OpenFormChild(object formchild)
+        private void OpenFormChild(Form formchild)
         {
             try
             {
                 if (_panelContenedor.Controls.Count > 0)
                     _panelContenedor.Controls.RemoveAt(0);
 
-                Form fh = formchild as Form;
-                fh.TopLevel = false;
-                fh.Dock = DockStyle.Fill;
-                _panelContenedor.Controls.Add(fh);
-                _panelContenedor.Tag = fh;
-                fh.Show();
+                formchild.TopLevel = false;
+                formchild.Dock = DockStyle.Fill;
+                _panelContenedor.Controls.Add(formchild);
+                _panelContenedor.Tag = formchild;
+                formchild.Show();
             }
             catch (Exception ex)
             {
-                LoggerService.Log(
-                    $"Error inesperado al abrir formulario hijo desde MenuModUser: {ex}",
+                LoggerService.Log($"Error inesperado al abrir formulario hijo: {ex}",
                     EventLevel.Critical);
 
                 MessageBox.Show(
-                    "Ocurrió un error inesperado al abrir el formulario. " +
-                    "Intente nuevamente o contacte al administrador.",
+                    "Ocurrió un error al abrir la pantalla solicitada.",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Vuelve al menú de administración.
-        /// </summary>
         private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuAdmin(_panelContenedor));
         }
 
-        /// <summary>
-        /// Navega a la pantalla de búsqueda de usuarios.
-        /// </summary>
-        private void btnFindEmployee_Click(object sender, EventArgs e)
+        private void btnMenuFindEmployee_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindUsers(_panelContenedor));
         }
 
-        /// <summary>
-        /// Navega a la pantalla de registro de usuario.
-        /// </summary>
-        private void btnRegEmployee_Click(object sender, EventArgs e)
+        private void btnMenuRegUser_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuRegUser(_panelContenedor));
         }
 
         /// <summary>
-        /// Maneja el evento de modificación de usuario. 
-        /// Valida campos, actualiza el usuario y maneja excepciones de negocio y generales.
+        /// Valida la entrada y envía la actualización del usuario hacia la capa SL.
         /// </summary>
         /// <summary>
-        /// Modifica un usuario existente aplicando validaciones y enviando la actualización a la capa SL.
+        /// Valida la entrada y envía la actualización del usuario hacia la capa SL.
         /// </summary>
         private void btnModUser_Click(object sender, EventArgs e)
         {
             try
             {
                 if (_userId == Guid.Empty)
-                    throw new BusinessException("No se encontró el identificador del usuario a modificar.");
+                    throw new BusinessException("No se encontró el usuario a modificar.");
 
                 if (!int.TryParse(txtNroDocument.Text.Trim(), out int nroDoc))
                     throw new BusinessException("El número de documento no es válido.");
 
-                if (!int.TryParse(txtState.Text.Trim(), out int state))
+                if (!int.TryParse(txtState.Text.Trim(), out int newState))
                     throw new BusinessException("El estado no es válido.");
 
                 var famSeleccionada = cmbFamily.SelectedItem as PermissionComponent;
                 if (famSeleccionada == null)
                     throw new BusinessException("Debe seleccionar un cargo/posición válido.");
 
-                Guid familyId = famSeleccionada.IdComponent; ;
-
-                User updatedUser = new User
+                var updatedUser = new User
                 {
                     UserId = _userId,
                     LoginName = txtLoginName.Text.Trim(),
@@ -196,11 +162,11 @@ namespace UI
                     Mail = txtMail.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
                     Telephone = txtTelephone.Text.Trim(),
-                    State = state,
+                    State = newState,
                     IsEmployee = chkIsEmployee.Checked
                 };
 
-                _userSLService.Update(updatedUser, familyId);
+                _userSLService.Update(updatedUser, famSeleccionada.IdComponent);
 
                 MessageBox.Show(
                     "Usuario modificado con éxito.",
@@ -210,17 +176,32 @@ namespace UI
             }
             catch (BusinessException ex)
             {
+                // Maneja errores de negocio específicos de la BLL/UI (ej: Usuario ya existe)
+                LoggerService.Log(ex.Message, EventLevel.Warning, Session.CurrentUser?.LoginName);
+
                 MessageBox.Show(
                     ex.Message,
-                    "Advertencia",
+                    "Advertencia de Negocio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (ArgumentException ax) // 🟢 NUEVO: Captura la ArgumentException (validación de email, etc.)
+            {
+                // Maneja errores de validación de la BLL (ArgumentException)
+                LoggerService.Log(ax.Message, EventLevel.Warning, Session.CurrentUser?.LoginName);
+
+                MessageBox.Show(
+                    ax.Message,
+                    "Error de Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
+                // Maneja cualquier otro error inesperado (fallos de DB, NullReference, etc.)
                 LoggerService.Log(
-                    $"Error inesperado al modificar el usuario: {ex}",
-                    EventLevel.Critical,
+                    $"Error inesperado al modificar usuario: {ex.Message}",
+                    EventLevel.Error,
                     Session.CurrentUser?.LoginName);
 
                 MessageBox.Show(
@@ -231,36 +212,23 @@ namespace UI
             }
         }
 
-
         /// <summary>
-        /// Carga todas las familias/perfiles (PermissionComponent de tipo Familia)
-        /// en el ComboBox cmbFamily, obtenidas desde la capa SL.
+        /// Carga los perfiles/familias disponibles.
         /// </summary>
         private void LoadFamilies()
         {
             try
             {
-                PermissionSLService permissionSL = new PermissionSLService();
-
-                // Trae todos los componentes tipo "Familia"
+                var permissionSL = new PermissionSLService();
                 var families = permissionSL.GetAllFamilies();
 
-                if (families == null || families.Count == 0)
-                {
-                    MessageBox.Show("No se encontraron familias/perfiles para asignar.",
-                        "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
                 cmbFamily.DataSource = families;
-                cmbFamily.DisplayMember = "Name";   // Nombre visible
-                cmbFamily.ValueMember = "IdComponent"; // Valor interno
+                cmbFamily.DisplayMember = "Name";
+                cmbFamily.ValueMember = "IdComponent";
             }
             catch (Exception ex)
             {
-                LoggerService.Log(
-                    $"Error al cargar familias en MenuModUser: {ex}",
-                    EventLevel.Error);
+                LoggerService.Log($"Error al cargar familias: {ex}", EventLevel.Error);
 
                 MessageBox.Show(
                     "Ocurrió un error al cargar los cargos/posiciones.",
@@ -269,7 +237,15 @@ namespace UI
                     MessageBoxIcon.Error);
             }
         }
+
+        private void btnMenuFindUser_Click(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuFindUsers(_panelContenedor));
+        }
+
+        private void btnMenuRegUser_Click_1(object sender, EventArgs e)
+        {
+            OpenFormChild(new MenuRegUser(_panelContenedor));
+        }
     }
 }
-
-

@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Windows.Forms;
+﻿using BLL.BusinessException;
 using BLL.Service;
 using DAL.Contracts;
 using DAL.Factory;
 using Domain;
 using SL;
-using BLL.BusinessException;
 using SL.Service;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Linq;
+using System.Windows.Forms;
+using UI.Helpers;
 
 namespace UI
 {
@@ -77,6 +78,7 @@ namespace UI
         public MenuRegBooking(Panel panelContenedor)
         {
             InitializeComponent();
+            this.Translate();
 
             _panelContenedor = panelContenedor;
 

@@ -328,7 +328,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1012, 666);
+            this.ClientSize = new System.Drawing.Size(1139, 705);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnVerHorarios);
