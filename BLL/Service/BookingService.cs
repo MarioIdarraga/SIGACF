@@ -23,9 +23,6 @@ namespace BLL.Service
             _bookingRepo = bookingRepo;
         }
 
-        // =======================================================
-        // REGISTRO
-        // =======================================================
 
         /// <summary>
         /// Registra una nueva reserva aplicando TODAS las reglas de negocio.
@@ -38,9 +35,6 @@ namespace BLL.Service
             _bookingRepo.Insert(booking);
         }
 
-        // =======================================================
-        // ACTUALIZACIÓN
-        // =======================================================
 
         /// <summary>
         /// Actualiza una reserva existente aplicando validaciones generales.
@@ -63,9 +57,7 @@ namespace BLL.Service
             _bookingRepo.Update(booking.IdBooking, booking);
         }
 
-        // =======================================================
-        // VALIDACIONES DE NEGOCIO
-        // =======================================================
+
 
         private void ValidateBookingCreate(Booking booking)
         {
@@ -134,9 +126,6 @@ namespace BLL.Service
                     "Ya existe una reserva en ese horario para la cancha seleccionada.");
         }
 
-        // =======================================================
-        // CONSULTAS
-        // =======================================================
 
         /// <summary>
         /// Devuelve todas las reservas filtradas por documento y fechas.
@@ -195,9 +184,6 @@ namespace BLL.Service
             return all;
         }
 
-        // =======================================================
-        // CÁLCULO DE IMPORTE
-        // =======================================================
 
         /// <summary>
         /// Calcula el importe total de la reserva según cancha, horario y promoción.

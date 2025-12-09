@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics.Tracing;
 using SL.Services;
 using BLL.BusinessException;
+using SL.Service;
 
 namespace SL
 {

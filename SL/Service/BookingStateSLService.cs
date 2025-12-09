@@ -7,7 +7,7 @@ using Domain;
 using SL.Helpers;
 using SL.Services;
 
-namespace SL
+namespace SL.Service
 {
     /// <summary>
     /// Service Layer para gestionar los estados de reserva (BookingsStates).

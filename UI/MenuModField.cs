@@ -12,6 +12,7 @@ using BLL.Service;
 using DAL.Factory;
 using Domain;
 using SL;
+using SL.Service;
 using SL.Service.Extension;
 using UI.Helpers;
 
@@ -35,7 +36,7 @@ namespace UI
 
             var fieldRepo = DAL.Factory.Factory.Current.GetFieldRepository();
             var fieldService = new BLL.Service.FieldService(fieldRepo);
-            _fieldSLService = new SL.FieldSLService(fieldService);
+            _fieldSLService = new SL.Service.FieldSLService(fieldService);
 
             // Cargar combos
             CargarTiposDeCancha();

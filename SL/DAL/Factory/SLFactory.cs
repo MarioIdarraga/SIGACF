@@ -12,26 +12,60 @@ using System.Threading.Tasks;
 
 namespace SL.Factory
 {
+    /// <summary>
+    /// Fábrica de repositorios para la capa de servicios lógicos (SL).
+    /// Resuelve las implementaciones concretas según la configuración del backend
+    /// definido en AppSettings (SqlServer o File).
+    /// Implementa el patrón Singleton.
+    /// </summary>
     public sealed class SLFactory
     {
+        /// <summary>
+        /// Instancia única de la fábrica (patrón Singleton).
+        /// </summary>
         private static readonly SLFactory _instance = new SLFactory();
 
+        /// <summary>
+        /// Nombre del backend configurado para la capa SL.
+        /// </summary>
         private readonly string _backendSL;
 
+        /// <summary>
+        /// Acceso global a la instancia única de la fábrica.
+        /// </summary>
         public static SLFactory Current => _instance;
 
+        /// <summary>
+        /// Constructor privado que inicializa el backendSL desde AppSettings.
+        /// </summary>
         private SLFactory()
         {
             _backendSL = ConfigurationManager.AppSettings["backendSL"];
         }
 
+        /// <summary>
+        /// Obtiene el repositorio responsable de realizar operaciones de backup y restore.
+        /// Solo disponible para backend SQL Server.
+        /// </summary>
+        /// <returns>Instancia de <see cref="IBackupRepository"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// Si la cadena de conexión SqlConnectionString no está configurada.
+        /// </exception>
         public IBackupRepository GetBackupRepository()
         {
             var cs = ConfigurationManager.ConnectionStrings["SqlConnectionString"]?.ConnectionString
                      ?? throw new InvalidOperationException("SqlConnectionString no configurada.");
+
             return new SL.DAL.Repositories.SqlServer.BackupRepository(cs);
         }
 
+        /// <summary>
+        /// Obtiene la implementación de logger adecuada según el backend configurado.
+        /// </summary>
+        /// <returns>Instancia de <see cref="ILogger"/>.</returns>
+        /// <exception cref="NotSupportedException">
+        /// Si se especifica un backendSL no soportado.
+        /// </exception>
         public ILogger GetLoggerRepository()
         {
             if (_backendSL == "SqlServer")
@@ -47,6 +81,13 @@ namespace SL.Factory
             throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
         }
 
+        /// <summary>
+        /// Obtiene la implementación del repositorio de permisos (patentes y familias).
+        /// </summary>
+        /// <returns>Instancia de <see cref="IPermissionRepository"/> según backend.</returns>
+        /// <exception cref="NotSupportedException">
+        /// Si el backend configurado no está soportado.
+        /// </exception>
         public IPermissionRepository GetPermissionRepository()
         {
             if (_backendSL == "SqlServer")
@@ -62,6 +103,13 @@ namespace SL.Factory
             throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
         }
 
+        /// <summary>
+        /// Obtiene un repositorio para la gestión del DVV (Dígito Verificador Vertical).
+        /// </summary>
+        /// <returns>Instancia de <see cref="IVerificadorVerticalRepository"/>.</returns>
+        /// <exception cref="NotSupportedException">
+        /// Si el backend configurado no está soportado.
+        /// </exception>
         public IVerificadorVerticalRepository GetVerificadorVerticalRepository()
         {
             if (_backendSL == "SqlServer")
@@ -78,28 +126,3 @@ namespace SL.Factory
         }
     }
 }
-
-//        public IBackupRepository GetBackupRepository()
-//        {
-//            if (string.IsNullOrWhiteSpace(_backendSL))
-//                throw new InvalidOperationException("Config 'backendSL' no está seteada.");
-
-//            switch (_backendSL.ToLowerInvariant())
-//            {
-//                case "sqlserver":
-//                    {
-//                        var cs = ConfigurationManager.ConnectionStrings["SqlConnectionString"]?.ConnectionString
-//                                 ?? throw new InvalidOperationException("SqlConnectionString no configurada.");
-//                        return new SL.DAL.Repositories.SqlServer.BackupRepository(cs); // ctor que recibe cs
-//                    }
-
-//                case "file":
-//                    throw new NotSupportedException("Backup no soportado para backendSL='File'.");
-
-//                default:
-//                    throw new NotSupportedException($"El backendSL '{_backendSL}' no es soportado.");
-//            }
-        
-//        }
-//    }
-//}

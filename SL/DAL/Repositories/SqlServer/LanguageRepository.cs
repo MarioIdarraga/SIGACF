@@ -1,72 +1,104 @@
-﻿using System;
+﻿using SL.Domain.BusinessException;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using SL.Domain.BusinessException;
 
 namespace SL.DAL.Repositories.SqlServer
 {
+    /// <summary>
+    /// Repositorio SQL Server para traducciones.
+    /// Obtiene textos desde la tabla LanguageText usando clave + cultura actual.
+    /// Equivalente funcional al repositorio basado en archivos.
+    /// </summary>
+    public sealed class LanguageRepository
+    {
+        #region Singleton
 
+        private readonly static LanguageRepository _instance = new LanguageRepository();
 
-	public sealed class LanguajeRepository
+        /// <summary>
+        /// Instancia única del repositorio (patrón Singleton).
+        /// </summary>
+        public static LanguageRepository Current => _instance;
 
-	{
-		#region Singleton
-		private readonly static LanguajeRepository _instance = new LanguajeRepository();
-
-		public static LanguajeRepository Current
-		{
-			get
-			{
-				return _instance;
-			}
-		}
-
-		private LanguajeRepository()
-		{
-			//Implent here the initialization of your singleton
-		}
-
-		#endregion
-
-
-		private string folderLanguage = ConfigurationManager.AppSettings["FolderLanguage"];
-
-        private string filePathLanguage = ConfigurationManager.AppSettings["FilePathLanguage"];
-        public string Traductor(string key, string lang)
-		{
-			string filePath = $"{folderLanguage}/{filePathLanguage}{lang}";
-
-			using (StreamReader sr = new StreamReader(filePath))
-			{
-				while (!sr.EndOfStream)
-				{
-					string[] dataFile = sr.ReadLine().Split('=');
-
-					if (dataFile[0] == key);
-					{
-						return dataFile[1];
-                    }
-                }
-
-			}
-
-			throw new NoSeEncontroLaPalabraException();
-        }
-
-		public List<string> GetAllLanguage()
+        /// <summary>
+        /// Constructor privado para evitar instancias externas.
+        /// </summary>
+        private LanguageRepository()
         {
-            List<string> languages = new List<string>();
-            string[] files = Directory.GetFiles(folderLanguage, "*.txt");
-            foreach (string file in files)
-            {
-                languages.Add(Path.GetFileNameWithoutExtension(file));
-            }
-            return languages;
         }
 
+        #endregion
+
+        private readonly string _connectionString =
+            ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString;
+
+        /// <summary>
+        /// Traduce una clave según el idioma actual del sistema (CultureInfo).
+        /// Busca en la tabla LanguageText (LangCode, Key, Value).
+        /// </summary>
+        /// <param name="key">Clave a traducir.</param>
+        /// <returns>Cadena traducida.</returns>
+        /// <exception cref="NoSeEncontroLaPalabraException">
+        /// Si no existe la clave para el idioma actual.
+        /// </exception>
+        public string Traductor(string key)
+        {
+            string lang = Thread.CurrentThread.CurrentUICulture.Name; // ej: es-AR
+
+            const string sql = @"
+                SELECT [Value]
+                FROM LanguageText
+                WHERE LangCode = @lang AND [Key] = @key";
+
+            using (var cn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, cn))
+            {
+                cmd.Parameters.AddWithValue("@lang", lang);
+                cmd.Parameters.AddWithValue("@key", key);
+
+                cn.Open();
+                var result = cmd.ExecuteScalar();
+
+                if (result != null)
+                    return result.ToString();
+            }
+
+            throw new NoSeEncontroLaPalabraException();
+        }
+
+        /// <summary>
+        /// Obtiene todos los idiomas disponibles según los registros
+        /// presentes en la tabla LanguageText.
+        /// </summary>
+        /// <returns>Lista de códigos de idioma (es-AR, en-US, etc).</returns>
+        public List<string> GetAllLanguages()
+        {
+            var list = new List<string>();
+
+            const string sql = @"
+                SELECT DISTINCT LangCode
+                FROM LanguageText
+                ORDER BY LangCode";
+
+            using (var cn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, cn))
+            {
+                cn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                        list.Add(rd.GetString(0));
+                }
+            }
+
+            return list;
+        }
     }
 }

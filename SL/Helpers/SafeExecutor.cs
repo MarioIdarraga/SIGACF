@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.BusinessException;
+using SL.Service;
 
 namespace SL.Helpers
 {

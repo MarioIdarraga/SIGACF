@@ -10,46 +10,62 @@ using SL.Services;
 
 namespace SL.Service
 {
+    /// <summary>
+    /// Servicio de capa SL encargado de gestionar permisos, familias y patentes.
+    /// Orquesta la lógica de DVH/DVV, validación, logging y persistencia 
+    /// mediante el repositorio de permisos.
+    /// </summary>
     public class PermissionSLService
     {
         private readonly IPermissionRepository _repo;
 
+        /// <summary>
+        /// Inicializa el servicio obteniendo el repositorio configurado 
+        /// según el backend definido (File o SqlServer).
+        /// </summary>
         public PermissionSLService()
         {
             _repo = SLFactory.Current.GetPermissionRepository();
         }
 
+        /// <summary>
+        /// Obtiene todas las patentes asociadas a un usuario,
+        /// aplicando Flatten para eliminar jerarquías.
+        /// </summary>
         public List<Patente> GetPatentesByUser(Guid userId)
         {
             var permisos = _repo.GetPermissionsForUser(userId);
             return PermissionHelper.FlattenPermissions(permisos);
         }
 
+        /// <summary>
+        /// Obtiene todas las familias con su jerarquía reconstruida
+        /// a partir de la tabla de relaciones ParentId / ChildId.
+        /// </summary>
         public List<Familia> GetAllFamilies()
         {
-            // 1. Traemos todos los componentes (patentes + familias)
             var allComponents = _repo.GetAllPermissionComponents();
-
-            // 2. Traemos TODAS las relaciones padre‑hijo
             var relaciones = _repo.GetAllPermissionRelations();
 
-            // 3. Diccionario [Guid → PermissionComponent] p/ acceso rápido
             var dict = allComponents.ToDictionary(pc => pc.IdComponent, pc => pc);
 
-            // 4. Re‑construimos la jerarquía
-            foreach (var rel in relaciones)          // rel.ParentId / rel.ChildId
+            foreach (var rel in relaciones)
             {
-                if (dict.TryGetValue(rel.ParentId, out var padre) && padre is Familia familia &&
+                if (dict.TryGetValue(rel.ParentId, out var padre) &&
+                    padre is Familia familia &&
                     dict.TryGetValue(rel.ChildId, out var hijo))
                 {
                     familia.Add(hijo);
                 }
             }
 
-            // 5. Solo devolvemos las familias
             return allComponents.OfType<Familia>().ToList();
         }
 
+        /// <summary>
+        /// Asigna familias a un usuario, removiendo previamente las existentes.
+        /// Realiza logging y maneja excepciones.
+        /// </summary>
         public void AssignFamiliesToUser(Guid userId, List<Guid> familyIds)
         {
             LoggerService.Log("Inicio asignación de familias a usuario.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -68,6 +84,10 @@ namespace SL.Service
             }
         }
 
+        /// <summary>
+        /// Registra una nueva familia de permisos verificando nombre único,
+        /// cantidad mínima de hijos y recalculando DVH/DVV.
+        /// </summary>
         public void SaveFamily(Familia familia)
         {
             LoggerService.Log("Inicio de registro de familia.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -78,9 +98,8 @@ namespace SL.Service
                     throw new ArgumentException("El nombre de la familia es obligatorio.");
 
                 var existentes = _repo.GetAllPermissionComponents();
-                bool yaExiste = existentes
-                    .OfType<Familia>()
-                    .Any(f => string.Equals(f.Name, familia.Name, StringComparison.OrdinalIgnoreCase));
+                bool yaExiste = existentes.OfType<Familia>().Any(f =>
+                    string.Equals(f.Name, familia.Name, StringComparison.OrdinalIgnoreCase));
 
                 if (yaExiste)
                     throw new Exception($"Ya existe una familia con el nombre '{familia.Name}'.");
@@ -88,13 +107,10 @@ namespace SL.Service
                 if (familia.GetChild() == 0)
                     throw new ArgumentException("La familia debe contener al menos un permiso.");
 
-                // Calcular DVH
                 familia.DVH = DVHHelper.CalcularDVH(familia);
 
-                // Guardar
                 _repo.SaveFamily(familia);
 
-                // Recalcular DVV
                 var all = _repo.GetAllPermissionComponents();
                 new DVVService().RecalcularDVV(all, "PermissionComponent");
 
@@ -107,10 +123,13 @@ namespace SL.Service
             }
         }
 
+        /// <summary>
+        /// Modifica una familia existente, recalculando DVH/DVV
+        /// y validando sus valores.
+        /// </summary>
         public void UpdateFamily(Familia familia)
         {
-            LoggerService.Log("Inicio modificación de familia.", EventLevel.Informational,
-                              Session.CurrentUser?.LoginName);
+            LoggerService.Log("Inicio modificación de familia.", EventLevel.Informational, Session.CurrentUser?.LoginName);
 
             try
             {
@@ -120,28 +139,25 @@ namespace SL.Service
                 if (familia.GetChild() == 0)
                     throw new ArgumentException("La familia debe contener al menos un permiso.");
 
-                // Recalcular DVH
                 familia.DVH = DVHHelper.CalcularDVH(familia);
 
-                // Persistir cambios
                 _repo.UpdateFamily(familia);
 
-                // Recalcular DVV
                 var all = _repo.GetAllPermissionComponents();
                 new DVVService().RecalcularDVV(all, "PermissionComponent");
 
-                LoggerService.Log("Familia modificada correctamente.", EventLevel.Informational,
-                                  Session.CurrentUser?.LoginName);
+                LoggerService.Log("Familia modificada correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
             }
             catch (Exception ex)
             {
-                LoggerService.Log($"Error al modificar familia: {ex.Message}", EventLevel.Error,
-                                  Session.CurrentUser?.LoginName);
+                LoggerService.Log($"Error al modificar familia: {ex.Message}", EventLevel.Error, Session.CurrentUser?.LoginName);
                 throw;
             }
         }
 
-
+        /// <summary>
+        /// Obtiene todas las patentes existentes.
+        /// </summary>
         public List<Patente> GetAllPatents()
         {
             LoggerService.Log("Inicio búsqueda de patentes.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -152,7 +168,6 @@ namespace SL.Service
                 var patentes = permisos.OfType<Patente>().ToList();
 
                 LoggerService.Log("Patentes encontradas correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
-
                 return patentes;
             }
             catch (Exception ex)
@@ -161,6 +176,10 @@ namespace SL.Service
                 throw;
             }
         }
+
+        /// <summary>
+        /// Obtiene todos los componentes de permiso (familias + patentes).
+        /// </summary>
         public List<PermissionComponent> GetAllPermissionComponents()
         {
             LoggerService.Log("Obteniendo todos los componentes de permiso.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -170,7 +189,6 @@ namespace SL.Service
                 var permisos = _repo.GetAllPermissionComponents();
 
                 LoggerService.Log("Componentes de permiso obtenidos correctamente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
-
                 return permisos;
             }
             catch (Exception ex)
@@ -180,8 +198,9 @@ namespace SL.Service
             }
         }
 
-        //Patentes:
-
+        /// <summary>
+        /// Registra una patente nueva, calcula DVH/DVV y valida datos.
+        /// </summary>
         public void SavePatent(Patente patente)
         {
             LoggerService.Log("Inicio de registro de patente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -191,13 +210,10 @@ namespace SL.Service
                 if (string.IsNullOrWhiteSpace(patente.Name))
                     throw new ArgumentException("El nombre de la patente es obligatorio.");
 
-                // Calcular DVH
                 patente.DVH = DVHHelper.CalcularDVH(patente);
 
-                // Guardar
                 _repo.SavePatent(patente);
 
-                // Recalcular DVV
                 var all = _repo.GetAllPermissionComponents();
                 new DVVService().RecalcularDVV(all, "PermissionComponent");
 
@@ -210,6 +226,9 @@ namespace SL.Service
             }
         }
 
+        /// <summary>
+        /// Modifica una patente existente recalculando DVH/DVV.
+        /// </summary>
         public void UpdatePatent(Patente patente)
         {
             LoggerService.Log("Inicio de modificación de patente.", EventLevel.Informational, Session.CurrentUser?.LoginName);
@@ -219,13 +238,10 @@ namespace SL.Service
                 if (string.IsNullOrWhiteSpace(patente.Name))
                     throw new ArgumentException("El nombre de la patente es obligatorio.");
 
-                // Calcular DVH con los datos modificados
                 patente.DVH = DVHHelper.CalcularDVH(patente);
 
-                // Guardar en repositorio
                 _repo.UpdatePatent(patente);
 
-                // Recalcular DVV
                 var all = _repo.GetAllPermissionComponents();
                 new DVVService().RecalcularDVV(all, "PermissionComponent");
 
@@ -238,6 +254,9 @@ namespace SL.Service
             }
         }
 
+        /// <summary>
+        /// Busca recursivamente en familias hasta encontrar una patente cuyo FormName coincida.
+        /// </summary>
         public Patente FindPatentByFormName(string formName)
         {
             if (string.IsNullOrWhiteSpace(formName)) return null;
@@ -250,30 +269,30 @@ namespace SL.Service
             return null;
         }
 
+        /// <summary>
+        /// Búsqueda DFS (Depth-First Search) dentro de una jerarquía de familias.
+        /// </summary>
         private Patente FindPatentDFS(Familia fam, string formName)
         {
             foreach (var child in fam.GetChildren())
             {
-                var asPat = child as Patente;
-                if (asPat != null && string.Equals(asPat.FormName, formName, StringComparison.OrdinalIgnoreCase))
-                    return asPat;
+                if (child is Patente p &&
+                    string.Equals(p.FormName, formName, StringComparison.OrdinalIgnoreCase))
+                    return p;
 
-                var asFam = child as Familia;
-                if (asFam != null)
+                if (child is Familia f)
                 {
-                    var r = FindPatentDFS(asFam, formName);
-                    if (r != null) return r;
+                    var found = FindPatentDFS(f, formName);
+                    if (found != null) return found;
                 }
             }
             return null;
         }
 
         /// <summary>
-        /// Obtiene la lista de componentes (FormName) permitidos para un usuario.
-        /// Esta lista se utiliza para habilitar / deshabilitar elementos del menú.
+        /// Obtiene la lista de FormName permitidos para un usuario,
+        /// utilizados para habilitar o deshabilitar elementos UI.
         /// </summary>
-        /// <param name="userId">Id del usuario logueado</param>
-        /// <returns>Lista de nombres de formulario autorizados</returns>
         public List<string> GetAllowedComponentsForUser(Guid userId)
         {
             LoggerService.Log("Inicio obtención de permisos del usuario.",
@@ -282,13 +301,11 @@ namespace SL.Service
 
             try
             {
-                // Trae todas las patentes ya “aplanadas” del usuario
                 var patentes = GetPatentesByUser(userId);
 
                 if (patentes == null || patentes.Count == 0)
                     return new List<string>();
 
-                // Devolvemos solo los FormName válidos
                 var componentes = patentes
                     .Where(p => !string.IsNullOrWhiteSpace(p.FormName))
                     .Select(p => p.FormName)
@@ -311,7 +328,3 @@ namespace SL.Service
         }
     }
 }
-
-
-
-

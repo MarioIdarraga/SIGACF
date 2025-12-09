@@ -6,6 +6,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using SL;
 using SL.BLL;
+using SL.Service;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
