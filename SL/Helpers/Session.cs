@@ -5,17 +5,22 @@ using Domain;
 namespace SL.Helpers
 {
     /// <summary>
-    /// Maneja información de sesión del usuario autenticado.
-    /// Capa transversal (SL).
+    /// Maneja la información de sesión del usuario autenticado dentro del sistema.
+    /// Pertenece a la capa transversal (SL), accesible por las demás capas.
     /// </summary>
     public static class Session
     {
+        /// <summary>
+        /// Usuario actualmente autenticado en el sistema.
+        /// </summary>
         public static User CurrentUser { get; set; }
 
         /// <summary>
-        /// Formularios permitidos según las patentes del usuario.
+        /// Conjunto de formularios permitidos para el usuario autenticado,
+        /// determinado según sus patentes y permisos asignados.
         /// </summary>
-        public static HashSet<string> AllowedForms { get; set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        public static HashSet<string> AllowedForms { get; set; } =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     }
 }
 

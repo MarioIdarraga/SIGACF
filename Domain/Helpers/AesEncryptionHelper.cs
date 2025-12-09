@@ -8,14 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+/// <summary>
+/// Proporciona métodos de cifrado y descifrado AES para proteger información sensible.
+/// Utiliza claves y vectores de inicialización definidos en el archivo de configuración.
+/// </summary>
 public static class AesEncryptionHelper
 {
+    /// <summary>
+    /// Clave AES utilizada para el proceso de cifrado y descifrado.
+    /// Se obtiene desde el archivo de configuración (app.config).
+    /// </summary>
     private static readonly string Key = ConfigurationManager.AppSettings["AESKey"];
+
+    /// <summary>
+    /// Vector de inicialización (IV) utilizado para el cifrado AES.
+    /// También se obtiene desde el archivo de configuración.
+    /// </summary>
     private static readonly string IV = ConfigurationManager.AppSettings["AESIV"];
 
+    /// <summary>
+    /// Cifra un texto plano utilizando el algoritmo AES en modo CBC.
+    /// </summary>
+    /// <param name="plainText">Texto sin cifrar que se desea proteger.</param>
+    /// <returns>Cadena en Base64 que representa el texto cifrado.</returns>
     public static string Encrypt(string plainText)
     {
-        byte[] encrypted;   
+        byte[] encrypted;
 
         using (Aes aesAlg = Aes.Create())
         {
@@ -39,6 +57,11 @@ public static class AesEncryptionHelper
         return Convert.ToBase64String(encrypted);
     }
 
+    /// <summary>
+    /// Descifra un texto previamente cifrado con AES.
+    /// </summary>
+    /// <param name="encryptedText">Texto cifrado en formato Base64.</param>
+    /// <returns>Texto plano resultante del proceso de descifrado.</returns>
     public static string Decrypt(string encryptedText)
     {
         byte[] cipherText = Convert.FromBase64String(encryptedText);
@@ -64,21 +87,28 @@ public static class AesEncryptionHelper
         return plaintext;
     }
 
+    /// <summary>
+    /// Verifica si un texto dado parece estar cifrado con AES.
+    /// Intenta validar si es Base64 y si puede ser descifrado correctamente.
+    /// </summary>
+    /// <param name="input">Cadena a evaluar.</param>
+    /// <returns>
+    /// true si el formato es compatible con un cifrado AES válido; de lo contrario, false.
+    /// </returns>
     public static bool IsEncryptedAES(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
             return false;
 
-        // Verificamos si el string parece ser Base64
         try
         {
-            // Si no es Base64, lanza error aquí
+            // Verifica si es Base64 válido
             var base64Bytes = Convert.FromBase64String(input);
 
-            // Ahora sí intentamos desencriptar
+            // Intenta descifrar el contenido
             var decrypted = Decrypt(input);
 
-            // Si no falla, es probablemente un texto AES válido
+            // Si no falla, se considera un texto AES válido
             return true;
         }
         catch
@@ -87,3 +117,4 @@ public static class AesEncryptionHelper
         }
     }
 }
+

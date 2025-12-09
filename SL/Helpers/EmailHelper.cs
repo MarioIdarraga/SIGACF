@@ -11,11 +11,21 @@ using BLL.BusinessException;
 namespace SL.Helpers
 {
     /// <summary>
-    /// Helper para envío de correos utilizando configuración del App.config.
-    /// Maneja errores y encapsula fallas inesperadas.
+    /// Proporciona funcionalidades para el envío de correos electrónicos
+    /// utilizando la configuración definida en el archivo App.config.
+    /// Maneja excepciones específicas del cliente SMTP y errores genéricos.
     /// </summary>
     public static class EmailHelper
     {
+        /// <summary>
+        /// Envía un correo electrónico utilizando los parámetros configurados en AppSettings.
+        /// </summary>
+        /// <param name="to">Dirección de correo del destinatario.</param>
+        /// <param name="subject">Asunto del correo.</param>
+        /// <param name="body">Contenido del mensaje.</param>
+        /// <exception cref="BusinessException">
+        /// Se lanza cuando ocurre un error SMTP o un error general al intentar enviar el correo.
+        /// </exception>
         public static void SendMail(string to, string subject, string body)
         {
             try

@@ -9,6 +9,11 @@ using BLL.BusinessException;
 
 namespace SL.Helpers
 {
+    /// <summary>
+    /// Proporciona métodos de ejecución segura que encapsulan el manejo de excepciones
+    /// y registran errores de base de datos o fallas inesperadas.
+    /// Permite unificar el control de errores en la capa de servicios.
+    /// </summary>
     internal static class SafeExecutor
     {
         private const string GenericDbErrorMessage =
@@ -18,7 +23,14 @@ namespace SL.Helpers
         private const string GenericUnexpectedErrorMessage =
             "Ocurrió un error inesperado. Intente nuevamente o contacte al administrador del sistema.";
 
-        // Para métodos que NO devuelven nada (void)
+        /// <summary>
+        /// Ejecuta de manera segura una acción que no devuelve valor,
+        /// encapsulando el manejo de excepciones y registrando errores.
+        /// </summary>
+        /// <param name="action">Acción a ejecutar.</param>
+        /// <exception cref="BusinessException">
+        /// Se lanza cuando ocurre un error de negocio, error de base de datos o error inesperado.
+        /// </exception>
         public static void Run(Action action)
         {
             try
@@ -27,17 +39,15 @@ namespace SL.Helpers
             }
             catch (BusinessException)
             {
-                // Ya es un error "de negocio", lo dejamos pasar hacia la UI
+                // Errores de negocio se relanzan tal cual.
                 throw;
             }
             catch (SqlException ex)
             {
-                // Log técnico detallado
                 LoggerService.Log(
                     $"Error de base de datos: {ex.Message}",
                     EventLevel.Error);
 
-                // Mensaje genérico para el usuario
                 throw new BusinessException(GenericDbErrorMessage, ex);
             }
             catch (Exception ex)
@@ -50,7 +60,16 @@ namespace SL.Helpers
             }
         }
 
-        // Para métodos que devuelven algo (T)
+        /// <summary>
+        /// Ejecuta de manera segura una función que devuelve un valor,
+        /// encapsulando el manejo de excepciones y registrando errores.
+        /// </summary>
+        /// <typeparam name="T">Tipo del valor devuelto por la función.</typeparam>
+        /// <param name="func">Función a ejecutar.</param>
+        /// <returns>Resultado devuelto por la función.</returns>
+        /// <exception cref="BusinessException">
+        /// Se lanza cuando ocurre un error de negocio, error de base de datos o error inesperado.
+        /// </exception>
         public static T Run<T>(Func<T> func)
         {
             try

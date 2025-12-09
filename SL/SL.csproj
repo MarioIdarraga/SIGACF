@@ -80,7 +80,7 @@
     <Compile Include="DAL\Repositories\SqlServer\PermissionRepository.cs" />
     <Compile Include="DAL\Repositories\SqlServer\VerificadorVerticalRepository.cs" />
     <Compile Include="DAL\Tools\SqlHelper.cs" />
-    <Compile Include="Domain\NoSeEncontroLaPalabraException.cs" />
+    <Compile Include="Domain\BusinessException\NoSeEncontroLaPalabraException.cs" />
     <Compile Include="Domain\Log.cs" />
     <Compile Include="Helpers\AesEncryptionHelper.cs" />
     <Compile Include="Helpers\DVHHelper.cs" />
