@@ -14,14 +14,21 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario para la modificación de patentes existentes.
+    /// Permite editar el nombre y formulario asociado de una patente previamente seleccionada.
+    /// </summary>
     public partial class MenuModPatent : Form
     {
-
         private Patente _patente;
-
         private Panel _panelContenedor;
-
         private readonly PermissionSLService _permissionSLService;
+
+        /// <summary>
+        /// Constructor que recibe la patente a modificar y configura el formulario con sus datos actuales.
+        /// </summary>
+        /// <param name="panelContenedor">Panel padre donde se cargan los formularios hijos.</param>
+        /// <param name="patente">Objeto patente seleccionado que será modificado.</param>
         public MenuModPatent(Panel panelContenedor, Patente patente)
         {
             InitializeComponent();
@@ -29,13 +36,16 @@ namespace UI
             this.Translate();
 
             _permissionSLService = new PermissionSLService();
-
-            _patente = patente; 
+            _patente = patente;
 
             txtName.Text = _patente.Name;
             txtFormName.Text = _patente.FormName;
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor.
+        /// </summary>
+        /// <param name="formchild">Instancia del formulario hijo a visualizar.</param>
         private void OpenFormChild(object formchild)
         {
             if (_panelContenedor.Controls.Count > 0)
@@ -49,16 +59,25 @@ namespace UI
             fh.Show();
         }
 
+        /// <summary>
+        /// Abre la pantalla de búsqueda de patentes.
+        /// </summary>
         private void btnFindPatent_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindPatents(_panelContenedor));
         }
 
+        /// <summary>
+        /// Abre la pantalla de registro de una nueva patente.
+        /// </summary>
         private void btnRegPatent_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuRegPatent(_panelContenedor));
         }
 
+        /// <summary>
+        /// Valida los datos ingresados y modifica la patente mediante PermissionSLService.
+        /// </summary>
         private void btnModPatent_Click(object sender, EventArgs e)
         {
             var name = txtName.Text.Trim();
@@ -70,16 +89,13 @@ namespace UI
                 return;
             }
 
-            // Usás el objeto que recibiste para modificar
             _patente.Name = name;
             _patente.FormName = string.IsNullOrWhiteSpace(formName) ? null : formName;
 
             try
             {
                 _permissionSLService.UpdatePatent(_patente);
-
                 MessageBox.Show("Patente modificada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
             catch (Exception ex)
             {
@@ -88,3 +104,4 @@ namespace UI
         }
     }
 }
+

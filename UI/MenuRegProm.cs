@@ -25,8 +25,6 @@ namespace UI
             _panelContenedor = panelContenedor;
             this.Translate();
             var promotionRepo = Factory.Current.GetPromotionRepository();
-            //var promotionService = new BLL.Service.PromotionService(promotionRepo);
-            //_promotionSLService = new PromotionSLService(promotionService);
         }
 
         private void OpenFormChild(object formchild)

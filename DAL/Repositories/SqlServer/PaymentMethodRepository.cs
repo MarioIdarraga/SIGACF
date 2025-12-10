@@ -8,14 +8,28 @@ using System.Data.SqlClient;
 
 namespace DAL.Repositories.SqlServer
 {
+    /// <summary>
+    /// Repositorio SQL Server para la entidad PaymentMethod.
+    /// Provee acceso a la consulta de métodos de pago.
+    /// </summary>
     public class PaymentMethodRepository : IPaymentMethodRepository
     {
+        /// <summary>
+        /// Sentencia SQL para obtener todos los métodos de pago.
+        /// </summary>
         private string SelectAllStatement =>
             "SELECT IdPayMethod, Description FROM PaymentMethods";
 
+        /// <summary>
+        /// Sentencia SQL para obtener un método de pago por su identificador.
+        /// </summary>
         private string SelectOneStatement =>
             "SELECT IdPayMethod, Description FROM PaymentMethods WHERE IdPayMethod = @Id";
 
+        /// <summary>
+        /// Obtiene todos los métodos de pago disponibles en la base de datos.
+        /// </summary>
+        /// <returns>Colección de métodos de pago.</returns>
         public IEnumerable<PaymentMethod> GetAll()
         {
             try
@@ -44,6 +58,11 @@ namespace DAL.Repositories.SqlServer
             }
         }
 
+        /// <summary>
+        /// Obtiene un método de pago por su identificador.
+        /// </summary>
+        /// <param name="id">Identificador del método de pago.</param>
+        /// <returns>Instancia de PaymentMethod o null si no existe.</returns>
         public PaymentMethod GetOne(int id)
         {
             try

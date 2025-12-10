@@ -15,29 +15,42 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario para la creación de Familias de permisos.
+    /// Permite registrar una familia y asignarle patentes existentes mediante una interfaz sencilla.
+    /// </summary>
     public partial class MenuRegFamily : Form
     {
         private Panel _panelContenedor;
-
         private readonly PermissionSLService _permissionSLService;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario MenuRegFamily.
+        /// Configura traducción, servicio de permisos y carga las patentes disponibles.
+        /// </summary>
+        /// <param name="Contenedor">Panel padre donde se mostrarán formularios hijos.</param>
         public MenuRegFamily(Panel Contenedor)
         {
             InitializeComponent();
             _panelContenedor = Contenedor;
             this.Translate();
 
-            _permissionSLService = new PermissionSLService(); 
+            _permissionSLService = new PermissionSLService();
 
             var patentes = _permissionSLService.GetAllPatents();
             checkedListPatent.DataSource = patentes;
             checkedListPatent.DisplayMember = "Name";
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor.
+        /// </summary>
+        /// <param name="formchild">Instancia del formulario hijo a mostrar.</param>
         private void OpenFormChild(object formchild)
         {
             if (_panelContenedor.Controls.Count > 0)
                 _panelContenedor.Controls.RemoveAt(0);
+
             Form fh = formchild as Form;
             fh.TopLevel = false;
             fh.Dock = DockStyle.Fill;
@@ -46,16 +59,21 @@ namespace UI
             fh.Show();
         }
 
+        /// <summary>
+        /// Abre el formulario de búsqueda de familias.
+        /// </summary>
         private void btnFindFamily_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindFamilies(_panelContenedor));
         }
 
+        /// <summary>
+        /// Valida los datos ingresados y registra una nueva familia con las patentes seleccionadas.
+        /// </summary>
         private void btnRegFamily_Click(object sender, EventArgs e)
         {
             var nombre = txtName.Text.Trim();
 
-            // Validaciones básicas en la UI antes de delegar al SL
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 MessageBox.Show("Debe ingresar un nombre para la familia.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,6 +108,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Agrega las patentes seleccionadas desde el CheckedListBox hacia la lista de asignación.
+        /// </summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             foreach (var item in checkedListPatent.CheckedItems)
@@ -101,6 +122,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Quita las patentes seleccionadas en la lista de asignación.
+        /// </summary>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             var seleccionados = listBoxAdd.SelectedItems.Cast<object>().ToList();

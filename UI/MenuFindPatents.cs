@@ -25,7 +25,7 @@ namespace UI
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate(); // Assuming you have a Translate method for localization
+            this.Translate(); 
 
             _permissionSLService = new PermissionSLService();
 
@@ -75,7 +75,7 @@ namespace UI
         {
             foreach (DataGridViewColumn col in dataGridViewPatents.Columns)
             {
-                // Saltar columnas técnicas
+                
                 if (col.Name == "UserId")
                     continue;
 
@@ -89,6 +89,10 @@ namespace UI
                 }
             }
         }
+        /// <summary>
+        /// Evento que ejecuta la búsqueda de patentes y carga los resultados en el DataGridView.
+        /// Aplica ocultamiento de columnas técnicas y traducción de encabezados.
+        /// </summary>
         private void btnFindPatent_Click(object sender, EventArgs e)
         {
             try
@@ -98,25 +102,39 @@ namespace UI
                                                   .ToList();
 
                 dataGridViewPatents.DataSource = patents;
+
                 HideTechnicalColumns();
                 TranslateGridHeaders();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al buscar las patentes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al buscar las patentes: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Oculta columnas técnicas que no deben mostrarse al usuario final
+        /// dentro del DataGridView de patentes.
+        /// </summary>
         private void HideTechnicalColumns()
         {
-            if (dataGridViewPatents.Columns.Contains("IdComponent"))
-                dataGridViewPatents.Columns["IdComponent"].Visible = false;
+            try
+            {
+                if (dataGridViewPatents.Columns.Contains("IdComponent"))
+                    dataGridViewPatents.Columns["IdComponent"].Visible = false;
 
-            if (dataGridViewPatents.Columns.Contains("ComponentType"))
-                dataGridViewPatents.Columns["ComponentType"].Visible = false;
+                if (dataGridViewPatents.Columns.Contains("ComponentType"))
+                    dataGridViewPatents.Columns["ComponentType"].Visible = false;
 
-            if (dataGridViewPatents.Columns.Contains("DVH"))
-                dataGridViewPatents.Columns["DVH"].Visible = false;
+                if (dataGridViewPatents.Columns.Contains("DVH"))
+                    dataGridViewPatents.Columns["DVH"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al ocultar columnas: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

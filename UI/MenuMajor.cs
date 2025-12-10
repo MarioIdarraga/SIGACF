@@ -253,10 +253,9 @@ namespace UI
                     return;
                 }
 
-                // Por ahora abrimos la página principal definida en el CHM
+               
                 Help.ShowHelp(this, helpPath);
-                // Si más adelante querés navegar a un tópico puntual,
-                // usamos GetHelpTopic(language) y HelpNavigator.Topic.
+                
             }
             catch (Exception ex)
             {

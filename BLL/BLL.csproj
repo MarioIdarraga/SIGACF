@@ -54,7 +54,6 @@
     <Compile Include="BusinessException\ReservaDuplicadaException.cs" />
     <Compile Include="BusinessException\UsuarioBloqueadoException.cs" />
     <Compile Include="BusinessException\UsuarioInexistenteException.cs" />
-    <Compile Include="Contracts\IGenericBusinessService.cs" />
     <Compile Include="Service\BookingStateService.cs" />
     <Compile Include="Service\CustomerStateService.cs" />
     <Compile Include="Service\FieldService.cs" />

@@ -141,13 +141,6 @@ namespace UI
             OpenFormChild(new MenuSales(_panelContenedor));
         }
 
-        /// <summary>
-        /// Navega a la pantalla de registrar pago.
-        /// </summary>
-        //private void btnRegPay_Click(object sender, EventArgs e)
-        //{
-        //    OpenFormChild(new MenuRegPay(_panelContenedor));
-        //}
 
         /// <summary>
         /// Marca la reserva como cancelada (State = 3) utilizando BookingSLService.

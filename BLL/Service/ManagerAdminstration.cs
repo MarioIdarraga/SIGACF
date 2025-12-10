@@ -7,16 +7,42 @@ using DAL.Tools;
 
 namespace BLL.Service
 {
+    /// <summary>
+    /// Servicio encargado de administrar operaciones globales de la base de datos,
+    /// como la creación de backups mediante comandos SQL directos.
+    /// </summary>
     public class ManagerAdminstration
     {
+        /// <summary>
+        /// Cadena de conexión utilizada para ejecutar las operaciones administrativas.
+        /// </summary>
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Inicializa la instancia obteniendo la cadena de conexión configurada en App.config.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// Se lanza si no existe la cadena de conexión 'SqlConnectionString'.
+        /// </exception>
         public ManagerAdminstration()
         {
             _connectionString = ConfigurationManager.ConnectionStrings["SqlConnectionString"]?.ConnectionString
                 ?? throw new InvalidOperationException("No se pudo encontrar la cadena de conexión 'SqlConnectionString'.");
         }
 
+        /// <summary>
+        /// Crea un archivo de respaldo (.bak) de la base de datos definida en la cadena de conexión.
+        /// </summary>
+        /// <param name="filePath">Ruta completa donde se almacenará el backup.</param>
+        /// <exception cref="ArgumentException">
+        /// Si la ruta del archivo es nula o vacía.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Si la cadena de conexión no define una base de datos (InitialCatalog vacío).
+        /// </exception>
+        /// <exception cref="SqlException">
+        /// Si ocurre un error durante la ejecución del comando SQL de backup.
+        /// </exception>
         public void CreateBackup(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))

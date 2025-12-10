@@ -13,19 +13,32 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario para la gestión de patentes (permisos simples).
+    /// Permite registrar nuevas patentes y navegar hacia la búsqueda de patentes existentes.
+    /// </summary>
     public partial class MenuRegPatent : Form
     {
         private Panel _panelContenedor;
 
         private readonly PermissionSLService _permissionSLService;
+
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario MenuRegPatent.
+        /// </summary>
+        /// <param name="panelContenedor">Panel donde se cargarán los formularios hijos.</param>
         public MenuRegPatent(Panel panelContenedor)
         {
             InitializeComponent();
             _panelContenedor = panelContenedor;
-            this.Translate();
+            this.Translate(); // Traducción existente
             _permissionSLService = new PermissionSLService();
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor.
+        /// </summary>
+        /// <param name="formchild">Instancia del formulario hijo a mostrar.</param>
         private void OpenFormChild(object formchild)
         {
             if (_panelContenedor.Controls.Count > 0)
@@ -39,11 +52,18 @@ namespace UI
             fh.Show();
         }
 
+        /// <summary>
+        /// Abre la pantalla de búsqueda de patentes.
+        /// </summary>
         private void btnFindPatent_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindPatents(_panelContenedor));
         }
 
+        /// <summary>
+        /// Registra una nueva patente valida los datos ingresados
+        /// e invoca al servicio PermissionSLService para guardarla.
+        /// </summary>
         private void btnRegPatent_Click(object sender, EventArgs e)
         {
             var name = txtName.Text.Trim();
@@ -75,3 +95,4 @@ namespace UI
         }
     }
 }
+

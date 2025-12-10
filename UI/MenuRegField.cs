@@ -16,12 +16,21 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario para el registro de nuevas canchas.
+    /// Permite cargar una cancha con nombre, capacidad, costo por hora y tipo.
+    /// También permite acceder a la búsqueda de canchas existentes.
+    /// </summary>
     public partial class MenuRegField : Form
     {
         private Panel _panelContenedor;
-
         private readonly FieldSLService _fieldSLService;
 
+        /// <summary>
+        /// Inicializa una nueva instancia del formulario MenuRegField.
+        /// Configura traducción, servicios y lista de tipos de cancha.
+        /// </summary>
+        /// <param name="panelContenedor">Panel padre donde se cargarán formularios hijos.</param>
         public MenuRegField(Panel panelContenedor)
         {
             InitializeComponent();
@@ -34,12 +43,19 @@ namespace UI
 
             CargarTiposDeCancha();
         }
+
+        /// <summary>
+        /// Carga el combo con los tipos de cancha disponibles según el enum FieldType.
+        /// </summary>
         private void CargarTiposDeCancha()
         {
             cmbFieldType.DataSource = Enum.GetValues(typeof(FieldType));
         }
 
-
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor.
+        /// </summary>
+        /// <param name="formchild">Instancia del formulario hijo a mostrar.</param>
         private void OpenFormChild(object formchild)
         {
             if (_panelContenedor.Controls.Count > 0)
@@ -53,12 +69,18 @@ namespace UI
             fh.Show();
         }
 
+        /// <summary>
+        /// Abre el formulario de búsqueda de canchas.
+        /// </summary>
         private void btnFindField_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindFields(_panelContenedor));
         }
 
-
+        /// <summary>
+        /// Valida los datos ingresados y registra una nueva cancha mediante FieldSLService.
+        /// Incluye validación de nombre, capacidad, costo y tipo.
+        /// </summary>
         private void btnRegField_Click(object sender, EventArgs e)
         {
             try
@@ -92,7 +114,7 @@ namespace UI
                     Capacity = capacity,
                     HourlyCost = hourlyCost,
                     FieldType = (int)Enum.Parse(typeof(FieldType), cmbFieldType.SelectedItem.ToString()),
-                    IdFieldState = 1, //Estado habilitado
+                    IdFieldState = 1, // Estado habilitado
                 };
 
                 _fieldSLService.Insert(newField);

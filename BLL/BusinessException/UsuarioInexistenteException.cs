@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace BLL.BusinessException
 {
+    /// <summary>
+    /// Excepción que se lanza cuando el usuario solicitado no existe
+    /// en el sistema o no puede ser encontrado.
+    /// </summary>
     public class UsuarioInexistenteException : BusinessException
     {
         public UsuarioInexistenteException(string message)

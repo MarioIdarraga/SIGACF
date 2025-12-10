@@ -8,27 +8,59 @@ using Domain;
 
 namespace DAL.Repositories.SqlServer
 {
+    /// <summary>
+    /// Repositorio SQL Server para la entidad Customer.
+    /// Implementa operaciones CRUD y búsquedas filtradas.
+    /// </summary>
     public class CustomerRepository : IGenericRepository<Customer>
     {
 
         #region Statements
-        private string InsertStatement => "INSERT INTO [dbo].[Customers] (NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address) VALUES (@NroDocument, @FirstName, @LastName, @State, @Comment, @Telephone, @Mail, @Address)";
-        private string UpdateStatement => "UPDATE [dbo].[Customers] SET NroDocument = @NroDocument, FirstName = @FirstName, LastName = @LastName, State = @State, Comment = @Comment, Telephone = @Telephone, Mail = @Mail, Address = @Address WHERE IdCustomer = @IdCustomer";
-        private string DeleteStatement => "DELETE FROM [dbo].[Customers] WHERE IdCustomer = @IdCustomer";
-        private string SelectOneStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customers] WHERE IdCustomer = @IdCustomer";
-        private string SelectAllStatement => "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customers]";
+        /// <summary>Sentencia SQL para insertar un nuevo cliente.</summary>
+        private string InsertStatement =>
+            "INSERT INTO [dbo].[Customers] (NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address) " +
+            "VALUES (@NroDocument, @FirstName, @LastName, @State, @Comment, @Telephone, @Mail, @Address)";
+
+        /// <summary>Sentencia SQL para actualizar un cliente existente.</summary>
+        private string UpdateStatement =>
+            "UPDATE [dbo].[Customers] SET NroDocument = @NroDocument, FirstName = @FirstName, LastName = @LastName, " +
+            "State = @State, Comment = @Comment, Telephone = @Telephone, Mail = @Mail, Address = @Address " +
+            "WHERE IdCustomer = @IdCustomer";
+
+        /// <summary>Sentencia SQL para eliminar un cliente por Id.</summary>
+        private string DeleteStatement =>
+            "DELETE FROM [dbo].[Customers] WHERE IdCustomer = @IdCustomer";
+
+        /// <summary>Sentencia SQL para obtener un cliente por Id.</summary>
+        private string SelectOneStatement =>
+            "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address " +
+            "FROM [dbo].[Customers] WHERE IdCustomer = @IdCustomer";
+
+        /// <summary>Sentencia SQL para obtener todos los clientes.</summary>
+        private string SelectAllStatement =>
+            "SELECT IdCustomer, NroDocument, FirstName, LastName, State, Comment, Telephone, Mail, Address FROM [dbo].[Customers]";
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Elimina un cliente según su identificador.
+        /// </summary>
+        /// <param name="Id">Identificador del cliente.</param>
         public void Delete(Guid Id)
         {
-            SqlHelper.ExecuteNonQuery(DeleteStatement, System.Data.CommandType.Text,
+            SqlHelper.ExecuteNonQuery(DeleteStatement, CommandType.Text,
                 new SqlParameter[] { new SqlParameter("@IdCustomer", Id) });
         }
 
+        /// <summary>
+        /// Obtiene un cliente por identificador único.
+        /// </summary>
+        /// <param name="Id">ID del cliente.</param>
+        /// <returns>Instancia de Customer o null si no existe.</returns>
         public Customer GetOne(Guid Id)
         {
-            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
+            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, CommandType.Text,
                 new SqlParameter[] { new SqlParameter("@IdCustomer", Id) }))
             {
                 if (reader.Read())
@@ -50,9 +82,13 @@ namespace DAL.Repositories.SqlServer
             return null;
         }
 
+        /// <summary>
+        /// Inserta un nuevo cliente en la base de datos.
+        /// </summary>
+        /// <param name="Object">Objeto Customer a insertar.</param>
         public void Insert(Customer Object)
         {
-            SqlHelper.ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text,
+            SqlHelper.ExecuteNonQuery(InsertStatement, CommandType.Text,
                 new SqlParameter[]
                 {
                     new SqlParameter("@NroDocument", Object.NroDocument),
@@ -66,9 +102,14 @@ namespace DAL.Repositories.SqlServer
                 });
         }
 
+        /// <summary>
+        /// Actualiza los datos de un cliente existente.
+        /// </summary>
+        /// <param name="Id">Id del cliente.</param>
+        /// <param name="Object">Datos actualizados.</param>
         public void Update(Guid Id, Customer Object)
         {
-            SqlHelper.ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text,
+            SqlHelper.ExecuteNonQuery(UpdateStatement, CommandType.Text,
                 new SqlParameter[]
                 {
                     new SqlParameter("@IdCustomer", Id),
@@ -83,10 +124,13 @@ namespace DAL.Repositories.SqlServer
                 });
         }
 
+        /// <summary>
+        /// Obtiene todos los clientes aplicando filtros opcionales.
+        /// </summary>
         public IEnumerable<Customer> GetAll(int? nroDocument = null, string firstName = null, string lastName = null, string telephone = null, string mail = null)
         {
             var customers = new List<Customer>();
-            string query = SelectAllStatement + " WHERE 1=1"; // Se usa WHERE 1=1 para facilitar concatenación de condiciones
+            string query = SelectAllStatement + " WHERE 1=1";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             if (nroDocument.HasValue)
@@ -119,7 +163,7 @@ namespace DAL.Repositories.SqlServer
                 parameters.Add(new SqlParameter("@Mail", "%" + mail + "%"));
             }
 
-            using (var reader = SqlHelper.ExecuteReader(query, System.Data.CommandType.Text, parameters.ToArray()))
+            using (var reader = SqlHelper.ExecuteReader(query, CommandType.Text, parameters.ToArray()))
             {
                 while (reader.Read())
                 {
@@ -140,16 +184,25 @@ namespace DAL.Repositories.SqlServer
             return customers;
         }
 
+        /// <summary>
+        /// No implementado para este repositorio.
+        /// </summary>
         public IEnumerable<Customer> GetAll()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// No implementado para este repositorio.
+        /// </summary>
         public IEnumerable<Customer> GetAll(int? nroDocument, DateTime? registrationBooking, DateTime? registrationDate)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Obtiene todos los clientes según filtros y estado.
+        /// </summary>
         public IEnumerable<Customer> GetAll(int? nroDocument, string firstName, string lastName, string telephone, string mail, int state)
         {
             var customers = new List<Customer>();
@@ -208,6 +261,9 @@ namespace DAL.Repositories.SqlServer
             return customers;
         }
 
+        /// <summary>
+        /// No implementado para este repositorio.
+        /// </summary>
         public IEnumerable<Customer> GetAll(DateTime? from, DateTime? to, int state)
         {
             throw new NotImplementedException();
