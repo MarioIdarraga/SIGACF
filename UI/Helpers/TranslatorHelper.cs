@@ -8,8 +8,18 @@ using SL.BLL;
 
 namespace UI.Helpers
 {
+    /// <summary>
+    /// Proporciona métodos de traducción para controles de interfaz,
+    /// aplicando el idioma configurado y registrando automáticamente
+    /// las traducciones faltantes.
+    /// </summary>
     public static class TranslatorHelper
     {
+        /// <summary>
+        /// Traduce de forma recursiva todos los controles contenidos en el control recibido.
+        /// Aplica el traductor actual y registra las claves faltantes.
+        /// </summary>
+        /// <param name="control">Control raíz cuyos textos serán traducidos.</param>
         public static void Translate(this Control control)
         {
             foreach (Control c in control.Controls)
@@ -27,10 +37,16 @@ namespace UI.Helpers
                 }
 
                 if (c.HasChildren)
-                    c.Translate(); // recursivo
+                    c.Translate(); 
             }
         }
 
+        /// <summary>
+        /// Agrega una traducción faltante al archivo de idioma en tiempo de ejecución,
+        /// y también al archivo correspondiente del proyecto cuando está en modo DEBUG.
+        /// </summary>
+        /// <param name="key">Clave de texto que falta traducir.</param>
+        /// <param name="defaultText">Texto por defecto que se guardará.</param>
         private static void AddMissingTranslation(string key, string defaultText)
         {
             string lang = Thread.CurrentThread.CurrentUICulture.Name;
@@ -52,7 +68,7 @@ namespace UI.Helpers
             }
 
 #if DEBUG
-            // También en carpeta del proyecto (para revisión)
+            
             string projectFolder = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\I18n"));
             string projectPath = Path.Combine(projectFolder, fileName);
 

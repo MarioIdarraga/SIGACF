@@ -10,7 +10,7 @@
 
 <UL>
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Introducción">
+            <param name="Name" value="Introduccion">
             <param name="Local" value="es\introduccion.html">
         </OBJECT>
     </LI>
@@ -22,55 +22,55 @@
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Menú Principal y Navegación">
+            <param name="Name" value="Menu Principal y Navegacion">
             <param name="Local" value="es\menu.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Ventas – Clientes">
+            <param name="Name" value="Ventas  Clientes">
             <param name="Local" value="es\clientes.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Ventas – Reservas">
+            <param name="Name" value="Ventas  Reservas">
             <param name="Local" value="es\reservas.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Módulo de Pagos">
+            <param name="Name" value="Modulo de Pagos">
             <param name="Local" value="es\pagos.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Módulo de Cancelaciones">
+            <param name="Name" value="Modulo de Cancelaciones">
             <param name="Local" value="es\cancelaciones.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Módulo de Reportes">
+            <param name="Name" value="Modulo de Reportes">
             <param name="Local" value="es\reportes.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Módulo de Administración">
+            <param name="Name" value="Modulo de Administracion">
             <param name="Local" value="es\administracion.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="Buenas Prácticas y Seguridad">
+            <param name="Name" value="Buenas Practicas y Seguridad">
             <param name="Local" value="es\buenas_practicas.html">
         </OBJECT>
     </LI>
 
     <LI> <OBJECT type="text/sitemap">
-            <param name="Name" value="FAQ - Solución de Problemas">
+            <param name="Name" value="FAQ - Solucion de Problemas">
             <param name="Local" value="es\faq.html">
         </OBJECT>
     </LI>

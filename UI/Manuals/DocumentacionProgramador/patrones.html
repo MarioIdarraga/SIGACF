@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Patrones – SIGACF</title>
+    <style>body{font-family:Segoe UI,Arial;padding:25px;}</style>
+</head>
+
+<body>
+
+<h1>Patrones Utilizados</h1>
+
+<h2>Composite (Permisos)</h2>
+<p>
+Permite modelar jerarquías de permisos mediante Patentes y Familias.  
+Una Familia contiene otras Familias o Patentes.  
+La SL interpreta la estructura para determinar acceso a funcionalidades.
+</p>
+
+<h2>Repository</h2>
+<p>
+Aísla el acceso a datos del resto del sistema.  
+Permite reemplazar SQL por archivos sin modificar la lógica del negocio.
+</p>
+
+<h2>Factory</h2>
+<p>
+Define qué implementación de repositorio se utilizará según configuración (SQL o File).
+</p>
+
+<h2>Service Layer</h2>
+<p>
+Patrón de capa de servicios que centraliza reglas transversales:
+Logs, seguridad, DVH/DVV, validaciones y orquestación.
+</p>
+
+</body>
+</html>

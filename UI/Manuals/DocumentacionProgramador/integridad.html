@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Integridad – SIGACF</title>
+    <style>body{font-family:Segoe UI,Arial;padding:25px;}</style>
+</head>
+
+<body>
+
+<h1>Integridad – DVH y DVV</h1>
+
+<p>
+SIGACF implementa mecanismos de integridad inspirados en auditorías bancarias.
+</p>
+
+<h2>DVH (Dígito Verificador Horizontal)</h2>
+<p>
+Cada fila de cada tabla posee un hash calculado en base a sus campos relevantes.  
+Permite detectar alteraciones en registros individuales.
+</p>
+
+<h2>DVV (Dígito Verificador Vertical)</h2>
+<p>
+Se calcula a nivel de tabla sumando los DVH individuales.  
+Permite verificar si falta, sobra o fue modificado un registro completo.
+</p>
+
+<h2>Implementación</h2>
+<p>
+El cálculo de DVH/DVV se realiza en la capa SL antes y después de insert/update/delete.  
+Se registran errores de integridad mediante el Logger.
+</p>
+
+</body>
+</html>

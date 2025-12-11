@@ -15,6 +15,10 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario principal de navegación del sistema.
+    /// Gestiona idioma, permisos, carga de formularios hijos y acceso a la ayuda.
+    /// </summary>
     public partial class barraTitulo : Form
     {
         private readonly HashSet<string> _allowedForms = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -25,6 +29,9 @@ namespace UI
         /// </summary>
         private Type _currentChildFormType;
 
+        /// <summary>
+        /// Establece los formularios permitidos según las patentes del usuario.
+        /// </summary>
         public void SetAllowedForms(IEnumerable<string> forms)
         {
             _allowedForms.Clear();
@@ -33,6 +40,10 @@ namespace UI
                     _allowedForms.Add(f);
         }
 
+        /// <summary>
+        /// Constructor principal. Inicializa componentes, idioma, eventos,
+        /// y configura las etiquetas de permisos para los botones del menú.
+        /// </summary>
         public barraTitulo()
         {
             InitializeComponent();
@@ -52,7 +63,6 @@ namespace UI
 
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 
-
             this.Translate();
 
             PermissionSLService permissionSL = new PermissionSLService();
@@ -62,7 +72,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Maneja el cambio de idioma desde el combo.
+        /// Maneja el cambio de idioma desde el ComboBox.
         /// Cambia la cultura, traduce el formulario y recarga el formulario hijo actual.
         /// </summary>
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,7 +97,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Recarga el formulario hijo actual con la cultura/idioma vigentes.
+        /// Recarga el formulario hijo actualmente cargado aplicando el nuevo idioma.
         /// </summary>
         private void ReloadCurrentChild()
         {
@@ -99,7 +109,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Oculta o muestra los botones dependiendo de las patentes/familias del usuario.
+        /// Aplica permisos a los botones del menú vertical según las patentes del usuario.
         /// </summary>
         private void ApplyAuthorization()
         {
@@ -111,20 +121,15 @@ namespace UI
 
                 PermissionSLService permissionSL = new PermissionSLService();
 
-                // Obtiene los permisos del usuario (lista de strings: "MenuPay", "MenuSales", etc.)
                 IEnumerable<string> allowed = permissionSL.GetAllowedComponentsForUser(user.UserId);
 
-                // Guarda internamente para usar más adelante si querés
                 SetAllowedForms(allowed);
 
-                // Recorre todos los botones del menú que tienen un Tag con el nombre del formulario
                 foreach (Control ctrl in menuVertical.Controls)
                 {
                     if (ctrl is Button btn && btn.Tag != null)
                     {
                         string component = btn.Tag.ToString();
-
-                        // Si el usuario NO tiene permiso → lo ocultamos
                         btn.Visible = allowed.Contains(component);
                     }
                 }
@@ -136,12 +141,17 @@ namespace UI
             }
         }
 
-
+        /// <summary>
+        /// Cierra completamente la aplicación.
+        /// </summary>
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Maximiza el formulario principal.
+        /// </summary>
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -149,6 +159,9 @@ namespace UI
             btnRestaurar.Visible = true;
         }
 
+        /// <summary>
+        /// Restaura el formulario desde modo maximizado.
+        /// </summary>
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -156,6 +169,9 @@ namespace UI
             btnRestaurar.Visible = false;
         }
 
+        /// <summary>
+        /// Minimiza el formulario.
+        /// </summary>
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -167,6 +183,9 @@ namespace UI
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
+        /// <summary>
+        /// Permite mover el formulario arrastrando el panel superior.
+        /// </summary>
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -174,7 +193,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Abre un formulario hijo dentro del panel contenedor y guarda su tipo.
+        /// Abre un formulario hijo en el panel contenedor y guarda su tipo para recargas posteriores.
         /// </summary>
         private void OpenFormChild(Form formchild)
         {
@@ -190,43 +209,64 @@ namespace UI
             formchild.Show();
         }
 
+        /// <summary>
+        /// Abre el formulario de búsqueda de clientes.
+        /// </summary>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuFindCustomers(this.panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el formulario de alquileres / ventas.
+        /// </summary>
         private void btnAlquiler_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuSales(this.panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el menú de pagos.
+        /// </summary>
         private void btnPay_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuPay(this.panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el formulario para cancelar reservas.
+        /// </summary>
         private void btnCan_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuCan(this.panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el menú de reportes.
+        /// </summary>
         private void bntReportes_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuRep(this.panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el menú de administración general.
+        /// </summary>
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuAdmin(this.panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el menú de manuales del sistema.
+        /// </summary>
         private void btnManuals_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuManuals(this.panelContenedor));
         }
 
         /// <summary>
-        /// Abre el archivo de ayuda (CHM) en el idioma actual.
+        /// Abre el archivo de ayuda (CHM) correspondiente al idioma actual.
         /// </summary>
         private void ShowHelpSection()
         {
@@ -234,7 +274,6 @@ namespace UI
             {
                 string language = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
 
-                // Carpeta base: donde está el EXE en tiempo de ejecución
                 string basePath = System.IO.Path.Combine(Application.StartupPath, "Help");
 
                 string helpFileName = language == "en"
@@ -253,9 +292,7 @@ namespace UI
                     return;
                 }
 
-               
                 Help.ShowHelp(this, helpPath);
-                
             }
             catch (Exception ex)
             {
@@ -265,8 +302,8 @@ namespace UI
         }
 
         /// <summary>
-        /// Devuelve la ruta del tema de ayuda asociado a este formulario según el idioma actual.
-        /// (Por ahora no se usa, pero queda listo si luego querés abrir un tópico puntual.)
+        /// Obtiene la ruta del tópico de ayuda asociado al formulario según el idioma.
+        /// (Método auxiliar por si luego deseas abrir temas específicos.)
         /// </summary>
         private string GetHelpTopic(string language)
         {
@@ -275,7 +312,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Captura la tecla F1 y abre la ayuda correspondiente.
+        /// Captura la tecla F1 y abre la sección de ayuda correspondiente.
         /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -297,5 +334,6 @@ namespace UI
         }
     }
 }
+
 
 

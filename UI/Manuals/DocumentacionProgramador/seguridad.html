@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Seguridad – SIGACF</title>
+    <style>body{font-family:Segoe UI,Arial;padding:25px;}</style>
+</head>
+
+<body>
+
+<h1>Seguridad</h1>
+
+<h2>Cifrado AES</h2>
+<p>
+Las contraseñas se almacenan cifradas con AES utilizando una clave definida en configuración.  
+Esto asegura que no existan contraseñas en texto plano en la base de datos o archivos.
+</p>
+
+<h2>Permisos (Composite)</h2>
+<p>
+El acceso a funcionalidades está controlado por Patentes (permisos unitarios) y Familias 
+(grupos de permisos).  
+El Service Layer evalúa permisos antes de permitir ejecutar acciones críticas.
+</p>
+
+<h2>Bloqueo de Usuario</h2>
+<p>
+El login incorpora un mecanismo de bloqueo tras varios intentos fallidos para prevenir ataques 
+de fuerza bruta.
+</p>
+
+</body>
+</html>

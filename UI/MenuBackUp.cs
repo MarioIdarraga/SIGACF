@@ -109,7 +109,7 @@ namespace UI
             }
             catch (BusinessException ex)
             {
-                // Errores esperados de negocio (por ejemplo, permisos, rutas inválidas, etc.)
+               
                 MessageBox.Show(
                     ex.Message,
                     "Backup",
@@ -118,7 +118,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Errores inesperados: se loguean y se muestra mensaje genérico
+                
                 LoggerService.Log(
                     $"Error inesperado realizando backup: {ex}",
                     EventLevel.Critical);
@@ -151,7 +151,7 @@ namespace UI
             {
                 if (ofd.ShowDialog() != DialogResult.OK) return;
 
-                // Confirmación (REPLACE true sobre la DB actual)
+                
                 if (MessageBox.Show(
                         "Esto restaurará la base actual desde el backup seleccionado.\n¿Continuar?",
                         "Confirmar restore",

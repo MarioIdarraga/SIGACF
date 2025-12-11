@@ -10,6 +10,10 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario principal de inicio de sesión del sistema.
+    /// Maneja autenticación, placeholders y navegación hacia otros formularios.
+    /// </summary>
     public partial class Login : Form
     {
 
@@ -27,6 +31,10 @@ namespace UI
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        /// <summary>
+        /// Constructor del formulario de Login. Inicializa componentes y eventos para arrastrar la ventana.
+        /// </summary>
         public Login()
         {
             InitializeComponent();
@@ -38,13 +46,12 @@ namespace UI
         /// <summary>
         /// Maneja el intento de acceso del usuario desde la UI.
         /// Llama a LoginSLService y actúa según el mensaje devuelto.
+        /// Gestiona bloqueos, cambios de contraseña obligatorios y acceso permitido.
         /// </summary>
         private void btnToAccess_Click(object sender, EventArgs e)
         {
             try
             {
-                //this.Translate();
-
                 string login = txtUser.Text.Trim();
                 string password = txtPass.Text.Trim();
 
@@ -135,18 +142,27 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Limpia el placeholder del campo Usuario al obtener el foco.
+        /// </summary>
         private void txtUser_Enter(object sender, EventArgs e)
         {
             if (txtUser.Text == "Usuario")
                 txtUser.Text = "";
         }
 
+        /// <summary>
+        /// Restaura el placeholder del campo Usuario si queda vacío.
+        /// </summary>
         private void txtUser_Leave(object sender, EventArgs e)
         {
             if (txtUser.Text == "")
                 txtUser.Text = "Usuario";
         }
 
+        /// <summary>
+        /// Limpia el placeholder del campo Contraseña al obtener el foco y activa password char.
+        /// </summary>
         private void txtPass_Enter(object sender, EventArgs e)
         {
             if (txtPass.Text == "Contraseña")
@@ -156,6 +172,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Restaura el placeholder de contraseña si queda vacío.
+        /// </summary>
         private void txtPass_Leave(object sender, EventArgs e)
         {
             if (txtPass.Text == "")
@@ -165,17 +184,26 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Abre el formulario para recuperar contraseña mediante correo.
+        /// </summary>
         private void lnkPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var frm = new FrmRecoverPassword();
             frm.ShowDialog();
         }
 
+        /// <summary>
+        /// Cierra completamente la aplicación desde la pantalla de login.
+        /// </summary>
         private void btnCerrarLogin_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Restaura el tamaño del formulario desde modo maximizado.
+        /// </summary>
         private void btnRestaurarLogin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -183,6 +211,9 @@ namespace UI
             btnRestaurarLogin.Visible = false;
         }
 
+        /// <summary>
+        /// Maximiza la ventana del login.
+        /// </summary>
         private void btnMaximizarLogin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -190,6 +221,9 @@ namespace UI
             btnRestaurarLogin.Visible = true;
         }
 
+        /// <summary>
+        /// Minimiza la ventana del login.
+        /// </summary>
         private void btnMinimizarLogin_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;

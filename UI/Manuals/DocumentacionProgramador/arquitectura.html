@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Arquitectura – SIGACF</title>
+    <style>body{font-family:Segoe UI,Arial;padding:25px;}</style>
+</head>
+
+<body>
+
+<h1>Arquitectura de SIGACF</h1>
+
+<p>
+La arquitectura del sistema sigue un modelo en capas claro y desacoplado. Cada capa cumple una 
+responsabilidad específica para garantizar separación de responsabilidades, reutilización y claridad.
+</p>
+
+<h2>Domain Layer</h2>
+<p>
+Contiene las entidades del negocio (Cliente, Reserva, Pago, Usuario, Promoción, etc.).  
+No contiene lógica, solo estado y estructura.
+</p>
+
+<h2>DAL (Data Access Layer)</h2>
+<p>
+Encargada del acceso a datos. Implementa repositorios con soporte para archivos y SQL Server.  
+Se utiliza el patrón <b>Factory</b> para seleccionar dinámicamente el backend.
+</p>
+
+<h2>BLL (Business Logic Layer)</h2>
+<p>
+Implementa las reglas del negocio, validaciones de entidades y excepciones personalizadas.  
+No conoce detalles de la UI ni de la persistencia.
+</p>
+
+<h2>SL (Service Layer)</h2>
+<p>
+Es la capa central del sistema. Orquesta las operaciones, registra logs, controla permisos,
+aplica DVH/DVV, maneja seguridad y sirve como interfaz entre la UI y el resto del sistema.
+</p>
+
+</body>
+</html>

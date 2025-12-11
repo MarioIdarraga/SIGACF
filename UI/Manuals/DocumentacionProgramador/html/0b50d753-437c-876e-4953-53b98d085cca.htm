@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html ><html lang="en-US"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="shortcut icon" href="../icons/favicon.ico" /><link rel="stylesheet" href="../css/bulma.css" /><link rel="stylesheet" href="../css/font-awesome.min.css" /><link rel="stylesheet" href="../css/presentationStyle.css" /><link rel="stylesheet" href="../css/vs.min.css" /><script src="../scripts/jquery-3.5.1.min.js"></script><script src="../scripts/clipboard.min.js"></script><script src="../scripts/highlight.min.js"></script><script src="../scripts/presentationStyle.js"></script><title>SL Namespace</title><meta name="Title" content="SL" /><meta name="Help.Id" content="N:SL" /><meta name="Help.ContentType" content="Reference" /><meta name="container" content="SL" /><meta name="guid" content="0b50d753-437c-876e-4953-53b98d085cca" /><meta name="Description" content="summaryN:SL" /><meta name="tocFile" content="../toc/Root.xml" /></head><body><div class="fixedLayout"><div id="Header" class="fixedHeader"><div class="pageHeader level mb-0 py-2 px-4"><div id="TitleContainer" class="level-left"><div id="DocumentationTitle" class="level-item">Manual Desarrollador SIGACF</div></div><div id="LangFilterSearchContainer" class="level-right"><div class="level-item"><div class="dropdown is-hoverable"><div class="dropdown-trigger"><button class="button" aria-haspopup="true" aria-controls="dropdown-menu"><span id="CurrentLanguage"></span><span class="icon is-small"><i class="fa fa-angle-down" aria-hidden="true"></i></span></button></div><div class="dropdown-menu" role="menu"><div id="LanguageSelections" class="dropdown-content"><a class="dropdown-item languageFilterItem" data-languageId="cs">C#</a><a class="dropdown-item languageFilterItem" data-languageId="vb">VB</a><a class="dropdown-item languageFilterItem" data-languageId="cpp">C++</a><a class="dropdown-item languageFilterItem" data-languageId="fs">F#</a></div></div></div></div><div class="level-item"><form id="SearchForm" action="#" onsubmit="TransferToSearchPage(); return false;"><div class="field"><div class="control has-icons-left"><input id="SearchTerms" class="input" type="text" maxlength="200" placeholder="Search" /><span class="icon is-small is-left"><i class="fa fa-search"></i></span><button id="SearchButton" type="submit" class="is-hidden"></button></div></div></form></div></div></div></div><div class="fixedContent"><nav class="breadcrumb my-1 px-2 border-bottom" role="navigation"><ul id="TopicBreadcrumbs" /></nav><div id="ContentContainer" class="columns pl-5 pr-5 fixedContent"><div id="ShowHideTOCColumn" class="column is-hidden-tablet"><a id="ShowHideTOC">Show/Hide TOC</a></div><div id="TOCColumn" class="column is-hidden-mobile"><nav class="toc"><ul id="TableOfContents" class="toc-menu" /></nav></div><div id="Resizer" class="is-hidden"></div><div id="TopicContent" class="column content is-7"><h1>SL Namespace</h1><div class="summary"><p class="missing">[Missing &lt;summary&gt; documentation for "N:SL"]</p></div><h2 class="quickLinkHeader"><span class="icon toggleSection" tabindex="0"><i class="fa fa-angle-down"></i></span>Classes</h2><div id="IDACASection"><table id="classList" class="table is-hoverable"><tr><td><a href="71b45fca-f2a0-af38-0283-05c9e7996e6e.htm">BookingSLService</a></td><td>
+            Service Layer para operaciones de reservas (Booking).
+            Centraliza el acceso a BookingService e incorpora logging y DVH/DVV.
+            </td></tr><tr><td><a href="046110f9-6a41-2a55-830f-409dfec6b934.htm">CustomerStateSLService</a></td><td>
+            Service Layer para gestionar los estados de cliente (CustomerStates).
+            Encapsula la lógica de logging y el acceso a la capa BLL.
+            </td></tr><tr><td><a href="52a4dcc0-495e-a8b7-56e8-a829bb306227.htm">LoginSLService</a></td><td>
+            Servicio de autenticación ubicado en la capa SL.
+            Coordina el proceso de login entre la UI y la BLL,
+            captura excepciones de negocio, registra auditoría
+            e inicializa la sesión del usuario.
+            </td></tr><tr><td><a href="f77d6f3f-cab7-d0f9-23f2-ba74c2d6f685.htm">PaymentMethodSLService</a></td><td>
+            Service Layer para consultar los métodos de pago disponibles.
+            Centraliza el acceso al repositorio, aplica logging y validaciones.
+            </td></tr><tr><td><a href="806b8631-3e7d-4f18-aefc-dda453115592.htm">PaySLService</a></td><td>
+            Service Layer para operaciones de pagos (Pay).
+            Centraliza el acceso al PayService e incorpora logging.
+            </td></tr><tr><td><a href="cf443b38-740d-b3d4-583a-a287804de056.htm">PromotionSLService</a></td><td>
+            Service Layer para la gestión de promociones.
+            Encapsula logging, acceso a la capa BLL y utilidades para la UI.
+            </td></tr></table></div></div><div id="InThisArticleColumn" class="column is-hidden-mobile"><nav class="menu sticky is-hidden"><p class="menu-label"><strong>In This Article</strong></p><ul id="InThisArticleMenu" class="menu-list"><li><a class="quickLink">Classes</a></li></ul></nav></div></div></div></div><script>$(function(){
+SetDefaultLanguage("cs");
+LoadTocFile(null, null);
+InitializeQuickLinks();
+
+$(".toggleSection" ).click(function () {
+    SectionExpandCollapse(this);
+});
+
+$(".toggleSection").keypress(function () {
+    SectionExpandCollapseCheckKey(this, event)
+});
+});</script></body></html>

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html ><html lang="en-US"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="shortcut icon" href="../icons/favicon.ico" /><link rel="stylesheet" href="../css/bulma.css" /><link rel="stylesheet" href="../css/font-awesome.min.css" /><link rel="stylesheet" href="../css/presentationStyle.css" /><link rel="stylesheet" href="../css/vs.min.css" /><script src="../scripts/jquery-3.5.1.min.js"></script><script src="../scripts/clipboard.min.js"></script><script src="../scripts/highlight.min.js"></script><script src="../scripts/presentationStyle.js"></script><title>BLL.BusinessException Namespace</title><meta name="Title" content="BLL.BusinessException" /><meta name="Help.Id" content="N:BLL.BusinessException" /><meta name="Help.ContentType" content="Reference" /><meta name="container" content="BLL.BusinessException" /><meta name="guid" content="f9d71711-58f3-a5c5-30aa-a35e309aab84" /><meta name="Description" content="summaryN:BLL." /><meta name="tocFile" content="../toc/Root.xml" /></head><body><div class="fixedLayout"><div id="Header" class="fixedHeader"><div class="pageHeader level mb-0 py-2 px-4"><div id="TitleContainer" class="level-left"><div id="DocumentationTitle" class="level-item">Manual Desarrollador SIGACF</div></div><div id="LangFilterSearchContainer" class="level-right"><div class="level-item"><div class="dropdown is-hoverable"><div class="dropdown-trigger"><button class="button" aria-haspopup="true" aria-controls="dropdown-menu"><span id="CurrentLanguage"></span><span class="icon is-small"><i class="fa fa-angle-down" aria-hidden="true"></i></span></button></div><div class="dropdown-menu" role="menu"><div id="LanguageSelections" class="dropdown-content"><a class="dropdown-item languageFilterItem" data-languageId="cs">C#</a><a class="dropdown-item languageFilterItem" data-languageId="vb">VB</a><a class="dropdown-item languageFilterItem" data-languageId="cpp">C++</a><a class="dropdown-item languageFilterItem" data-languageId="fs">F#</a></div></div></div></div><div class="level-item"><form id="SearchForm" action="#" onsubmit="TransferToSearchPage(); return false;"><div class="field"><div class="control has-icons-left"><input id="SearchTerms" class="input" type="text" maxlength="200" placeholder="Search" /><span class="icon is-small is-left"><i class="fa fa-search"></i></span><button id="SearchButton" type="submit" class="is-hidden"></button></div></div></form></div></div></div></div><div class="fixedContent"><nav class="breadcrumb my-1 px-2 border-bottom" role="navigation"><ul id="TopicBreadcrumbs" /></nav><div id="ContentContainer" class="columns pl-5 pr-5 fixedContent"><div id="ShowHideTOCColumn" class="column is-hidden-tablet"><a id="ShowHideTOC">Show/Hide TOC</a></div><div id="TOCColumn" class="column is-hidden-mobile"><nav class="toc"><ul id="TableOfContents" class="toc-menu" /></nav></div><div id="Resizer" class="is-hidden"></div><div id="TopicContent" class="column content is-7"><h1>BLL.<wbr />Business<wbr />Exception Namespace</h1><div class="summary"><p class="missing">[Missing &lt;summary&gt; documentation for "N:BLL.BusinessException"]</p></div><h2 class="quickLinkHeader"><span class="icon toggleSection" tabindex="0"><i class="fa fa-angle-down"></i></span>Classes</h2><div id="IDACASection"><table id="classList" class="table is-hoverable"><tr><td><a href="98d4435b-52b5-fb43-7537-c1c1565f6068.htm">BusinessException</a></td><td>
+            Representa una excepción controlada del negocio.
+            Se utiliza para diferenciar errores esperados (reglas de negocio)
+            de errores inesperados del sistema.
+            </td></tr><tr><td><a href="f6667604-3f77-ff9e-4c6b-729a684da2c2.htm">CambioPasswordRequeridoException</a></td><td>
+            Excepción utilizada cuando un usuario debe cambiar su contraseña
+            antes de poder continuar usando el sistema.
+            </td></tr><tr><td><a href="fad94ff9-af01-76c1-78fe-404616906663.htm">CanchaInexistenteException</a></td><td>
+            Excepción utilizada cuando se intenta operar sobre una cancha
+            que no existe en el sistema.
+            </td></tr><tr><td><a href="212cb49f-cc0e-4235-c5cc-1f650a63965b.htm">ClienteDniDuplicadoException</a></td><td>
+            Se lanza cuando se intenta registrar un cliente cuyo DNI ya existe en el sistema.
+            </td></tr><tr><td><a href="7d9d0231-56a2-2210-db51-01c0fd748c1b.htm">ClienteInexistenteException</a></td><td>
+            Excepción utilizada cuando se intenta operar sobre un cliente
+            que no existe en el sistema.
+            </td></tr><tr><td><a href="e9dc5088-aa02-a0d6-dccb-28178422f09a.htm">DatabaseAccessException</a></td><td>
+            Excepción que representa un error al acceder a la base de datos.
+            Se utiliza cuando ocurre un problema de conexión, consulta o ejecución
+            durante operaciones de persistencia.
+            </td></tr><tr><td><a href="bc228d99-19f3-c3c7-59ce-958c46239dfa.htm">DuracionReservaInvalidaException</a></td><td>
+            Excepción que se lanza cuando la duración de una reserva 
+            no cumple con las reglas de negocio establecidas.
+            </td></tr><tr><td><a href="4a23b4f5-0850-593c-9e83-7d59c8352a1a.htm">PasswordIncorrectaException</a></td><td>
+            Excepción que se lanza cuando la contraseña ingresada 
+            no coincide con la registrada para el usuario.
+            </td></tr><tr><td><a href="f9e124d3-569a-a72b-9c40-191f656e566a.htm">ReservaDuplicadaException</a></td><td>
+            Excepción que se lanza cuando se intenta registrar una reserva
+            que ya existe para el mismo cliente, fecha u horario.
+            </td></tr><tr><td><a href="1058f1dd-c6b2-32bb-d915-d4ae84b8e962.htm">UsuarioBloqueadoException</a></td><td>
+            Se lanza cuando un usuario ha superado los intentos permitidos
+            y su cuenta se encuentra bloqueada.
+            </td></tr><tr><td><a href="1daa5a3d-0d2e-58c0-a80d-5cbb37699698.htm">UsuarioInexistenteException</a></td><td>
+            Excepción que se lanza cuando el usuario solicitado no existe
+            en el sistema o no puede ser encontrado.
+            </td></tr></table></div></div><div id="InThisArticleColumn" class="column is-hidden-mobile"><nav class="menu sticky is-hidden"><p class="menu-label"><strong>In This Article</strong></p><ul id="InThisArticleMenu" class="menu-list"><li><a class="quickLink">Classes</a></li></ul></nav></div></div></div></div><script>$(function(){
+SetDefaultLanguage("cs");
+LoadTocFile(null, null);
+InitializeQuickLinks();
+
+$(".toggleSection" ).click(function () {
+    SectionExpandCollapse(this);
+});
+
+$(".toggleSection").keypress(function () {
+    SectionExpandCollapseCheckKey(this, event)
+});
+});</script></body></html>

@@ -6,7 +6,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using UI.Helpers;          
+using UI.Helpers;
 
 namespace UI
 {
@@ -37,8 +37,9 @@ namespace UI
         }
 
         /// <summary>
-        /// Inicializa y establece placeholders.
+        /// Constructor. Inicializa el formulario y establece placeholders.
         /// </summary>
+        /// <param name="user">Usuario al que se le forzará el cambio de contraseña.</param>
         public FrmForcePasswordChange(User user)
         {
             InitializeComponent();
@@ -61,13 +62,16 @@ namespace UI
             btnRestaurarPasswordChange.MouseDown += FrmForcePasswordChange_MouseDown;
         }
 
+        /// <summary>
+        /// Cancela el proceso y cierra el formulario.
+        /// </summary>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Guarda el cambio de contraseña.
+        /// Guarda el cambio de contraseña, validando coincidencia y placeholders.
         /// </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -112,11 +116,17 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Cierra el formulario.
+        /// </summary>
         private void btnCerrarPasswordChange_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Restaura el tamaño normal del formulario desde modo maximizado.
+        /// </summary>
         private void btnRestaurarPasswordChanged_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -124,6 +134,9 @@ namespace UI
             btnRestaurarPasswordChange.Visible = false;
         }
 
+        /// <summary>
+        /// Maximiza el formulario.
+        /// </summary>
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -131,6 +144,9 @@ namespace UI
             btnRestaurarPasswordChange.Visible = true;
         }
 
+        /// <summary>
+        /// Limpia placeholder y activa modo contraseña al entrar en el textbox de nueva contraseña.
+        /// </summary>
         private void txtNewPassword_Enter(object sender, EventArgs e)
         {
             if (txtNewPassword.Text == PlaceholderNew)
@@ -141,6 +157,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Restaura placeholder si el campo de nueva contraseña queda vacío.
+        /// </summary>
         private void txtNewPassword_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNewPassword.Text))
@@ -151,7 +170,9 @@ namespace UI
             }
         }
 
-
+        /// <summary>
+        /// Limpia placeholder y activa modo contraseña al entrar en el campo de confirmación.
+        /// </summary>
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
             if (txtConfirmPassword.Text == PlaceholderConfirm)
@@ -162,6 +183,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Restaura placeholder si el campo de confirmación queda vacío.
+        /// </summary>
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
@@ -172,6 +196,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Maximiza el formulario (variante de botón adicional).
+        /// </summary>
         private void btnMaximizarPasswordChanged_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -179,6 +206,9 @@ namespace UI
             btnMaximizarLogin.Visible = true;
         }
 
+        /// <summary>
+        /// Restaura el tamaño normal del formulario (variante de botón adicional).
+        /// </summary>
         private void btnRestaurarPasswordChange_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -187,5 +217,4 @@ namespace UI
         }
     }
 }
-
 

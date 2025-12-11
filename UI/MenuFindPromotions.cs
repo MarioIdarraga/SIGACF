@@ -16,12 +16,21 @@ using UI.Helpers;
 
 namespace UI
 {
+    /// <summary>
+    /// Formulario para la búsqueda, listado y administración de promociones.
+    /// Permite navegar hacia otros submenús y consultar promociones mediante la capa SL.
+    /// </summary>
     public partial class MenuFindPromotions : Form
     {
         private Panel _panelContenedor;
 
         private readonly PromotionSLService _promotionSLService;
 
+        /// <summary>
+        /// Constructor del formulario. Inicializa servicios, aplica traducción
+        /// y recibe el panel contenedor donde se cargarán los subformularios.
+        /// </summary>
+        /// <param name="panelContenedor">Panel donde se incrustarán los formularios secundarios.</param>
         public MenuFindPromotions(Panel panelContenedor)
         {
             InitializeComponent();
@@ -33,6 +42,11 @@ namespace UI
             _promotionSLService = new PromotionSLService(bll);
         }
 
+        /// <summary>
+        /// Abre un formulario hijo dentro del panel contenedor,
+        /// eliminando el previo si existe.
+        /// </summary>
+        /// <param name="formchild">Instancia de formulario a mostrar.</param>
         private void OpenFormChild(object formchild)
         {
             if (_panelContenedor.Controls.Count > 0)
@@ -44,22 +58,35 @@ namespace UI
             _panelContenedor.Tag = fh;
             fh.Show();
         }
+
+        /// <summary>
+        /// Abre el menú de administración general.
+        /// </summary>
         private void btnMenuAdmin_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuAdmin(_panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el formulario para registrar nuevas promociones.
+        /// </summary>
         private void btnRegPromotion_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuRegProm(_panelContenedor));
         }
 
+        /// <summary>
+        /// Abre el formulario para modificar promociones existentes.
+        /// </summary>
         private void btnModPromotion_Click(object sender, EventArgs e)
         {
             OpenFormChild(new MenuModProm(_panelContenedor));
         }
 
-        
+        /// <summary>
+        /// Ejecuta la búsqueda de promociones utilizando la capa SL,
+        /// muestra resultados en el DataGridView y traduce encabezados.
+        /// </summary>
         private void btnFindPromotion_Click(object sender, EventArgs e)
         {
             try
@@ -82,6 +109,9 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// Oculta columnas internas o técnicas del DataGridView.
+        /// </summary>
         private void HideTechnicalColumns()
         {
             if (dataGridViewUsers.Columns.Contains("IdPromotion"))
@@ -90,8 +120,7 @@ namespace UI
 
         /// <summary>
         /// Traduce los encabezados de las columnas del DataGridView
-        /// utilizando el mismo sistema de idiomas del resto de la aplicación.
-        /// Usa el Name de la columna como clave en los archivos de idioma.
+        /// utilizando el sistema de idiomas de la aplicación.
         /// </summary>
         private void TranslateGridHeaders()
         {
@@ -107,9 +136,10 @@ namespace UI
                 }
                 catch
                 {
-                    // Si no se encuentra la traducción, se deja el HeaderText tal cual.
+                    // Si no tiene traducción, se deja como viene.
                 }
             }
         }
     }
 }
+

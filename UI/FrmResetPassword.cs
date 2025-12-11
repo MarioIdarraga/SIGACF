@@ -21,7 +21,6 @@ namespace UI
     {
         private readonly LoginSLService _loginService;
 
-
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -38,23 +37,23 @@ namespace UI
         }
 
         /// <summary>
-        /// Inicializa el formulario y aplica placeholders + evento de mover pantalla.
+        /// Inicializa el formulario, aplica traducciones y configura placeholders.
         /// </summary>
         public FrmResetPassword()
         {
             InitializeComponent();
-            this.Translate(); 
+            this.Translate();
             _loginService = new LoginSLService();
 
             ApplyPlaceholders();
 
-            // Habilitar drag en el formulario
+            // Habilitar drag en el formulario y botones
             this.MouseDown += FrmResetPassword_MouseDown;
             btnCerrarResetPassword.MouseDown += FrmResetPassword_MouseDown;
         }
 
         /// <summary>
-        /// Configura los textos iniciales (placeholders) de los campos.
+        /// Configura los textos iniciales (placeholders) en todos los campos del formulario.
         /// </summary>
         private void ApplyPlaceholders()
         {
@@ -63,6 +62,9 @@ namespace UI
             SetInitialPlaceholder(txtConfirmPassword, "Repetir Contraseña");
         }
 
+        /// <summary>
+        /// Establece el placeholder inicial para un TextBox específico.
+        /// </summary>
         private void SetInitialPlaceholder(TextBox txt, string placeholder)
         {
             txt.Text = placeholder;
@@ -72,6 +74,9 @@ namespace UI
             txt.Leave += (s, e) => SetPlaceholder(txt, placeholder);
         }
 
+        /// <summary>
+        /// Quita el placeholder al ingresar al TextBox.
+        /// </summary>
         private void RemovePlaceholder(TextBox txt, string placeholder)
         {
             if (txt.Text == placeholder)
@@ -79,12 +84,14 @@ namespace UI
                 txt.Text = "";
                 txt.ForeColor = Color.White;
 
-                // Activar PasswordChar solo si es campo de contraseña
                 if (txt == txtNewPassword || txt == txtConfirmPassword)
                     txt.PasswordChar = '*';
             }
         }
 
+        /// <summary>
+        /// Restaura el placeholder si el TextBox queda vacío.
+        /// </summary>
         private void SetPlaceholder(TextBox txt, string placeholder)
         {
             if (string.IsNullOrWhiteSpace(txt.Text))
@@ -96,7 +103,8 @@ namespace UI
         }
 
         /// <summary>
-        /// Valida los datos ingresados, resetea la contraseña y muestra mensajes al usuario.
+        /// Valida los datos ingresados y realiza el reseteo de contraseña utilizando el token.
+        /// Muestra mensajes informativos y registra logs.
         /// </summary>
         private void btnConfirmarFrmResetPassword_Click(object sender, EventArgs e)
         {
@@ -143,24 +151,34 @@ namespace UI
         }
 
         /// <summary>
-        /// Cierra el formulario sin realizar cambios.
+        /// Cierra el formulario sin realizar ninguna acción.
         /// </summary>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Minimiza el formulario.
+        /// </summary>
         private void btnMinimizarResetPassword_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
+        /// <summary>
+        /// Restaura el formulario desde modo maximizado.
+        /// </summary>
         private void btnRestaurarResetPassword_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
             btnMaximizarLogin.Visible = true;
             btnRestaurarResetPassword.Visible = false;
         }
+
+        /// <summary>
+        /// Variante adicional que restaura el formulario a tamaño normal.
+        /// </summary>
         private void btnRestaurarReset_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -168,6 +186,9 @@ namespace UI
             btnRestaurarResetPassword.Visible = false;
         }
 
+        /// <summary>
+        /// Maximiza el formulario.
+        /// </summary>
         private void btnMaximizarRecoveryPassword_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -175,10 +196,14 @@ namespace UI
             btnMaximizarLogin.Visible = true;
         }
 
+        /// <summary>
+        /// Cierra el formulario.
+        /// </summary>
         private void btnCerrarRecoveryPassword_Click(object sender, EventArgs e)
         {
             this.Close();
         }
     }
 }
+
 

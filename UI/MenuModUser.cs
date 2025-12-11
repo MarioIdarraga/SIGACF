@@ -176,7 +176,7 @@ namespace UI
             }
             catch (BusinessException ex)
             {
-                // Maneja errores de negocio específicos de la BLL/UI (ej: Usuario ya existe)
+                
                 LoggerService.Log(ex.Message, EventLevel.Warning, Session.CurrentUser?.LoginName);
 
                 MessageBox.Show(
@@ -185,9 +185,9 @@ namespace UI
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
-            catch (ArgumentException ax) // 🟢 NUEVO: Captura la ArgumentException (validación de email, etc.)
+            catch (ArgumentException ax) 
             {
-                // Maneja errores de validación de la BLL (ArgumentException)
+                
                 LoggerService.Log(ax.Message, EventLevel.Warning, Session.CurrentUser?.LoginName);
 
                 MessageBox.Show(
@@ -198,7 +198,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Maneja cualquier otro error inesperado (fallos de DB, NullReference, etc.)
+                
                 LoggerService.Log(
                     $"Error inesperado al modificar usuario: {ex.Message}",
                     EventLevel.Error,

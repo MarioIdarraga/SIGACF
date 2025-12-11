@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGACF – Documentación del Programador</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f3f4f6;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1e3a8a, #1d4ed8);
+            color: white;
+            padding: 20px 30px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #111827;
+            color: #e5e7eb;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #1f2937;
+        }
+
+        .sidebar h2 {
+            color: #60a5fa;
+            font-size: 18px;
+            margin-top: 25px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 5px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 10px;
+            margin-top: 10px;
+        }
+
+        .sidebar li {
+            margin: 6px 0;
+        }
+
+        .sidebar a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+            padding: 4px 6px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: #1f2937;
+            color: #fff;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            background: #ffffff;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    SIGACF – Documentación del Programador
+</header>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <h2>Introducción</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('intro.html')">¿Qué es SIGACF?</a></li>
+        </ul>
+
+        <h2>Arquitectura</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('arquitectura.html')">Descripción General</a></li>
+        </ul>
+
+        <h2>Domain</h2>
+        <ul>
+            <li><a href="html/964fe231-4658-051d-7abc-2385798fd908.htm" target="docFrame">Entities</a></li>
+        </ul>
+
+        <h2>BLL</h2>
+        <ul>
+            <li><a href="html/f9d71711-58f3-a5c5-30aa-a35e309aab84.htm" target="docFrame">BusinessException</a></li>
+            <li><a href="html/36738c6a-cbba-163d-ba9b-21e22bfe3a59.htm" target="docFrame">Service</a></li>
+        </ul>
+
+        <h2>DAL</h2>
+        <ul>
+            <li><a href="html/f5d26dfc-db46-a647-46f1-67ac4fa452fe.htm" target="docFrame">Contracts</a></li>
+            <li><a href="html/3aac12eb-e2e7-403f-f762-5e3853a86b4b.htm" target="docFrame">Factory</a></li>
+            <li><a href="html/fa6cdd07-56ff-fa33-9d78-9ac8c196a19c.htm" target="docFrame">Repositories.SqlServer</a></li>
+        </ul>
+
+        <h2>Service Layer (SL)</h2>
+        <ul>
+            <li><a href="html/0b50d753-437c-876e-4953-53b98d085cca.htm" target="docFrame">SL (root)</a></li>
+            <li><a href="html/c35b331d-1a2c-e528-2981-b0d51392659a.htm" target="docFrame">SL.BLL</a></li>
+            <li><a href="html/fcc1771d-f55e-829b-7f41-33b3f436e577.htm" target="docFrame">SL.Composite</a></li>
+            <li><a href="html/52ac9f27-ee46-c100-da38-96d0146cfc12.htm" target="docFrame">SL.DAL.Contracts</a></li>
+            <li><a href="html/465636be-c2a4-072e-f128-c4032ff650b8.htm" target="docFrame">SL.DAL.Repositories.File</a></li>
+            <li><a href="html/708d9623-9d82-9f5d-3897-87eeb0333194.htm" target="docFrame">SL.DAL.Repositories.SqlServer</a></li>
+            <li><a href="html/90a82fa9-5d85-6c8d-7b07-47ea72506918.htm" target="docFrame">SL.Domain</a></li>
+            <li><a href="html/d7264476-ee54-41f8-56ed-f16b9fec4bc1.htm" target="docFrame">SL.Domain.BusinessException</a></li>
+            <li><a href="html/07ec3928-ae98-3739-9d15-19e5c96787a6.htm" target="docFrame">SL.Factory</a></li>
+            <li><a href="html/b443c5ca-f877-7d75-9003-1c5e61c17581.htm" target="docFrame">SL.Helpers</a></li>
+            <li><a href="html/a8f50742-03bf-99eb-a653-0b42c00e58d8.htm" target="docFrame">SL.Service</a></li>
+            <li><a href="html/1aee66d2-c3ef-f602-6051-4d0c7cc483ef.htm" target="docFrame">SL.Service.Extension</a></li>
+            <li><a href="html/15eb1459-2f87-f0e7-2612-8db3caf02d76.htm" target="docFrame">SL.Services</a></li>
+        </ul>
+
+        <h2>Patrones</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('patrones.html')">Patrón Composite</a></li>
+            <li><a href="#" onclick="loadPage('patrones.html')">Repository</a></li>
+            <li><a href="#" onclick="loadPage('patrones.html')">Factory</a></li>
+        </ul>
+
+        <h2>Seguridad</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('seguridad.html')">AES</a></li>
+            <li><a href="#" onclick="loadPage('seguridad.html')">Bloqueos</a></li>
+        </ul>
+
+        <h2>Integridad</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('integridad.html')">DVH / DVV</a></li>
+        </ul>
+
+        <h2>Multilenguaje</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('idioma.html')">Sistema de idioma</a></li>
+        </ul>
+
+    </div>
+
+    <div class="content-area">
+        <iframe name="docFrame" src="html/f9d71711-58f3-a5c5-30aa-a35e309aab84.htm"></iframe>
+    </div>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+function loadPage(page) {
+    document.getElementsByName("docFrame")[0].src = page;
+}
+</script>
+
+</body>
+</html>
