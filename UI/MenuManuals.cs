@@ -136,7 +136,8 @@ namespace UI
                         if (File.Exists(save.FileName))
                             File.Delete(save.FileName);
 
-                        object value = System.IO.Compression.ZipFile.CreateFromDirectory(folderPath, save.FileName);
+                        ZipFile.CreateFromDirectory(folderPath, save.FileName, CompressionLevel.Optimal, true);
+
                         MessageBox.Show("Paquete generado correctamente:\n" + save.FileName);
                     }
                 }
